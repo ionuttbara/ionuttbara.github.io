@@ -1,0 +1,99 @@
+<!-- full-article.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBBSite - Full Article</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../page_blog/js/full-article.js" defer></script> <!-- JavaScript for full article view -->
+</head>
+<body>
+    <header>
+        <!-- Include the header from the res directory -->
+        <div id="header-content"></div>
+    </header>
+
+    <main>
+        <section>
+            <!-- Article Content -->
+            <div id="article-content"></div>
+
+            <!-- Article Navigation -->
+            <div class="article-navigation">
+                <button id="prevArticleBtn" class="navigation-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Previous Article
+                </button>
+                <button id="nextArticleBtn" class="navigation-button">
+                    Next Article
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include the footer from the res directory -->
+        <div id="footer-content"></div>
+    </footer>
+
+    <script>
+        // Load the header content
+        fetch('../res/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-content').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching header:', error));
+
+        // Load the footer content
+        fetch('../res/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-content').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching footer:', error));
+
+        // Fetch and display the full article content
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articlePath = urlParams.get('article');
+
+            if (articlePath) {
+                fetch(`../${articlePath}`) // Correct the path here
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('article-content').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error fetching article:', error));
+            } else {
+                console.error('Article path parameter is missing.');
+            }
+        });
+
+        // Navigate to the previous article
+        document.getElementById('prevArticleBtn').addEventListener('click', function() {
+            window.history.back();
+        });
+
+        // Navigate to the next article
+        document.getElementById('nextArticleBtn').addEventListener('click', function() {
+            // Implement your logic here to determine the next article
+            // For example, you can use localStorage or session storage to keep track of article navigation
+            // and retrieve the next article path accordingly.
+            console.log('Next article button clicked.');
+        });
+    </script>
+</body>
+</html>

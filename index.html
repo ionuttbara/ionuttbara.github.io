@@ -1,10 +1,48 @@
-<html>
-<title>Home Page - IBBSite</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBBSite - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js" defer></script>
+</head>
 <body>
-  <h1>Ionut Bara Personal Website</h1>
-  <p>Hi!</p>
-<p>nothing important right now. comming soon for newer things.</p>
-	<p>&nbsp;</p>
-</body>
+    <header>
+        <h1>Welcome to Ionut Bara's Personal Site</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page_about/about.html">About</a></li>
+                <li><a href="page_blog/blog.html">Blog</a></li>
+                <li><a href="page_about_contact/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>Welcome to my personal website. Here you can find information about my projects, blog posts, and how to contact me.</p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include the footer from the res directory -->
+        <div id="footer-content"></div>
+    </footer>
+
+    <script>
+        // Load the footer content
+        fetch('res/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-content').innerHTML = data;
+            });
+    </script>
+    <script>
+        // Call initialization function from cookie.js
+        initializeCookieManagement();
+    </script>
+</body>
 </html>

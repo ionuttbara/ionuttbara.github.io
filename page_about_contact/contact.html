@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBBSite - Contact</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- Include the header from the res directory -->
+        <div id="header-content"></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact Ionut Bara</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include the footer from the res directory -->
+        <div id="footer-content"></div>
+    </footer>
+
+    <script>
+        // Load the header content
+        fetch('../res/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-content').innerHTML = data;
+            });
+
+        // Load the footer content
+        fetch('../res/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-content').innerHTML = data;
+            });
+
+        // Form validation
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted successfully!');
+        });
+    </script>
+</body>
+</html>

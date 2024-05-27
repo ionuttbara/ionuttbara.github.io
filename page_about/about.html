@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBBSite - About</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- Include the header from the res directory -->
+        <div id="header-content"></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>About Ionut Bara</h2>
+            <p>This is the about page where information about Ionut Bara is displayed.</p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include the footer from the res directory -->
+        <div id="footer-content"></div>
+    </footer>
+
+    <script>
+        // Load the header content
+        fetch('../res/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-content').innerHTML = data;
+            });
+
+        // Load the footer content
+        fetch('../res/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-content').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
