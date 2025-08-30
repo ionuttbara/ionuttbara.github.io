@@ -1,0 +1,66 @@
+{
+  "en-US": [
+    {
+      "name": "Melody Script Windows",
+      "description": "Windows optimization script for better performance and system tweaks",
+      "downloadUrl": "https://github.com/ionuttbara/melody_windows",
+      "version": "v2.1",
+      "size": "25MB"
+    },
+    {
+      "name": "Defender Remover Tool",
+      "description": "Remove Windows Defender completely from your Windows system",
+      "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover",
+      "version": "v1.5",
+      "size": "15MB"
+    }
+  ],
+  "hu-HU": [
+    {
+      "name": "Melody Script Windows",
+      "description": "Windows optimalizálási szkript jobb teljesítményért és rendszer finomhangolásért",
+      "downloadUrl": "https://github.com/ionuttbara/melody_windows",
+      "version": "v2.1",
+      "size": "25MB"
+    },
+    {
+      "name": "Defender Remover Tool",
+      "description": "Távolítsa el teljesen a Windows Defender-t a Windows rendszeréből",
+      "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover",
+      "version": "v1.5",
+      "size": "15MB"
+    }
+  ],
+  "ro-RO": [
+    {
+      "name": "Melody Script Windows",
+      "description": "Script de optimizare Windows pentru performanță mai bună și ajustări de sistem",
+      "downloadUrl": "https://github.com/ionuttbara/melody_windows",
+      "version": "v2.1",
+      "size": "25MB"
+    },
+    {
+      "name": "Defender Remover Tool",
+      "description": "Eliminați complet Windows Defender din sistemul dvs. Windows",
+      "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover",
+      "version": "v1.5",
+      "size": "15MB"
+    }
+  ],
+  "gall": [
+    {
+      "name": "Melody Script Windows",
+      "description": "Windows optimizacijska skripta za bolju performansu i sistemska podešavanja",
+      "downloadUrl": "https://github.com/ionuttbara/melody_windows",
+      "version": "v2.1",
+      "size": "25MB"
+    },
+    {
+      "name": "Defender Remover Tool",
+      "description": "Potpuno uklonite Windows Defender iz vašeg Windows sistema",
+      "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover",
+      "version": "v1.5",
+      "size": "15MB"
+    }
+  ]
+}

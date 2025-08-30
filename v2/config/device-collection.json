@@ -1,0 +1,50 @@
+{
+  "en-US": [
+    {
+      "name": "PlayStation 2 Slim EU/PAL modded",
+      "icon": "playstation",
+      "description": "Modded gaming console for retro gaming"
+    },
+    {
+      "name": "Dell Inspiron retro PC",
+      "icon": "old-pc",
+      "description": "Vintage computer for retro computing tasks"
+    }
+  ],
+  "hu-HU": [
+    {
+      "name": "PlayStation 2 Slim EU/PAL módosított",
+      "icon": "playstation",
+      "description": "Módosított játékkonzol retro játékokhoz"
+    },
+    {
+      "name": "Dell Inspiron retro PC",
+      "icon": "old-pc",
+      "description": "Régi számítógép retro számítástechnikai feladatokhoz"
+    }
+  ],
+  "ro-RO": [
+    {
+      "name": "PlayStation 2 Slim EU/PAL modificat",
+      "icon": "playstation",
+      "description": "Consolă de jocuri modificată pentru gaming retro"
+    },
+    {
+      "name": "Dell Inspiron PC retro",
+      "icon": "old-pc",
+      "description": "Computer vintage pentru sarcini de computing retro"
+    }
+  ],
+  "gall": [
+    {
+      "name": "PlayStation 2 Slim EU/PAL modificiran",
+      "icon": "playstation",
+      "description": "Modificirana gaming konzola za retro gaming"
+    },
+    {
+      "name": "Dell Inspiron retro PC",
+      "icon": "old-pc",
+      "description": "Vintage računar za retro računarske zadatke"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "en-US": [
+    {
+      "type": "Laptop",
+      "model": "Lenovo LOQ 15",
+      "icon": "laptop",
+      "specs": {
+        "CPU": "AMD Ryzen 7745",
+        "GPU": "NVIDIA RTX 4060 Laptop 8GB",
+        "RAM": "64GB DDR5",
+        "Storage": "2x4TB SSD NVMe",
+        "OS": "Windows 11 Pro"
+      },
+      "accessories": {
+        "Mures Setup": [
+          "LG Monitor",
+          "Logitech Keyboard",
+          "Logitech Mouse",
+          "Logitech Webcam",
+          "Logitech Speakers",
+          "Xerox Printer",
+          "Logitech Controller",
+          "PlayStation Controller",
+          "Xbox Controller",
+          "Logitech G29 + G-shift",
+          "Canon Scanner"
+        ],
+        "Office Setup (Electricon)": [
+          "LG Monitor",
+          "G613 Keyboard",
+          "Baseus Docking Station",
+          "G604 Mouse"
+        ],
+        "Damuc Setup": [
+          "G604 Mouse"
+        ]
+      }
+    },
+    {
+      "type": "Phone",
+      "model": "Samsung Galaxy S23 Ultra 1TB",
+      "icon": "phone",
+      "specs": {
+        "Display": "6.8\" Dynamic AMOLED 2X",
+        "Storage": "1TB",
+        "RAM": "12GB",
+        "Camera": "200MP main, 12MP ultra-wide, 10MP telephoto",
+        "Battery": "5000mAh",
+        "OS": "Android 14"
+      }
+    },
+    {
+      "type": "Tablet",
+      "model": "Samsung Galaxy Tab S9 Ultra 512GB",
+      "icon": "tablet",
+      "specs": {
+        "Display": "14.6\" Dynamic AMOLED 2X",
+        "Storage": "512GB",
+        "RAM": "12GB",
+        "Processor": "Snapdragon 8 Gen 2",
+        "OS": "Android 13"
+      },
+      "accessories": {
+        "Tablet Accessories": ["SD Card"]
+      }
+    },
+    {
+      "type": "Desktop Backup",
+      "model": "24GB RAM DDR3 with Intel i5 gen 6 Esprimo",
+      "icon": "desktop",
+      "specs": {
+        "CPU": "Intel i5 6th Gen",
+        "RAM": "24GB DDR3",
+        "Type": "Fujitsu Esprimo",
+        "Purpose": "Backup system"
+      }
+    },
+    {
+      "type": "Desktop Retro 1",
+      "model": "Fujitsu P600 with Pentium 4 and Windows XP",
+      "icon": "old-pc",
+      "specs": {
+        "CPU": "Intel Pentium 4",
+        "OS": "Windows XP",
+        "Model": "Fujitsu P600",
+        "Purpose": "Retro computing"
+      }
+    },
+    {
+      "type": "Camera",
+      "model": "Nikon Z50ii",
+      "icon": "camera",
+      "specs": {
+        "Sensor": "20.9MP APS-C CMOS",
+        "Video": "10-bit 4K UHD",
+        "Images": "10-bit HEIC",
+        "Mount": "Nikon Z"
+      },
+      "lenses": [
+        "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+        "NIKKOR Z DX 50-250mm f/4.5-6.3 VR"
+      ]
+    },
+    {
+      "type": "Server",
+      "model": "4TB SSD SATA integrated in Router",
+      "icon": "server",
+      "specs": {
+        "Storage": "4TB SSD SATA",
+        "Integration": "Built into router",
+        "Purpose": "Network storage"
+      }
+    },
+    {
+      "type": "Router",
+      "model": "TP-Link WiFi AX53",
+      "icon": "router",
+      "specs": {
+        "Standard": "WiFi 6 (802.11ax)",
+        "Speed": "AX3000",
+        "Brand": "TP-Link",
+        "Model": "AX53"
+      }
+    },
+    {
+      "type": "External Storage",
+      "model": "55TB HDD + 14TB SSD",
+      "icon": "storage",
+      "specs": {
+        "HDD Storage": "55TB",
+        "SSD Storage": "14TB",
+        "Type": "External drives",
+        "Total": "69TB external storage"
+      }
+    },
+    {
+      "type": "VR Headset",
+      "model": "HTC Vive Cosmos",
+      "icon": "vr",
+      "specs": {
+        "Brand": "HTC",
+        "Model": "Vive Cosmos",
+        "Type": "Virtual Reality",
+        "Tracking": "Inside-out tracking"
+      }
+    }
+  ]
+}

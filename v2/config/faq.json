@@ -1,0 +1,74 @@
+{
+  "en-US": [
+    {
+      "question": "What is your primary area of expertise?",
+      "answer": "I specialize in IT management, Windows system administration, and artificial intelligence development. I work at Electricon managing IT operations and products."
+    },
+    {
+      "question": "Do you work remotely?",
+      "answer": "Yes, I offer both remote and on-site services depending on the project requirements. I'm based in Târgu Mureș, Romania."
+    },
+    {
+      "question": "What programming languages do you use?",
+      "answer": "I primarily work with PowerShell, Batch scripting, Python, and various web technologies for my Windows optimization tools and AI projects."
+    },
+    {
+      "question": "How can I contact you for services?",
+      "answer": "You can reach me through the contact form on this website, or directly at ionutbaraooo@gmail.com. I respond to all inquiries within 24 hours."
+    }
+  ],
+  "hu-HU": [
+    {
+      "question": "Mi az Ön elsődleges szakterülete?",
+      "answer": "IT menedzsmenttel, Windows rendszeradminisztrációval és mesterséges intelligencia fejlesztéssel foglalkozom. Az Electricon-nál dolgozom, IT műveleteket és termékeket kezelek."
+    },
+    {
+      "question": "Dolgozik távolról?",
+      "answer": "Igen, a projekt követelményeitől függően távoli és helyszíni szolgáltatásokat is kínálok. Târgu Mureș-ben, Romániában vagyok."
+    },
+    {
+      "question": "Milyen programozási nyelveket használ?",
+      "answer": "Elsősorban PowerShell-lel, Batch szkripteléssel, Python-nal és különböző webes technológiákkal dolgozom Windows optimalizáló eszközeim és AI projektjeim számára."
+    },
+    {
+      "question": "Hogyan tudok kapcsolatba lépni Önnel szolgáltatások ügyében?",
+      "answer": "Elérhetsz az ezen a weboldalon található kapcsolatfelvételi űrlapon keresztül, vagy közvetlenül az ionutbaraooo@gmail.com címen. 24 órán belül válaszolok minden megkeresésre."
+    }
+  ],
+  "ro-RO": [
+    {
+      "question": "Care este domeniul dvs. principal de expertiză?",
+      "answer": "Sunt specializat în managementul IT, administrarea sistemelor Windows și dezvoltarea inteligenței artificiale. Lucrez la Electricon gestionând operațiunile și produsele IT."
+    },
+    {
+      "question": "Lucrați de la distanță?",
+      "answer": "Da, ofer atât servicii la distanță, cât și la fața locului, în funcție de cerințele proiectului. Sunt bazat în Târgu Mureș, România."
+    },
+    {
+      "question": "Ce limbaje de programare folosiți?",
+      "answer": "Lucrez în principal cu PowerShell, scripting Batch, Python și diverse tehnologii web pentru instrumentele mele de optimizare Windows și proiectele AI."
+    },
+    {
+      "question": "Cum vă pot contacta pentru servicii?",
+      "answer": "Mă puteți contacta prin formularul de contact de pe acest site web sau direct la ionutbaraooo@gmail.com. Răspund la toate solicitările în 24 de ore."
+    }
+  ],
+  "gall": [
+    {
+      "question": "Koja je vaša primarna oblast ekspertize?",
+      "answer": "Specijalizovan sam za IT menadžment, Windows sistem administraciju i razvoj umjetne inteligencije. Radim u Electricon-u upravljajući IT operacijama i proizvodima."
+    },
+    {
+      "question": "Radite li na daljinu?",
+      "answer": "Da, nudim i usluge na daljinu i na licu mjesta ovisno o zahtjevima projekta. Baziran sam u Târgu Mureș-u, Rumunija."
+    },
+    {
+      "question": "Koje programske jezike koristite?",
+      "answer": "Uglavnom radim s PowerShell-om, Batch skriptiranjem, Python-om i različitim web tehnologijama za moje Windows optimizacijske alate i AI projekte."
+    },
+    {
+      "question": "Kako me možete kontaktirati za usluge?",
+      "answer": "Možete me kontaktirati preko kontakt forme na ovoj web stranici ili direktno na ionutbaraooo@gmail.com. Odgovaram na sve upite unutar 24 sata."
+    }
+  ]
+}

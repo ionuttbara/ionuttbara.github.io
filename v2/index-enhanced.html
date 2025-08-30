@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="siteName">Ionut Bara's personal website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="nav-brand" data-page="home">
+                    <div class="nav-logo">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="nav-brand-text" data-key="siteName">Ionut Bara's personal website</div>
+                </a>
+
+                <div class="nav-desktop">
+                    <ul class="nav-list">
+                        <li><button class="nav-link" data-page="home" data-key="nav.home">Home</button></li>
+                        <li><button class="nav-link" data-page="about" data-key="nav.about">About</button></li>
+                        <li><button class="nav-link" data-page="blog" data-key="nav.blog">Blog</button></li>
+                        <li><button class="nav-link" data-page="projects" data-key="nav.projects">Projects</button></li>
+                        <li><button class="nav-link" data-page="cv" data-key="nav.cv">My CV</button></li>
+                        <li><button class="nav-link" data-page="services" data-key="nav.services">Services</button></li>
+                        <li><button class="nav-link" data-page="usdacm" data-key="nav.usdacm">USDACM</button></li>
+                        <li><button class="nav-link" data-page="devices" data-key="nav.devices">Device Setup</button></li>
+                        <li><button class="nav-link" data-page="tools" data-key="nav.tools">Tools</button></li>
+                        <li><button class="nav-link" data-page="downloads" data-key="nav.downloads">Downloads</button></li>
+                        <li><button class="nav-link" data-page="contact" data-key="nav.contact">Contact</button></li>
+                    </ul>
+                </div>
+
+                <div class="nav-actions">
+                    <select id="languageSelector" class="language-selector">
+                        <option value="en-US">🇺🇸 EN</option>
+                        <option value="hu-HU">🇭🇺 HU</option>
+                        <option value="ro-RO">🇷🇴 RO</option>
+                        <option value="gall">🏴󠁧󠁢󠁳󠁣󠁴󠁿 GALL</option>
+                    </select>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars hamburger-icon"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-list">
+                    <li><button class="mobile-nav-link" data-page="home" data-key="nav.home">Home</button></li>
+                    <li><button class="mobile-nav-link" data-page="about" data-key="nav.about">About</button></li>
+                    <li><button class="mobile-nav-link" data-page="blog" data-key="nav.blog">Blog</button></li>
+                    <li><button class="mobile-nav-link" data-page="projects" data-key="nav.projects">Projects</button></li>
+                    <li><button class="mobile-nav-link" data-page="cv" data-key="nav.cv">My CV</button></li>
+                    <li><button class="mobile-nav-link" data-page="services" data-key="nav.services">Services</button></li>
+                    <li><button class="mobile-nav-link" data-page="usdacm" data-key="nav.usdacm">USDACM</button></li>
+                    <li><button class="mobile-nav-link" data-page="devices" data-key="nav.devices">Device Setup</button></li>
+                    <li><button class="mobile-nav-link" data-page="tools" data-key="nav.tools">Tools</button></li>
+                    <li><button class="mobile-nav-link" data-page="downloads" data-key="nav.downloads">Downloads</button></li>
+                    <li><button class="mobile-nav-link" data-page="contact" data-key="nav.contact">Contact</button></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="container">
+                <section class="hero-section">
+                    <h1 class="hero-title" data-key="home.title">Welcome to My Website</h1>
+                    <p class="hero-subtitle" data-key="home.subtitle">IT Department at Electricon & AI Student</p>
+                    
+                    <div class="home-presentation" id="homePresentation">
+                        <div class="presentation-item work">
+                            <h3 data-key="home.work.title">Professional Role</h3>
+                            <p data-key="home.work.description">IT Department at Electricon - Management IT and products, including electricon.ro website</p>
+                        </div>
+                        <div class="presentation-item education">
+                            <h3 data-key="home.education.title">Education</h3>
+                            <p data-key="home.education.description">Master's student in Artificial Intelligence at UMFST Tg Mures</p>
+                        </div>
+                        <div class="presentation-item location">
+                            <h3 data-key="home.location.title">Location</h3>
+                            <p data-key="home.location.description">Living in Romania, Tg Mures, originally from Damuc, Neamt</p>
+                        </div>
+                        <div class="presentation-item activism">
+                            <h3 data-key="home.activism.title">Activism</h3>
+                            <p data-key="home.activism.description">Anti-corruption activist in Damuc, against Anton Covasan and PSD Damuc</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <button class="btn btn--primary" data-page="projects" data-key="home.viewProjects">View My Projects</button>
+                        <button class="btn btn--secondary" data-page="contact" data-key="home.getInTouch">Get in Touch</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="about.title">About Me</h1>
+                    <p data-key="about.subtitle">Learn more about my background and interests</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-summary">
+                        <p data-key="about.summary">I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I'm also an active advocate against corruption in my hometown of Damuc, Neamt.</p>
+                        
+                        <div class="age-display">
+                            <span data-key="about.ageLabel">I am</span>
+                            <span class="age-number" id="currentAge">22</span>
+                            <span data-key="about.yearsOld">years old</span>
+                        </div>
+                    </div>
+
+                    <section class="about-section">
+                        <h2 data-key="about.faq.title">Frequently Asked Questions</h2>
+                        <div class="faq-list" id="faqList">
+                            <!-- FAQ items will be loaded here -->
+                        </div>
+                    </section>
+
+                    <section class="about-section">
+                        <h2 data-key="about.projects.title">Featured Projects</h2>
+                        <div class="projects-preview" id="projectsPreview">
+                            <!-- Project previews will be loaded here -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div id="blog" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="blog.title">Blog</h1>
+                    <p data-key="blog.subtitle">Technical articles and insights</p>
+                </div>
+
+                <div class="blog-list" id="blogList">
+                    <!-- Blog posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="projects.title">Software Projects</h1>
+                    <p data-key="projects.subtitle">Open source tools and utilities</p>
+                </div>
+
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CV Page -->
+        <div id="cv" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="cv.title">My CV</h1>
+                    <p data-key="cv.subtitle">Complete professional profile</p>
+                    <button class="btn btn--primary export-pdf-btn" id="exportPdfBtn" data-key="cv.exportPdf">Export to PDF</button>
+                </div>
+
+                <div class="cv-content">
+                    <div class="cv-section">
+                        <h2>Personal Information</h2>
+                        <div id="cvPersonalInfo">
+                            <!-- Personal info will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h2>Education</h2>
+                        <div id="cvEducation">
+                            <!-- Education will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h2>Experience</h2>
+                        <div id="cvExperience">
+                            <!-- Experience will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h2>Skills</h2>
+                        <div class="skills-grid" id="cvSkills">
+                            <!-- Skills will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="cv-social-media">
+                        <h3 data-key="cv.socialMedia.title">Connect with me</h3>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/ionuttbara/" target="_blank" class="social-icon facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://wa.me/+40XXX" target="_blank" class="social-icon whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-icon discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="https://github.com/ionuttbara" target="_blank" class="social-icon github">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="services.title">Services</h1>
+                    <p data-key="services.subtitle">Professional services with transparent pricing</p>
+                </div>
+
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- USDACM Page -->
+        <div id="usdacm" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="usdacm.title">USDACM</h1>
+                    <p data-key="usdacm.subtitle">Political commentary and analysis</p>
+                </div>
+
+                <div class="blog-list" id="usdacmList">
+                    <!-- USDACM posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Devices Page -->
+        <div id="devices" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="devices.title">Device Setup</h1>
+                    <p data-key="devices.subtitle">My current hardware specifications</p>
+                </div>
+
+                <div class="devices-grid" id="devicesGrid">
+                    <!-- Devices will be loaded here -->
+                </div>
+
+                <!-- Device Collection Section -->
+                <div class="device-collection-section" id="deviceCollection">
+                    <!-- Device collection will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Page -->
+        <div id="tools" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="tools.title">Tools</h1>
+                    <p data-key="tools.subtitle">Useful web tools and utilities</p>
+                </div>
+
+                <div class="tools-grid" id="toolsGrid">
+                    <!-- Tools will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads Page -->
+        <div id="downloads" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="downloads.title">Downloads</h1>
+                    <p data-key="downloads.subtitle">Available downloads and resources</p>
+                </div>
+
+                <div class="downloads-grid" id="downloadsGrid">
+                    <!-- Downloads will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="contact.title">Contact</h1>
+                    <p data-key="contact.subtitle">Get in touch with me</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-section">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName" class="form-label" data-key="contact.form.name">Full Name</label>
+                                <input type="text" id="contactName" name="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactEmail" class="form-label" data-key="contact.form.email">Email Address</label>
+                                <input type="email" id="contactEmail" name="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactCompany" class="form-label" data-key="contact.form.company">Company (Optional)</label>
+                                <input type="text" id="contactCompany" name="company" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactPhone" class="form-label" data-key="contact.form.phone">Phone Number (Optional)</label>
+                                <input type="tel" id="contactPhone" name="phone" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactSubject" class="form-label" data-key="contact.form.subject">Subject</label>
+                                <select id="contactSubject" name="subject" class="form-control" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="services">Service Request</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactBudget" class="form-label" data-key="contact.form.budget">Project Budget</label>
+                                <select id="contactBudget" name="budget" class="form-control">
+                                    <option value="">Select budget range</option>
+                                    <option value="under-500">Under €500</option>
+                                    <option value="500-1000">€500 - €1,000</option>
+                                    <option value="1000-5000">€1,000 - €5,000</option>
+                                    <option value="5000-plus">€5,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactTimeline" class="form-label" data-key="contact.form.timeline">Expected Timeline</label>
+                                <select id="contactTimeline" name="timeline" class="form-control">
+                                    <option value="">Select timeline</option>
+                                    <option value="urgent">ASAP (within 1 week)</option>
+                                    <option value="fast">Fast (1-2 weeks)</option>
+                                    <option value="normal">Normal (2-4 weeks)</option>
+                                    <option value="flexible">Flexible (1-3 months)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactMessage" class="form-label" data-key="contact.form.message">Your Message</label>
+                                <textarea id="contactMessage" name="message" class="form-control" rows="6" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary btn--full-width" data-key="contact.form.send">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info-section">
+                        <h2 data-key="contact.info.title">Contact Information</h2>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <span id="contactEmail">ionutbaraooo@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <h3 data-key="contact.social.title">Social Media</h3>
+                        <div class="social-media-links" id="socialMediaLinks">
+                            <!-- Social media links will be loaded here -->
+                        </div>
+
+                        <div id="gamingProfiles">
+                            <!-- Gaming profiles will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Content Modal -->
+    <div id="contentModal" class="modal hidden">
+        <div class="modal-backdrop" id="contentModalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="contentModalTitle"></h3>
+                <button class="modal-close" id="closeContentModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="contentModalBody">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessories Modal -->
+    <div id="accessoriesModal" class="modal hidden">
+        <div class="modal-backdrop" id="accessoriesModalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Device Information</h3>
+                <button class="modal-close" id="closeAccessoriesModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="accessoriesModalBody">
+                <!-- Accessories content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Configuration Modal -->
+    <div id="cameraConfigModal" class="modal hidden">
+        <div class="modal-backdrop" id="cameraConfigModalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Camera Configuration</h3>
+                <button class="modal-close" id="closeCameraConfigModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="cameraConfigModalBody">
+                <!-- Camera configuration content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
