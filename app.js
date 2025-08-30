@@ -1,7 +1,7 @@
 // All JSON data embedded for easy management and modification
 // This structure allows easy content updates without touching the application code
 
-// Translation system supporting all languages
+// Translation system supporting all languages (Hungarian removed as requested)
 const translations = {
     'en-US': {
         siteName: "Ionut Bara's personal website",
@@ -15,6 +15,7 @@ const translations = {
             usdacm: 'USDACM',
             devices: 'Device Setup',
             downloads: 'Downloads',
+            tools: 'Tools',
             contact: 'Contact'
         },
         home: {
@@ -34,7 +35,7 @@ const translations = {
             },
             activism: {
                 title: 'Activism',
-                description: 'Anti-corruption activist in Damuc, against Anton Covasan and PSD Damuc'
+                description: 'Anti-corruption activist in Damuc, against administration corruption'
             },
             viewProjects: 'View My Projects',
             getInTouch: 'Get in Touch'
@@ -45,8 +46,12 @@ const translations = {
             summary: "I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I'm also an active advocate against corruption in my hometown of Damuc, Neamt.",
             ageLabel: 'I am',
             yearsOld: 'years old',
-            faq: { title: 'Frequently Asked Questions' },
-            projects: { title: 'Featured Projects' }
+            faq: {
+                title: 'Frequently Asked Questions'
+            },
+            projects: {
+                title: 'Featured Projects'
+            }
         },
         blog: {
             title: 'Blog',
@@ -62,7 +67,9 @@ const translations = {
             title: 'My CV',
             subtitle: 'Complete professional profile',
             exportPdf: 'Export to PDF',
-            socialMedia: { title: 'Connect with me' }
+            socialMedia: {
+                title: 'Connect with me'
+            }
         },
         services: {
             title: 'Services',
@@ -77,118 +84,36 @@ const translations = {
             subtitle: 'My current hardware specifications',
             accessories: 'Accessories',
             objectives: 'Objectives',
-            collection: { title: 'Device Collection' }
+            configuration: 'Configuration',
+            collection: {
+                title: 'Device Collection'
+            }
         },
         downloads: {
             title: 'Downloads',
             subtitle: 'Available downloads and resources'
         },
+        tools: {
+            title: 'Tools',
+            subtitle: 'Useful online tools and utilities'
+        },
         contact: {
             title: 'Contact',
             subtitle: 'Get in touch with me',
             form: {
-                name: 'Name',
-                email: 'Email',
                 subject: 'Subject',
                 message: 'Message',
-                send: 'Send Message'
+                send: 'Send Email'
             },
-            info: { title: 'Contact Information' },
-            social: { title: 'Social Media' }
-        }
-    },
-    'hu-HU': {
-        siteName: "Ionut Bara személyes weboldala",
-        nav: {
-            home: 'Kezdőlap',
-            about: 'Rólam',
-            blog: 'Blog',
-            projects: 'Projektek',
-            cv: 'Önéletrajz',
-            services: 'Szolgáltatások',
-            usdacm: 'USDACM',
-            devices: 'Eszközök',
-            downloads: 'Letöltések',
-            contact: 'Kapcsolat'
-        },
-        home: {
-            title: 'Üdvözöljük a weboldalamon',
-            subtitle: 'IT Részleg az Electricon-nál és AI Hallgató',
-            work: {
-                title: 'Szakmai Szerep',
-                description: 'IT Részleg az Electricon-nál - IT menedzsment és termékek, beleértve az electricon.ro weboldalt'
+            info: {
+                title: 'Contact Information'
             },
-            education: {
-                title: 'Oktatás',
-                description: 'Mesterszakos hallgató Mesterséges Intelligencia területén az UMFST Tg Mures-ben'
+            social: {
+                title: 'Social Media'
             },
-            location: {
-                title: 'Helyszín',
-                description: 'Romániában élek, Tg Mures, eredetileg Damuc, Neamt'
-            },
-            activism: {
-                title: 'Aktivizmus',
-                description: 'Korrupcióellenes aktivista Damuc-ban, Anton Covasan és PSD Damuc ellen'
-            },
-            viewProjects: 'Projektek Megtekintése',
-            getInTouch: 'Kapcsolatfelvétel'
-        },
-        about: {
-            title: 'Rólam',
-            subtitle: 'Tudjon meg többet a hátteremről és érdeklődési köreiről',
-            summary: 'Szenvedélyes IT szakember vagyok, aki az Electricon-nál dolgozik, IT műveleteket és termékeket kezelek. Jelenleg a Mesterséges Intelligencia mesterszakot végzem az UMFST Tg Mures-ben. Aktív korrupcióellenes aktivista is vagyok szülővárosomban, Damuc-ban, Neamt-ban.',
-            ageLabel: 'Én vagyok',
-            yearsOld: 'éves',
-            faq: { title: 'Gyakran Ismételt Kérdések' },
-            projects: { title: 'Kiemelt Projektek' }
-        },
-        blog: {
-            title: 'Blog',
-            subtitle: 'Technikai cikkek és betekintések',
-            readMore: 'Tovább olvasom'
-        },
-        projects: {
-            title: 'Szoftver Projektek',
-            subtitle: 'Nyílt forráskódú eszközök és segédprogramok',
-            viewOnGithub: 'Megtekintés GitHubon'
-        },
-        cv: {
-            title: 'Önéletrajzom',
-            subtitle: 'Teljes szakmai profil',
-            exportPdf: 'Exportálás PDF-be',
-            socialMedia: { title: 'Kapcsolódjon velem' }
-        },
-        services: {
-            title: 'Szolgáltatások',
-            subtitle: 'Professzionális szolgáltatások átlátható árazással'
-        },
-        usdacm: {
-            title: 'USDACM',
-            subtitle: 'Politikai kommentár és elemzés'
-        },
-        devices: {
-            title: 'Eszköz Beállítás',
-            subtitle: 'Jelenlegi hardver specifikációim',
-            accessories: 'Kiegészítők',
-            objectives: 'Objektívek',
-            collection: { title: 'Eszköz Gyűjtemény' }
-        },
-        downloads: {
-            title: 'Letöltések',
-            subtitle: 'Elérhető letöltések és források'
-        },
-        contact: {
-            title: 'Kapcsolat',
-            subtitle: 'Vegye fel velem a kapcsolatot',
-            form: {
-                name: 'Név',
-                email: 'Email',
-                subject: 'Tárgy',
-                message: 'Üzenet',
-                send: 'Üzenet Küldése'
-            },
-            info: { title: 'Kapcsolattartási Információk' },
-            social: { title: 'Közösségi Média' }
+            gaming: {
+                title: 'Gaming Profiles'
+            }
         }
     },
     'ro-RO': {
@@ -203,6 +128,7 @@ const translations = {
             usdacm: 'USDACM',
             devices: 'Configurația Dispozitivelor',
             downloads: 'Descărcări',
+            tools: 'Instrumente',
             contact: 'Contact'
         },
         home: {
@@ -222,7 +148,7 @@ const translations = {
             },
             activism: {
                 title: 'Activism',
-                description: 'Activist anti-corupție în Damuc, împotriva lui Anton Covasan și PSD Damuc'
+                description: 'Activist anti-corupție în Damuc, împotriva corupției administrive'
             },
             viewProjects: 'Vezi Proiectele Mele',
             getInTouch: 'Ia Legătura'
@@ -233,8 +159,12 @@ const translations = {
             summary: 'Sunt un profesionist IT pasionat care lucrează la Electricon, gestionând operațiunile IT și produsele. În prezent urmez masteratul în Inteligență Artificială la UMFST Tg Mureș. Sunt și un activist activ împotriva corupției în orașul meu natal Damuc, Neamț.',
             ageLabel: 'Eu am',
             yearsOld: 'de ani',
-            faq: { title: 'Întrebări Frecvente' },
-            projects: { title: 'Proiecte Destacate' }
+            faq: {
+                title: 'Întrebări Frecvente'
+            },
+            projects: {
+                title: 'Proiecte Destacate'
+            }
         },
         blog: {
             title: 'Blog',
@@ -250,7 +180,9 @@ const translations = {
             title: 'CV-ul Meu',
             subtitle: 'Profil profesional complet',
             exportPdf: 'Exportă în PDF',
-            socialMedia: { title: 'Conectează-te cu mine' }
+            socialMedia: {
+                title: 'Conectează-te cu mine'
+            }
         },
         services: {
             title: 'Servicii',
@@ -265,24 +197,36 @@ const translations = {
             subtitle: 'Specificațiile mele actuale hardware',
             accessories: 'Accesorii',
             objectives: 'Obiective',
-            collection: { title: 'Colecția de Dispozitive' }
+            configuration: 'Configurație',
+            collection: {
+                title: 'Colecția de Dispozitive'
+            }
         },
         downloads: {
             title: 'Descărcări',
             subtitle: 'Descărcări și resurse disponibile'
         },
+        tools: {
+            title: 'Instrumente',
+            subtitle: 'Instrumente online utile și utilitare'
+        },
         contact: {
             title: 'Contact',
             subtitle: 'Ia legătura cu mine',
             form: {
-                name: 'Nume',
-                email: 'Email',
                 subject: 'Subiect',
                 message: 'Mesaj',
-                send: 'Trimite Mesajul'
+                send: 'Trimite Email'
             },
-            info: { title: 'Informații de Contact' },
-            social: { title: 'Rețele Sociale' }
+            info: {
+                title: 'Informații de Contact'
+            },
+            social: {
+                title: 'Rețele Sociale'
+            },
+            gaming: {
+                title: 'Profile Gaming'
+            }
         }
     },
     'gall': {
@@ -297,6 +241,7 @@ const translations = {
             usdacm: 'USDACM',
             devices: 'Konfiguracija uređaja',
             downloads: 'Preuzimanja',
+            tools: 'Alati',
             contact: 'Kontakt'
         },
         home: {
@@ -316,7 +261,7 @@ const translations = {
             },
             activism: {
                 title: 'Aktivizam',
-                description: 'Antikorupcijski aktivist u Damuc-u, protiv Anton Covasan-a i PSD Damuc-a'
+                description: 'Antikorupcijski aktivist u Damuc-u, protiv Anton Covasan-a i PSD-AUR Damuc-a koalitza'
             },
             viewProjects: 'Pogledaj moje projekte',
             getInTouch: 'Stupi u kontakt'
@@ -327,8 +272,12 @@ const translations = {
             summary: 'Strastan sam IT profesionalac koji radi u Electricon-u, upravljam IT operacijama i proizvodima. Trenutno studiram magisterij Umjetne inteligencije na UMFST Tg Mures. Također sam aktivan zagovornik protiv korupcije u mom rodnom gradu Damuc, Neamt.',
             ageLabel: 'Imam',
             yearsOld: 'godina',
-            faq: { title: 'Često postavljana pitanja' },
-            projects: { title: 'Istaknuti projekti' }
+            faq: {
+                title: 'Često postavljana pitanja'
+            },
+            projects: {
+                title: 'Istaknuti projekti'
+            }
         },
         blog: {
             title: 'Blog',
@@ -344,7 +293,9 @@ const translations = {
             title: 'Moj CV',
             subtitle: 'Potpun profesionalni profil',
             exportPdf: 'Izvezi u PDF',
-            socialMedia: { title: 'Povežite se sa mnom' }
+            socialMedia: {
+                title: 'Povežite se sa mnom'
+            }
         },
         services: {
             title: 'Usluge',
@@ -359,29 +310,41 @@ const translations = {
             subtitle: 'Moje trenutne hardverske specifikacije',
             accessories: 'Pribor',
             objectives: 'Objektivi',
-            collection: { title: 'Kolekcija uređaja' }
+            configuration: 'Konfiguracija',
+            collection: {
+                title: 'Kolekcija uređaja'
+            }
         },
         downloads: {
             title: 'Preuzimanja',
             subtitle: 'Dostupna preuzimanja i resursi'
         },
+        tools: {
+            title: 'Alati',
+            subtitle: 'Korisni online alati i utiliteti'
+        },
         contact: {
             title: 'Kontakt',
             subtitle: 'Stupi u kontakt sa mnom',
             form: {
-                name: 'Ime',
-                email: 'Email',
                 subject: 'Predmet',
                 message: 'Poruka',
-                send: 'Pošalji poruku'
+                send: 'Pošalji Email'
             },
-            info: { title: 'Kontakt informacije' },
-            social: { title: 'Društvene mreže' }
+            info: {
+                title: 'Kontakt informacije'
+            },
+            social: {
+                title: 'Društvene mreže'
+            },
+            gaming: {
+                title: 'Gaming profili'
+            }
         }
     }
 };
 
-// FAQ data with multi-language support
+// FAQ data with multi-language support (Hungarian removed)
 const faqData = {
     'en-US': [
         {
@@ -399,24 +362,6 @@ const faqData = {
         {
             question: "How can I contact you for services?",
             answer: "You can reach me through the contact form on this website, or directly at ionutbaraooo@gmail.com. I respond to all inquiries within 24 hours."
-        }
-    ],
-    'hu-HU': [
-        {
-            question: "Mi az Ön elsődleges szakterülete?",
-            answer: "IT menedzsmenttel, Windows rendszeradminisztrációval és mesterséges intelligencia fejlesztéssel foglalkozom. Az Electricon-nál dolgozom, IT műveleteket és termékeket kezelek."
-        },
-        {
-            question: "Dolgozik távolról?",
-            answer: "Igen, a projekt követelményeitől függően távoli és helyszíni szolgáltatásokat is kínálok. Târgu Mureș-ben, Romániában vagyok."
-        },
-        {
-            question: "Milyen programozási nyelveket használ?",
-            answer: "Elsősorban PowerShell-lel, Batch szkripteléssel, Python-nal és különböző webes technológiákkal dolgozom Windows optimalizáló eszközeim és AI projektjeim számára."
-        },
-        {
-            question: "Hogyan tudok kapcsolatba lépni Önnel szolgáltatások ügyében?",
-            answer: "Elérhetsz az ezen a weboldalon található kapcsolatfelvételi űrlapon keresztül, vagy közvetlenül az ionutbaraooo@gmail.com címen. 24 órán belül válaszolok minden megkeresésre."
         }
     ],
     'ro-RO': [
@@ -457,7 +402,7 @@ const faqData = {
     ]
 };
 
-// Projects data with multi-language support
+// Projects data with multi-language support (Hungarian removed)
 const projectsData = {
     'en-US': [
         {
@@ -473,22 +418,6 @@ const projectsData = {
             github: "https://github.com/ionuttbara/melody_windows",
             technologies: ["PowerShell", "Batch", "Windows"],
             status: "Active"
-        }
-    ],
-    'hu-HU': [
-        {
-            name: "Defender Remover",
-            description: "Egy eszköz, amelyet a Windows Defender eltávolítására használnak Windows 8.x, Windows 10 (minden verzió) és Windows 11 rendszereken.",
-            github: "https://github.com/ionuttbara/windows-defender-remover",
-            technologies: ["Batch", "PowerShell", "Windows"],
-            status: "Aktív"
-        },
-        {
-            name: "Melody Script",
-            description: "Melody Optimalizálási Szkript Windows-hoz - összeállított alkalmazás Windows 7/8.x/10/11 rendszerekhez, amely több magas minőségű finomhangolást tartalmaz",
-            github: "https://github.com/ionuttbara/melody_windows",
-            technologies: ["PowerShell", "Batch", "Windows"],
-            status: "Aktív"
         }
     ],
     'ro-RO': [
@@ -525,7 +454,7 @@ const projectsData = {
     ]
 };
 
-// CV data with multi-language support
+// CV data with multi-language support (Hungarian removed)
 const cvData = {
     'en-US': {
         personalInfo: {
@@ -558,42 +487,8 @@ const cvData = {
         ],
         skills: ["PowerShell", "Batch Scripting", "Windows Administration", "System Optimization", "Python", "JavaScript", "HTML/CSS", "Network Administration", "Cybersecurity"],
         certificates: ["Windows Server Administration", "Network Security", "Python Programming"],
-        languages: ["Romanian (Native)", "English (Fluent)", "Hungarian (Conversational)", "GALL (Basic)"],
+        languages: ["Romanian (Native)", "English (Fluent)", "GALL (Basic)"],
         projects: ["Defender Remover", "Melody Script", "Windows Optimization Tools"]
-    },
-    'hu-HU': {
-        personalInfo: {
-            name: "Ionut Bara",
-            email: "ionutbaraooo@gmail.com",
-            phone: "+40 XXX XXX XXX",
-            location: "Târgu Mureș, Románia"
-        },
-        education: [
-            {
-                degree: "Mesterszak Mesterséges Intelligenciában",
-                institution: "UMFST Târgu Mureș",
-                period: "2023 - Jelenlegi",
-                status: "Jelenlegi"
-            },
-            {
-                degree: "Informatikai Alapszak",
-                institution: "Műszaki Egyetem",
-                period: "2020 - 2023",
-                status: "Befejezett"
-            }
-        ],
-        experience: [
-            {
-                position: "IT Részleg Vezető",
-                company: "Electricon",
-                period: "2022 - Jelenlegi",
-                description: "IT műveletek, termékek és az electricon.ro weboldal kezelése. Felelős a rendszeradminisztrációért és a digitális infrastruktúráért."
-            }
-        ],
-        skills: ["PowerShell", "Batch Scripting", "Windows Adminisztráció", "Rendszer Optimalizálás", "Python", "JavaScript", "HTML/CSS", "Hálózat Adminisztráció", "Kiberbiztonsággal"],
-        certificates: ["Windows Server Adminisztráció", "Hálózati Biztonság", "Python Programozás"],
-        languages: ["Román (Anyanyelv)", "Angol (Folyékony)", "Magyar (Társalgási)", "GALL (Alapfok)"],
-        projects: ["Defender Remover", "Melody Script", "Windows Optimalizálási Eszközök"]
     },
     'ro-RO': {
         personalInfo: {
@@ -626,7 +521,7 @@ const cvData = {
         ],
         skills: ["PowerShell", "Scripting Batch", "Administrare Windows", "Optimizare Sistem", "Python", "JavaScript", "HTML/CSS", "Administrare Rețea", "Securitate Cibernetică"],
         certificates: ["Administrare Windows Server", "Securitate Rețea", "Programare Python"],
-        languages: ["Română (Nativă)", "Engleză (Fluent)", "Maghiară (Conversațională)", "GALL (De bază)"],
+        languages: ["Română (Nativă)", "Engleză (Fluent)", "GALL (De bază)"],
         projects: ["Defender Remover", "Melody Script", "Instrumente de Optimizare Windows"]
     },
     'gall': {
@@ -660,12 +555,12 @@ const cvData = {
         ],
         skills: ["PowerShell", "Batch Scripting", "Windows Administracija", "Sistemska optimizacija", "Python", "JavaScript", "HTML/CSS", "Mrežna administracija", "Kiberbezbednost"],
         certificates: ["Windows Server Administracija", "Mrežna bezbednost", "Python programiranje"],
-        languages: ["Rumunski (Maternji)", "Engleski (Tečno)", "Mađarski (Konverzacijski)", "GALL (Osnovno)"],
+        languages: ["Rumunski (Maternji)", "Engleski (Tečno)", "GALL (Osnovno)"],
         projects: ["Defender Remover", "Melody Script", "Windows optimizacijski alati"]
     }
 };
 
-// Updated services data with merged structure and currency support
+// Updated services data with new pricing structure and currency support
 const servicesData = {
     'en-US': [
         {
@@ -683,60 +578,38 @@ const servicesData = {
             description: "Complete Windows installation with various options and custom software installation",
             pricing: {
                 base: "15€ labor",
-                customPrograms: "23€/program"
+                customPrograms: "10€/program"
             },
-            options: [
-                { name: "Windows OEM License", price: "included" },
-                { name: "Windows Pro", price: "+7€" },
-                { name: "Windows IoT Enterprise LTSC", price: "+17€" },
-                { name: "Office 2024 LTSC", price: "+10€" },
-                { name: "Adobe Acrobat Pro DC 2019", price: "+3€" }
-            ]
+            calculator: true,
+            options: {
+                windows: [
+                    { name: "Windows OEM", price: 0 },
+                    { name: "Windows Pro", price: 7 },
+                    { name: "Windows IoT Enterprise LTSC", price: 17 }
+                ],
+                office: [
+                    { name: "Without Office", price: 0 },
+                    { name: "Office 2024 LTSC", price: 10 }
+                ],
+                adobe: [
+                    { name: "Without Adobe", price: 0 },
+                    { name: "Adobe Acrobat Pro DC 2019", price: 3 }
+                ],
+                customPrograms: {
+                    name: "Custom Programs",
+                    pricePerProgram: 10
+                }
+            }
         },
         {
             id: "networking",
             category: "Networking",
             description: "Equipment installation and configuration with total cost calculation",
             pricing: {
-                labor: "20% of equipment price",
+                laborPercent: 20,
                 minimum: "4500€ minimum equipment cost"
-            }
-        }
-    ],
-    'hu-HU': [
-        {
-            id: "phoneAdmin",
-            category: "Telefon Adminisztráció",
-            description: "Android/iPhone tisztítás, Google/iCloud feloldás, tartalom kezelés, stb.",
-            pricing: {
-                base: "10€",
-                labor: "Nincs munkadíj"
-            }
-        },
-        {
-            id: "windowsInstallation",
-            category: "Windows Telepítés és Egyedi Programok",
-            description: "Teljes Windows telepítés különböző opciókkal és egyedi szoftver telepítés",
-            pricing: {
-                base: "15€ munkadíj",
-                customPrograms: "23€/program"
             },
-            options: [
-                { name: "Windows OEM Licenc", price: "benne van" },
-                { name: "Windows Pro", price: "+7€" },
-                { name: "Windows IoT Enterprise LTSC", price: "+17€" },
-                { name: "Office 2024 LTSC", price: "+10€" },
-                { name: "Adobe Acrobat Pro DC 2019", price: "+3€" }
-            ]
-        },
-        {
-            id: "networking",
-            category: "Hálózatépítés",
-            description: "Berendezések telepítése és konfigurálása teljes költségszámítással",
-            pricing: {
-                labor: "Berendezés árának 20%-a",
-                minimum: "4500€ minimum berendezési költség"
-            }
+            calculator: true
         }
     ],
     'ro-RO': [
@@ -755,24 +628,38 @@ const servicesData = {
             description: "Instalare completă Windows cu diverse opțiuni și instalare software personalizat",
             pricing: {
                 base: "45 lei manoperă",
-                customPrograms: "70 lei/program"
+                customPrograms: "35 lei/program"
             },
-            options: [
-                { name: "Licență Windows OEM", price: "inclus" },
-                { name: "Windows Pro", price: "+20 lei" },
-                { name: "Windows IoT Enterprise LTSC", price: "+50 lei" },
-                { name: "Office 2024 LTSC", price: "+30 lei" },
-                { name: "Adobe Acrobat Pro DC 2019", price: "+10 lei" }
-            ]
+            calculator: true,
+            options: {
+                windows: [
+                    { name: "Windows OEM", price: 0 },
+                    { name: "Windows Pro", price: 20 },
+                    { name: "Windows IoT Enterprise LTSC", price: 50 }
+                ],
+                office: [
+                    { name: "Fără Office", price: 0 },
+                    { name: "Office 2024 LTSC", price: 30 }
+                ],
+                adobe: [
+                    { name: "Fără Adobe", price: 0 },
+                    { name: "Adobe Acrobat Pro DC 2019", price: 10 }
+                ],
+                customPrograms: {
+                    name: "Programe Personalizate",
+                    pricePerProgram: 35
+                }
+            }
         },
         {
             id: "networking",
             category: "Rețelistică",
             description: "Instalare și configurare echipamente cu calculul costului total",
             pricing: {
-                labor: "20% din prețul echipamentelor",
+                laborPercent: 20,
                 minimum: "25.000 lei cost minim echipamente"
-            }
+            },
+            calculator: true
         }
     ],
     'gall': [
@@ -791,29 +678,215 @@ const servicesData = {
             description: "Kompletna Windows instalacija s različitim opcijama i instalacija prilagođenog softvera",
             pricing: {
                 base: "15€ rad",
-                customPrograms: "23€/program"
+                customPrograms: "10€/program"
             },
-            options: [
-                { name: "Windows OEM licenca", price: "uključeno" },
-                { name: "Windows Pro", price: "+7€" },
-                { name: "Windows IoT Enterprise LTSC", price: "+17€" },
-                { name: "Office 2024 LTSC", price: "+10€" },
-                { name: "Adobe Acrobat Pro DC 2019", price: "+3€" }
-            ]
+            calculator: true,
+            options: {
+                windows: [
+                    { name: "Windows OEM", price: 0 },
+                    { name: "Windows Pro", price: 7 },
+                    { name: "Windows IoT Enterprise LTSC", price: 17 }
+                ],
+                office: [
+                    { name: "Bez Office-a", price: 0 },
+                    { name: "Office 2024 LTSC", price: 10 }
+                ],
+                adobe: [
+                    { name: "Bez Adobe-a", price: 0 },
+                    { name: "Adobe Acrobat Pro DC 2019", price: 3 }
+                ],
+                customPrograms: {
+                    name: "Prilagođeni programi",
+                    pricePerProgram: 10
+                }
+            }
         },
         {
             id: "networking",
             category: "Umrežavanje",
             description: "Instalacija i konfiguracija opreme s izračunom ukupnog troška",
             pricing: {
-                labor: "20% cijene opreme",
+                laborPercent: 20,
                 minimum: "4500€ minimalni trošak opreme"
-            }
+            },
+            calculator: true
         }
     ]
 };
 
-// Updated devices data with new accessories structure
+// Camera configuration profiles for Nikon Z50ii
+const cameraProfiles = {
+    'en-US': {
+        U1: {
+            name: "U1 Profile",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (not auto)",
+                mode: "Not M-mode",
+                color: "Neutral",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "ON"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U2: {
+            name: "U2 Profile",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (not auto)",
+                mode: "Not M-mode",
+                color: "Neutral",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "ON"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U3: {
+            name: "U3 Profile",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (not auto)",
+                mode: "Not M-mode",
+                color: "Neutral",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "ON"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        }
+    },
+    'ro-RO': {
+        U1: {
+            name: "Profil U1",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (nu auto)",
+                mode: "Nu mod M",
+                color: "Neutru",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "PORNIT"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U2: {
+            name: "Profil U2",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (nu auto)",
+                mode: "Nu mod M",
+                color: "Neutru",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "PORNIT"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U3: {
+            name: "Profil U3",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Manual (nu auto)",
+                mode: "Nu mod M",
+                color: "Neutru",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "PORNIT"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        }
+    },
+    'gall': {
+        U1: {
+            name: "U1 Profil",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Ručno (ne auto)",
+                mode: "Ne M-mode",
+                color: "Neutralan",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "UKLJUČENO"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U2: {
+            name: "U2 Profil",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Ručno (ne auto)",
+                mode: "Ne M-mode",
+                color: "Neutralan",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "UKLJUČENO"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        },
+        U3: {
+            name: "U3 Profil",
+            pictureSettings: {
+                iso: "800",
+                sensitivity: "Ručno (ne auto)",
+                mode: "Ne M-mode",
+                color: "Neutralan",
+                whiteBalance: "Auto",
+                format: "RAW+HEIC",
+                colorSpace: "HLG",
+                longExposure: "UKLJUČENO"
+            },
+            videoSettings: {
+                iso: "10,000",
+                format: "HEVC 10-bit",
+                resolution: "4K@60fps"
+            }
+        }
+    }
+};
+
+// Updated devices data with camera configuration support
 const devicesData = {
     'en-US': [
         {
@@ -851,7 +924,8 @@ const devicesData = {
                 "RAM": "12GB",
                 "Camera": "200MP main, 12MP ultra-wide, 10MP telephoto",
                 "Battery": "5000mAh",
-                "OS": "Android 14"
+                "USB": "Type C 3.2 with OTG and Video Support",
+                "OS": "Android 15"
             }
         },
         {
@@ -863,7 +937,8 @@ const devicesData = {
                 "Storage": "512GB",
                 "RAM": "12GB",
                 "Processor": "Snapdragon 8 Gen 2",
-                "OS": "Android 13"
+                "USB": "Type C 3.2 with OTG and Video Support",
+                "OS": "Android 15"
             },
             accessories: {
                 "Tablet Accessories": ["SD Card"]
@@ -895,6 +970,7 @@ const devicesData = {
             type: "Camera",
             model: "Nikon Z50ii",
             icon: "camera",
+            hasConfiguration: true,
             specs: {
                 "Sensor": "20.9MP APS-C CMOS",
                 "Video": "10-bit 4K UHD",
@@ -949,10 +1025,286 @@ const devicesData = {
                 "Tracking": "Inside-out tracking"
             }
         }
+    ],
+    'ro-RO': [
+        {
+            type: "Laptop",
+            model: "Lenovo LOQ 15",
+            icon: "laptop",
+            specs: {
+                "CPU": "AMD Ryzen 7745",
+                "GPU": "NVIDIA RTX 4060 Laptop 8GB",
+                "RAM": "64GB DDR5",
+                "Storage": "2x4TB SSD NVMe",
+                "OS": "Windows 11 Pro"
+            },
+            accessories: {
+                "Configurația Mures": [
+                    "Monitor LG", "Tastatură Logitech", "Mouse Logitech", "Webcam Logitech",
+                    "Boxe Logitech", "Imprimantă Xerox", "Controller Logitech", "Controller PlayStation",
+                    "Controller Xbox", "Logitech G29 + G-shift", "Scanner Canon"
+                ],
+                "Configurația Birou (Electricon)": [
+                    "Monitor LG", "Tastatură G613", "Stație de andocare Baseus", "Mouse G604"
+                ],
+                "Configurația Damuc": [
+                    "Mouse G604"
+                ]
+            }
+        },
+        {
+            type: "Telefon",
+            model: "Samsung Galaxy S23 Ultra 1TB",
+            icon: "phone",
+            specs: {
+                "Display": "6.8\" Dynamic AMOLED 2X",
+                "Storage": "1TB",
+                "RAM": "12GB",
+                "Camera": "200MP principal, 12MP ultra-wide, 10MP telephoto",
+                "Battery": "5000mAh",
+                "USB": "Type C 3.2 cu suport OTG și Video",
+                "OS": "Android 15"
+            }
+        },
+        {
+            type: "Tabletă",
+            model: "Samsung Galaxy Tab S9 Ultra 512GB",
+            icon: "tablet",
+            specs: {
+                "Display": "14.6\" Dynamic AMOLED 2X",
+                "Storage": "512GB",
+                "RAM": "12GB",
+                "Processor": "Snapdragon 8 Gen 2",
+                "USB": "Type C 3.2 cu suport OTG și Video",
+                "OS": "Android 15"
+            },
+            accessories: {
+                "Accesorii Tabletă": ["Card SD"]
+            }
+        },
+        {
+            type: "Desktop Backup",
+            model: "24GB RAM DDR3 with Intel i5 gen 6 Esprimo",
+            icon: "desktop",
+            specs: {
+                "CPU": "Intel i5 6th Gen",
+                "RAM": "24GB DDR3",
+                "Type": "Fujitsu Esprimo",
+                "Purpose": "Sistem backup"
+            }
+        },
+        {
+            type: "Desktop Retro 1",
+            model: "Fujitsu P600 with Pentium 4 and Windows XP",
+            icon: "old-pc",
+            specs: {
+                "CPU": "Intel Pentium 4",
+                "OS": "Windows XP",
+                "Model": "Fujitsu P600",
+                "Purpose": "Computing retro"
+            }
+        },
+        {
+            type: "Cameră",
+            model: "Nikon Z50ii",
+            icon: "camera",
+            hasConfiguration: true,
+            specs: {
+                "Sensor": "20.9MP APS-C CMOS",
+                "Video": "10-bit 4K UHD",
+                "Images": "10-bit HEIC",
+                "Mount": "Nikon Z"
+            },
+            lenses: [
+                "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+                "NIKKOR Z DX 50-250mm f/4.5-6.3 VR"
+            ]
+        },
+        {
+            type: "Server",
+            model: "4TB SSD SATA integrat în Router",
+            icon: "server",
+            specs: {
+                "Storage": "4TB SSD SATA",
+                "Integration": "Integrat în router",
+                "Purpose": "Stocare în rețea"
+            }
+        },
+        {
+            type: "Router",
+            model: "TP-Link WiFi AX53",
+            icon: "router",
+            specs: {
+                "Standard": "WiFi 6 (802.11ax)",
+                "Speed": "AX3000",
+                "Brand": "TP-Link",
+                "Model": "AX53"
+            }
+        },
+        {
+            type: "Stocare Externă",
+            model: "55TB HDD + 14TB SSD",
+            icon: "storage",
+            specs: {
+                "HDD Storage": "55TB",
+                "SSD Storage": "14TB",
+                "Type": "Drive-uri externe",
+                "Total": "69TB stocare externă"
+            }
+        },
+        {
+            type: "Cască VR",
+            model: "HTC Vive Cosmos",
+            icon: "vr",
+            specs: {
+                "Brand": "HTC",
+                "Model": "Vive Cosmos",
+                "Type": "Realitate Virtuală",
+                "Tracking": "Inside-out tracking"
+            }
+        }
+    ],
+    'gall': [
+        {
+            type: "Laptop",
+            model: "Lenovo LOQ 15",
+            icon: "laptop",
+            specs: {
+                "CPU": "AMD Ryzen 7745",
+                "GPU": "NVIDIA RTX 4060 Laptop 8GB",
+                "RAM": "64GB DDR5",
+                "Storage": "2x4TB SSD NVMe",
+                "OS": "Windows 11 Pro"
+            },
+            accessories: {
+                "Mures Setup": [
+                    "LG Monitor", "Logitech Tastatura", "Logitech Miš", "Logitech Veb kamera",
+                    "Logitech Zvučnici", "Xerox Štampač", "Logitech Kontroler", "PlayStation Kontroler",
+                    "Xbox Kontroler", "Logitech G29 + G-shift", "Canon Skener"
+                ],
+                "Office Setup (Electricon)": [
+                    "LG Monitor", "G613 Tastatura", "Baseus Docking Station", "G604 Miš"
+                ],
+                "Damuc Setup": [
+                    "G604 Miš"
+                ]
+            }
+        },
+        {
+            type: "Telefon",
+            model: "Samsung Galaxy S23 Ultra 1TB",
+            icon: "phone",
+            specs: {
+                "Display": "6.8\" Dynamic AMOLED 2X",
+                "Storage": "1TB",
+                "RAM": "12GB",
+                "Camera": "200MP glavni, 12MP ultra-wide, 10MP telephoto",
+                "Battery": "5000mAh",
+                "USB": "Type C 3.2 sa OTG i Video podrškom",
+                "OS": "Android 15"
+            }
+        },
+        {
+            type: "Tablet",
+            model: "Samsung Galaxy Tab S9 Ultra 512GB",
+            icon: "tablet",
+            specs: {
+                "Display": "14.6\" Dynamic AMOLED 2X",
+                "Storage": "512GB",
+                "RAM": "12GB",
+                "Processor": "Snapdragon 8 Gen 2",
+                "USB": "Type C 3.2 sa OTG i Video podrškom",
+                "OS": "Android 15"
+            },
+            accessories: {
+                "Tablet pribor": ["SD Card"]
+            }
+        },
+        {
+            type: "Desktop Backup",
+            model: "24GB RAM DDR3 with Intel i5 gen 6 Esprimo",
+            icon: "desktop",
+            specs: {
+                "CPU": "Intel i5 6th Gen",
+                "RAM": "24GB DDR3",
+                "Type": "Fujitsu Esprimo",
+                "Purpose": "Backup sistem"
+            }
+        },
+        {
+            type: "Desktop Retro 1",
+            model: "Fujitsu P600 with Pentium 4 and Windows XP",
+            icon: "old-pc",
+            specs: {
+                "CPU": "Intel Pentium 4",
+                "OS": "Windows XP",
+                "Model": "Fujitsu P600",
+                "Purpose": "Retro computing"
+            }
+        },
+        {
+            type: "Kamera",
+            model: "Nikon Z50ii",
+            icon: "camera",
+            hasConfiguration: true,
+            specs: {
+                "Sensor": "20.9MP APS-C CMOS",
+                "Video": "10-bit 4K UHD",
+                "Images": "10-bit HEIC",
+                "Mount": "Nikon Z"
+            },
+            lenses: [
+                "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+                "NIKKOR Z DX 50-250mm f/4.5-6.3 VR"
+            ]
+        },
+        {
+            type: "Server",
+            model: "4TB SSD SATA integrisano u Router",
+            icon: "server",
+            specs: {
+                "Storage": "4TB SSD SATA",
+                "Integration": "Ugrađeno u router",
+                "Purpose": "Mrežno skladište"
+            }
+        },
+        {
+            type: "Router",
+            model: "TP-Link WiFi AX53",
+            icon: "router",
+            specs: {
+                "Standard": "WiFi 6 (802.11ax)",
+                "Speed": "AX3000",
+                "Brand": "TP-Link",
+                "Model": "AX53"
+            }
+        },
+        {
+            type: "Vanjsko skladište",
+            model: "55TB HDD + 14TB SSD",
+            icon: "storage",
+            specs: {
+                "HDD Storage": "55TB",
+                "SSD Storage": "14TB",
+                "Type": "Vanjski diskovi",
+                "Total": "69TB vanjsko skladište"
+            }
+        },
+        {
+            type: "VR Slušalice",
+            model: "HTC Vive Cosmos",
+            icon: "vr",
+            specs: {
+                "Brand": "HTC",
+                "Model": "Vive Cosmos",
+                "Type": "Virtuelna realnost",
+                "Tracking": "Inside-out tracking"
+            }
+        }
     ]
 };
 
-// Device collection data
+// Device collection data (Hungarian removed)
 const deviceCollectionData = {
     'en-US': [
         {
@@ -964,18 +1316,6 @@ const deviceCollectionData = {
             name: "Dell Inspiron retro PC",
             icon: "old-pc",
             description: "Vintage computer for retro computing tasks"
-        }
-    ],
-    'hu-HU': [
-        {
-            name: "PlayStation 2 Slim EU/PAL módosított",
-            icon: "playstation",
-            description: "Módosított játékkonzol retro játékokhoz"
-        },
-        {
-            name: "Dell Inspiron retro PC",
-            icon: "old-pc",
-            description: "Régi számítógép retro számítástechnikai feladatokhoz"
         }
     ],
     'ro-RO': [
@@ -1004,7 +1344,7 @@ const deviceCollectionData = {
     ]
 };
 
-// Downloads data with multi-language support
+// Downloads data with multi-language support (Hungarian removed)
 const downloadsData = {
     'en-US': [
         {
@@ -1017,22 +1357,6 @@ const downloadsData = {
         {
             name: "Defender Remover Tool",
             description: "Remove Windows Defender completely from your Windows system",
-            downloadUrl: "https://github.com/ionuttbara/windows-defender-remover",
-            version: "v1.5",
-            size: "15MB"
-        }
-    ],
-    'hu-HU': [
-        {
-            name: "Melody Script Windows",
-            description: "Windows optimalizálási szkript jobb teljesítményért és rendszer finomhangolásért",
-            downloadUrl: "https://github.com/ionuttbara/melody_windows",
-            version: "v2.1",
-            size: "25MB"
-        },
-        {
-            name: "Defender Remover Tool",
-            description: "Távolítsa el teljesen a Windows Defender-t a Windows rendszeréből",
             downloadUrl: "https://github.com/ionuttbara/windows-defender-remover",
             version: "v1.5",
             size: "15MB"
@@ -1072,7 +1396,89 @@ const downloadsData = {
     ]
 };
 
-// Contact info data
+// Tools data
+const toolsData = {
+    'en-US': [
+        {
+            name: "Windows System Information",
+            description: "Get detailed system information about your Windows computer",
+            url: "https://tools.ionutbara.com/sysinfo",
+            type: "online"
+        },
+        {
+            name: "Password Generator",
+            description: "Generate secure passwords with customizable options",
+            url: "https://tools.ionutbara.com/password",
+            type: "online"
+        },
+        {
+            name: "Hash Calculator",
+            description: "Calculate MD5, SHA1, SHA256 hashes for files and text",
+            url: "https://tools.ionutbara.com/hash",
+            type: "online"
+        },
+        {
+            name: "Network Scanner",
+            description: "Scan and discover devices on your local network",
+            url: "https://github.com/ionuttbara/network-scanner/releases",
+            type: "download"
+        }
+    ],
+    'ro-RO': [
+        {
+            name: "Informații Sistem Windows",
+            description: "Obțineți informații detaliate despre sistemul dvs. Windows",
+            url: "https://tools.ionutbara.com/sysinfo",
+            type: "online"
+        },
+        {
+            name: "Generator Parole",
+            description: "Generați parole sigure cu opțiuni personalizabile",
+            url: "https://tools.ionutbara.com/password",
+            type: "online"
+        },
+        {
+            name: "Calculator Hash",
+            description: "Calculați hash-uri MD5, SHA1, SHA256 pentru fișiere și text",
+            url: "https://tools.ionutbara.com/hash",
+            type: "online"
+        },
+        {
+            name: "Scanner Rețea",
+            description: "Scanați și descoperiți dispozitive în rețeaua locală",
+            url: "https://github.com/ionuttbara/network-scanner/releases",
+            type: "download"
+        }
+    ],
+    'gall': [
+        {
+            name: "Windows sistem informacije",
+            description: "Dobijte detaljne informacije o vašem Windows računaru",
+            url: "https://tools.ionutbara.com/sysinfo",
+            type: "online"
+        },
+        {
+            name: "Generator lozinki",
+            description: "Generirajte sigurne lozinke s prilagođenim opcijama",
+            url: "https://tools.ionutbara.com/password",
+            type: "online"
+        },
+        {
+            name: "Hash kalkulator",
+            description: "Izračunajte MD5, SHA1, SHA256 hash-ove za datoteke i tekst",
+            url: "https://tools.ionutbara.com/hash",
+            type: "online"
+        },
+        {
+            name: "Mrežni skener",
+            description: "Skenirajte i otkrijte uređaje na vašoj lokalnoj mreži",
+            url: "https://github.com/ionuttbara/network-scanner/releases",
+            type: "download"
+        }
+    ]
+};
+
+// Updated contact info data with gaming profiles and fixed snapchat icon
 const contactInfo = {
     email: "ionutbaraooo@gmail.com",
     socialMedia: [
@@ -1104,7 +1510,7 @@ const contactInfo = {
         {
             name: "Snapchat",
             url: "https://snapchat.com/add/ionut_bara",
-            icon: "snapchat",
+            icon: "snapchat-ghost", // Fixed icon name
             username: "ionut_bara",
             warning: "Snapchat account is not used regularly and is deprecated. Continue?"
         },
@@ -1113,56 +1519,80 @@ const contactInfo = {
             url: "#",
             icon: "discord",
             username: "ionutbara"
+        },
+        {
+            name: "Spotify",
+            url: "https://open.spotify.com/user/ionuttbara",
+            icon: "spotify",
+            username: "ionuttbara"
+        }
+    ],
+    gamingProfiles: [
+        {
+            name: "Xbox",
+            username: "JohnTheGamer595",
+            icon: "xbox"
+        },
+        {
+            name: "Steam",
+            username: "johnroberthinio",
+            icon: "steam"
+        },
+        {
+            name: "Ubisoft Connect",
+            username: "ionuttbara",
+            icon: "ubisoft"
+        },
+        {
+            name: "Epic Games",
+            username: "ionut_bara",
+            icon: "epic-games"
+        },
+        {
+            name: "EA",
+            username: "ionutbara",
+            icon: "ea"
+        },
+        {
+            name: "Rockstar",
+            username: "ionutbara",
+            icon: "rockstar"
         }
     ]
 };
 
-// Blog and USDACM content simulation
+// Blog and USDACM content simulation (Hungarian removed)
 const blogContent = {
     'en-US': {
         blog1: {
             title: 'Windows Optimization Best Practices',
             excerpt: 'Learn the most effective techniques for optimizing Windows performance...',
-            content: `
-                <h1>Windows Optimization Best Practices</h1>
-                <p>After years of working with Windows systems at Electricon and developing optimization tools, I've compiled the most effective techniques for improving system performance.</p>
-                
-                <h2>1. Startup Program Management</h2>
-                <p>One of the biggest performance killers is having too many programs start automatically with Windows. Use Task Manager to disable unnecessary startup programs.</p>
-                
-                <h2>2. System File Cleanup</h2>
-                <p>Regular cleanup of temporary files, cache, and system logs can free up significant disk space and improve performance. My Melody Script automates many of these tasks.</p>
-                
-                <h2>3. Registry Optimization</h2>
-                <p>Careful registry cleanup and optimization can improve system responsiveness. Always backup before making changes.</p>
-                
-                <h2>4. Memory Management</h2>
-                <p>Proper RAM management and virtual memory configuration is crucial for optimal performance, especially on systems with limited memory.</p>
-                
-                <p>These techniques form the foundation of my Windows optimization tools available in the downloads section.</p>
-            `
+            content: `After years of working with Windows systems at Electricon and developing optimization tools, I've compiled the most effective techniques for improving system performance.
+
+One of the biggest performance killers is having too many programs start automatically with Windows. Use Task Manager to disable unnecessary startup programs.
+
+Regular cleanup of temporary files, cache, and system logs can free up significant disk space and improve performance. My Melody Script automates many of these tasks.
+
+Careful registry cleanup and optimization can improve system responsiveness. Always backup before making changes.
+
+Proper RAM management and virtual memory configuration is crucial for optimal performance, especially on systems with limited memory.
+
+These techniques form the foundation of my Windows optimization tools available in the downloads section.`
         },
         blog2: {
             title: 'AI in System Administration',
             excerpt: 'How artificial intelligence is revolutionizing IT management and automation...',
-            content: `
-                <h1>AI in System Administration</h1>
-                <p>As someone pursuing a Master's in AI while working in IT management, I see incredible potential for AI in system administration.</p>
-                
-                <h2>Predictive Maintenance</h2>
-                <p>AI can analyze system logs and performance metrics to predict hardware failures before they occur, reducing downtime significantly.</p>
-                
-                <h2>Automated Problem Resolution</h2>
-                <p>Machine learning algorithms can learn from past incidents to automatically resolve common issues without human intervention.</p>
-                
-                <h2>Security Enhancement</h2>
-                <p>AI-powered security systems can detect anomalies and potential threats in real-time, providing better protection than traditional methods.</p>
-                
-                <h2>Resource Optimization</h2>
-                <p>Intelligent resource allocation based on usage patterns can improve efficiency and reduce costs in enterprise environments.</p>
-                
-                <p>The future of IT management lies in the integration of human expertise with AI capabilities.</p>
-            `
+            content: `As someone pursuing a Master's in AI while working in IT management, I see incredible potential for AI in system administration.
+
+AI can analyze system logs and performance metrics to predict hardware failures before they occur, reducing downtime significantly.
+
+Machine learning algorithms can learn from past incidents to automatically resolve common issues without human intervention.
+
+AI-powered security systems can detect anomalies and potential threats in real-time, providing better protection than traditional methods.
+
+Intelligent resource allocation based on usage patterns can improve efficiency and reduce costs in enterprise environments.
+
+The future of IT management lies in the integration of human expertise with AI capabilities.`
         }
     }
 };
@@ -1172,22 +1602,15 @@ const usdacmContent = {
         politik1: {
             title: 'Digital Rights in Romania',
             excerpt: 'Analysis of digital privacy and rights issues in Romanian politics...',
-            content: `
-                <h1>Digital Rights in Romania</h1>
-                <p>As both a technology professional and political activist, I believe digital rights are fundamental to modern democracy.</p>
-                
-                <h2>Current Challenges</h2>
-                <p>Romania faces significant challenges in balancing security needs with citizen privacy rights, especially in digital communications and data protection.</p>
-                
-                <h2>The Role of Technology</h2>
-                <p>Technology should empower citizens, not enable surveillance. We need stronger protections for digital privacy and data sovereignty.</p>
-                
-                <h2>Anti-Corruption and Transparency</h2>
-                <p>Digital tools can be powerful weapons against corruption when used transparently. My activism in Damuc has shown how technology can expose corruption.</p>
-                
-                <h2>Moving Forward</h2>
-                <p>We need comprehensive digital rights legislation that protects citizens while enabling innovation and economic growth.</p>
-            `
+            content: `As both a technology professional and political activist, I believe digital rights are fundamental to modern democracy.
+
+Romania faces significant challenges in balancing security needs with citizen privacy rights, especially in digital communications and data protection.
+
+Technology should empower citizens, not enable surveillance. We need stronger protections for digital privacy and data sovereignty.
+
+Digital tools can be powerful weapons against corruption when used transparently. My activism in Damuc has shown how technology can expose corruption.
+
+We need comprehensive digital rights legislation that protects citizens while enabling innovation and economic growth.`
         }
     }
 };
@@ -1196,26 +1619,42 @@ const usdacmContent = {
 let currentLanguage = 'en-US';
 let currentPage = 'home';
 
+// Page state persistence
+function savePageState() {
+    localStorage.setItem('currentPage', currentPage);
+    localStorage.setItem('currentLanguage', currentLanguage);
+}
+
+function loadPageState() {
+    const savedPage = localStorage.getItem('currentPage');
+    const savedLanguage = localStorage.getItem('currentLanguage');
+
+    if (savedPage) {
+        currentPage = savedPage;
+    }
+    if (savedLanguage) {
+        currentLanguage = savedLanguage;
+    }
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded - Initializing app...');
-    
     setTimeout(() => {
+        loadPageState(); // Load saved state before initialization
         initializeApp();
         calculateAge();
         setupEventListeners();
         loadAllContent();
-        
         setInterval(calculateAge, 1000);
-        
         console.log('App initialized successfully');
     }, 100);
 });
 
 function initializeApp() {
     console.log('Initializing app...');
-    setLanguage('en-US');
-    showPage('home');
+    setLanguage(currentLanguage);
+    showPage(currentPage);
     updateNavigation();
     console.log('App initialization complete');
 }
@@ -1230,6 +1669,7 @@ function loadAllContent() {
     loadDevices();
     loadDeviceCollection();
     loadDownloads();
+    loadTools(); // New tools section
     loadContactInfo();
     loadBlogPosts();
     loadUSDAcmPosts();
@@ -1238,13 +1678,12 @@ function loadAllContent() {
 
 function setupEventListeners() {
     console.log('Setting up event listeners...');
-    
     const languageSelector = document.getElementById('languageSelector');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const contactForm = document.getElementById('contactForm');
     const exportPdfBtn = document.getElementById('exportPdfBtn');
-    
+
     // Language selector
     if (languageSelector) {
         languageSelector.addEventListener('change', function() {
@@ -1252,7 +1691,7 @@ function setupEventListeners() {
             setLanguage(this.value);
         });
     }
-    
+
     // Mobile menu toggle
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', function(e) {
@@ -1260,30 +1699,30 @@ function setupEventListeners() {
             mobileMenu.classList.toggle('active');
         });
     }
-    
+
     // Navigation links - enhanced to ensure they work
     setupNavigationListeners();
-    
+
     // Modal events
     setupModalEvents();
-    
+
     // Contact form
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactForm);
     }
-    
+
     // Export PDF
     if (exportPdfBtn) {
         exportPdfBtn.addEventListener('click', handleExportPDF);
     }
-    
+
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
         if (mobileMenu && !e.target.closest('.nav') && mobileMenu.classList.contains('active')) {
             mobileMenu.classList.remove('active');
         }
     });
-    
+
     // ESC key handling
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
@@ -1293,7 +1732,7 @@ function setupEventListeners() {
             }
         }
     });
-    
+
     console.log('Event listeners setup complete');
 }
 
@@ -1301,17 +1740,15 @@ function setupNavigationListeners() {
     // Navigation links with proper event delegation
     const allNavLinks = document.querySelectorAll('[data-page]');
     console.log(`Found ${allNavLinks.length} navigation elements`);
-    
+
     allNavLinks.forEach((link, index) => {
         console.log(`Setting up listener for nav item ${index}:`, link.getAttribute('data-page'));
-        
         // Remove any existing listeners
         link.removeEventListener('click', handleNavClick);
-        
         // Add new listener
         link.addEventListener('click', handleNavClick);
     });
-    
+
     // Also setup hero action buttons
     setupHeroActionButtons();
 }
@@ -1319,13 +1756,11 @@ function setupNavigationListeners() {
 function handleNavClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    
     const page = this.getAttribute('data-page');
     console.log('Navigation clicked:', page, 'by element:', this.tagName, this.className);
-    
+
     if (page) {
         showPage(page);
-        
         // Close mobile menu if it's open
         const mobileMenu = document.getElementById('mobileMenu');
         if (mobileMenu && mobileMenu.classList.contains('active')) {
@@ -1343,13 +1778,13 @@ function setupHeroActionButtons() {
         if (heroActions) {
             const projectsBtn = heroActions.querySelector('[data-page="projects"]');
             const contactBtn = heroActions.querySelector('[data-page="contact"]');
-            
+
             if (projectsBtn) {
                 projectsBtn.removeEventListener('click', handleNavClick);
                 projectsBtn.addEventListener('click', handleNavClick);
                 console.log('Projects button listener added');
             }
-            
+
             if (contactBtn) {
                 contactBtn.removeEventListener('click', handleNavClick);
                 contactBtn.addEventListener('click', handleNavClick);
@@ -1363,41 +1798,52 @@ function setupModalEvents() {
     // Content modal
     const closeContentModal = document.getElementById('closeContentModal');
     const contentModalBackdrop = document.getElementById('contentModalBackdrop');
-    
+
     if (closeContentModal) {
         closeContentModal.addEventListener('click', () => closeModal('contentModal'));
     }
     if (contentModalBackdrop) {
         contentModalBackdrop.addEventListener('click', () => closeModal('contentModal'));
     }
-    
+
     // Accessories modal
     const closeAccessoriesModal = document.getElementById('closeAccessoriesModal');
     const accessoriesModalBackdrop = document.getElementById('accessoriesModalBackdrop');
-    
+
     if (closeAccessoriesModal) {
         closeAccessoriesModal.addEventListener('click', () => closeModal('accessoriesModal'));
     }
     if (accessoriesModalBackdrop) {
         accessoriesModalBackdrop.addEventListener('click', () => closeModal('accessoriesModal'));
     }
+
+    // Camera configuration modal
+    const closeCameraModal = document.getElementById('closeCameraModal');
+    const cameraModalBackdrop = document.getElementById('cameraModalBackdrop');
+
+    if (closeCameraModal) {
+        closeCameraModal.addEventListener('click', () => closeModal('cameraModal'));
+    }
+    if (cameraModalBackdrop) {
+        cameraModalBackdrop.addEventListener('click', () => closeModal('cameraModal'));
+    }
 }
 
 function setLanguage(languageCode) {
     console.log('Setting language to:', languageCode);
     currentLanguage = languageCode;
-    
+    savePageState(); // Save state when language changes
+
     const languageSelector = document.getElementById('languageSelector');
     if (languageSelector) {
         languageSelector.value = languageCode;
     }
-    
+
     document.documentElement.setAttribute('lang', languageCode.split('-')[0]);
     document.documentElement.setAttribute('data-lang', languageCode);
-    
     updateTranslations();
     loadAllContent(); // Reload content with new language
-    
+
     // Re-setup navigation after content reload
     setTimeout(setupNavigationListeners, 100);
 }
@@ -1408,7 +1854,7 @@ function updateTranslations() {
         console.error('Translation not found for language:', currentLanguage);
         return;
     }
-    
+
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         const value = getNestedValue(translation, key);
@@ -1424,26 +1870,23 @@ function getNestedValue(obj, path) {
 
 function showPage(pageId) {
     console.log('Showing page:', pageId);
-    
     const allPages = document.querySelectorAll('.page');
     console.log(`Found ${allPages.length} pages`);
-    
+
     allPages.forEach(page => {
         page.classList.remove('active');
         console.log('Removed active from:', page.id);
     });
-    
+
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.classList.add('active');
         targetPage.classList.add('fade-in');
         currentPage = pageId;
-        
+        savePageState(); // Save state when page changes
         console.log('Page displayed successfully:', pageId);
-        
         updateNavigation();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
         setTimeout(() => targetPage.classList.remove('fade-in'), 300);
     } else {
         console.error('Page not found:', pageId);
@@ -1452,7 +1895,6 @@ function showPage(pageId) {
 
 function updateNavigation() {
     console.log('Updating navigation for current page:', currentPage);
-    
     document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('data-page') === currentPage) {
@@ -1468,7 +1910,7 @@ function calculateAge() {
     const diffTime = Math.abs(now - birthDate);
     const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
     const age = Math.floor(diffYears);
-    
+
     const currentAge = document.getElementById('currentAge');
     if (currentAge) {
         currentAge.textContent = age;
@@ -1478,10 +1920,10 @@ function calculateAge() {
 function loadHomePresentation() {
     const container = document.getElementById('homePresentation');
     if (!container) return;
-    
+
     const translation = translations[currentLanguage];
     if (!translation) return;
-    
+
     container.innerHTML = `
         <div class="presentation-item">
             <h3>${translation.home.work.title}</h3>
@@ -1500,18 +1942,15 @@ function loadHomePresentation() {
             <p>${translation.home.activism.description}</p>
         </div>
     `;
-    
-    // Re-setup hero button listeners after content load
-    setTimeout(setupHeroActionButtons, 100);
 }
 
 function loadFAQ() {
-    const faqList = document.getElementById('faqList');
-    if (!faqList) return;
-    
+    const container = document.getElementById('faqContainer');
+    if (!container) return;
+
     const faqs = faqData[currentLanguage] || faqData['en-US'];
-    
-    faqList.innerHTML = faqs.map(faq => `
+
+    container.innerHTML = faqs.map(faq => `
         <div class="faq-item">
             <div class="faq-question">${faq.question}</div>
             <div class="faq-answer">${faq.answer}</div>
@@ -1520,59 +1959,53 @@ function loadFAQ() {
 }
 
 function loadProjects() {
-    const projectsGrid = document.getElementById('projectsGrid');
-    const projectsPreview = document.getElementById('projectsPreview');
-    
+    const container = document.getElementById('projectsContainer');
+    const previewContainer = document.getElementById('projectsPreview');
+
     const projects = projectsData[currentLanguage] || projectsData['en-US'];
-    
-    const projectHTML = (project) => `
+    const translation = translations[currentLanguage] || translations['en-US'];
+
+    const projectsHTML = projects.map(project => `
         <div class="project-card">
             <h3 class="project-title">${project.name}</h3>
             <p class="project-description">${project.description}</p>
             <div class="project-tech">
                 ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
             </div>
-            <div class="project-status">${project.status}</div>
-            <a href="${project.github}" target="_blank" class="btn btn--primary">
-                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.164 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/>
-                </svg>
-                <span data-key="projects.viewOnGithub">View on GitHub</span>
-            </a>
-        </div>
-    `;
-    
-    if (projectsGrid) {
-        projectsGrid.innerHTML = projects.map(projectHTML).join('');
-    }
-    
-    if (projectsPreview) {
-        projectsPreview.innerHTML = projects.map(project => `
-            <div class="project-preview-item">
-                <h3>${project.name}</h3>
-                <p>${project.description}</p>
-                <div class="project-status">${project.status}</div>
+            <div class="project-actions">
+                <a href="${project.github}" target="_blank" class="btn btn--primary btn--sm">
+                    <i class="btn-icon" data-lucide="github"></i>
+                    ${translation.projects.viewOnGithub}
+                </a>
+                <span class="project-status status--success">${project.status}</span>
             </div>
-        `).join('');
+        </div>
+    `).join('');
+
+    if (container) {
+        container.innerHTML = projectsHTML;
+    }
+    if (previewContainer) {
+        previewContainer.innerHTML = projectsHTML;
     }
 }
 
 function loadCV() {
-    const cvContent = document.getElementById('cvContent');
-    if (!cvContent) return;
-    
+    const container = document.getElementById('cvContainer');
+    if (!container) return;
+
     const cv = cvData[currentLanguage] || cvData['en-US'];
-    
-    cvContent.innerHTML = `
+
+    container.innerHTML = `
         <div class="cv-section">
             <h2>Personal Information</h2>
             <div class="cv-item">
                 <h3>${cv.personalInfo.name}</h3>
                 <p class="cv-institution">${cv.personalInfo.email}</p>
-                <p class="cv-period">${cv.personalInfo.location}</p>
+                <p class="cv-institution">${cv.personalInfo.location}</p>
             </div>
         </div>
-        
+
         <div class="cv-section">
             <h2>Education</h2>
             ${cv.education.map(edu => `
@@ -1583,9 +2016,9 @@ function loadCV() {
                 </div>
             `).join('')}
         </div>
-        
+
         <div class="cv-section">
-            <h2>Professional Experience</h2>
+            <h2>Experience</h2>
             ${cv.experience.map(exp => `
                 <div class="cv-item">
                     <h3>${exp.position}</h3>
@@ -1595,75 +2028,213 @@ function loadCV() {
                 </div>
             `).join('')}
         </div>
-        
+
         <div class="cv-section">
-            <h2>Technical Skills</h2>
+            <h2>Skills</h2>
             <div class="skills-grid">
                 ${cv.skills.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
             </div>
         </div>
-        
+
         <div class="cv-section">
             <h2>Languages</h2>
             <div class="skills-grid">
                 ${cv.languages.map(lang => `<div class="skill-item">${lang}</div>`).join('')}
             </div>
         </div>
-        
-        <div class="cv-section">
-            <h2>Certificates</h2>
-            <div class="skills-grid">
-                ${cv.certificates.map(cert => `<div class="skill-item">${cert}</div>`).join('')}
+    `;
+}
+
+function loadServices() {
+    const container = document.getElementById('servicesContainer');
+    if (!container) return;
+
+    const services = servicesData[currentLanguage] || servicesData['en-US'];
+
+    container.innerHTML = services.map(service => `
+        <div class="service-card">
+            <h3 class="service-title">${service.category}</h3>
+            <p class="service-description">${service.description}</p>
+
+            ${service.calculator ? generateServiceCalculator(service) : `
+                <div class="service-pricing">
+                    ${Object.entries(service.pricing).map(([key, value]) => `
+                        <div class="price-item">
+                            <span class="price-label">${key}:</span>
+                            <span class="price-value">${value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `}
+        </div>
+    `).join('');
+
+    // Setup calculator event listeners
+    setTimeout(setupCalculatorListeners, 100);
+}
+
+function generateServiceCalculator(service) {
+    if (service.id === 'windowsInstallation') {
+        return generateWindowsInstallationCalculator(service);
+    } else if (service.id === 'networking') {
+        return generateNetworkingCalculator(service);
+    }
+    return '';
+}
+
+function generateWindowsInstallationCalculator(service) {
+    const currency = currentLanguage === 'ro-RO' ? 'lei' : '€';
+
+    return `
+        <div class="service-calculator">
+            <h4>Price Calculator</h4>
+            <div class="calculator-options">
+                <div class="form-group">
+                    <label class="form-label">Windows Version:</label>
+                    <select class="form-control" id="windowsVersion" onchange="calculateWindowsPrice()">
+                        ${service.options.windows.map(opt => `
+                            <option value="${opt.price}">${opt.name} ${opt.price > 0 ? `(+${opt.price}${currency})` : ''}</option>
+                        `).join('')}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Office:</label>
+                    <select class="form-control" id="officeVersion" onchange="calculateWindowsPrice()">
+                        ${service.options.office.map(opt => `
+                            <option value="${opt.price}">${opt.name} ${opt.price > 0 ? `(+${opt.price}${currency})` : ''}</option>
+                        `).join('')}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Adobe:</label>
+                    <select class="form-control" id="adobeVersion" onchange="calculateWindowsPrice()">
+                        ${service.options.adobe.map(opt => `
+                            <option value="${opt.price}">${opt.name} ${opt.price > 0 ? `(+${opt.price}${currency})` : ''}</option>
+                        `).join('')}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Number of Custom Programs:</label>
+                    <input type="number" class="form-control" id="customPrograms" min="0" value="0" onchange="calculateWindowsPrice()">
+                    <small>(${service.options.customPrograms.pricePerProgram}${currency} per program)</small>
+                </div>
+            </div>
+
+            <div class="calculator-result">
+                <div class="price-item">
+                    <span class="price-label">Base Labor:</span>
+                    <span class="price-value">${service.pricing.base}</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-label">Total Price:</span>
+                    <span class="price-value" id="windowsTotalPrice">${service.pricing.base}</span>
+                </div>
             </div>
         </div>
     `;
 }
 
-function loadServices() {
-    const servicesGrid = document.getElementById('servicesGrid');
-    if (!servicesGrid) return;
-    
-    const services = servicesData[currentLanguage] || servicesData['en-US'];
-    
-    servicesGrid.innerHTML = services.map(service => `
-        <div class="service-card">
-            <h3 class="service-title">${service.category}</h3>
-            <p class="service-description">${service.description}</p>
-            <div class="service-pricing">
-                ${Object.entries(service.pricing).map(([key, value]) => `
-                    <div class="price-item">
-                        <span class="price-label">${key}:</span>
-                        <span class="price-value">${value}</span>
-                    </div>
-                `).join('')}
-            </div>
-            ${service.options ? `
-                <div class="service-options">
-                    ${service.options.map(option => `
-                        <div class="service-option">
-                            <span>${option.name}</span>
-                            <span>${option.price}</span>
-                        </div>
-                    `).join('')}
+function generateNetworkingCalculator(service) {
+    const currency = currentLanguage === 'ro-RO' ? 'lei' : '€';
+
+    return `
+        <div class="service-calculator">
+            <h4>Networking Cost Calculator</h4>
+            <div class="calculator-options">
+                <div class="form-group">
+                    <label class="form-label">Equipment Price (${currency}):</label>
+                    <input type="number" class="form-control" id="equipmentPrice" min="0" placeholder="Enter equipment cost" onchange="calculateNetworkingPrice()">
+                    <small>Minimum: ${service.pricing.minimum}</small>
                 </div>
-            ` : ''}
+            </div>
+
+            <div class="calculator-result">
+                <div class="price-item">
+                    <span class="price-label">Equipment Cost:</span>
+                    <span class="price-value" id="equipmentCost">0${currency}</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-label">Labor (${service.pricing.laborPercent}%):</span>
+                    <span class="price-value" id="laborCost">0${currency}</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-label">Total Price:</span>
+                    <span class="price-value" id="networkingTotalPrice">0${currency}</span>
+                </div>
+            </div>
         </div>
-    `).join('');
+    `;
+}
+
+function calculateWindowsPrice() {
+    const windowsPrice = parseInt(document.getElementById('windowsVersion')?.value || 0);
+    const officePrice = parseInt(document.getElementById('officeVersion')?.value || 0);
+    const adobePrice = parseInt(document.getElementById('adobeVersion')?.value || 0);
+    const customPrograms = parseInt(document.getElementById('customPrograms')?.value || 0);
+
+    const service = servicesData[currentLanguage].find(s => s.id === 'windowsInstallation');
+    const baseLabor = currentLanguage === 'ro-RO' ? 45 : 15;
+    const customProgramPrice = service.options.customPrograms.pricePerProgram;
+
+    const customProgramsTotal = customPrograms * customProgramPrice;
+    const totalPrice = baseLabor + windowsPrice + officePrice + adobePrice + customProgramsTotal;
+
+    const currency = currentLanguage === 'ro-RO' ? 'lei' : '€';
+
+    const totalElement = document.getElementById('windowsTotalPrice');
+    if (totalElement) {
+        totalElement.textContent = `${totalPrice}${currency}`;
+    }
+}
+
+function calculateNetworkingPrice() {
+    const equipmentPrice = parseFloat(document.getElementById('equipmentPrice')?.value || 0);
+    const laborPercent = 20;
+    const laborCost = (equipmentPrice * laborPercent) / 100;
+    const totalPrice = equipmentPrice + laborCost;
+
+    const currency = currentLanguage === 'ro-RO' ? 'lei' : '€';
+
+    document.getElementById('equipmentCost').textContent = `${equipmentPrice}${currency}`;
+    document.getElementById('laborCost').textContent = `${laborCost.toFixed(2)}${currency}`;
+    document.getElementById('networkingTotalPrice').textContent = `${totalPrice.toFixed(2)}${currency}`;
+}
+
+function setupCalculatorListeners() {
+    // This function is called after services are loaded to ensure calculators work
+    const windowsElements = ['windowsVersion', 'officeVersion', 'adobeVersion', 'customPrograms'];
+    windowsElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('change', calculateWindowsPrice);
+            element.addEventListener('input', calculateWindowsPrice);
+        }
+    });
+
+    const equipmentPriceElement = document.getElementById('equipmentPrice');
+    if (equipmentPriceElement) {
+        equipmentPriceElement.addEventListener('input', calculateNetworkingPrice);
+        equipmentPriceElement.addEventListener('change', calculateNetworkingPrice);
+    }
 }
 
 function loadDevices() {
-    const devicesGrid = document.getElementById('devicesGrid');
-    if (!devicesGrid) return;
-    
+    const container = document.getElementById('devicesContainer');
+    if (!container) return;
+
     const devices = devicesData[currentLanguage] || devicesData['en-US'];
-    
-    devicesGrid.innerHTML = devices.map((device, index) => `
+    const translation = translations[currentLanguage] || translations['en-US'];
+
+    container.innerHTML = devices.map(device => `
         <div class="device-card">
             <div class="device-header">
-                ${getDeviceIcon(device.icon)}
-                <h3 class="device-title">${device.type}</h3>
+                <i class="device-icon" data-lucide="${device.icon}"></i>
+                <h3 class="device-title">${device.model}</h3>
             </div>
-            <h4>${device.model}</h4>
+
             <div class="device-specs">
                 ${Object.entries(device.specs).map(([key, value]) => `
                     <div class="spec-item">
@@ -1671,163 +2242,59 @@ function loadDevices() {
                         <span class="spec-value">${value}</span>
                     </div>
                 `).join('')}
+
+                ${device.lenses ? `
+                    <div class="spec-item">
+                        <span class="spec-label">Lenses:</span>
+                        <span class="spec-value">${device.lenses.join(', ')}</span>
+                    </div>
+                ` : ''}
             </div>
+
             <div class="device-actions">
                 ${device.accessories ? `
-                    <button class="btn btn--outline device-btn" onclick="showAccessories('${device.type}', '${index}')">
-                        <span data-key="devices.accessories">Accessories</span>
+                    <button class="btn btn--secondary btn--sm" onclick="showAccessories('${device.model}')">
+                        <i class="btn-icon" data-lucide="package"></i>
+                        ${translation.devices.accessories}
                     </button>
                 ` : ''}
-                ${device.lenses ? `
-                    <button class="btn btn--outline device-btn" onclick="showLenses('${device.type}', '${index}')">
-                        <span data-key="devices.objectives">Objectives</span>
+
+                ${device.hasConfiguration ? `
+                    <button class="btn btn--primary btn--sm" onclick="showCameraConfiguration()">
+                        <i class="btn-icon" data-lucide="settings"></i>
+                        ${translation.devices.configuration}
                     </button>
                 ` : ''}
             </div>
         </div>
     `).join('');
-    
-    console.log('Devices loaded successfully with accessories buttons');
 }
 
 function loadDeviceCollection() {
-    const container = document.getElementById('deviceCollectionGrid');
+    const container = document.getElementById('deviceCollectionContainer');
     if (!container) return;
-    
+
     const collection = deviceCollectionData[currentLanguage] || deviceCollectionData['en-US'];
-    
+
     container.innerHTML = collection.map(item => `
         <div class="collection-item">
-            ${getDeviceIcon(item.icon, 'collection-icon')}
+            <i class="collection-icon" data-lucide="${item.icon}"></i>
             <div class="collection-name">${item.name}</div>
-            <p class="collection-description">${item.description}</p>
+            <p>${item.description}</p>
         </div>
     `).join('');
-    
-    console.log('Device collection loaded successfully');
-}
-
-function getDeviceIcon(iconType, className = 'device-icon') {
-    const icons = {
-        laptop: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM4 14V6h16l.002 8H4z"/></svg>`,
-        phone: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 2H7c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM7 16.999V5h10l.002 11.999H7z"/></svg>`,
-        tablet: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM5 19V5h14l.002 14H5z"/></svg>`,
-        desktop: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"/></svg>`,
-        'old-pc': `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 3H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h6v2H7v2h10v-2h-3v-2h6c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 13V5h16v8H4z"/><rect x="6" y="7" width="2" height="4" fill="currentColor"/><rect x="10" y="7" width="2" height="4" fill="currentColor"/><rect x="14" y="7" width="2" height="4" fill="currentColor"/></svg>`,
-        playstation: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path fill="currentColor" d="M8 8h2v8H8V8zm6 0h2v8h-2V8z"/><circle cx="8" cy="10" r="1" fill="currentColor"/><circle cx="16" cy="10" r="1" fill="currentColor"/></svg>`,
-        camera: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9c-1.626 0-3 1.374-3 3 0 1.626 1.374 3 3 3s3-1.374 3-3c0-1.626-1.374-3-3-3z"/><path fill="currentColor" d="M20 5h-2.586l-2.707-2.707A.996.996 0 0014 2h-4a.996.996 0 00-.707.293L6.586 5H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM12 16c-2.71 0-5-2.29-5-5s2.29-5 5-5 5 2.29 5 5-2.29 5-5 5z"/></svg>`,
-        server: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2h16c1.103 0 2 .897 2 2v4c0 1.103-.897 2-2 2H4c-1.103 0-2-.897-2-2V4c0-1.103.897-2 2-2zm0 6h16V4H4v4z"/><path fill="currentColor" d="M4 12h16c1.103 0 2 .897 2 2v4c0 1.103-.897 2-2 2H4c-1.103 0-2-.897-2-2v-4c0-1.103.897-2 2-2zm0 6h16v-4H4v4z"/></svg>`,
-        router: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9h2c0-2.76 2.24-5 5-5s5 2.24 5 5h2c0-3.87-3.13-7-7-7z"/><path fill="currentColor" d="M12 6c-1.66 0-3 1.34-3 3h2c0-.55.45-1 1-1s1 .45 1 1h2c0-1.66-1.34-3-3-3z"/><circle fill="currentColor" cx="12" cy="12" r="2"/><path fill="currentColor" d="M21 14H3v7h18v-7z"/></svg>`,
-        storage: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h12c1.103 0 2 .897 2 2v16c0 1.103-.897 2-2 2H6c-1.103 0-2-.897-2-2V4c0-1.103.897-2 2-2zm0 2v16h12V4H6z"/><path fill="currentColor" d="M8 6h8v2H8V6zm0 4h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>`,
-        vr: `<svg class="${className}" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5zm0 2h14v14H5V5z"/><circle fill="currentColor" cx="8" cy="10" r="2"/><circle fill="currentColor" cx="16" cy="10" r="2"/><path fill="currentColor" d="M8 15h8v2H8v-2z"/></svg>`
-    };
-    return icons[iconType] || icons.desktop;
-}
-
-function showAccessories(deviceType, deviceIndex) {
-    console.log('showAccessories called with:', deviceType, deviceIndex);
-    
-    const devices = devicesData[currentLanguage] || devicesData['en-US'];
-    const device = devices[parseInt(deviceIndex)];
-    
-    if (!device || !device.accessories) {
-        console.error('Device or accessories not found');
-        return;
-    }
-    
-    const modal = document.getElementById('accessoriesModal');
-    const title = document.getElementById('accessoriesModalTitle');
-    const content = document.getElementById('accessoriesModalContent');
-    
-    if (modal && title && content) {
-        title.textContent = `${deviceType} Accessories`;
-        
-        if (typeof device.accessories === 'object' && !Array.isArray(device.accessories)) {
-            // Multiple sections
-            content.innerHTML = Object.entries(device.accessories).map(([sectionName, items]) => `
-                <div class="accessories-section">
-                    <h4>${sectionName}</h4>
-                    <div class="accessories-grid">
-                        ${items.map(item => `
-                            <div class="accessory-item">
-                                <svg class="accessory-icon" width="20" height="20" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                                <span class="accessory-name">${item}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        } else {
-            // Single array
-            content.innerHTML = `
-                <div class="accessories-grid">
-                    ${device.accessories.map(accessory => `
-                        <div class="accessory-item">
-                            <svg class="accessory-icon" width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                            <span class="accessory-name">${accessory}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-        
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        console.log('Accessories modal opened successfully');
-    }
-}
-
-function showLenses(deviceType, deviceIndex) {
-    console.log('showLenses called with:', deviceType, deviceIndex);
-    
-    const devices = devicesData[currentLanguage] || devicesData['en-US'];
-    const device = devices[parseInt(deviceIndex)];
-    
-    if (!device || !device.lenses) {
-        console.error('Device or lenses not found');
-        return;
-    }
-    
-    const modal = document.getElementById('accessoriesModal');
-    const title = document.getElementById('accessoriesModalTitle');
-    const content = document.getElementById('accessoriesModalContent');
-    
-    if (modal && title && content) {
-        title.textContent = `${deviceType} Lenses`;
-        content.innerHTML = `
-            <div class="accessories-grid">
-                ${device.lenses.map(lens => `
-                    <div class="accessory-item">
-                        <svg class="accessory-icon" width="20" height="20" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                        </svg>
-                        <span class="accessory-name">${lens}</span>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        console.log('Lenses modal opened successfully');
-    }
 }
 
 function loadDownloads() {
-    const downloadsGrid = document.getElementById('downloadsGrid');
-    if (!downloadsGrid) return;
-    
+    const container = document.getElementById('downloadsContainer');
+    if (!container) return;
+
     const downloads = downloadsData[currentLanguage] || downloadsData['en-US'];
-    
-    downloadsGrid.innerHTML = downloads.map(download => `
+
+    container.innerHTML = downloads.map(download => `
         <div class="download-card">
             <div class="download-header">
-                <svg class="download-icon" width="32" height="32" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
-                </svg>
+                <i class="download-icon" data-lucide="download"></i>
                 <h3 class="download-title">${download.name}</h3>
             </div>
             <p class="download-description">${download.description}</p>
@@ -1835,98 +2302,290 @@ function loadDownloads() {
                 <span>Version: ${download.version}</span>
                 <span>Size: ${download.size}</span>
             </div>
-            <a href="${download.downloadUrl}" target="_blank" class="btn btn--primary btn--full-width">Download</a>
+            <a href="${download.downloadUrl}" target="_blank" class="btn btn--primary btn--full-width">
+                <i class="btn-icon" data-lucide="download"></i>
+                Download
+            </a>
+        </div>
+    `).join('');
+}
+
+// New function to load tools section
+function loadTools() {
+    const container = document.getElementById('toolsContainer');
+    if (!container) return;
+
+    const tools = toolsData[currentLanguage] || toolsData['en-US'];
+
+    container.innerHTML = tools.map(tool => `
+        <div class="download-card">
+            <div class="download-header">
+                <i class="download-icon" data-lucide="${tool.type === 'online' ? 'globe' : 'download'}"></i>
+                <h3 class="download-title">${tool.name}</h3>
+            </div>
+            <p class="download-description">${tool.description}</p>
+            <a href="${tool.url}" target="_blank" class="btn btn--primary btn--full-width">
+                <i class="btn-icon" data-lucide="${tool.type === 'online' ? 'external-link' : 'download'}"></i>
+                ${tool.type === 'online' ? 'Open Tool' : 'Download'}
+            </a>
         </div>
     `).join('');
 }
 
 function loadContactInfo() {
-    const socialMediaLinks = document.getElementById('socialMediaLinks');
-    if (!socialMediaLinks) return;
-    
-    socialMediaLinks.innerHTML = contactInfo.socialMedia.map(social => `
-        <a href="${social.url}" class="social-link" ${social.warning ? `onclick="return confirm('${social.warning}')"` : ''} ${social.url !== '#' ? 'target="_blank"' : ''}>
-            ${getSocialIcon(social.icon)}
-            <span class="social-link-text">
-                <strong>${social.name}</strong><br>
-                <small>${social.username}</small>
-            </span>
-        </a>
-    `).join('');
-}
+    const container = document.getElementById('contactInfoContainer');
+    const socialContainer = document.getElementById('socialMediaContainer');
+    const gamingContainer = document.getElementById('gamingProfilesContainer');
 
-function getSocialIcon(iconType) {
-    const icons = {
-        github: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.164 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>`,
-        gitlab: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/></svg>`,
-        facebook: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
-        instagram: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
-        snapchat: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.958 1.404-5.958s-.358-.719-.358-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.739.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.167-1.535-.711-2.496-2.943-2.496-4.74 0-3.771 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.758-1.378l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.99C24.007 5.367 18.641.001.001 12.017z"/></svg>`,
-        discord: `<svg class="social-link-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"/></svg>`
-    };
-    return icons[iconType] || '';
+    if (container) {
+        container.innerHTML = `
+            <div class="contact-item">
+                <i class="contact-icon" data-lucide="mail"></i>
+                <span>${contactInfo.email}</span>
+            </div>
+        `;
+    }
+
+    if (socialContainer) {
+        socialContainer.innerHTML = contactInfo.socialMedia.map(social => `
+            <a href="${social.url}" target="_blank" class="social-link" ${social.warning ? `onclick="return confirm('${social.warning}')"` : ''}>
+                <i class="social-link-icon" data-lucide="${social.icon}"></i>
+                <span>${social.name}: ${social.username}</span>
+            </a>
+        `).join('');
+    }
+
+    if (gamingContainer) {
+        gamingContainer.innerHTML = contactInfo.gamingProfiles.map(gaming => `
+            <div class="contact-item">
+                <i class="contact-icon" data-lucide="${gaming.icon}"></i>
+                <span>${gaming.name}: ${gaming.username}</span>
+            </div>
+        `).join('');
+    }
 }
 
 function loadBlogPosts() {
-    const blogList = document.getElementById('blogList');
-    if (!blogList) return;
-    
-    const blogLang = blogContent[currentLanguage] || blogContent['en-US'];
-    
-    blogList.innerHTML = Object.entries(blogLang).map(([key, post]) => `
-        <article class="blog-post-preview" data-blog="${key}">
-            <h2 class="blog-post-title">${post.title}</h2>
+    const container = document.getElementById('blogContainer');
+    if (!container) return;
+
+    const blog = blogContent[currentLanguage] || blogContent['en-US'];
+    const translation = translations[currentLanguage] || translations['en-US'];
+
+    container.innerHTML = Object.entries(blog).map(([key, post]) => `
+        <div class="blog-post-preview" onclick="showContentModal('${post.title}', \`${post.content}\`)">
+            <h3 class="blog-post-title">${post.title}</h3>
             <p class="blog-post-excerpt">${post.excerpt}</p>
-            <button class="btn btn--outline blog-read-more" data-key="blog.readMore">Read More</button>
-        </article>
+            <span class="blog-read-more">${translation.blog.readMore}</span>
+        </div>
     `).join('');
-    
-    setTimeout(() => {
-        document.querySelectorAll('[data-blog]').forEach(element => {
-            element.addEventListener('click', function(e) {
-                e.preventDefault();
-                const blogId = this.getAttribute('data-blog');
-                const blogLang = blogContent[currentLanguage] || blogContent['en-US'];
-                showContent(blogLang[blogId]);
-            });
-        });
-    }, 100);
 }
 
 function loadUSDAcmPosts() {
-    const usdacmList = document.getElementById('usdacmList');
-    if (!usdacmList) return;
-    
-    const usdacmLang = usdacmContent[currentLanguage] || usdacmContent['en-US'];
-    
-    usdacmList.innerHTML = Object.entries(usdacmLang).map(([key, post]) => `
-        <article class="blog-post-preview" data-politik="${key}">
-            <h2 class="blog-post-title">${post.title}</h2>
+    const container = document.getElementById('usdacmContainer');
+    if (!container) return;
+
+    const usdacm = usdacmContent[currentLanguage] || usdacmContent['en-US'];
+    const translation = translations[currentLanguage] || translations['en-US'];
+
+    container.innerHTML = Object.entries(usdacm).map(([key, post]) => `
+        <div class="blog-post-preview" onclick="showContentModal('${post.title}', \`${post.content}\`)">
+            <h3 class="blog-post-title">${post.title}</h3>
             <p class="blog-post-excerpt">${post.excerpt}</p>
-            <button class="btn btn--outline blog-read-more" data-key="blog.readMore">Read More</button>
-        </article>
+            <span class="blog-read-more">${translation.blog.readMore}</span>
+        </div>
     `).join('');
-    
-    setTimeout(() => {
-        document.querySelectorAll('[data-politik]').forEach(element => {
-            element.addEventListener('click', function(e) {
-                e.preventDefault();
-                const politikId = this.getAttribute('data-politik');
-                const usdacmLang = usdacmContent[currentLanguage] || usdacmContent['en-US'];
-                showContent(usdacmLang[politikId]);
-            });
-        });
-    }, 100);
 }
 
-function showContent(content) {
-    const modal = document.getElementById('contentModal');
-    const modalContent = document.getElementById('modalContent');
-    
-    if (modal && modalContent && content) {
-        modalContent.innerHTML = content.content;
+// Camera configuration functions
+function showCameraConfiguration() {
+    const modal = document.getElementById('cameraModal');
+    const profiles = cameraProfiles[currentLanguage] || cameraProfiles['en-US'];
+    const translation = translations[currentLanguage] || translations['en-US'];
+
+    const modalBody = document.getElementById('cameraModalBody');
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <div class="camera-config-header">
+                <h3>Nikon Z50ii Camera Configuration Profiles</h3>
+                <div class="camera-download-section">
+                    <button class="btn btn--primary" onclick="downloadCameraConfig()">
+                        <i class="btn-icon" data-lucide="download"></i>
+                        Download .bin Configuration File
+                    </button>
+                </div>
+            </div>
+
+            <div class="camera-import-instructions">
+                <h4><i data-lucide="info"></i> Import Instructions</h4>
+                <ol>
+                    <li>Download the .bin configuration file using the button above</li>
+                    <li>Copy the .bin file to your camera's SD card in the root directory</li>
+                    <li>On your camera, go to Setup Menu → Save/Load Settings → Load Settings</li>
+                    <li>Select the .bin file and confirm to import the configuration</li>
+                    <li>The camera will restart and apply the new settings to U1, U2, and U3 profiles</li>
+                </ol>
+            </div>
+
+            <div class="camera-profiles">
+                ${Object.entries(profiles).map(([profileKey, profile]) => `
+                    <div class="camera-profile-card">
+                        <h4 class="camera-profile-title">
+                            <i data-lucide="camera"></i>
+                            ${profile.name}
+                        </h4>
+
+                        <div class="camera-settings-section">
+                            <h5>
+                                <i data-lucide="image"></i>
+                                Picture Settings
+                            </h5>
+                            <div class="camera-settings-grid">
+                                <div class="setting-item">
+                                    <span class="setting-label">ISO:</span>
+                                    <span class="setting-value">${profile.pictureSettings.iso}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Sensitivity:</span>
+                                    <span class="setting-value">${profile.pictureSettings.sensitivity}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Mode:</span>
+                                    <span class="setting-value">${profile.pictureSettings.mode}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Color:</span>
+                                    <span class="setting-value">${profile.pictureSettings.color}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">White Balance:</span>
+                                    <span class="setting-value">${profile.pictureSettings.whiteBalance}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Format:</span>
+                                    <span class="setting-value">${profile.pictureSettings.format}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Color Space:</span>
+                                    <span class="setting-value">${profile.pictureSettings.colorSpace}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Long Exposure:</span>
+                                    <span class="setting-value">${profile.pictureSettings.longExposure}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="camera-settings-section">
+                            <h5>
+                                <i data-lucide="video"></i>
+                                Video Settings
+                            </h5>
+                            <div class="camera-settings-grid">
+                                <div class="setting-item">
+                                    <span class="setting-label">ISO:</span>
+                                    <span class="setting-value">${profile.videoSettings.iso}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Format:</span>
+                                    <span class="setting-value">${profile.videoSettings.format}</span>
+                                </div>
+                                <div class="setting-item">
+                                    <span class="setting-label">Resolution:</span>
+                                    <span class="setting-value">${profile.videoSettings.resolution}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="camera-settings-section">
+                            <h5>
+                                <i data-lucide="settings"></i>
+                                Custom Settings
+                            </h5>
+                            <p class="not-implemented">Settings not implemented yet</p>
+                        </div>
+
+                        <div class="camera-settings-section">
+                            <h5>
+                                <i data-lucide="play"></i>
+                                Playback Menu
+                            </h5>
+                            <p class="not-implemented">Settings not implemented yet</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    if (modal) {
         modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+    }
+}
+
+function downloadCameraConfig() {
+    // Create a sample .bin file content (this would normally be actual camera configuration data)
+    const configData = "NIKON_Z50II_CONFIG_U1U2U3_PROFILES_IONUT_BARA_SETTINGS";
+    const blob = new Blob([configData], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Z50ii_U1U2U3_Config.bin';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// Modal functions
+function showAccessories(deviceModel) {
+    const modal = document.getElementById('accessoriesModal');
+    const devices = devicesData[currentLanguage] || devicesData['en-US'];
+    const device = devices.find(d => d.model === deviceModel);
+
+    if (!device || !device.accessories) return;
+
+    const modalBody = document.getElementById('accessoriesModalBody');
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <h3>${deviceModel} - Accessories</h3>
+            ${Object.entries(device.accessories).map(([setupName, accessories]) => `
+                <div class="accessories-section">
+                    <h4>${setupName}</h4>
+                    <div class="accessories-grid">
+                        ${accessories.map(accessory => `
+                            <div class="accessory-item">
+                                <i class="accessory-icon" data-lucide="package"></i>
+                                <span class="accessory-name">${accessory}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('')}
+        `;
+    }
+
+    if (modal) {
+        modal.classList.remove('hidden');
+    }
+}
+
+function showContentModal(title, content) {
+    const modal = document.getElementById('contentModal');
+    const modalTitle = document.getElementById('contentModalTitle');
+    const modalBody = document.getElementById('contentModalBody');
+
+    if (modalTitle) {
+        modalTitle.textContent = title;
+    }
+
+    if (modalBody) {
+        modalBody.innerHTML = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
+    }
+
+    if (modal) {
+        modal.classList.remove('hidden');
     }
 }
 
@@ -1934,67 +2593,200 @@ function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.add('hidden');
-        document.body.style.overflow = '';
     }
 }
 
 function closeAllModals() {
-    closeModal('contentModal');
-    closeModal('accessoriesModal');
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.classList.add('hidden');
+    });
 }
 
+// Updated contact form handler for email format
 function handleContactForm(e) {
     e.preventDefault();
-    
-    const name = document.getElementById('contactName').value;
-    const email = document.getElementById('contactEmail').value;
-    const subject = document.getElementById('contactSubject').value;
-    const message = document.getElementById('contactMessage').value;
-    
-    if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields.');
-        return;
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-    
-    const submitButton = e.target.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    
-    setTimeout(() => {
-        alert(`Thank you for your message! Your message has been sent to ionutbaraooo@gmail.com. I will get back to you soon at ${email}.`);
-        e.target.reset();
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-    }, 1500);
+
+    const formData = new FormData(e.target);
+    const to = formData.get('to') || 'ionutbaraooo@gmail.com';
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    // Create mailto link
+    const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Reset form
+    e.target.reset();
+
+    // Show success message
+    alert('Email client opened. Please send the email from your email application.');
 }
 
 function handleExportPDF() {
-    alert('CV export functionality: This would generate a PDF with the complete CV information including the short description from the home page about IT work at Electricon and AI studies.');
+    // Simple PDF export using browser print functionality
+    const originalTitle = document.title;
+    document.title = 'Ionut_Bara_CV.pdf';
+
+    const printStyles = `
+        <style>
+            @media print {
+                .header, .nav-actions, .btn, .mobile-menu { display: none !important; }
+                .page { display: block !important; }
+                body { background: white !important; color: black !important; }
+            }
+        </style>
+    `;
+
+    document.head.insertAdjacentHTML('beforeend', printStyles);
+    window.print();
+    document.title = originalTitle;
 }
 
-// Make functions globally available for onclick handlers
-window.showAccessories = showAccessories;
-window.showLenses = showLenses;
-
-// Theme detection
-function detectSystemTheme() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-color-scheme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-color-scheme', 'light');
+// Initialize Lucide icons when content is loaded
+function initializeLucideIcons() {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
     }
 }
 
-if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', detectSystemTheme);
+// Call icon initialization after content loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initializeLucideIcons, 500);
+});
+
+// Re-initialize icons when content changes
+function reinitializeIcons() {
+    setTimeout(() => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }, 100);
 }
 
-detectSystemTheme();
+// Update existing functions to reinitialize icons
+const originalShowPage = showPage;
+showPage = function(pageId) {
+    originalShowPage(pageId);
+    reinitializeIcons();
+};
+
+const originalSetLanguage = setLanguage;
+setLanguage = function(languageCode) {
+    originalSetLanguage(languageCode);
+    reinitializeIcons();
+};
+
+// Social media link handlers with warnings
+function handleSocialClick(url, warning) {
+    if (warning) {
+        if (confirm(warning)) {
+            window.open(url, '_blank');
+        }
+    } else {
+        window.open(url, '_blank');
+    }
+}
+
+// Error handling for missing elements
+function safeElementOperation(elementId, operation) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        operation(element);
+    } else {
+        console.warn(`Element with id '${elementId}' not found`);
+    }
+}
+
+// Utility function for debouncing
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Smooth scrolling for anchor links
+function smoothScrollTo(targetId) {
+    const target = document.getElementById(targetId);
+    if (target) {
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Theme detection and handling
+function detectSystemTheme() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+// Performance optimization: lazy load content
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Initialize intersection observer for performance
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    });
+
+    // Observe elements that should fade in
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.card, .device-card, .service-card').forEach(el => {
+                observer.observe(el);
+            });
+        }, 1000);
+    });
+}
+
+// Console welcome message
+console.log('%c👋 Welcome to Ionut Bara\'s Website!', 'color: #40D41D; font-size: 16px; font-weight: bold;');
+console.log('%cThis website is built with vanilla JavaScript and modern CSS.', 'color: #626C71; font-size: 12px;');
+console.log('%cCheck out my projects: https://github.com/ionuttbara', 'color: #626C71; font-size: 12px;');
+
+// Export functions for debugging (development only)
+if (typeof window !== 'undefined') {
+    window.debugApp = {
+        currentLanguage,
+        currentPage,
+        translations,
+        showPage,
+        setLanguage,
+        savePageState,
+        loadPageState
+    };
+}
+
+// Service worker registration for PWA capabilities (optional)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
