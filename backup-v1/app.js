@@ -851,7 +851,8 @@ const devicesData = {
                 "RAM": "12GB",
                 "Camera": "200MP main, 12MP ultra-wide, 10MP telephoto",
                 "Battery": "5000mAh",
-                "OS": "Android 14"
+                "USB": "Type C 3.2 with OTG and Video Support",
+                "OS": "Android 15"
             }
         },
         {
@@ -863,7 +864,8 @@ const devicesData = {
                 "Storage": "512GB",
                 "RAM": "12GB",
                 "Processor": "Snapdragon 8 Gen 2",
-                "OS": "Android 13"
+                "USB": "Type C 3.2 with OTG and Video Support",
+                "OS": "Android 15"
             },
             accessories: {
                 "Tablet Accessories": ["SD Card"]
