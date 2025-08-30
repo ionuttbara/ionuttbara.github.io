@@ -1,48 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBBSite - Home</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/scripts.js" defer></script>
+    <title>Ionut Bara's personal website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect x='8' y='8' width='16' height='16' fill='%2340D41D' rx='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='white'/%3E%3C/svg%3E">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Ionut Bara's Personal Site</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="page_about/about.html">About</a></li>
-                <li><a href="page_blog/blog.html">Blog</a></li>
-                <li><a href="page_about_contact/contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <svg class="nav-logo" width="32" height="32" viewBox="0 0 32 32">
+                        <rect x="8" y="8" width="16" height="16" fill="currentColor" rx="2"/>
+                        <circle cx="16" cy="16" r="4" fill="var(--color-surface)"/>
+                    </svg>
+                    <span class="nav-brand-text" data-key="siteName">Ionut Bara's personal website</span>
+                </div>
+                
+                <div class="nav-desktop">
+                    <ul class="nav-list">
+                        <li><button class="nav-link" data-page="home" data-key="nav.home">Home</button></li>
+                        <li><button class="nav-link" data-page="about" data-key="nav.about">About</button></li>
+                        <li><button class="nav-link" data-page="blog" data-key="nav.blog">Blog</button></li>
+                        <li><button class="nav-link" data-page="projects" data-key="nav.projects">Projects</button></li>
+                        <li><button class="nav-link" data-page="cv" data-key="nav.cv">My CV</button></li>
+                        <li><button class="nav-link" data-page="services" data-key="nav.services">Services</button></li>
+                        <li><button class="nav-link" data-page="usdacm" data-key="nav.usdacm">USDACM</button></li>
+                        <li><button class="nav-link" data-page="devices" data-key="nav.devices">Device Setup</button></li>
+                        <li><button class="nav-link" data-page="downloads" data-key="nav.downloads">Downloads</button></li>
+                        <li><button class="nav-link" data-page="contact" data-key="nav.contact">Contact</button></li>
+                    </ul>
+                </div>
+
+                <div class="nav-actions">
+                    <select class="language-selector" id="languageSelector">
+                        <option value="en-US">EN</option>
+                        <option value="hu-HU">HU</option>
+                        <option value="ro-RO">RO</option>
+                        <option value="gall">GALL</option>
+                    </select>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-list">
+                    <li><button class="mobile-nav-link" data-page="home" data-key="nav.home">Home</button></li>
+                    <li><button class="mobile-nav-link" data-page="about" data-key="nav.about">About</button></li>
+                    <li><button class="mobile-nav-link" data-page="blog" data-key="nav.blog">Blog</button></li>
+                    <li><button class="mobile-nav-link" data-page="projects" data-key="nav.projects">Projects</button></li>
+                    <li><button class="mobile-nav-link" data-page="cv" data-key="nav.cv">My CV</button></li>
+                    <li><button class="mobile-nav-link" data-page="services" data-key="nav.services">Services</button></li>
+                    <li><button class="mobile-nav-link" data-page="usdacm" data-key="nav.usdacm">USDACM</button></li>
+                    <li><button class="mobile-nav-link" data-page="devices" data-key="nav.devices">Device Setup</button></li>
+                    <li><button class="mobile-nav-link" data-page="downloads" data-key="nav.downloads">Downloads</button></li>
+                    <li><button class="mobile-nav-link" data-page="contact" data-key="nav.contact">Contact</button></li>
+                </ul>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>Introduction</h2>
-            <p>Welcome to my personal website. Here you can find information about my projects, blog posts, and how to contact me.</p>
-        </section>
+    <main class="main">
+        <!-- Home Page -->
+        <div class="page home-page active" id="home">
+            <div class="container">
+                <div class="hero-section">
+                    <h1 class="hero-title" data-key="home.title">Welcome to My Website</h1>
+                    <p class="hero-subtitle" data-key="home.subtitle">IT Department at Electricon & AI Student</p>
+                    <div class="home-presentation" id="homePresentation">
+                        <!-- Content loaded from JSON -->
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn--primary" data-page="projects" data-key="home.viewProjects">View My Projects</button>
+                        <button class="btn btn--outline" data-page="contact" data-key="home.getInTouch">Get in Touch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div class="page about-page" id="about">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="about.title">About Me</h1>
+                    <p data-key="about.subtitle">Learn more about my background and interests</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-summary">
+                        <p data-key="about.summary">I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I'm also an active advocate against corruption in my hometown of Damuc, Neamt.</p>
+                        <div class="age-display">
+                            <span data-key="about.ageLabel">I am</span> 
+                            <span class="age-number" id="currentAge">22</span> 
+                            <span data-key="about.yearsOld">years old</span>
+                        </div>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h2 data-key="about.faq.title">Frequently Asked Questions</h2>
+                        <div class="faq-list" id="faqList">
+                            <!-- FAQ items will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h2 data-key="about.projects.title">Featured Projects</h2>
+                        <div class="projects-preview" id="projectsPreview">
+                            <!-- Project items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div class="page blog-page" id="blog">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="blog.title">Blog</h1>
+                    <p data-key="blog.subtitle">Technical articles and insights</p>
+                </div>
+                <div class="blog-list" id="blogList">
+                    <!-- Blog posts will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div class="page projects-page" id="projects">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="projects.title">Software Projects</h1>
+                    <p data-key="projects.subtitle">Open source tools and utilities</p>
+                </div>
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CV Page -->
+        <div class="page cv-page" id="cv">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="cv.title">My CV</h1>
+                    <p data-key="cv.subtitle">Complete professional profile</p>
+                    <button class="btn btn--primary export-pdf-btn" id="exportPdfBtn" data-key="cv.exportPdf">Export to PDF</button>
+                </div>
+                <div class="cv-content" id="cvContent">
+                    <!-- CV content will be loaded here -->
+                </div>
+                <div class="cv-social-media">
+                    <h3 data-key="cv.socialMedia.title">Connect with me</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/ionuttbara/" target="_blank" class="social-icon facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon whatsapp">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.891 3.488"/></svg>
+                        </a>
+                        <a href="#" class="social-icon discord">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"/></svg>
+                        </a>
+                        <a href="https://github.com/ionuttbara" target="_blank" class="social-icon github">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.164 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div class="page services-page" id="services">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="services.title">Services</h1>
+                    <p data-key="services.subtitle">Professional services with transparent pricing</p>
+                </div>
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- USDACM Page -->
+        <div class="page usdacm-page" id="usdacm">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="usdacm.title">USDACM</h1>
+                    <p data-key="usdacm.subtitle">Political commentary and analysis</p>
+                </div>
+                <div class="blog-list" id="usdacmList">
+                    <!-- USDACM posts will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Devices Page -->
+        <div class="page devices-page" id="devices">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="devices.title">Device Setup</h1>
+                    <p data-key="devices.subtitle">My current hardware specifications</p>
+                </div>
+                <div class="devices-grid" id="devicesGrid">
+                    <!-- Devices will be loaded here -->
+                </div>
+                <div class="device-collection-section">
+                    <h2 data-key="devices.collection.title">Device Collection</h2>
+                    <div class="device-collection-grid" id="deviceCollectionGrid">
+                        <!-- Device collection will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads Page -->
+        <div class="page downloads-page" id="downloads">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="downloads.title">Downloads</h1>
+                    <p data-key="downloads.subtitle">Available downloads and resources</p>
+                </div>
+                <div class="downloads-grid" id="downloadsGrid">
+                    <!-- Downloads will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div class="page contact-page" id="contact">
+            <div class="container">
+                <div class="page-header">
+                    <h1 data-key="contact.title">Contact</h1>
+                    <p data-key="contact.subtitle">Get in touch with me</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-form-section">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label class="form-label" for="contactName" data-key="contact.form.name">Name</label>
+                                <input type="text" id="contactName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail" data-key="contact.form.email">Email</label>
+                                <input type="email" id="contactEmail" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactSubject" data-key="contact.form.subject">Subject</label>
+                                <input type="text" id="contactSubject" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage" data-key="contact.form.message">Message</label>
+                                <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width" data-key="contact.form.send">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-section">
+                        <h2 data-key="contact.info.title">Contact Information</h2>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"/>
+                                </svg>
+                                <span>ionutbaraooo@gmail.com</span>
+                            </div>
+                        </div>
+                        
+                        <h3 data-key="contact.social.title">Social Media</h3>
+                        <div class="social-media-links" id="socialMediaLinks">
+                            <!-- Social media links will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <!-- Include the footer from the res directory -->
-        <div id="footer-content"></div>
-    </footer>
+    <!-- Modal for blog posts and content -->
+    <div class="modal hidden" id="contentModal">
+        <div class="modal-backdrop" id="contentModalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="closeContentModal">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
 
-    <script>
-        // Load the footer content
-        fetch('res/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-content').innerHTML = data;
-            });
-    </script>
-    <script>
-        // Call initialization function from cookie.js
-        initializeCookieManagement();
-    </script>
+    <!-- Device Accessories Modal -->
+    <div class="modal hidden" id="accessoriesModal">
+        <div class="modal-backdrop" id="accessoriesModalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="accessoriesModalTitle">Device Accessories</h3>
+                <button class="modal-close" id="closeAccessoriesModal">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="accessoriesModalContent">
+                <!-- Accessories content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
