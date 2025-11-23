@@ -1,0 +1,506 @@
+{
+    "en-US": [
+        {
+            "id": "melody-script",
+            "name": "Melody Script Windows",
+            "description": "Windows optimization script for better performance and system tweaks.",
+            "type": "github",
+            "version": "v2.1",
+            "size": "25MB",
+            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
+            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+        },
+        {
+            "id": "defender-remover",
+            "name": "Defender Remover Tool",
+            "description": "Remove Windows Defender completely from your Windows system.",
+            "type": "github",
+            "version": "v1.5",
+            "size": "15MB",
+            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
+            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+        },
+        {
+            "id": "edge-remover",
+            "name": "Edge Remover",
+            "description": "A lightweight tool to completely remove Microsoft Edge.",
+            "type": "github",
+            "version": "v1.0",
+            "size": "5MB",
+            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
+            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+        },
+        {
+            "id": "onedrive-uninstaller",
+            "name": "OneDrive Uninstaller",
+            "description": "Script to uninstall Microsoft OneDrive from Windows.",
+            "type": "github",
+            "version": "v1.2",
+            "size": "2MB",
+            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+        },
+        {
+            "id": "runtime-pack",
+            "name": "Runtime Packages (Redist Pack)",
+            "description": "All-in-one Visual C++ Redistributable Runtimes package.",
+            "type": "github-info",
+            "version": "Latest",
+            "size": "90MB",
+            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
+            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+        },
+        {
+            "id": "win11-iso",
+            "name": "Windows 11 ISO Images",
+            "description": "Custom Windows 11 ISO images. Select your preferred version and mirror source.",
+            "type": "selector",
+            "defaultVersion": "24H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["24H2", "25H2"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
+                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            }
+        },
+        {
+            "id": "win10-iso",
+            "name": "Windows 10 ISO Images",
+            "description": "Stable Windows 10 ISO images. Choose older or newer builds.",
+            "type": "selector",
+            "defaultVersion": "22H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["22H2", "20H1", "1809", "1703"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
+                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
+                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
+                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            }
+        },
+        {
+            "id": "win-insider",
+            "name": "Windows Insider Builds",
+            "description": "Experimental Windows builds for testing new features.",
+            "type": "selector",
+            "defaultVersion": "Canary",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["Canary", "Dev"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
+                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            }
+        },
+        {
+            "id": "win7-iso",
+            "name": "Windows 7 ISO",
+            "description": "Classic Windows 7 SP1 All Editions.",
+            "type": "selector",
+            "defaultVersion": "SP1",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP1"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            }
+        },
+        {
+            "id": "winxp-iso",
+            "name": "Windows XP SP3 Professional",
+            "description": "Retro Windows XP. No key needed for installation.",
+            "type": "selector",
+            "defaultVersion": "SP3",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP3"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            }
+        },
+        {
+            "id": "linux-images",
+            "name": "Linux Images",
+            "description": "Collection of various Linux distributions.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/linux_folder"
+        },
+        {
+            "id": "winpe-images",
+            "name": "WinPE Images",
+            "description": "Bootable Windows PE environments for troubleshooting.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/winpe_folder"
+        },
+        {
+            "id": "pc-maintenance",
+            "name": "PC Maintenance Package",
+            "description": "Essential tools for computer repair and maintenance.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/maintenance_folder"
+        },
+        {
+            "id": "scripts-collection",
+            "name": "Scripts Collection",
+            "description": "Useful batch and powershell scripts for automation.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/scripts_folder"
+        },
+        {
+            "id": "sedinte-damuc",
+            "name": "Video Sedinte Consiliu Damuc",
+            "description": "Recordings of the Damuc Local Council meetings.",
+            "type": "video",
+            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
+            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+        }
+    ],
+    "ro-RO": [
+        {
+            "id": "melody-script",
+            "name": "Melody Script Windows",
+            "description": "Script de optimizare Windows.",
+            "type": "github",
+            "version": "v2.1",
+            "size": "25MB",
+            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
+            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+        },
+        {
+            "id": "defender-remover",
+            "name": "Unealta Defender Remover",
+            "description": "Eliminați Windows Defender.",
+            "type": "github",
+            "version": "v1.5",
+            "size": "15MB",
+            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
+            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+        },
+        {
+            "id": "edge-remover",
+            "name": "Edge Remover",
+            "description": "Instrument pentru eliminarea Microsoft Edge.",
+            "type": "github",
+            "version": "v1.0",
+            "size": "5MB",
+            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
+            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+        },
+        {
+            "id": "onedrive-uninstaller",
+            "name": "Dezinstalare OneDrive",
+            "description": "Script pentru dezinstalarea OneDrive.",
+            "type": "github",
+            "version": "v1.2",
+            "size": "2MB",
+            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+        },
+        {
+            "id": "runtime-pack",
+            "name": "Runtime Packages (Redist Pack)",
+            "description": "Pachet complet Visual C++ Redistributable.",
+            "type": "github-info",
+            "version": "Ultima",
+            "size": "90MB",
+            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
+            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+        },
+        {
+            "id": "win11-iso",
+            "name": "Imagini ISO Windows 11",
+            "description": "Selectați versiunea și sursa.",
+            "type": "selector",
+            "defaultVersion": "24H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["24H2", "25H2"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
+                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            }
+        },
+        {
+            "id": "win10-iso",
+            "name": "Imagini ISO Windows 10",
+            "description": "Selectați versiunea și sursa.",
+            "type": "selector",
+            "defaultVersion": "22H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["22H2", "20H1", "1809", "1703"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
+                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
+                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
+                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            }
+        },
+        {
+            "id": "win-insider",
+            "name": "Windows Insider Builds",
+            "description": "Versiuni experimentale Windows.",
+            "type": "selector",
+            "defaultVersion": "Canary",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["Canary", "Dev"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
+                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            }
+        },
+        {
+            "id": "win7-iso",
+            "name": "Windows 7 ISO",
+            "description": "Windows 7 SP1 Toate Edițiile.",
+            "type": "selector",
+            "defaultVersion": "SP1",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP1"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            }
+        },
+        {
+            "id": "winxp-iso",
+            "name": "Windows XP SP3 Professional",
+            "description": "Windows XP Retro. Nu necesită cheie.",
+            "type": "selector",
+            "defaultVersion": "SP3",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP3"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            }
+        },
+        {
+            "id": "linux-images",
+            "name": "Imagini Linux",
+            "description": "Colecție de diverse distribuții Linux.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/linux_folder"
+        },
+        {
+            "id": "winpe-images",
+            "name": "Imagini WinPE",
+            "description": "Medii Windows PE bootabile.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/winpe_folder"
+        },
+        {
+            "id": "pc-maintenance",
+            "name": "Pachet Întreținere PC",
+            "description": "Unelte esențiale pentru reparații PC.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/maintenance_folder"
+        },
+        {
+            "id": "scripts-collection",
+            "name": "Colecție Scripturi",
+            "description": "Scripturi batch și powershell utile.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/scripts_folder"
+        },
+        {
+            "id": "sedinte-damuc",
+            "name": "Video Ședințe Consiliu Dămuc",
+            "description": "Înregistrări ale ședințelor Consiliului Local Dămuc.",
+            "type": "video",
+            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
+            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+        }
+    ],
+    "gall": [
+        {
+            "id": "melody-script",
+            "name": "Melody Script Windows",
+            "description": "Windows optimizacijska skripta.",
+            "type": "github",
+            "version": "v2.1",
+            "size": "25MB",
+            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
+            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+        },
+        {
+            "id": "defender-remover",
+            "name": "Defender Remover Alat",
+            "description": "Uklonite Windows Defender.",
+            "type": "github",
+            "version": "v1.5",
+            "size": "15MB",
+            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
+            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+        },
+        {
+            "id": "edge-remover",
+            "name": "Edge Remover",
+            "description": "Alat za uklanjanje Microsoft Edge.",
+            "type": "github",
+            "version": "v1.0",
+            "size": "5MB",
+            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
+            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+        },
+        {
+            "id": "onedrive-uninstaller",
+            "name": "OneDrive Uninstaller",
+            "description": "Skripta za deinstalaciju OneDrive.",
+            "type": "github",
+            "version": "v1.2",
+            "size": "2MB",
+            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+        },
+        {
+            "id": "runtime-pack",
+            "name": "Runtime Packages (Redist Pack)",
+            "description": "Sve-u-jednom Visual C++ paketi.",
+            "type": "github-info",
+            "version": "Zadnji",
+            "size": "90MB",
+            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
+            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+        },
+        {
+            "id": "win11-iso",
+            "name": "Windows 11 ISO Slike",
+            "description": "Odaberite verziju i izvor.",
+            "type": "selector",
+            "defaultVersion": "24H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["24H2", "25H2"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
+                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            }
+        },
+        {
+            "id": "win10-iso",
+            "name": "Windows 10 ISO Slike",
+            "description": "Odaberite verziju i izvor.",
+            "type": "selector",
+            "defaultVersion": "22H2",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["22H2", "20H1", "1809", "1703"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
+                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
+                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
+                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            }
+        },
+        {
+            "id": "win-insider",
+            "name": "Windows Insider Builds",
+            "description": "Eksperimentalne Windows verzije.",
+            "type": "selector",
+            "defaultVersion": "Canary",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["Canary", "Dev"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
+                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            }
+        },
+        {
+            "id": "win7-iso",
+            "name": "Windows 7 ISO",
+            "description": "Windows 7 SP1 Sva Izdanja.",
+            "type": "selector",
+            "defaultVersion": "SP1",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP1"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            }
+        },
+        {
+            "id": "winxp-iso",
+            "name": "Windows XP SP3 Professional",
+            "description": "Retro Windows XP. Nije potreban ključ.",
+            "type": "selector",
+            "defaultVersion": "SP3",
+            "defaultSource": "Koofr",
+            "options": {
+                "versions": ["SP3"],
+                "sources": ["Koofr", "Digi Cloud"]
+            },
+            "links": {
+                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            }
+        },
+        {
+            "id": "linux-images",
+            "name": "Linux Slike",
+            "description": "Kolekcija Linux distribucija.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/linux_folder"
+        },
+        {
+            "id": "winpe-images",
+            "name": "WinPE Slike",
+            "description": "Bootabilna Windows PE okruženja.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/winpe_folder"
+        },
+        {
+            "id": "pc-maintenance",
+            "name": "PC Maintenance Paket",
+            "description": "Alati za popravku računara.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/maintenance_folder"
+        },
+        {
+            "id": "scripts-collection",
+            "name": "Kolekcija Skripti",
+            "description": "Korisne batch i powershell skripte.",
+            "type": "folder",
+            "url": "https://koofr.net/dummy/scripts_folder"
+        },
+        {
+            "id": "sedinte-damuc",
+            "name": "Video Sastanci Vijeća Damuc",
+            "description": "Snimci sastanaka Lokalnog vijeća Damuc.",
+            "type": "video",
+            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
+            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+        }
+    ]
+}

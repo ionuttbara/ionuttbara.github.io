@@ -1,0 +1,163 @@
+<div class="mic-container">
+    <div id="micStatus" class="perm-status" data-tr="micStatus">Select a microphone and click Start.</div>
+
+    <div class="mic-visualizer">
+        <div class="mic-bar-container">
+            <div class="mic-bar" id="micLevelBar"></div>
+        </div>
+        <div class="mic-value" id="micLevelVal">0%</div>
+    </div>
+
+    <div class="mic-controls">
+        <select id="micSelect" class="form-control" style="max-width: 200px;">
+            <option value="" data-tr="micDefault">Default Microphone</option>
+        </select>
+        <button class="btn btn--primary" id="btnStartMic"><i data-lucide="mic"></i> <span data-tr="micStart">Start</span></button>
+        <button class="btn btn--secondary" id="btnStopMic" disabled><span data-tr="micStop">Stop</span></button>
+    </div>
+    
+    <div class="mic-options">
+        <label class="checkbox-container" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" id="micLoopback">
+            <span data-tr="micHear">Hear yourself (Loopback)</span> 
+            <span style="color:var(--color-warning); font-size:0.8em;" data-tr="micWarn">- Use Headphones!</span>
+        </label>
+    </div>
+
+    <div class="mic-info" id="micInfo"></div>
+</div>
+
+<style>
+    .mic-container { text-align: center; max-width: 500px; margin: 0 auto; }
+    .perm-status { margin-bottom: 20px; color: var(--color-text-secondary); }
+    .mic-visualizer { margin-bottom: 30px; }
+    .mic-bar-container { width: 100%; height: 30px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 15px; overflow: hidden; position: relative; }
+    .mic-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--color-success), var(--color-warning), var(--color-error)); transition: width 0.05s linear; }
+    .mic-value { font-family: var(--font-family-mono); margin-top: 5px; font-size: 0.9rem; }
+    .mic-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .mic-options { margin-bottom: 20px; display: flex; justify-content: center; }
+    .mic-info { text-align: left; background: var(--color-bg-1); padding: 15px; border-radius: var(--radius-base); font-size: 0.85rem; font-family: var(--font-family-mono); }
+</style>
+
+<script>
+    (function() {
+        const startBtn = document.getElementById('btnStartMic');
+        const stopBtn = document.getElementById('btnStopMic');
+        const status = document.getElementById('micStatus');
+        const bar = document.getElementById('micLevelBar');
+        const val = document.getElementById('micLevelVal');
+        const loopbackCheck = document.getElementById('micLoopback');
+        const info = document.getElementById('micInfo');
+        const micSelect = document.getElementById('micSelect');
+        
+        let audioContext, microphone, analyser, javascriptNode;
+        let audioStream;
+        let audioEl;
+
+        // Translations
+        const lang = document.documentElement.getAttribute('lang') || 'en';
+        const tr = {
+            'ro': { micStatus: "Selectează un microfon și apasă Start.", micDefault: "Microfon Implicit", micStart: "Start", micStop: "Stop", micHear: "Auzi-te (Loopback)", micWarn: "- Folosește căști!" },
+            'gall': { micStatus: "Odaberite mikrofon i kliknite Start.", micDefault: "Zadani mikrofon", micStart: "Počni", micStop: "Zaustavi", micHear: "Čuj se (Loopback)", micWarn: "- Koristite slušalice!" }
+        };
+        if(tr[lang]) {
+            document.querySelectorAll('[data-tr]').forEach(el => { if(tr[lang][el.dataset.tr]) el.innerText = tr[lang][el.dataset.tr]; });
+        }
+
+        async function getMics() {
+            try {
+                await navigator.mediaDevices.getUserMedia({ audio: true }); 
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const audioDevices = devices.filter(device => device.kind === 'audioinput');
+                micSelect.innerHTML = '';
+                audioDevices.forEach(device => {
+                    const option = document.createElement('option');
+                    option.value = device.deviceId;
+                    option.text = device.label || `Microphone ${micSelect.length + 1}`;
+                    micSelect.appendChild(option);
+                });
+            } catch(e) { console.warn("Permission needed"); }
+        }
+        getMics();
+
+        startBtn.addEventListener('click', async () => {
+            try {
+                if (audioContext) audioContext.close();
+                
+                const deviceId = micSelect.value;
+                const constraints = { audio: deviceId ? { deviceId: { exact: deviceId } } : true };
+
+                status.textContent = "Starting...";
+                // 1. Load Stream FIRST
+                audioStream = await navigator.mediaDevices.getUserMedia(constraints);
+                window.localStream = audioStream; 
+                
+                status.textContent = "Microphone Active.";
+                status.style.color = "var(--color-success)";
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                micSelect.disabled = true;
+
+                // 2. Setup Analysis
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                microphone = audioContext.createMediaStreamSource(audioStream);
+                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+                analyser.smoothingTimeConstant = 0.8;
+                analyser.fftSize = 1024;
+
+                microphone.connect(analyser);
+                analyser.connect(javascriptNode);
+                javascriptNode.connect(audioContext.destination);
+
+                javascriptNode.onaudioprocess = function() {
+                    const array = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(array);
+                    let values = 0;
+                    const length = array.length;
+                    for (let i = 0; i < length; i++) { values += array[i]; }
+                    const average = values / length;
+                    const percent = Math.min(100, Math.round(average * 2.5)); 
+                    bar.style.width = percent + "%";
+                    val.textContent = percent + "%";
+                }
+
+                // 3. Setup Loopback (Realtime) if checked
+                if (loopbackCheck.checked) {
+                    // Direct connection for lowest latency
+                    // microphone.connect(audioContext.destination); 
+                    // OR create a separate audio element for control
+                    audioEl = new Audio();
+                    audioEl.srcObject = audioStream;
+                    audioEl.play(); // Play immediately
+                }
+
+                const track = audioStream.getAudioTracks()[0];
+                info.innerHTML = `<strong>Label:</strong> ${track.label}<br><strong>Ready State:</strong> ${track.readyState}`;
+
+            } catch (err) {
+                console.error(err);
+                status.textContent = "Error: " + err.message;
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            if (audioStream) {
+                audioStream.getTracks().forEach(track => track.stop());
+                if (audioContext) audioContext.close();
+                if (audioEl) { audioEl.pause(); audioEl.srcObject = null; }
+                
+                bar.style.width = "0%";
+                val.textContent = "0%";
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                micSelect.disabled = false;
+                status.textContent = "Test Stopped.";
+                window.localStream = null;
+            }
+        });
+        
+        if(window.lucide) window.lucide.createIcons();
+    })();
+</script>

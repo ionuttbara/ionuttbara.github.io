@@ -1,0 +1,21 @@
+{
+    "en-US": {
+        "summary": "I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I'm also an active advocate against corruption in my hometown of Damuc, Neamt.",
+        "faq": [
+            { "question": "What is your primary area of expertise?", "answer": "I specialize in IT management, Windows system administration, and artificial intelligence development." },
+            { "question": "Do you work remotely?", "answer": "Yes, I offer both remote and on-site services depending on the project requirements." }
+        ]
+    },
+    "ro-RO": {
+        "summary": "Sunt un profesionist IT pasionat care lucrează la Electricon...",
+        "faq": [
+            { "question": "Care este domeniul dvs. principal?", "answer": "Sunt specializat în managementul IT..." }
+        ]
+    },
+    "gall": {
+        "summary": "Strastan sam IT profesionalac koji radi u Electricon-u...",
+        "faq": [
+            { "question": "Koja je vaša primarna oblast ekspertize?", "answer": "Specijalizovan sam za IT menadžment..." }
+        ]
+    }
+}

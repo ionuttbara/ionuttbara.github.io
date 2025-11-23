@@ -1,0 +1,119 @@
+<div class="speedtest-container">
+    <div class="st-header">
+        <h3 data-tr="stTitle">Internet Speed Test</h3>
+        <p data-tr="stDesc">Select your preferred speed test provider below.</p>
+    </div>
+
+    <div class="st-selector">
+        <button class="btn btn--primary" onclick="setProvider('adkilled')">LibreSpeed</button>
+        <button class="btn btn--outline" onclick="setProvider('fast')">Fast.com</button>
+        <button class="btn btn--outline" onclick="setProvider('speedtest')">Speedtest.net</button>
+        <button class="btn btn--outline" onclick="setProvider('meter')">Meter.net</button>
+    </div>
+
+    <div id="st-content-area" class="st-content">
+        <!-- Default Content (LibreSpeed Iframe) -->
+        <div class="st-frame-container">
+            <iframe 
+                src="https://librespeed.org/" 
+                frameborder="0" 
+                allowtransparency="true" 
+                allow="geolocation; microphone; camera" 
+                referrerpolicy="no-referrer">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+    .speedtest-container { text-align: center; height: 100%; display: flex; flex-direction: column; }
+    .st-header { margin-bottom: 15px; flex-shrink: 0; }
+    
+    .st-selector { margin-bottom: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    
+    .st-content { flex: 1; display: flex; flex-direction: column; align-items: center; width: 100%; }
+
+    .st-frame-container { 
+        width: 100%; 
+        min-height: 600px; 
+        flex: 1;
+        border: 1px solid var(--color-border); 
+        border-radius: var(--radius-lg); 
+        overflow: hidden; 
+        background: #ffffff; 
+        box-shadow: var(--shadow-md);
+    }
+    
+    iframe { width: 100%; height: 100%; border: none; }
+    
+    .st-external-msg {
+        padding: 40px;
+        background: var(--color-bg-2);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-border);
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    (function() {
+        // Provider Logic
+        window.setProvider = function(provider) {
+            const content = document.getElementById('st-content-area');
+            const btns = document.querySelectorAll('.st-selector button');
+            
+            // Update Buttons
+            btns.forEach(b => {
+                b.classList.remove('btn--primary');
+                b.classList.add('btn--outline');
+            });
+            // Note: In a real app we'd target specific button, simplified here by order or text
+            // For this simple tool, visual update on click is enough
+            event.target.classList.remove('btn--outline');
+            event.target.classList.add('btn--primary');
+
+            if (provider === 'adkilled') {
+                content.innerHTML = `
+                <div class="st-external-msg">
+                    <h4>adkilled Speedtest</h4>
+                    <p>Adkilled speedtest does not allow embedding in iframes.</p>
+                    <a href="https://adkilledprivacy.speedtestcustom.com/" target="_blank" class="btn btn--primary" style="margin-top:15px;">Open Addkilled speedtest</a>
+                </div>`;
+            } else if (provider === 'fast') {
+                content.innerHTML = `
+                <div class="st-external-msg">
+                    <h4>Fast.com</h4>
+                    <p>Fast.com does not allow embedding in iframes.</p>
+                    <a href="https://fast.com" target="_blank" class="btn btn--primary" style="margin-top:15px;">Open Fast.com</a>
+                </div>`;
+            } else if (provider === 'speedtest') {
+                content.innerHTML = `
+                <div class="st-external-msg">
+                    <h4>Speedtest.net</h4>
+                    <p>Speedtest.net is best experienced in a full tab.</p>
+                    <a href="https://www.speedtest.net/" target="_blank" class="btn btn--primary" style="margin-top:15px;">Open Speedtest.net</a>
+                </div>`;
+            } else if (provider === 'meter') {
+                content.innerHTML = `
+                <div class="st-external-msg">
+                    <h4>Meter.net</h4>
+                    <p>Meter.net performs reliably in a separate window.</p>
+                    <a href="https://www.meter.net/" target="_blank" class="btn btn--primary" style="margin-top:15px;">Open Meter.net</a>
+                </div>`;
+            }
+        };
+
+        // Translations
+        const lang = document.documentElement.getAttribute('lang') || 'en';
+        const tr = {
+            'ro': { stTitle: "Test Viteză Internet", stDesc: "Selectează furnizorul de test de mai jos." },
+            'gall': { stTitle: "Test brzine interneta", stDesc: "Odaberite pružatelja usluge testa ispod." }
+        };
+        
+        if(tr[lang]) {
+            document.querySelectorAll('[data-tr]').forEach(el => { 
+                if(tr[lang][el.dataset.tr]) el.innerText = tr[lang][el.dataset.tr]; 
+            });
+        }
+    })();
+</script>

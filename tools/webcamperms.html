@@ -1,0 +1,130 @@
+<div class="webcam-container">
+    <div id="camStatus" class="perm-status">Select a camera and click Start.</div>
+    
+    <div class="cam-viewport">
+        <video id="webcamVideo" autoplay playsinline></video>
+        <div id="camOverlay" class="cam-overlay">Camera Off</div>
+    </div>
+
+    <div class="cam-controls-row">
+        <select id="camSelect" class="form-control" style="max-width: 200px;">
+            <option value="">Default Camera</option>
+        </select>
+        <button class="btn btn--primary" id="btnStartCam"><i data-lucide="video"></i> Start</button>
+        <button class="btn btn--secondary" id="btnStopCam" disabled>Stop</button>
+    </div>
+
+    <div class="cam-info" id="camInfo"></div>
+</div>
+
+<style>
+    .webcam-container { text-align: center; max-width: 600px; margin: 0 auto; }
+    .perm-status { margin-bottom: 15px; font-size: 0.9rem; color: var(--color-text-secondary); }
+    
+    .cam-viewport { 
+        width: 100%; aspect-ratio: 16/9; 
+        background: #000; 
+        border-radius: var(--radius-lg); 
+        overflow: hidden; 
+        position: relative;
+        margin-bottom: 20px;
+        border: 2px solid var(--color-border);
+    }
+    #webcamVideo { width: 100%; height: 100%; object-fit: cover; }
+    .cam-overlay {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        color: #666; font-family: var(--font-family-mono);
+    }
+    
+    .cam-controls-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .cam-info { text-align: left; background: var(--color-bg-1); padding: 15px; border-radius: var(--radius-base); font-size: 0.85rem; font-family: var(--font-family-mono); }
+</style>
+
+<script>
+    (function() {
+        const video = document.getElementById('webcamVideo');
+        const overlay = document.getElementById('camOverlay');
+        const startBtn = document.getElementById('btnStartCam');
+        const stopBtn = document.getElementById('btnStopCam');
+        const camSelect = document.getElementById('camSelect');
+        const info = document.getElementById('camInfo');
+        const status = document.getElementById('camStatus');
+        let stream = null;
+
+        // Enumerate Devices
+        async function getCameras() {
+            try {
+                // Request permission first to get labels
+                await navigator.mediaDevices.getUserMedia({ video: true }); 
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                
+                camSelect.innerHTML = '';
+                videoDevices.forEach(device => {
+                    const option = document.createElement('option');
+                    option.value = device.deviceId;
+                    option.text = device.label || `Camera ${camSelect.length + 1}`;
+                    camSelect.appendChild(option);
+                });
+            } catch(e) {
+                console.warn("Permission needed for labels");
+            }
+        }
+        getCameras();
+
+        startBtn.addEventListener('click', async () => {
+            try {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+                
+                const deviceId = camSelect.value;
+                const constraints = { 
+                    video: deviceId ? { deviceId: { exact: deviceId } } : true 
+                };
+
+                status.textContent = "Starting camera...";
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                window.localStream = stream; // Global ref for cleanup
+                
+                video.srcObject = stream;
+                overlay.style.display = 'none';
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                camSelect.disabled = true;
+                status.textContent = "Camera Active.";
+                status.style.color = "var(--color-success)";
+
+                const track = stream.getVideoTracks()[0];
+                const settings = track.getSettings();
+                info.innerHTML = `
+                    <strong>Label:</strong> ${track.label}<br>
+                    <strong>Resolution:</strong> ${settings.width}x${settings.height}<br>
+                    <strong>Frame Rate:</strong> ${settings.frameRate ? settings.frameRate.toFixed(0) : 'N/A'} FPS
+                `;
+
+            } catch (err) {
+                console.error(err);
+                status.textContent = "Error: " + err.message;
+                status.style.color = "var(--color-error)";
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+                overlay.style.display = 'block';
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                camSelect.disabled = false;
+                status.textContent = "Camera Stopped.";
+                status.style.color = "var(--color-text)";
+                info.innerHTML = "";
+                window.localStream = null;
+            }
+        });
+        
+        if(window.lucide) window.lucide.createIcons();
+    })();
+</script>

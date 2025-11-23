@@ -1,0 +1,213 @@
+<div class="pass-gen-container">
+    <div class="pg-header">
+        <div class="pg-display" id="pgOutput">Generating...</div>
+        <div class="pg-actions">
+            <button class="pg-btn" id="pgRefresh" title="Regenerate"><i data-lucide="refresh-cw"></i></button>
+            <button class="pg-btn" id="pgCopy" title="Copy"><i data-lucide="copy"></i></button>
+        </div>
+        <div class="pg-strength" id="pgStrength">Excellent</div>
+    </div>
+
+    <div class="pg-body">
+        <div class="pg-row">
+            <label>Length</label>
+            <input type="range" id="pgLength" min="4" max="64" value="32" class="pg-range">
+            <span id="pgLengthVal">32</span>
+        </div>
+
+        <div class="pg-group">
+            <div class="pg-section-title">Include</div>
+            <div class="pg-row">
+                <label>Uppercase</label>
+                <label class="pg-switch">
+                    <input type="checkbox" id="pgIncUpper" checked>
+                    <span class="pg-slider"></span>
+                </label>
+            </div>
+            <div class="pg-row">
+                <label>Digits</label>
+                <label class="pg-switch">
+                    <input type="checkbox" id="pgIncDigits" checked>
+                    <span class="pg-slider"></span>
+                </label>
+            </div>
+            <div class="pg-row">
+                <label>Symbols</label>
+                <label class="pg-switch">
+                    <input type="checkbox" id="pgIncSymbols" checked>
+                    <span class="pg-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="pg-group">
+            <div class="pg-section-title">Using Minimum</div>
+            <div class="pg-row">
+                <label>Uppercase</label>
+                <input type="range" id="pgMinUpper" min="0" max="10" value="1" class="pg-range">
+                <span id="pgMinUpperVal">1</span>
+            </div>
+            <div class="pg-row">
+                <label>Digits</label>
+                <input type="range" id="pgMinDigit" min="0" max="10" value="1" class="pg-range">
+                <span id="pgMinDigitVal">1</span>
+            </div>
+            <div class="pg-row">
+                <label>Symbols</label>
+                <input type="range" id="pgMinSymbol" min="0" max="10" value="1" class="pg-range">
+                <span id="pgMinSymbolVal">1</span>
+            </div>
+        </div>
+
+        <div class="pg-group">
+            <div class="pg-row">
+                <label>Exclude</label>
+                <input type="text" id="pgExclude" placeholder="(e.g. !@#$%^&*...)" class="pg-input">
+            </div>
+            <div class="pg-row">
+                <label>Ambiguous Characters</label>
+                <label class="pg-switch">
+                    <input type="checkbox" id="pgExcAmbiguous" checked>
+                    <span class="pg-slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .pass-gen-container { font-family: var(--font-family-base); color: var(--color-text); }
+    .pg-header { 
+        background-color: #22c55e; /* Green from image */
+        color: white; 
+        padding: 24px; 
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: relative;
+        margin: -24px -24px 20px -24px; /* Counteract modal padding */
+    }
+    .pg-display { 
+        font-family: var(--font-family-mono); 
+        font-size: 1.2rem; 
+        word-break: break-all; 
+        margin-bottom: 10px;
+        padding-right: 40px;
+    }
+    .pg-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+    .pg-btn { background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
+    .pg-btn:hover { background: rgba(255,255,255,0.4); }
+    .pg-strength { font-weight: bold; font-size: 0.9rem; margin-top: 10px; }
+    
+    .pg-body { padding: 0 10px; }
+    .pg-group { margin-bottom: 20px; padding-top: 15px; border-top: 1px solid var(--color-border); }
+    .pg-section-title { font-weight: bold; margin-bottom: 10px; color: var(--color-primary); }
+    .pg-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 15px; }
+    
+    .pg-range { flex: 1; height: 4px; background: var(--color-border); border-radius: 2px; appearance: none; }
+    .pg-range::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; background: white; border: 2px solid var(--color-primary); border-radius: 50%; cursor: pointer; }
+    
+    .pg-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .pg-switch input { opacity: 0; width: 0; height: 0; }
+    .pg-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+    .pg-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .pg-slider { background-color: #3b82f6; } /* Blue toggle from image */
+    input:checked + .pg-slider:before { transform: translateX(20px); }
+    
+    .pg-input { background: var(--color-bg-1); border: 1px solid var(--color-border); color: var(--color-text); padding: 8px; border-radius: 4px; flex: 1; }
+</style>
+
+<script>
+    (function() {
+        const els = {
+            output: document.getElementById('pgOutput'),
+            refresh: document.getElementById('pgRefresh'),
+            copy: document.getElementById('pgCopy'),
+            len: document.getElementById('pgLength'),
+            lenVal: document.getElementById('pgLengthVal'),
+            incUpper: document.getElementById('pgIncUpper'),
+            incDigits: document.getElementById('pgIncDigits'),
+            incSymbols: document.getElementById('pgIncSymbols'),
+            minUpper: document.getElementById('pgMinUpper'),
+            minDigit: document.getElementById('pgMinDigit'),
+            minSymbol: document.getElementById('pgMinSymbol'),
+            exclude: document.getElementById('pgExclude'),
+            excAmb: document.getElementById('pgExcAmbiguous')
+        };
+
+        // Sync Sliders text
+        [els.len, els.minUpper, els.minDigit, els.minSymbol].forEach(el => {
+            el.addEventListener('input', (e) => {
+                document.getElementById(e.target.id + 'Val').textContent = e.target.value;
+                generate();
+            });
+        });
+
+        // Sync Toggles
+        const toggles = [els.incUpper, els.incDigits, els.incSymbols, els.excAmb];
+        toggles.forEach(t => t.addEventListener('change', generate));
+        els.exclude.addEventListener('input', generate);
+        els.refresh.addEventListener('click', generate);
+        els.copy.addEventListener('click', () => {
+            navigator.clipboard.writeText(els.output.textContent);
+            const originalText = els.output.textContent;
+            els.output.textContent = "Copied!";
+            setTimeout(() => els.output.textContent = originalText, 1000);
+        });
+
+        function generate() {
+            const length = parseInt(els.len.value);
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            const ambiguous = "il1Lo0O";
+
+            let chars = lower;
+            let password = "";
+            let mustInclude = "";
+
+            // Build pool and mandatory characters based on "Using Minimum" logic
+            if (els.incUpper.checked) {
+                chars += upper;
+                for(let i=0; i<els.minUpper.value; i++) mustInclude += getRandom(upper);
+            }
+            if (els.incDigits.checked) {
+                chars += numbers;
+                for(let i=0; i<els.minDigit.value; i++) mustInclude += getRandom(numbers);
+            }
+            if (els.incSymbols.checked) {
+                chars += symbols;
+                for(let i=0; i<els.minSymbol.value; i++) mustInclude += getRandom(symbols);
+            }
+
+            // Filter exclusions
+            let exclusionStr = els.exclude.value;
+            if (els.excAmb.checked) exclusionStr += ambiguous;
+            
+            // Remove excluded from main pool
+            chars = chars.split('').filter(c => !exclusionStr.includes(c)).join('');
+            
+            // Generate remaining length
+            let remainingLength = length - mustInclude.length;
+            if (remainingLength < 0) remainingLength = 0;
+
+            for (let i = 0; i < remainingLength; i++) {
+                password += getRandom(chars);
+            }
+
+            // Combine and Shuffle
+            password += mustInclude;
+            password = password.split('').sort(() => 0.5 - Math.random()).join('').substring(0, length);
+
+            els.output.textContent = password;
+        }
+
+        function getRandom(set) {
+            if (!set) return '';
+            return set[Math.floor(Math.random() * set.length)];
+        }
+
+        // Re-init icons inside modal
+        if(window.lucide) window.lucide.createIcons();
+        generate();
+    })();
+</script>

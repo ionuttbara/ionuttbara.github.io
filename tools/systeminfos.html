@@ -1,0 +1,120 @@
+<div class="sys-info-container">
+    <div class="sys-header">
+        <div class="sys-icon-large"><i data-lucide="monitor"></i></div>
+        <h3 id="sysDeviceType">Detecting...</h3>
+        <p id="sysOS">Analyzing OS...</p>
+    </div>
+
+    <div class="sys-grid">
+        <div class="sys-card">
+            <div class="sys-label"><i data-lucide="cpu"></i> <span data-tr="sysCpu">Processor Cores</span></div>
+            <div class="sys-value" id="sysCores">...</div>
+        </div>
+        <div class="sys-card">
+            <div class="sys-label"><i data-lucide="aperture"></i> <span data-tr="sysGpu">Graphics</span></div>
+            <div class="sys-value" id="sysGPU">...</div>
+        </div>
+        <div class="sys-card">
+            <div class="sys-label"><i data-lucide="monitor"></i> <span data-tr="sysScreen">Screen Resolution</span></div>
+            <div class="sys-value" id="sysScreenRes">...</div>
+        </div>
+        <div class="sys-card">
+            <div class="sys-label"><i data-lucide="globe"></i> <span data-tr="sysBrowser">Browser</span></div>
+            <div class="sys-value" id="sysBrowser">...</div>
+        </div>
+    </div>
+    
+    <div class="sys-raw">
+        <h4 data-tr="sysNetTitle">Internet & Connection</h4>
+        <div id="sysNetInfo" style="margin-top:10px;">Fetching IP details...</div>
+    </div>
+</div>
+
+<style>
+    .sys-info-container { color: var(--color-text); }
+    .sys-header { text-align: center; margin-bottom: 24px; padding: 20px; background: var(--color-bg-1); border-radius: var(--radius-lg); }
+    .sys-icon-large { color: var(--color-primary); margin-bottom: 10px; }
+    .sys-icon-large svg { width: 48px; height: 48px; }
+    .sys-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    @media(max-width:600px) { .sys-grid { grid-template-columns: 1fr; } }
+    .sys-card { background: var(--color-surface); border: 1px solid var(--color-border); padding: 16px; border-radius: var(--radius-base); }
+    .sys-label { display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 4px; }
+    .sys-label svg { width: 16px; height: 16px; }
+    .sys-value { font-weight: bold; font-size: 1.1rem; word-break: break-word; }
+    .sys-raw { padding: 15px; background: var(--color-bg-2); border-radius: var(--radius-base); font-family: var(--font-family-mono); font-size: 0.9rem; word-break: break-all; }
+    .sys-raw h4 { margin-bottom: 5px; font-size: 0.9rem; color: var(--color-primary); }
+</style>
+
+<script>
+    (function() {
+        // Translations
+        const lang = document.documentElement.getAttribute('lang') || 'en';
+        const tr = {
+            'ro': { sysCpu: "Nuclee Procesor", sysGpu: "Grafică", sysScreen: "Rezoluție Ecran", sysBrowser: "Browser", sysNetTitle: "Internet & Conexiune" },
+            'gall': { sysCpu: "Jezgre procesora", sysGpu: "Grafika", sysScreen: "Rezolucija ekrana", sysBrowser: "Preglednik", sysNetTitle: "Internet i veza" }
+        };
+        if(tr[lang]) {
+            document.querySelectorAll('[data-tr]').forEach(el => { if(tr[lang][el.dataset.tr]) el.innerText = tr[lang][el.dataset.tr]; });
+        }
+
+        const ua = navigator.userAgent;
+        
+        // 1. Hardware Concurrency (Cores)
+        document.getElementById('sysCores').textContent = navigator.hardwareConcurrency || 'Unknown';
+        
+        // 2. Screen
+        document.getElementById('sysScreenRes').textContent = `${window.screen.width} x ${window.screen.height} (${window.devicePixelRatio}x)`;
+
+        // 3. OS & Device
+        let os = "Unknown OS";
+        if (ua.indexOf("Win") !== -1) os = "Windows";
+        if (ua.indexOf("Mac") !== -1) os = "macOS";
+        if (ua.indexOf("Linux") !== -1) os = "Linux";
+        if (ua.indexOf("Android") !== -1) os = "Android";
+        if (ua.indexOf("like Mac") !== -1) os = "iOS";
+        document.getElementById('sysOS').textContent = os;
+        document.getElementById('sysDeviceType').textContent = /Mobi|Android/i.test(ua) ? "Mobile Device" : "Desktop / Laptop";
+
+        // 4. Browser
+        let browser = "Unknown";
+        if(ua.indexOf("Chrome") != -1) browser = "Chrome / Blink";
+        else if(ua.indexOf("Firefox") != -1) browser = "Firefox / Gecko";
+        else if(ua.indexOf("Safari") != -1) browser = "Safari / WebKit";
+        document.getElementById('sysBrowser').textContent = browser;
+
+        // 5. GPU
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    document.getElementById('sysGPU').textContent = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                } else {
+                    document.getElementById('sysGPU').textContent = "WebGL Supported (Masked)";
+                }
+            } else {
+                document.getElementById('sysGPU').textContent = "Not Supported";
+            }
+        } catch (e) {
+            document.getElementById('sysGPU').textContent = "Error Detecting";
+        }
+
+        // 6. Internet Info (Async Fetch)
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('sysNetInfo').innerHTML = `
+                    <strong>Public IP:</strong> ${data.ip}<br>
+                    <strong>Provider (ISP):</strong> ${data.org}<br>
+                    <strong>Location:</strong> ${data.city}, ${data.country_name}<br>
+                    <strong>Region:</strong> ${data.region}
+                `;
+            })
+            .catch(() => {
+                document.getElementById('sysNetInfo').textContent = "Could not fetch network details (AdBlocker might be interfering).";
+            });
+
+        if(window.lucide) window.lucide.createIcons();
+    })();
+</script>

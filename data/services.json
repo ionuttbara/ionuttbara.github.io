@@ -1,0 +1,275 @@
+{
+    "en-US": [
+        {
+            "id": "phoneAdmin",
+            "category": "Phone Administration",
+            "description": "Complete Android/iPhone maintenance including cleaning, cloud unlocking, data migration, and security setup.",
+            "pricing": { "base": "10€", "labor": "No labor cost" },
+            "warranty": "12 months warranty"
+        },
+        {
+            "id": "osInstallation",
+            "category": "Operating System & Software",
+            "description": "OS installation, drivers, and professional software suites.",
+            "pricing": { "base": "15€ labor" },
+            "calculator": true,
+            "warranty": "18 months warranty on software configuration",
+            "options": {
+                "osFamily": [
+                    { "name": "Windows", "price": 0, "id": "win" },
+                    { "name": "macOS", "price": 0, "id": "mac" }
+                ],
+                "windowsVersions": [
+                    { "name": "Windows 10/11 Pro", "price": 7 },
+                    { "name": "Windows 11 IoT Enterprise", "price": 17 }
+                ],
+                "office": [
+                    { "name": "None", "price": 0 },
+                    { "name": "Office 2024 LTSC", "price": 10 },
+                    { "name": "Office 2021 LTSC", "price": 5 }
+                ],
+                "adobe": [
+                    { "name": "None", "price": 0 },
+                    { "name": "Acrobat Pro DC 2019", "price": 3 },
+                    { "name": "Photoshop + Lightroom", "price": 25 },
+                    { "name": "Premiere + Media Encoder", "price": 25 },
+                    { "name": "Complete Suite", "price": 50 }
+                ],
+                "autocad": [
+                    { "name": "None", "price": 0 },
+                    { "name": "AutoCAD 2025", "price": 20 }
+                ],
+                "customPrograms": {
+                    "name": "Custom Programs",
+                    "pricePerProgram": 20
+                }
+            }
+        },
+        {
+            "id": "networking",
+            "category": "Networking",
+            "description": "Professional network infrastructure setup.",
+            "calculator": true,
+            "warranty": "18 months warranty",
+            "options": {
+                "brands": [
+                    { "name": "TP-Link", "min": 50, "max": 200, "label": "Home/Small Office (50€ - 200€)" },
+                    { "name": "Cisco", "min": 5000, "max": 999999, "label": "Enterprise (Min 5000€)" }
+                ]
+            }
+        },
+        {
+            "id": "phoneRepair",
+            "category": "Phone Component Replacement",
+            "description": "Hardware replacement service. Price includes component cost + labor.",
+            "calculator": true,
+            "warranty": "12 months warranty",
+            "options": {
+                "types": [
+                    { "name": "Screen (Frozen/Cracked Frontal)", "laborPercent": 35 },
+                    { "name": "Battery", "laborPercent": 20 },
+                    { "name": "Charging Port", "laborPercent": 15 },
+                    { "name": "Sound/Speaker", "laborPercent": 15 },
+                    { "name": "Camera", "laborPercent": 15 }
+                ]
+            }
+        },
+        {
+            "id": "pcComponents",
+            "category": "PC Components Upgrade",
+            "description": "RAM and Storage upgrades with installation.",
+            "calculator": true,
+            "warranty": "18 months warranty",
+            "infoMessage": "Note: Prices are estimates based on average market value and include installation labor. Final price may vary slightly based on specific part availability.",
+            "options": {
+                "ramGenerations": [2, 3, 4, 5],
+                "diskTypes": [
+                    { "name": "HDD (Price per TB)", "pricePerUnit": 10, "unit": "TB" },
+                    { "name": "SSD (Price per TB, input GB)", "pricePerUnit": 90, "unit": "GB" }
+                ]
+            }
+        }
+    ],
+    "ro-RO": [
+        {
+            "id": "phoneAdmin",
+            "category": "Administrare Telefon",
+            "description": "Mentenanță completă Android/iPhone, curățare, deblocare cloud, migrare date și securitate.",
+            "pricing": { "base": "30 lei", "labor": "Fără cost manoperă" },
+            "warranty": "12 luni garanție"
+        },
+        {
+            "id": "osInstallation",
+            "category": "Sistem de Operare & Software",
+            "description": "Instalare OS, drivere și suite software profesionale.",
+            "pricing": { "base": "45 lei manoperă" },
+            "calculator": true,
+            "warranty": "18 luni garanție pe configurare software",
+            "options": {
+                "osFamily": [
+                    { "name": "Windows", "price": 0, "id": "win" },
+                    { "name": "macOS", "price": 0, "id": "mac" }
+                ],
+                "windowsVersions": [
+                    { "name": "Windows 10/11 Pro", "price": 20 },
+                    { "name": "Windows 11 IoT Enterprise", "price": 50 }
+                ],
+                "office": [
+                    { "name": "Fără", "price": 0 },
+                    { "name": "Office 2024 LTSC", "price": 30 },
+                    { "name": "Office 2021 LTSC", "price": 20 }
+                ],
+                "adobe": [
+                    { "name": "Fără", "price": 0 },
+                    { "name": "Acrobat Pro DC 2019", "price": 10 },
+                    { "name": "Photoshop + Lightroom", "price": 120 },
+                    { "name": "Premiere + Media Encoder", "price": 120 },
+                    { "name": "Pachet Complet", "price": 275 }
+                ],
+                "autocad": [
+                    { "name": "Fără", "price": 0 },
+                    { "name": "AutoCAD 2025", "price": 100 }
+                ],
+                "customPrograms": {
+                    "name": "Programe Personalizate",
+                    "pricePerProgram": 70
+                }
+            }
+        },
+        {
+            "id": "networking",
+            "category": "Rețelistică",
+            "description": "Configurare infrastructură rețea profesională.",
+            "calculator": true,
+            "warranty": "18 luni garanție",
+            "options": {
+                "brands": [
+                    { "name": "TP-Link", "min": 250, "max": 1000, "label": "Home/Office (250 - 1000 lei)" },
+                    { "name": "Cisco", "min": 25000, "max": 9999999, "label": "Enterprise (Min 25.000 lei)" }
+                ]
+            }
+        },
+        {
+            "id": "phoneRepair",
+            "category": "Înlocuire Componente Telefon",
+            "description": "Service hardware. Prețul include componenta + manoperă.",
+            "calculator": true,
+            "warranty": "12 luni garanție",
+            "options": {
+                "types": [
+                    { "name": "Ecran (Înghețat/Spart)", "laborPercent": 35 },
+                    { "name": "Baterie", "laborPercent": 20 },
+                    { "name": "Port Încărcare", "laborPercent": 15 },
+                    { "name": "Sunet/Difuzor", "laborPercent": 15 },
+                    { "name": "Cameră", "laborPercent": 15 }
+                ]
+            }
+        },
+        {
+            "id": "pcComponents",
+            "category": "Upgrade Componente PC",
+            "description": "Upgrade RAM și Stocare cu instalare.",
+            "calculator": true,
+            "warranty": "18 luni garanție",
+            "infoMessage": "Notă: Prețurile sunt estimative bazate pe valoarea medie a pieței și includ manopera de instalare. Prețul final poate varia ușor în funcție de disponibilitatea specifică a pieselor.",
+            "options": {
+                "ramGenerations": [2, 3, 4, 5],
+                "diskTypes": [
+                    { "name": "HDD (Preț per TB)", "pricePerUnit": 50, "unit": "TB" },
+                    { "name": "SSD (Preț per TB, introduceti GB)", "pricePerUnit": 450, "unit": "GB" }
+                ]
+            }
+        }
+    ],
+    "gall": [
+        {
+            "id": "phoneAdmin",
+            "category": "Administracija telefona",
+            "description": "Kompletno održavanje, čišćenje, otključavanje i postavljanje.",
+            "pricing": { "base": "10€", "labor": "Bez troška rada" },
+            "warranty": "12 mjeseci garancije"
+        },
+        {
+            "id": "osInstallation",
+            "category": "Operativni Sistem & Softver",
+            "description": "Instalacija OS-a, drajvera i profesionalnog softvera.",
+            "pricing": { "base": "15€ rad" },
+            "calculator": true,
+            "warranty": "18 mjeseci garancije na softver",
+            "options": {
+                "osFamily": [
+                    { "name": "Windows", "price": 0, "id": "win" },
+                    { "name": "macOS", "price": 0, "id": "mac" }
+                ],
+                "windowsVersions": [
+                    { "name": "Windows 10/11 Pro", "price": 7 },
+                    { "name": "Windows 11 IoT Enterprise", "price": 17 }
+                ],
+                "office": [
+                    { "name": "Ništa", "price": 0 },
+                    { "name": "Office 2024 LTSC", "price": 10 },
+                    { "name": "Office 2021 LTSC", "price": 5 }
+                ],
+                "adobe": [
+                    { "name": "Ništa", "price": 0 },
+                    { "name": "Acrobat Pro DC 2019", "price": 3 },
+                    { "name": "Photoshop + Lightroom", "price": 25 },
+                    { "name": "Premiere + Media Encoder", "price": 25 },
+                    { "name": "Komplet Paket", "price": 50 }
+                ],
+                "autocad": [
+                    { "name": "Ništa", "price": 0 },
+                    { "name": "AutoCAD 2025", "price": 20 }
+                ],
+                "customPrograms": {
+                    "name": "Prilagođeni Programi",
+                    "pricePerProgram": 20
+                }
+            }
+        },
+        {
+            "id": "networking",
+            "category": "Umrežavanje",
+            "description": "Postavljanje profesionalne mrežne infrastrukture.",
+            "calculator": true,
+            "warranty": "18 mjeseci garancije",
+            "options": {
+                "brands": [
+                    { "name": "TP-Link", "min": 50, "max": 200, "label": "Home/Office (50€ - 200€)" },
+                    { "name": "Cisco", "min": 5000, "max": 999999, "label": "Enterprise (Min 5000€)" }
+                ]
+            }
+        },
+        {
+            "id": "phoneRepair",
+            "category": "Zamjena Komponenti Telefona",
+            "description": "Zamjena hardvera. Cijena uključuje komponentu + rad.",
+            "calculator": true,
+            "warranty": "12 mjeseci garancije",
+            "options": {
+                "types": [
+                    { "name": "Ekran (Smrznut/Puknut)", "laborPercent": 35 },
+                    { "name": "Baterija", "laborPercent": 20 },
+                    { "name": "Port za punjenje", "laborPercent": 15 },
+                    { "name": "Zvuk/Zvučnik", "laborPercent": 15 },
+                    { "name": "Kamera", "laborPercent": 15 }
+                ]
+            }
+        },
+        {
+            "id": "pcComponents",
+            "category": "Nadogradnja PC Komponenti",
+            "description": "Nadogradnja RAM-a i pohrane s instalacijom.",
+            "calculator": true,
+            "warranty": "18 mjeseci garancije",
+            "infoMessage": "Napomena: Cijene su procjene temeljene na prosječnoj tržišnoj vrijednosti i uključuju rad na instalaciji. Konačna cijena može malo varirati ovisno o dostupnosti određenih dijelova.",
+            "options": {
+                "ramGenerations": [2, 3, 4, 5],
+                "diskTypes": [
+                    { "name": "HDD (Cijena po TB)", "pricePerUnit": 10, "unit": "TB" },
+                    { "name": "SSD (Cijena po TB, unos GB)", "pricePerUnit": 90, "unit": "GB" }
+                ]
+            }
+        }
+    ]
+}

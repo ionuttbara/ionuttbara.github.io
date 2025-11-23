@@ -1,0 +1,171 @@
+<div class="controller-container">
+    <div class="ctrl-header">
+        <select id="ctrlSelect" class="form-control" style="max-width: 300px;">
+            <option value="" data-tr="ctrlWait">Waiting for input...</option>
+        </select>
+    </div>
+    
+    <div class="ctrl-status" id="ctrlStatus" data-tr="ctrlPress">Press any button on your controller to detect it.</div>
+    
+    <div class="ctrl-actions">
+        <button class="btn btn--secondary" id="btnVibrate" disabled>
+            <i data-lucide="vibrate"></i> <span data-tr="ctrlVib">Test Vibration</span>
+        </button>
+    </div>
+
+    <div id="activeGamepadContainer"></div>
+</div>
+
+<style>
+    /* ... Same styles as before ... */
+    .controller-container { text-align: center; padding: 10px; }
+    .ctrl-header { display: flex; justify-content: center; margin-bottom: 20px; }
+    .ctrl-status { font-size: 1.1rem; margin-bottom: 20px; color: var(--color-text-secondary); }
+    .ctrl-actions { margin-bottom: 20px; }
+    .gamepad-card { background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px; max-width: 600px; margin: 0 auto; }
+    .gp-visuals { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    .gp-buttons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .gp-btn { width: 40px; height: 40px; border: 2px solid var(--color-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; transition: 0.1s; }
+    .gp-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); transform: scale(0.9); }
+    .gp-axes { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .axis-box { width: 100px; height: 100px; border: 2px solid var(--color-border); border-radius: 50%; position: relative; background: var(--color-surface); }
+    .axis-stick { width: 20px; height: 20px; background: var(--color-text-secondary); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+</style>
+
+<script>
+    (function() {
+        const container = document.getElementById('activeGamepadContainer');
+        const status = document.getElementById('ctrlStatus');
+        const select = document.getElementById('ctrlSelect');
+        const vibrateBtn = document.getElementById('btnVibrate');
+        let requestRef;
+        let activeIndex = null;
+
+        // Translations
+        const lang = document.documentElement.getAttribute('lang') || 'en';
+        const tr = {
+            'ro': { ctrlWait: "Așteptare input...", ctrlPress: "Apasă orice buton pe controller.", ctrlVib: "Test Vibrații" },
+            'gall': { ctrlWait: "Čekanje ulaza...", ctrlPress: "Pritisnite bilo koju tipku.", ctrlVib: "Test vibracije" }
+        };
+        if(tr[lang]) {
+            document.querySelectorAll('[data-tr]').forEach(el => { if(tr[lang][el.dataset.tr]) el.innerText = tr[lang][el.dataset.tr]; });
+        }
+
+        function scanGamepads() {
+            const gamepads = navigator.getGamepads();
+            select.innerHTML = '';
+            let count = 0;
+            
+            for (const gp of gamepads) {
+                if (gp) {
+                    const opt = document.createElement('option');
+                    opt.value = gp.index;
+                    opt.text = `${gp.index}: ${gp.id.substring(0, 30)}...`;
+                    select.appendChild(opt);
+                    count++;
+                    if (activeIndex === null) activeIndex = gp.index;
+                }
+            }
+            
+            if (count === 0) {
+                select.innerHTML = `<option>${lang === 'ro' ? 'Niciun controller detectat' : 'No controllers detected'}</option>`;
+                vibrateBtn.disabled = true;
+                status.textContent = lang === 'ro' ? "Conectează un controller." : "Connect a controller.";
+            } else {
+                select.value = activeIndex;
+                vibrateBtn.disabled = false;
+                status.textContent = `${count} Connected. Index: ${activeIndex}`;
+            }
+        }
+
+        window.addEventListener("gamepadconnected", (e) => {
+            scanGamepads();
+            if (!requestRef) updateLoop();
+        });
+
+        window.addEventListener("gamepaddisconnected", (e) => {
+            if (e.gamepad.index === activeIndex) {
+                activeIndex = null;
+                container.innerHTML = "";
+            }
+            scanGamepads();
+        });
+        
+        select.addEventListener('change', (e) => {
+            activeIndex = parseInt(e.target.value);
+            container.innerHTML = ""; 
+        });
+
+        vibrateBtn.addEventListener('click', () => {
+            if (activeIndex !== null) {
+                const gp = navigator.getGamepads()[activeIndex];
+                if (gp && gp.vibrationActuator) {
+                    gp.vibrationActuator.playEffect("dual-rumble", {
+                        startDelay: 0,
+                        duration: 500,
+                        weakMagnitude: 1.0,
+                        strongMagnitude: 1.0
+                    });
+                } else {
+                    alert("Vibration not supported/found.");
+                }
+            }
+        });
+
+        function updateLoop() {
+            const gamepads = navigator.getGamepads();
+            if (activeIndex !== null && gamepads[activeIndex]) {
+                const gp = gamepads[activeIndex];
+                let card = document.getElementById(`gp-view`);
+                if (!card) {
+                    card = createGamepadView(gp);
+                    container.appendChild(card);
+                }
+                updateGamepadView(gp, card);
+            }
+            requestRef = requestAnimationFrame(updateLoop);
+        }
+
+        function createGamepadView(gp) {
+            const div = document.createElement('div');
+            div.id = 'gp-view';
+            div.className = 'gamepad-card';
+            
+            let buttonsHtml = '';
+            for(let i=0; i<gp.buttons.length; i++) {
+                buttonsHtml += `<div class="gp-btn" id="btn-${i}">${i}</div>`;
+            }
+
+            let axesHtml = '';
+            for(let i=0; i<gp.axes.length; i+=2) {
+                axesHtml += `<div class="axis-box"><div class="axis-stick" id="axis-pair-${i}"></div></div>`;
+            }
+
+            div.innerHTML = `<div class="gp-visuals"><div class="gp-axes">${axesHtml}</div><div class="gp-buttons">${buttonsHtml}</div></div>`;
+            return div;
+        }
+
+        function updateGamepadView(gp, card) {
+            gp.buttons.forEach((b, i) => {
+                const btnEl = card.querySelector(`#btn-${i}`);
+                if(btnEl) {
+                    if(b.pressed) btnEl.classList.add('active');
+                    else btnEl.classList.remove('active');
+                    if (typeof b.value === "number") btnEl.style.opacity = 0.3 + (b.value * 0.7);
+                }
+            });
+            for(let i=0; i<gp.axes.length; i+=2) {
+                const stick = card.querySelector(`#axis-pair-${i}`);
+                if(stick) {
+                    const x = gp.axes[i] || 0;
+                    const y = gp.axes[i+1] || 0;
+                    stick.style.transform = `translate(calc(-50% + ${x * 40}px), calc(-50% + ${y * 40}px))`;
+                }
+            }
+        }
+        
+        if(window.lucide) window.lucide.createIcons();
+        scanGamepads();
+        updateLoop();
+    })();
+</script>

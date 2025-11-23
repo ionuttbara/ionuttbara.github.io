@@ -1,0 +1,109 @@
+<div class="hash-container">
+    <div class="hash-upload-zone" id="dropZone">
+        <i data-lucide="file-up" style="width: 48px; height: 48px; color: var(--color-primary);"></i>
+        <h3>Click to Select File</h3>
+        <p>or Drag and Drop here</p>
+        <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 10px;">
+            Processed locally. No upload to server.
+        </p>
+        <input type="file" id="fileInput" hidden>
+    </div>
+
+    <div class="hash-results hidden" id="hashResults">
+        <div class="hash-file-info">
+            <strong id="fileName">filename.txt</strong>
+            <span id="fileSize">(0 KB)</span>
+        </div>
+        
+        <div class="hash-row">
+            <label>SHA-1</label>
+            <div class="hash-value-box">
+                <code id="outSHA1">Calculating...</code>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('outSHA1').innerText)"><i data-lucide="copy"></i></button>
+            </div>
+        </div>
+        <div class="hash-row">
+            <label>SHA-256</label>
+            <div class="hash-value-box">
+                <code id="outSHA256">Calculating...</code>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('outSHA256').innerText)"><i data-lucide="copy"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hash-upload-zone {
+        border: 2px dashed var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .hash-upload-zone:hover { border-color: var(--color-primary); background: var(--color-bg-1); }
+    .hash-results.hidden { display: none; }
+    .hash-results { margin-top: 20px; animation: fadeIn 0.3s ease; }
+    .hash-file-info { text-align: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--color-border); }
+    .hash-row { margin-bottom: 15px; }
+    .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .hash-value-box { 
+        display: flex; align-items: center; 
+        background: var(--color-bg-2); 
+        border: 1px solid var(--color-border); 
+        border-radius: 4px;
+    }
+    .hash-value-box code { 
+        flex: 1; 
+        padding: 8px; 
+        word-break: break-all; 
+        font-family: var(--font-family-mono);
+        font-size: 0.85rem;
+        background: transparent;
+    }
+    .copy-btn { background: none; border: none; padding: 8px; cursor: pointer; color: var(--color-text-secondary); border-left: 1px solid var(--color-border); }
+    .copy-btn:hover { color: var(--color-primary); }
+    .copy-btn svg { width: 16px; height: 16px; }
+</style>
+
+<script>
+    (function() {
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const resultArea = document.getElementById('hashResults');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--color-primary)'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--color-border)'; });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) processFile(fileInput.files[0]);
+        });
+
+        async function processFile(file) {
+            resultArea.classList.remove('hidden');
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = `(${(file.size / 1024).toFixed(2)} KB)`;
+            
+            document.getElementById('outSHA1').textContent = "Calculating...";
+            document.getElementById('outSHA256').textContent = "Calculating...";
+
+            const buffer = await file.arrayBuffer();
+
+            // SHA
+            calculateHash(buffer, 'SHA-1').then(h => document.getElementById('outSHA1').textContent = h);
+            calculateHash(buffer, 'SHA-256').then(h => document.getElementById('outSHA256').textContent = h);
+            
+            if(window.lucide) window.lucide.createIcons();
+        }
+
+        async function calculateHash(buffer, algo) {
+            const hashBuffer = await crypto.subtle.digest(algo, buffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+    })();
+</script>

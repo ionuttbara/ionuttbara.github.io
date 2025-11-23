@@ -1,0 +1,281 @@
+{
+    "en-US": [
+        {
+            "name": "System Information",
+            "description": "Analyze your current device hardware and software specifications.",
+            "url": "tools/systeminfos.html",
+            "type": "internal",
+            "icon": "cpu"
+        },
+        {
+            "name": "Password Generator",
+            "description": "Generate strong, secure passwords with custom rules.",
+            "url": "tools/passgenerator.html",
+            "type": "internal",
+            "icon": "lock"
+        },
+        {
+            "name": "File Hash Calculator",
+            "description": "Calculate SHA1 and SHA256 hashes locally.",
+            "url": "tools/hashcheck.html",
+            "type": "internal",
+            "icon": "file-check"
+        },
+        {
+            "name": "Controller Tester",
+            "description": "Test connected gamepads, wheels, and force feedback.",
+            "url": "tools/controller.html",
+            "type": "internal",
+            "icon": "gamepad-2"
+        },
+        {
+            "name": "Webcam Tester",
+            "description": "Test your camera functionality and permissions.",
+            "url": "tools/webcamperms.html",
+            "type": "internal",
+            "icon": "video"
+        },
+        {
+            "name": "Microphone Tester",
+            "description": "Test microphone input levels and permissions.",
+            "url": "tools/microphonperms.html",
+            "type": "internal",
+            "icon": "mic"
+        },
+        {
+            "name": "Monitor Test",
+            "description": "Check for dead pixels, uniformity, and response time.",
+            "url": "tools/monitortest.html",
+            "type": "internal",
+            "icon": "monitor"
+        },
+        {
+            "name": "Video Downloader",
+            "description": "Download videos from various platforms via Cobalt.",
+            "url": "https://cobalt.tools/",
+            "type": "external",
+            "icon": "download-cloud"
+        },
+        {
+            "name": "Network Scanner",
+            "description": "Scan and discover devices on your local network.",
+            "url": "https://github.com/ionuttbara/network-scanner/releases",
+            "type": "download",
+            "icon": "network"
+        },
+        {
+            "name": "Background Remover",
+            "description": "Bulk image background removal tool.",
+            "url": "https://imagetoolshub.com/tools/bulk-image-background-removal/",
+            "type": "external",
+            "icon": "image-minus"
+        },
+        {
+            "name": "Printer Drivers",
+            "description": "Download drivers for various printer models.",
+            "url": "https://printerdrivers.com/",
+            "type": "external",
+            "icon": "printer"
+        },
+        {
+            "name": "Imgur",
+            "description": "Upload and share images.",
+            "url": "https://imgur.com/",
+            "type": "external",
+            "icon": "image"
+        },
+        {
+            "name": "Speed Test",
+            "description": "Test your internet connection speed.",
+            "url": "tools/speedytest.html",
+            "type": "internal",
+            "icon": "zap"
+        }
+    ],
+    "ro-RO": [
+        {
+            "name": "Informații Sistem",
+            "description": "Analizează specificațiile hardware și software.",
+            "url": "tools/systeminfos.html",
+            "type": "internal",
+            "icon": "cpu"
+        },
+        {
+            "name": "Generator Parole",
+            "description": "Generați parole sigure.",
+            "url": "tools/passgenerator.html",
+            "type": "internal",
+            "icon": "lock"
+        },
+        {
+            "name": "Calculator Hash",
+            "description": "Calculați hash-uri SHA1 și SHA256 local.",
+            "url": "tools/hashcheck.html",
+            "type": "internal",
+            "icon": "file-check"
+        },
+        {
+            "name": "Test Controller",
+            "description": "Testează gamepad-uri, volane și vibrații.",
+            "url": "tools/controller.html",
+            "type": "internal",
+            "icon": "gamepad-2"
+        },
+        {
+            "name": "Test Cameră Web",
+            "description": "Verifică funcționalitatea camerei web.",
+            "url": "tools/webcamperms.html",
+            "type": "internal",
+            "icon": "video"
+        },
+        {
+            "name": "Test Microfon",
+            "description": "Verifică nivelul de intrare al microfonului.",
+            "url": "tools/microphonperms.html",
+            "type": "internal",
+            "icon": "mic"
+        },
+        {
+            "name": "Test Monitor",
+            "description": "Verifică pixeli morți, uniformitate și timp de răspuns.",
+            "url": "tools/monitortest.html",
+            "type": "internal",
+            "icon": "monitor"
+        },
+        {
+            "name": "Descărcare Video",
+            "description": "Descarcă video-uri de pe diverse platforme via Cobalt.",
+            "url": "https://cobalt.tools/",
+            "type": "external",
+            "icon": "download-cloud"
+        },
+        {
+            "name": "Scanner Rețea",
+            "description": "Scanați rețeaua locală.",
+            "url": "https://github.com/ionuttbara/network-scanner/releases",
+            "type": "download",
+            "icon": "network"
+        },
+        {
+            "name": "Eliminare Fundal",
+            "description": "Unealtă de eliminare fundal imagini.",
+            "url": "https://imagetoolshub.com/tools/bulk-image-background-removal/",
+            "type": "external",
+            "icon": "image-minus"
+        },
+        {
+            "name": "Drivere Imprimantă",
+            "description": "Descarcă drivere pentru imprimante.",
+            "url": "https://printerdrivers.com/",
+            "type": "external",
+            "icon": "printer"
+        },
+        {
+            "name": "Imgur",
+            "description": "Încarcă și distribuie imagini.",
+            "url": "https://imgur.com/",
+            "type": "external",
+            "icon": "image"
+        },
+        {
+            "name": "Test Viteză",
+            "description": "Testează viteza conexiunii la internet.",
+            "url": "tools/speedytest.html",
+            "type": "internal",
+            "icon": "zap"
+        }
+    ],
+    "gall": [
+        {
+            "name": "Informacije o sistemu",
+            "description": "Analizirajte specifikacije uređaja.",
+            "url": "tools/systeminfos.html",
+            "type": "internal",
+            "icon": "cpu"
+        },
+        {
+            "name": "Generator lozinki",
+            "description": "Generirajte sigurne lozinke.",
+            "url": "tools/passgenerator.html",
+            "type": "internal",
+            "icon": "lock"
+        },
+        {
+            "name": "Hash kalkulator",
+            "description": "Izračunajte SHA1 i SHA256 hash-ove.",
+            "url": "tools/hashcheck.html",
+            "type": "internal",
+            "icon": "file-check"
+        },
+        {
+            "name": "Test kontrolera",
+            "description": "Testirajte gamepad-ove, volane i vibraciju.",
+            "url": "tools/controller.html",
+            "type": "internal",
+            "icon": "gamepad-2"
+        },
+        {
+            "name": "Test web kamere",
+            "description": "Provjerite funkcionalnost kamere.",
+            "url": "tools/webcamperms.html",
+            "type": "internal",
+            "icon": "video"
+        },
+        {
+            "name": "Test mikrofona",
+            "description": "Provjerite ulazni nivo mikrofona.",
+            "url": "tools/microphonperms.html",
+            "type": "internal",
+            "icon": "mic"
+        },
+        {
+            "name": "Test monitora",
+            "description": "Provjerite mrtve piksele, uniformnost i vrijeme odziva.",
+            "url": "tools/monitortest.html",
+            "type": "internal",
+            "icon": "monitor"
+        },
+        {
+            "name": "Video Downloader",
+            "description": "Preuzimanje videa s raznih platformi putem Cobalt-a.",
+            "url": "https://cobalt.tools/",
+            "type": "external",
+            "icon": "download-cloud"
+        },
+        {
+            "name": "Mrežni skener",
+            "description": "Skenirajte lokalnu mrežu.",
+            "url": "https://github.com/ionuttbara/network-scanner/releases",
+            "type": "download",
+            "icon": "network"
+        },
+        {
+            "name": "Uklanjanje pozadine",
+            "description": "Alat za uklanjanje pozadine.",
+            "url": "https://imagetoolshub.com/tools/bulk-image-background-removal/",
+            "type": "external",
+            "icon": "image-minus"
+        },
+        {
+            "name": "Upravljački programi",
+            "description": "Preuzmite drajvere za pisače.",
+            "url": "https://printerdrivers.com/",
+            "type": "external",
+            "icon": "printer"
+        },
+        {
+            "name": "Imgur",
+            "description": "Upload slika.",
+            "url": "https://imgur.com/",
+            "type": "external",
+            "icon": "image"
+        },
+        {
+            "name": "Test Brzine",
+            "description": "Testirajte brzinu internetske veze.",
+            "url": "tools/speedytest.html",
+            "type": "internal",
+            "icon": "zap"
+        }
+    ]
+}

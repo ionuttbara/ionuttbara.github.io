@@ -1,0 +1,16 @@
+{
+    "email": "ionutbaraooo@gmail.com",
+    "socialMedia": [
+        { "name": "GitHub", "url": "https://github.com/ionuttbara", "icon": "github", "username": "ionuttbara" },
+        { "name": "Snapchat", "url": "https://snapchat.com/add/ionut_bara", "icon": "snapchat", "username": "ionut_bara" },
+        { "name": "Spotify", "url": "#", "icon": "spotify", "username": "ionuttbara" }
+    ],
+    "gamingProfiles": [
+        { "name": "Xbox", "username": "JohnTheGamer595", "icon": "xbox" },
+        { "name": "Steam", "username": "johnroberthinio", "icon": "steam" },
+        { "name": "Ubisoft Connect", "username": "ionuttbara", "icon": "ubisoft" },
+        { "name": "Epic Games", "username": "ionut_bara", "icon": "epic-games" },
+        { "name": "EA", "username": "ionutbara", "icon": "ea" },
+        { "name": "Rockstar", "username": "ionutbara", "icon": "rockstar" }
+    ]
+}

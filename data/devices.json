@@ -1,0 +1,406 @@
+{
+    "en-US": {
+        "main": [
+            {
+                "type": "Laptop",
+                "model": "Lenovo LOQ 15",
+                "icon": "laptop",
+                "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
+                "accessories": {
+                    "Mures Setup": [
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Logitech Keyboard", "icon": "keyboard"},
+                        {"name": "Logitech Mouse", "icon": "mouse"},
+                        {"name": "Logitech Webcam", "icon": "webcam"},
+                        {"name": "Logitech Speakers", "icon": "speaker"},
+                        {"name": "Xerox Printer", "icon": "printer"},
+                        {"name": "Logitech Controller", "icon": "gamepad"},
+                        {"name": "PlayStation Controller", "icon": "gamepad"},
+                        {"name": "Xbox Controller", "icon": "xbox"},
+                        {"name": "Logitech G29 + G-shift", "icon": "steering-wheel"},
+                        {"name": "Canon Scanner", "icon": "scanner"}
+                    ],
+                    "Office Setup (Electricon)": [
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "G613 Keyboard", "icon": "keyboard"},
+                        {"name": "Baseus Docking Station", "icon": "dock"},
+                        {"name": "G604 Mouse", "icon": "mouse"}
+                    ],
+                    "Damuc Setup": [
+                        {"name": "G604 Mouse", "icon": "mouse"}
+                    ]
+                }
+            },
+            {
+                "type": "Phone",
+                "model": "Samsung Galaxy S23 Ultra 1TB",
+                "icon": "smartphone",
+                "specs": { "Display": "6.8\" Dynamic AMOLED 2X", "Storage": "1TB", "RAM": "12GB", "Camera": "200MP main, 12MP ultra-wide, 10MP telephoto", "Battery": "5000mAh", "USB": "Type C 3.2 with OTG and Video Support", "OS": "Android 16" }
+            },
+            {
+                "type": "Tablet",
+                "model": "Samsung Galaxy Tab S9 Ultra 512GB",
+                "icon": "tablet",
+                "specs": { "Display": "14.6\" Dynamic AMOLED 2X", "Storage": "512GB", "RAM": "12GB", "Processor": "Snapdragon 8 Gen 2", "USB": "Type C 3.2 with OTG and Video Support", "OS": "Android 16" },
+                "accessories": { 
+                    "Tablet Accessories": [{"name": "SD Card", "icon": "sd-card"}] 
+                }
+            },
+            {
+                "type": "Camera",
+                "model": "Nikon Z50ii",
+                "icon": "camera",
+                "hasConfiguration": true,
+                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
+                "lenses": [
+                    "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+                    "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+                    "Viltrox 35mm f/1.7"
+                ]
+            },
+            {
+                "type": "Desktop Backup",
+                "model": "24GB RAM DDR3 with Intel i5 gen 6 Esprimo",
+                "icon": "monitor",
+                "specs": { "CPU": "Intel i5 6th Gen", "RAM": "24GB DDR3", "Type": "Fujitsu Esprimo", "Purpose": "Backup system" }
+            },
+            {
+                "type": "Server",
+                "model": "4TB SSD SATA integrated in Router",
+                "icon": "server",
+                "specs": { "Storage": "4TB SSD SATA", "Integration": "Built into router", "Purpose": "Network storage" }
+            },
+            {
+                "type": "Router",
+                "model": "TP-Link WiFi AX53",
+                "icon": "router",
+                "specs": { "Standard": "WiFi 6 (802.11ax)", "Speed": "AX3000", "Brand": "TP-Link", "Model": "AX53" },
+                "configuration": {
+                    "DNS": "AdGuard (IPv4 Enforced)",
+                    "IPv6": "Disabled",
+                    "Firewall": "Enabled",
+                    "Firmware": "Manual Update",
+                    "Server": "Local Configured",
+                    "VPN": "Hola & NordVPN"
+                }
+            },
+            {
+                "type": "External Storage",
+                "model": "55TB HDD + 14TB SSD",
+                "icon": "hard-drive",
+                "specs": { "HDD Storage": "55TB", "SSD Storage": "14TB", "Type": "External drives", "Total": "69TB external storage" }
+            },
+            {
+                "type": "VR Headset",
+                "model": "HTC Vive Cosmos",
+                "icon": "glasses",
+                "specs": { "Brand": "HTC", "Model": "Vive Cosmos", "Type": "Virtual Reality", "Tracking": "Inside-out tracking" }
+            }
+        ],
+        "collection": [
+            { 
+                "name": "PlayStation 2 Slim EU/PAL modded", 
+                "icon": "gamepad-2", 
+                "description": "Modded gaming console for retro gaming",
+                "downloads": [
+                    { "label": "OPL2 Library Manager", "url": "https://koofr.net/dummy/opl2_manager" }
+                ]
+            },
+            { 
+                "name": "Fujitsu P600 Retro", 
+                "icon": "cpu", 
+                "description": "Pentium 4 with Windows XP for retro computing",
+                "downloads": [
+                    { "label": "Driver Package", "url": "https://koofr.net/dummy/fujitsu_drivers" },
+                    { "label": "Software", "url": "https://koofr.net/dummy/fujitsu_software" }
+                ]
+            }
+        ],
+        "cameraProfiles": {
+            "U1": {
+                "name": "U1 Profile",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U2": {
+                "name": "U2 Profile",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U3": {
+                "name": "U3 Profile",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            }
+        }
+    },
+    "ro-RO": {
+        "main": [
+            {
+                "type": "Laptop",
+                "model": "Lenovo LOQ 15",
+                "icon": "laptop",
+                "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
+                "accessories": {
+                    "Configurația Mures": [
+                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Tastatură Logitech", "icon": "keyboard"},
+                        {"name": "Mouse Logitech", "icon": "mouse"},
+                        {"name": "Webcam Logitech", "icon": "webcam"},
+                        {"name": "Boxe Logitech", "icon": "speaker"},
+                        {"name": "Imprimantă Xerox", "icon": "printer"},
+                        {"name": "Controller Logitech", "icon": "gamepad"},
+                        {"name": "Controller PlayStation", "icon": "gamepad"},
+                        {"name": "Controller Xbox", "icon": "xbox"},
+                        {"name": "Logitech G29 + G-shift", "icon": "steering-wheel"},
+                        {"name": "Scanner Canon", "icon": "scanner"}
+                    ],
+                    "Configurația Birou (Electricon)": [
+                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Tastatură G613", "icon": "keyboard"},
+                        {"name": "Stație de andocare Baseus", "icon": "dock"},
+                        {"name": "Mouse G604", "icon": "mouse"}
+                    ],
+                    "Configurația Damuc": [
+                        {"name": "Mouse G604", "icon": "mouse"}
+                    ]
+                }
+            },
+            {
+                "type": "Telefon",
+                "model": "Samsung Galaxy S23 Ultra 1TB",
+                "icon": "smartphone",
+                "specs": { "Display": "6.8\" Dynamic AMOLED 2X", "Storage": "1TB", "RAM": "12GB", "Camera": "200MP principal, 12MP ultra-wide, 10MP telephoto", "Battery": "5000mAh", "USB": "Type C 3.2 cu suport OTG și Video", "OS": "Android 16" }
+            },
+            {
+                "type": "Tabletă",
+                "model": "Samsung Galaxy Tab S9 Ultra 512GB",
+                "icon": "tablet",
+                "specs": { "Display": "14.6\" Dynamic AMOLED 2X", "Storage": "512GB", "RAM": "12GB", "Processor": "Snapdragon 8 Gen 2", "USB": "Type C 3.2 cu suport OTG și Video", "OS": "Android 16" },
+                "accessories": { "Accesorii Tabletă": [{"name": "Card SD", "icon": "sd-card"}] }
+            },
+            {
+                "type": "Cameră",
+                "model": "Nikon Z50ii",
+                "icon": "camera",
+                "hasConfiguration": true,
+                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
+                "lenses": [
+                    "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+                    "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+                    "Viltrox 35mm f/1.7"
+                ]
+            },
+            {
+                "type": "Desktop Backup",
+                "model": "24GB RAM DDR3 cu Intel i5 gen 6 Esprimo",
+                "icon": "monitor",
+                "specs": { "CPU": "Intel i5 6th Gen", "RAM": "24GB DDR3", "Type": "Fujitsu Esprimo", "Purpose": "Sistem backup" }
+            },
+            {
+                "type": "Server",
+                "model": "4TB SSD SATA integrat în Router",
+                "icon": "server",
+                "specs": { "Storage": "4TB SSD SATA", "Integration": "Integrat în router", "Purpose": "Stocare în rețea" }
+            },
+            {
+                "type": "Router",
+                "model": "TP-Link WiFi AX53",
+                "icon": "router",
+                "specs": { "Standard": "WiFi 6 (802.11ax)", "Speed": "AX3000", "Brand": "TP-Link", "Model": "AX53" },
+                "configuration": {
+                    "DNS": "AdGuard (IPv4 Enforced)",
+                    "IPv6": "Dezactivat",
+                    "Firewall": "Activat",
+                    "Firmware": "Update Manual",
+                    "Server": "Configurat Local",
+                    "VPN": "Hola & NordVPN"
+                }
+            },
+            {
+                "type": "Stocare Externă",
+                "model": "55TB HDD + 14TB SSD",
+                "icon": "hard-drive",
+                "specs": { "HDD Storage": "55TB", "SSD Storage": "14TB", "Type": "Drive-uri externe", "Total": "69TB stocare externă" }
+            },
+            {
+                "type": "Cască VR",
+                "model": "HTC Vive Cosmos",
+                "icon": "glasses",
+                "specs": { "Brand": "HTC", "Model": "Vive Cosmos", "Type": "Realitate Virtuală", "Tracking": "Inside-out tracking" }
+            }
+        ],
+        "collection": [
+            { 
+                "name": "PlayStation 2 Slim EU/PAL modificat", 
+                "icon": "gamepad-2", 
+                "description": "Consolă de jocuri modificată pentru gaming retro",
+                "downloads": [
+                    { "label": "Manager OPL2", "url": "https://koofr.net/dummy/opl2_manager" }
+                ]
+            },
+            { 
+                "name": "Fujitsu P600 Retro", 
+                "icon": "cpu", 
+                "description": "Pentium 4 cu Windows XP pentru retro",
+                "downloads": [
+                    { "label": "Pachet Drivere", "url": "https://koofr.net/dummy/fujitsu_drivers" },
+                    { "label": "Software", "url": "https://koofr.net/dummy/fujitsu_software" }
+                ]
+            }
+        ],
+        "cameraProfiles": {
+            "U1": {
+                "name": "Profil U1",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U2": {
+                "name": "Profil U2",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U3": {
+                "name": "Profil U3",
+                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            }
+        }
+    },
+    "gall": {
+        "main": [
+            {
+                "type": "Laptop",
+                "model": "Lenovo LOQ 15",
+                "icon": "laptop",
+                "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
+                "accessories": {
+                    "Mures Setup": [
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Logitech Tastatura", "icon": "keyboard"},
+                        {"name": "Logitech Miš", "icon": "mouse"},
+                        {"name": "Logitech Veb kamera", "icon": "webcam"},
+                        {"name": "Logitech Zvučnici", "icon": "speaker"},
+                        {"name": "Xerox Štampač", "icon": "printer"},
+                        {"name": "Logitech Kontroler", "icon": "gamepad"},
+                        {"name": "PlayStation Kontroler", "icon": "gamepad"},
+                        {"name": "Xbox Kontroler", "icon": "xbox"},
+                        {"name": "Logitech G29 + G-shift", "icon": "steering-wheel"},
+                        {"name": "Canon Skener", "icon": "scanner"}
+                    ],
+                    "Office Setup (Electricon)": [
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "G613 Tastatura", "icon": "keyboard"},
+                        {"name": "Baseus Docking Station", "icon": "dock"},
+                        {"name": "G604 Miš", "icon": "mouse"}
+                    ],
+                    "Damuc Setup": [
+                        {"name": "G604 Miš", "icon": "mouse"}
+                    ]
+                }
+            },
+            {
+                "type": "Telefon",
+                "model": "Samsung Galaxy S23 Ultra 1TB",
+                "icon": "smartphone",
+                "specs": { "Display": "6.8\" Dynamic AMOLED 2X", "Storage": "1TB", "RAM": "12GB", "Camera": "200MP glavni, 12MP ultra-wide, 10MP telephoto", "Battery": "5000mAh", "USB": "Type C 3.2 sa OTG i Video podrškom", "OS": "Android 16" }
+            },
+            {
+                "type": "Tablet",
+                "model": "Samsung Galaxy Tab S9 Ultra 512GB",
+                "icon": "tablet",
+                "specs": { "Display": "14.6\" Dynamic AMOLED 2X", "Storage": "512GB", "RAM": "12GB", "Processor": "Snapdragon 8 Gen 2", "USB": "Type C 3.2 sa OTG i Video podrškom", "OS": "Android 16" },
+                "accessories": { "Tablet pribor": [{"name": "SD Card", "icon": "sd-card"}] }
+            },
+            {
+                "type": "Kamera",
+                "model": "Nikon Z50ii",
+                "icon": "camera",
+                "hasConfiguration": true,
+                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
+                "lenses": [
+                    "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
+                    "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+                    "Viltrox 35mm f/1.7"
+                ]
+            },
+            {
+                "type": "Desktop Backup",
+                "model": "24GB RAM DDR3 with Intel i5 gen 6 Esprimo",
+                "icon": "monitor",
+                "specs": { "CPU": "Intel i5 6th Gen", "RAM": "24GB DDR3", "Type": "Fujitsu Esprimo", "Purpose": "Backup sistem" }
+            },
+            {
+                "type": "Server",
+                "model": "4TB SSD SATA integrisano u Router",
+                "icon": "server",
+                "specs": { "Storage": "4TB SSD SATA", "Integration": "Ugrađeno u router", "Purpose": "Mrežno skladište" }
+            },
+            {
+                "type": "Router",
+                "model": "TP-Link WiFi AX53",
+                "icon": "router",
+                "specs": { "Standard": "WiFi 6 (802.11ax)", "Speed": "AX3000", "Brand": "TP-Link", "Model": "AX53" },
+                "configuration": {
+                    "DNS": "AdGuard (IPv4 Enforced)",
+                    "IPv6": "Onemogućeno",
+                    "Firewall": "Omogućeno",
+                    "Firmware": "Ručno ažuriranje",
+                    "Server": "Lokalno konfigurisan",
+                    "VPN": "Hola & NordVPN"
+                }
+            },
+            {
+                "type": "Vanjsko skladište",
+                "model": "55TB HDD + 14TB SSD",
+                "icon": "hard-drive",
+                "specs": { "HDD Storage": "55TB", "SSD Storage": "14TB", "Type": "Vanjski diskovi", "Total": "69TB vanjsko skladište" }
+            },
+            {
+                "type": "VR Slušalice",
+                "model": "HTC Vive Cosmos",
+                "icon": "glasses",
+                "specs": { "Brand": "HTC", "Model": "Vive Cosmos", "Type": "Virtuelna realnost", "Tracking": "Inside-out tracking" }
+            }
+        ],
+        "collection": [
+            { 
+                "name": "PlayStation 2 Slim EU/PAL modificiran", 
+                "icon": "gamepad-2", 
+                "description": "Modificirana gaming konzola za retro gaming",
+                "downloads": [
+                    { "label": "OPL2 Biblioteka", "url": "https://koofr.net/dummy/opl2_manager" }
+                ]
+            },
+            { 
+                "name": "Fujitsu P600 Retro", 
+                "icon": "cpu", 
+                "description": "Pentium 4 sa Windows XP za retro",
+                "downloads": [
+                    { "label": "Paket Drajvera", "url": "https://koofr.net/dummy/fujitsu_drivers" },
+                    { "label": "Softver", "url": "https://koofr.net/dummy/fujitsu_software" }
+                ]
+            }
+        ],
+        "cameraProfiles": {
+            "U1": {
+                "name": "U1 Profil",
+                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U2": {
+                "name": "U2 Profil",
+                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            },
+            "U3": {
+                "name": "U3 Profil",
+                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
+                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
+            }
+        }
+    }
+}

@@ -1,0 +1,195 @@
+<div class="monitor-container">
+    <div class="mt-header">
+        <h3 data-tr="mtTitle">Monitor Test Utility</h3>
+        <p data-tr="mtDesc">Press <b>ESC</b> or Click to exit fullscreen tests.</p>
+    </div>
+
+    <div class="mt-grid">
+        <button class="mt-btn" onclick="runTest('deadpixel')">
+            <div class="color-grid">
+                <span style="background:red"></span><span style="background:lime"></span><span style="background:blue"></span><span style="background:white"></span>
+            </div>
+            <span data-tr="mtDeadPixel">Dead Pixels</span>
+        </button>
+        
+        <button class="mt-btn" onclick="runTest('uniformity')">
+            <div class="color-grid grayscale">
+                <span style="background:#000"></span><span style="background:#555"></span><span style="background:#aaa"></span><span style="background:#fff"></span>
+            </div>
+            <span data-tr="mtUniformity">Uniformity</span>
+        </button>
+
+        <button class="mt-btn" onclick="runTest('response')">
+            <i data-lucide="activity"></i>
+            <span data-tr="mtResponse">Response Time</span>
+        </button>
+        
+        <button class="mt-btn" onclick="runTest('grid')">
+            <i data-lucide="grid"></i>
+            <span data-tr="mtPattern">Test Pattern</span>
+        </button>
+    </div>
+</div>
+
+<div id="mtFullscreen" class="mt-fullscreen hidden noselect">
+    <button id="mtExitBtn" class="mt-exit-btn">Exit Test</button>
+</div>
+
+<style>
+    .monitor-container { text-align: center; }
+    .mt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+    
+    .mt-btn {
+        background: var(--color-bg-2);
+        border: 1px solid var(--color-border);
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        transition: 0.2s;
+        font-weight: bold;
+        color: var(--color-text);
+    }
+    .mt-btn:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+    
+    .color-grid { display: grid; grid-template-columns: 1fr 1fr; width: 40px; height: 40px; border-radius: 4px; overflow: hidden; }
+    .color-grid span { display: block; width: 100%; height: 100%; }
+    
+    .mt-fullscreen {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: 9999; background: black; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .mt-fullscreen.hidden { display: none; }
+    
+    /* Prevent selection */
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .mt-exit-btn {
+        position: absolute; top: 20px; right: 20px;
+        background: rgba(0,0,0,0.5); color: white;
+        border: 1px solid white; padding: 8px 16px;
+        border-radius: 4px; cursor: pointer; z-index: 10000;
+        opacity: 0; transition: opacity 0.3s;
+    }
+    .mt-fullscreen:hover .mt-exit-btn { opacity: 1; }
+    
+    /* Test Specifics */
+    .moving-box { width: 100px; height: 100px; background: white; position: absolute; animation: moveBox 2s linear infinite alternate; }
+    @keyframes moveBox { from { left: 0; } to { left: calc(100vw - 100px); } }
+    
+    .test-grid { 
+        width: 100%; height: 100%; 
+        background-image: 
+            linear-gradient(white 2px, transparent 2px),
+            linear-gradient(90deg, white 2px, transparent 2px);
+        background-size: 100px 100px;
+    }
+</style>
+
+<script>
+    (function() {
+        const fs = document.getElementById('mtFullscreen');
+        const exitBtn = document.getElementById('mtExitBtn');
+        let currentTest = null;
+        let colorIndex = 0;
+        const colors = ['black', 'red', 'lime', 'blue', 'white'];
+        const grays = ['#000', '#222', '#444', '#666', '#888', '#aaa', '#ccc', '#eee', '#fff'];
+
+        // Translations
+        const lang = document.documentElement.getAttribute('lang') || 'en';
+        const tr = {
+            'ro': { mtTitle: "Test Monitor", mtDesc: "Apasă ESC sau Click pentru a ieși.", mtDeadPixel: "Pixeli Morți", mtUniformity: "Uniformitate", mtResponse: "Timp Răspuns", mtPattern: "Model Test" },
+            'gall': { mtTitle: "Test monitora", mtDesc: "Pritisnite ESC ili kliknite za izlaz.", mtDeadPixel: "Mrtvi pikseli", mtUniformity: "Uniformnost", mtResponse: "Vrijeme odziva", mtPattern: "Test uzorak" }
+        };
+        
+        if(tr[lang]) {
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                if(tr[lang][el.dataset.tr]) el.innerHTML = tr[lang][el.dataset.tr];
+            });
+        }
+
+        window.runTest = function(type) {
+            currentTest = type;
+            colorIndex = 0;
+            fs.innerHTML = '';
+            fs.appendChild(exitBtn); // Keep exit button
+            fs.className = 'mt-fullscreen noselect';
+            
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+            renderTestStep();
+        };
+
+        function renderTestStep() {
+            // Clear content but keep button
+            while(fs.firstChild) { 
+                if(fs.firstChild !== exitBtn) fs.removeChild(fs.firstChild);
+                else break; // Optimization if btn is first
+                if(fs.lastChild !== exitBtn) fs.removeChild(fs.lastChild);
+            }
+            if(!fs.contains(exitBtn)) fs.appendChild(exitBtn);
+
+            fs.style.background = 'black';
+
+            if (currentTest === 'deadpixel') {
+                fs.style.background = colors[colorIndex % colors.length];
+            } 
+            else if (currentTest === 'uniformity') {
+                fs.style.background = grays[colorIndex % grays.length];
+            }
+            else if (currentTest === 'response') {
+                fs.style.background = '#333';
+                const box = document.createElement('div');
+                box.className = 'moving-box';
+                fs.appendChild(box);
+            }
+            else if (currentTest === 'grid') {
+                fs.style.background = 'black';
+                const grid = document.createElement('div');
+                grid.className = 'test-grid';
+                fs.appendChild(grid);
+            }
+        }
+
+        function nextStep(e) {
+            if (e.target === exitBtn) return; // Let exit button handler work
+            
+            if (currentTest === 'deadpixel' || currentTest === 'uniformity') {
+                colorIndex++;
+                renderTestStep();
+            }
+        }
+
+        function exitTests() {
+            fs.className = 'mt-fullscreen hidden noselect';
+            currentTest = null;
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(e=>{});
+            }
+        }
+
+        fs.addEventListener('click', nextStep);
+        exitBtn.addEventListener('click', (e) => { e.stopPropagation(); exitTests(); });
+        
+        const escHandler = (e) => {
+            if (e.key === 'Escape' && !fs.classList.contains('hidden')) {
+                exitTests();
+            }
+        };
+        window.addEventListener('keydown', escHandler);
+        
+        if(window.lucide) window.lucide.createIcons();
+    })();
+</script>
