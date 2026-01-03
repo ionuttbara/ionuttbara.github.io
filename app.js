@@ -115,77 +115,134 @@ async function loadAbout() {
     }
 }
 
+// --- Helper Function pentru Carusel ---
+function renderCarouselSection(containerId, items, itemRenderer) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = ''; // Curăță containerul
+    container.className = ''; // Reset grid class if exists
+
+    // 1. Grupare elemente după categorie
+    const groups = items.reduce((acc, item) => {
+        const cat = item.category || 'General';
+        if (!acc[cat]) acc[cat] = [];
+        acc[cat].push(item);
+        return acc;
+    }, {});
+
+    // 2. Generare HTML pentru fiecare categorie
+    Object.keys(groups).forEach((category, index) => {
+        const sectionId = `${containerId}-carousel-${index}`;
+        
+        const section = document.createElement('div');
+        section.className = 'category-section';
+        
+        section.innerHTML = `
+            <h3 class="category-title">${category}</h3>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('${sectionId}', -320)"><i data-lucide="chevron-left"></i></button>
+                <div class="carousel-track" id="${sectionId}">
+                    ${groups[category].map(item => itemRenderer(item)).join('')}
+                </div>
+                <button class="carousel-btn next" onclick="scrollCarousel('${sectionId}', 320)"><i data-lucide="chevron-right"></i></button>
+            </div>
+        `;
+        
+        container.appendChild(section);
+    });
+
+    if(window.lucide) window.lucide.createIcons();
+}
+
+// Funcție globală pentru scroll (trebuie să fie pe window)
+window.scrollCarousel = function(id, offset) {
+    const track = document.getElementById(id);
+    if (track) {
+        track.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+};
+
+// --- Load Projects (Actualizat) ---
 async function loadProjects() {
     const data = await fetchJSON('projects.json');
     if (!data) return;
     const projects = data[currentLanguage] || data['en-US'];
-    const container = document.getElementById('projectsContainer');
-    
-    if (container) {
-        container.innerHTML = projects.map(p => {
-            // 1. Determine Status Badge Style
-            let statusColor = 'var(--color-text-secondary)';
-            let statusBg = 'var(--color-bg-2)';
-            
-            const status = p.status || 'Active';
-            if (['Active', 'Activ', 'Aktivan'].includes(status)) {
-                statusColor = 'var(--color-success)';
-                statusBg = 'rgba(var(--color-success-rgb), 0.1)';
-            } else if (['Production', 'Producție', 'Produkcija', 'Completed', 'Finalizat', 'Završeno'].includes(status)) {
-                 statusColor = '#3b82f6'; // Blue
-                 statusBg = 'rgba(59, 130, 246, 0.1)';
-            } else if (['Private', 'Privat', 'Privatno'].includes(status)) {
-                 statusColor = 'var(--color-warning)'; // Orange/Yellow
-                 statusBg = 'rgba(var(--color-warning-rgb), 0.1)';
-            } else if (['Archived', 'Arhivat', 'Arhivirano'].includes(status)) {
-                 statusColor = 'var(--color-text-secondary)';
-                 statusBg = 'var(--color-bg-1)';
-            }
 
-            const statusBadge = `<span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; color: ${statusColor}; background: ${statusBg}; margin-bottom: 10px;">${status}</span>`;
-
-            // 2. Determine Action Button
-            let actionBtn = '';
-            let extraBtn = ''; // For special cases like Rust variant
-
-            // Logic for Rust Code Variant button for specific projects
-            if (['Proiect Anatolia', 'Project Anatolia', 'Projekat Anatolia', 'Proiect Krotos', 'Project Krotos', 'Projekat Krotos'].includes(p.name)) {
-                extraBtn = `<a href="#" class="btn btn--secondary btn--sm" style="margin-left: 5px;"><i class="btn-icon" data-lucide="code-2"></i> Rust Code</a>`;
-            }
-            
-            if (['Private', 'Privat', 'Privatno'].includes(status)) {
-                actionBtn = `<span class="btn btn--secondary btn--sm" style="cursor: default; opacity: 0.8; background: var(--color-bg-2);"><i class="btn-icon" data-lucide="lock"></i> Internal Project</span>`;
-            } else if (p.github && p.github.includes('electricon.ro')) {
-                 actionBtn = `<a href="${p.github}" target="_blank" class="btn btn--outline btn--sm"><i class="btn-icon" data-lucide="briefcase"></i> Visit Company Site</a>`;
-            } else if (p.github && p.github.includes('github.com')) {
-                actionBtn = `<a href="${p.github}" target="_blank" class="btn btn--primary btn--sm"><i class="btn-icon" data-lucide="github"></i> View on GitHub</a>`;
-            } else if (p.github) {
-                actionBtn = `<a href="${p.github}" target="_blank" class="btn btn--outline btn--sm"><i class="btn-icon" data-lucide="external-link"></i> View Project</a>`;
-            } else {
-                 actionBtn = `<span class="btn btn--secondary btn--sm" style="cursor: default; opacity: 0.5;">No Link Available</span>`;
-            }
-
-            return `
-            <div class="project-card">
-                <div style="display:flex; justify-content:space-between; align-items:start;">
-                    <h3 class="project-title">${p.name}</h3>
-                    ${statusBadge}
-                </div>
-                <p class="project-description">${p.description}</p>
-                <div class="project-tech">
-                    ${p.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('')}
-                </div>
-                <div class="project-actions" style="display: flex; flex-wrap: wrap; gap: 5px;">
-                    ${actionBtn}
-                    ${extraBtn}
-                </div>
-            </div>`;
-        }).join('');
+    renderCarouselSection('projectsContainer', projects, (p) => {
+        // Logica de status (identică cu cea veche)
+        let statusColor = 'var(--color-text-secondary)';
+        let statusBg = 'var(--color-bg-2)';
+        const status = p.status || 'Active';
         
-        lucide.createIcons();
-    }
+        if (['Active', 'Activ', 'Aktivan'].includes(status)) {
+            statusColor = 'var(--color-success)'; statusBg = 'rgba(var(--color-success-rgb), 0.1)';
+        } else if (['Production', 'Producție', 'Produkcija', 'Completed', 'Finalizat'].includes(status)) {
+             statusColor = '#3b82f6'; statusBg = 'rgba(59, 130, 246, 0.1)';
+        } else if (['Private', 'Privat'].includes(status)) {
+             statusColor = 'var(--color-warning)'; statusBg = 'rgba(var(--color-warning-rgb), 0.1)';
+        }
+
+        const statusBadge = `<span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; color: ${statusColor}; background: ${statusBg}; margin-bottom: 10px;">${status}</span>`;
+
+        let actionBtn = '';
+        if (p.github) {
+            actionBtn = `<a href="${p.github}" target="_blank" class="btn btn--outline btn--sm"><i class="btn-icon" data-lucide="external-link"></i> View</a>`;
+        }
+
+        // Returnăm HTML-ul cardului
+        return `
+        <div class="project-card">
+            <div style="display:flex; justify-content:space-between; align-items:start;">
+                <h3 class="project-title" style="font-size: 1.1rem;">${p.name}</h3>
+                ${statusBadge}
+            </div>
+            <p class="project-description" style="font-size: 0.9rem;">${p.description}</p>
+            <div class="project-tech">
+                ${p.technologies.slice(0, 3).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                ${p.technologies.length > 3 ? `<span class="tech-tag">+${p.technologies.length - 3}</span>` : ''}
+            </div>
+            <div class="project-actions">
+                ${actionBtn}
+            </div>
+        </div>`;
+    });
 }
 
+// --- Load Tools (Actualizat) ---
+async function loadTools() {
+    const data = await fetchJSON('tools.json');
+    if (!data) return;
+    
+    allToolsData = data[currentLanguage] || data['en-US'];
+    
+    // Eliminăm search-ul vechi dacă există, sau îl adaptăm (opțional)
+    // Pentru carusel, search-ul e mai complicat, așa că momentan îl ignorăm pentru simplitate 
+    // sau îl lăsăm doar să filtreze global.
+    
+    renderCarouselSection('toolsContainer', allToolsData, (t) => {
+        const btnAction = t.type === 'internal' 
+            ? `onclick="fetchAndShowContent('${t.name}', '${t.url}')"`
+            : `href="${t.url}" target="_blank"`;
+        
+        const btnClass = t.type === 'internal' ? 'btn--secondary' : 'btn--primary';
+        const btnText = t.type === 'download' ? 'Download' : 'Open';
+        const icon = t.icon || 'box';
+
+        return `
+        <div class="download-card">
+            <div class="download-header">
+                <i class="download-icon" data-lucide="${icon}"></i>
+                <h3 class="download-title" style="font-size: 1.1rem;">${t.name}</h3>
+            </div>
+            <p class="download-description" style="font-size: 0.9rem;">${t.description}</p>
+            <a ${btnAction} class="btn ${btnClass} btn--full-width btn--sm">
+                ${t.type === 'external' ? '<i class="btn-icon" data-lucide="external-link"></i>' : ''}
+                ${btnText}
+            </a>
+        </div>`;
+    });
+}
 
 async function loadCV() {
     const data = await fetchJSON('cv.json');
@@ -832,35 +889,6 @@ function renderDownloadList(query) {
 
 // --- Tools Logic ---
 
-async function loadTools() {
-    const data = await fetchJSON('tools.json');
-    if (!data) return;
-    
-    allToolsData = data[currentLanguage] || data['en-US'];
-    
-    const container = document.getElementById('toolsContainer');
-    if (container) {
-        let searchContainer = document.getElementById('toolsSearch');
-        if (!searchContainer) {
-            searchContainer = document.createElement('div');
-            searchContainer.id = 'toolsSearch';
-            searchContainer.style.marginBottom = '24px';
-            searchContainer.style.gridColumn = '1 / -1';
-            searchContainer.innerHTML = `
-                <div class="form-group">
-                    <div style="position: relative;">
-                        <i data-lucide="search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--color-text-secondary);"></i>
-                        <input type="text" class="form-control" id="toolSearchInput" placeholder="Search tools..." style="padding-left: 40px;">
-                    </div>
-                </div>`;
-            container.parentNode.insertBefore(searchContainer, container);
-            
-            const input = document.getElementById('toolSearchInput');
-            input.addEventListener('input', (e) => renderToolsList(e.target.value));
-        }
-        renderToolsList('');
-    }
-}
 
 function renderToolsList(query) {
     const container = document.getElementById('toolsContainer');

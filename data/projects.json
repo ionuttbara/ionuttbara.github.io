@@ -5,6 +5,7 @@
             "description": "A tool used to remove Windows Defender in Windows 8.x, 10, and 11.",
             "github": "https://github.com/ionuttbara/windows-defender-remover",
             "technologies": ["Batch", "PowerShell", "Windows"],
+            "category": "System Utilities",
             "status": "Active"
         },
         {
@@ -12,6 +13,7 @@
             "description": "Comprehensive optimization script for Windows to improve performance and privacy.",
             "github": "https://github.com/ionuttbara/melody_windows",
             "technologies": ["PowerShell", "Optimization"],
+            "category": "System Utilities",
             "status": "Active"
         },
         {
@@ -19,6 +21,7 @@
             "description": "A lightweight utility to completely remove Microsoft Edge from Windows systems.",
             "github": "https://github.com/ionuttbara/edge-remover",
             "technologies": ["Batch", "Windows"],
+            "category": "System Utilities",
             "status": "Active"
         },
         {
@@ -26,6 +29,7 @@
             "description": "Script to completely uninstall Microsoft OneDrive and clean up leftover files.",
             "github": "https://github.com/ionuttbara/one-drive-uninstaller",
             "technologies": ["Batch", "Windows"],
+            "category": "System Utilities",
             "status": "Maintenance"
         },
         {
@@ -33,6 +37,7 @@
             "description": "Full-stack development and IT management for Electricon (My current employer).",
             "github": "https://www.electricon.ro",
             "technologies": ["Web Design", "Management", "E-commerce"],
+            "category": "Sites/Projects",
             "status": "Production"
         },
         {
@@ -40,6 +45,7 @@
             "description": "Optimization and debloating tools for Android devices.",
             "github": "https://github.com/ionuttbara/melody_android",
             "technologies": ["Shell", "Android", "ADB"],
+            "category": "System Utilities",
             "status": "Active"
         },
         {
@@ -47,6 +53,7 @@
             "description": "A secure and lightweight web browser built using the Tauri framework.",
             "github": "https://github.com/ionuttbara/tauri-browser",
             "technologies": ["Rust", "Tauri", "JavaScript"],
+            "category": "Web",
             "status": "Prototype"
         },
         {
@@ -54,6 +61,7 @@
             "description": "Automation scripts and tools developed for Electricon internal processes.",
             "github": "https://github.com/ionuttbara/electricon_automatics",
             "technologies": ["Python", "Automation"],
+            "category": "Sites/Projects",
             "status": "Private"
         },
         {
@@ -61,6 +69,7 @@
             "description": "Advanced Activity Manager and system monitoring tool.",
             "github": "https://github.com/ionuttbara/ProjectKrotos",
             "technologies": ["Experimental", "System"],
+            "category": "System Utilities",
             "status": "Archived"
         },
         {
@@ -68,6 +77,7 @@
             "description": "Comprehensive network analysis and utility suite.",
             "github": "https://github.com/ionuttbara/ProjectAnatolia",
             "technologies": ["Development", "Utilities"],
+            "category": "System Utilities",
             "status": "Archived"
         },
         {
@@ -75,6 +85,7 @@
             "description": "Bachelor's Thesis: Secure Boot implementation for Raspberry Pi 3/4 using Trusted Platform Module (TPM).",
             "github": "https://github.com/ionuttbara/rpi-tpm-prj",
             "technologies": ["IoT", "Raspberry Pi", "Security", "TPM"],
+            "category": "System Utilities",
             "status": "Completed"
         },
         {
@@ -82,6 +93,7 @@
             "description": "A collection of icons and visual styles matching the Windows 11 aesthetic.",
             "github": "https://github.com/ionuttbara/windows11-iconstyle",
             "technologies": ["Design", "Icons", "UI/UX"],
+            "category": "Design",
             "status": "Active"
         },
         {
@@ -89,6 +101,7 @@
             "description": "Preservation and configuration of legacy Realtek High Definition Audio drivers.",
             "github": "https://github.com/ionuttbara/RealtekHDALegacy",
             "technologies": ["Drivers", "Audio", "Legacy"],
+            "category": "System Utilities",
             "status": "Maintenance"
         },
         {
@@ -96,6 +109,7 @@
             "description": "Collection of scripts for video management: audio to FLAC conversion, intro/outro removal, chapter splitting, and host redirection.",
             "technologies": ["Python", "FFmpeg", "Multimedia", "PWA"],
             "status": "Private",
+            "category": "Media Creation",
             "icon": "film" 
         }
     ],
@@ -105,6 +119,7 @@
             "description": "Un instrument folosit pentru a elimina Windows Defender în Windows 8.x, 10 și 11.",
             "github": "https://github.com/ionuttbara/windows-defender-remover",
             "technologies": ["Batch", "PowerShell", "Windows"],
+            "category": "System Utilities",
             "status": "Activ"
         },
         {
@@ -112,6 +127,7 @@
             "description": "Script complet de optimizare pentru Windows pentru îmbunătățirea performanței.",
             "github": "https://github.com/ionuttbara/melody_windows",
             "technologies": ["PowerShell", "Optimizare"],
+            "category": "System Utilities",
             "status": "Activ"
         },
         {
@@ -119,6 +135,7 @@
             "description": "Utilitar ușor pentru eliminarea completă a Microsoft Edge.",
             "github": "https://github.com/ionuttbara/edge-remover",
             "technologies": ["Batch", "Windows"],
+            "category": "System Utilities",
             "status": "Activ"
         },
         {
@@ -126,6 +143,7 @@
             "description": "Script pentru dezinstalarea completă Microsoft OneDrive.",
             "github": "https://github.com/ionuttbara/one-drive-uninstaller",
             "technologies": ["Batch", "Windows"],
+            "category": "System Utilities",
             "status": "Mentenanță"
         },
         {
@@ -140,6 +158,7 @@
             "description": "Instrumente de optimizare și debloating pentru dispozitive Android.",
             "github": "https://github.com/ionuttbara/melody_android",
             "technologies": ["Shell", "Android", "ADB"],
+            "category": "System Utilities",
             "status": "Activ"
         },
         {
@@ -147,6 +166,7 @@
             "description": "Un browser web sigur și rapid construit folosind framework-ul Tauri.",
             "github": "https://github.com/ionuttbara/tauri-browser",
             "technologies": ["Rust", "Tauri", "JavaScript"],
+            "category": "System Utilities",
             "status": "Prototip"
         },
         {
@@ -154,6 +174,7 @@
             "description": "Scripturi de automatizare dezvoltate pentru procesele interne Electricon.",
             "github": "https://github.com/ionuttbara/electricon_automatics",
             "technologies": ["Python", "Automatizare"],
+            "category": "System Utilities",
             "status": "Privat"
         },
         {
@@ -161,6 +182,7 @@
             "description": "Manager de Activități avansat și instrument de monitorizare sistem.",
             "github": "https://github.com/ionuttbara/ProjectKrotos",
             "technologies": ["Experimental", "Sistem"],
+            "category": "System Utilities",
             "status": "Arhivat"
         },
         {
@@ -168,6 +190,7 @@
             "description": "Pachet complet de instrumente și analiză de rețea.",
             "github": "https://github.com/ionuttbara/ProjectAnatolia",
             "technologies": ["Dezvoltare", "Utilitare"],
+            "category": "System Utilities",
             "status": "Arhivat"
         },
         {
@@ -175,6 +198,7 @@
             "description": "Lucrare de Licență: Implementare Secure Boot pentru Raspberry Pi 3/4 folosind TPM.",
             "github": "https://github.com/ionuttbara/rpi-tpm-prj",
             "technologies": ["IoT", "Raspberry Pi", "Securitate", "TPM"],
+            "category": "System Utilities",
             "status": "Finalizat"
         },
         {
@@ -182,6 +206,7 @@
             "description": "O colecție de icoane și stiluri vizuale potrivite cu estetica Windows 11.",
             "github": "https://github.com/ionuttbara/windows11-iconstyle",
             "technologies": ["Design", "Icoane", "UI/UX"],
+            "category": "System Utilities",
             "status": "Activ"
         },
         {
@@ -189,6 +214,7 @@
             "description": "Păstrarea și configurarea driverelor audio Realtek High Definition vechi.",
             "github": "https://github.com/ionuttbara/RealtekHDALegacy",
             "technologies": ["Drivere", "Audio", "Legacy"],
+            "category": "System Utilities",
             "status": "Mentenanță"
         },
         {
@@ -196,6 +222,7 @@
             "description": "Colecție de scripturi pentru management video: conversie audio FLAC, eliminare intro/outro, tăiere capitole și redirector host.",
             "technologies": ["Python", "FFmpeg", "Multimedia", "PWA"],
             "status": "Privat",
+            "category": "Multimedia",
             "icon": "film"
         }
     ],
