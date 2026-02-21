@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadTranslations();
     
     let hashPage = window.location.hash.substring(1);
-    const validPages = ['home', 'about', 'blog', 'projects', 'cv', 'services', 'usdacm', 'devices', 'downloads', 'tools', 'contact'];
-    
+    const validPages = ['home', 'projects', 'services', 'blog', 'usdacm', 'devices', 'downloads', 'tools', 'about', 'contact'];
     if (hashPage && validPages.includes(hashPage)) {
         currentPage = hashPage;
     } else {
@@ -50,6 +49,18 @@ window.addEventListener('hashchange', async () => {
     }
 });
 
+
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('drop', e => e.preventDefault());
+document.addEventListener('dragover', e => e.preventDefault());
+
+// Setup pentru butonul de setări
+const settingsBtn = document.getElementById('settingsBtn');
+if (settingsBtn) {
+    settingsBtn.addEventListener('click', () => {
+        document.getElementById('settingsModal').classList.remove('hidden');
+    });
+}
 // --- Core Data Fetching ---
 
 async function fetchJSON(filename) {
@@ -86,7 +97,7 @@ async function loadIcons() {
     if (icons) iconCollection = icons;
 }
 
-async function loadTranslations() {
+function loadTranslations() {
     const uiData = {
         'en-US': { 
             siteName: "Ionut Bara", 
@@ -133,7 +144,6 @@ async function loadPageContent(page) {
         case 'home': await loadHome(); break;
         case 'about': await loadAbout(); break;
         case 'projects': await loadProjects(); break;
-        case 'cv': await loadCV(); break;
         case 'blog': await loadBlog(); break;
         case 'usdacm': await loadUSDACM(); break;
         case 'services': await loadServices(); break;
@@ -160,25 +170,6 @@ async function loadHome() {
             </div>
         `).join('');
         if(window.lucide) window.lucide.createIcons();
-    }
-}
-
-async function loadAbout() {
-    const data = await fetchJSON('about.json');
-    if (!data) return;
-    const content = data[currentLanguage] || data['en-US'];
-    
-    const summaryEl = document.querySelector('[data-key="about.summary"]');
-    if (summaryEl) summaryEl.textContent = content.summary;
-
-    const faqContainer = document.getElementById('faqContainer');
-    if (faqContainer && content.faq) {
-        faqContainer.innerHTML = content.faq.map(item => `
-            <div class="faq-item">
-                <div class="faq-question">${item.question}</div>
-                <div class="faq-answer">${item.answer}</div>
-            </div>
-        `).join('');
     }
 }
 
@@ -311,13 +302,18 @@ async function loadTools() {
     }
 }
 
-async function loadCV() {
-    const data = await fetchJSON('cv.json');
-    if (!data) return;
+async function loadAbout() {
+    const dataAbout = await fetchJSON('about.json');
+    const dataCV = await fetchJSON('cv.json');
+    if (!dataAbout || !dataCV) return;
 
-    const cv = data[currentLanguage] || data['en-US'];
+    const contentAbout = dataAbout[currentLanguage] || dataAbout['en-US'];
+    const cv = dataCV[currentLanguage] || dataCV['en-US'];
+    
+    const summaryEl = document.querySelector('[data-key="about.summary"]');
+    if (summaryEl) summaryEl.textContent = contentAbout.summary;
+
     const container = document.getElementById('cvContainer');
-
     if (container) {
         const emailsHtml = cv.personalInfo.emails.map(email => 
             `<div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
@@ -339,14 +335,10 @@ async function loadCV() {
                 <h2><i data-lucide="user" style="margin-right:10px;"></i> Personal Information</h2>
                 <div class="cv-item" style="border:none;">
                     <h3 style="font-size:1.8rem; margin-bottom:15px;">${cv.personalInfo.name}</h3>
-                    
-                    ${cv.personalInfo.aboutMe ? `<p style="margin-bottom: 20px; font-size: 1rem; color: var(--color-text-secondary); line-height: 1.6;">${cv.personalInfo.aboutMe}</p>` : ''}
-                    
                     <div style="display:grid; gap:20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
                         <div>
                             <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">Locations</h4>
                             ${locationsHtml}
-                            
                             <div style="margin-top: 15px;">
                                 <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">${licenseLabel}</h4>
                                 <div style="display:flex; align-items:center; gap:8px;">
@@ -358,11 +350,6 @@ async function loadCV() {
                         <div>
                             <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">Contact</h4>
                             ${emailsHtml}
-                            <div style="margin-top:10px;">
-                                <a href="tel:${cv.personalInfo.phone}" class="btn btn--primary btn--sm">
-                                    <i class="btn-icon" data-lucide="phone"></i> Call Now
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -377,33 +364,24 @@ async function loadCV() {
                             <span class="cv-period" style="background:var(--color-bg-2); padding:2px 8px; border-radius:12px;">${edu.period}</span>
                         </div>
                         <p class="cv-institution" style="font-weight:bold; margin-top:5px;">${edu.institution}</p>
-                        ${edu.address ? `<p style="font-size:0.9em; color:var(--color-text-secondary); margin-bottom:8px;"><i data-lucide="map-pin" style="width:12px;"></i> ${edu.address}</p>` : ''}
-                        
                         ${edu.grade ? `<p><strong>Grade:</strong> ${edu.grade} ${edu.projectGrade ? `(Project: ${edu.projectGrade})` : ''}</p>` : ''}
-                        ${edu.projectTitle ? `<p style="margin-top:5px; font-style:italic;">"${edu.projectTitle}"</p>` : ''}
+                        ${edu.docLink ? `<a href="${edu.docLink}" target="_blank" class="btn btn--outline btn--sm" style="margin-top: 10px;"><i class="btn-icon" data-lucide="eye"></i> View</a>` : ''}
                     </div>
                 `).join('')}
             </div>
 
             <div class="cv-section">
                 <h2><i data-lucide="briefcase" style="margin-right:10px;"></i> Experience</h2>
-                ${cv.experience.map(exp => {
-                    let duration = "";
-                    if ((exp.company.includes("Electricon") || exp.company.includes("Elektricon")) && exp.period.includes("Present") || exp.period.includes("Prezent") || exp.period.includes("Danas")) {
-                        duration = `(${calculateJobDuration("2024-10-01")})`;
-                    }
-                    
-                    return `
+                ${cv.experience.map(exp => `
                     <div class="cv-item">
                         <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;">
                             <h3 style="color:var(--color-primary); display:flex; align-items:center; gap:8px;"><i data-lucide="building" style="width: 18px;"></i> ${exp.position}</h3>
-                            <span class="cv-period" style="background:var(--color-bg-2); padding:2px 8px; border-radius:12px;">${exp.period} ${duration}</span>
+                            <span class="cv-period" style="background:var(--color-bg-2); padding:2px 8px; border-radius:12px;">${exp.period}</span>
                         </div>
                         <p class="cv-institution" style="font-weight:bold; margin-top:5px;">${exp.company}</p>
-                        ${exp.address ? `<p style="font-size:0.9em; color:var(--color-text-secondary); margin-bottom:8px;"><i data-lucide="map-pin" style="width:12px;"></i> ${exp.address}</p>` : ''}
                         <p style="margin-top:8px; line-height:1.6;">${exp.description}</p>
-                    </div>`;
-                }).join('')}
+                    </div>
+                `).join('')}
             </div>
 
             <div class="cv-section">
@@ -412,18 +390,18 @@ async function loadCV() {
                     ${cv.skills.map(skill => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="check-circle-2" style="width: 14px; color: var(--color-primary);"></i> ${skill}</div>`).join('')}
                 </div>
             </div>
+
+            <div class="cv-section">
+                <h2><i data-lucide="heart" style="margin-right:10px;"></i> Hobbies</h2>
+                <div class="skills-grid">
+                    ${cv.hobbies ? cv.hobbies.map(hobby => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="star" style="width: 14px; color: var(--color-primary);"></i> ${hobby}</div>`).join('') : ''}
+                </div>
+            </div>
             
             <div class="cv-section">
                 <h2><i data-lucide="award" style="margin-right:10px;"></i> Certificates</h2>
                 <div class="skills-grid">
-                    ${cv.certificates ? cv.certificates.map(cert => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="award" style="width: 14px; color: var(--color-primary);"></i> ${cert}</div>`).join('') : ''}
-                </div>
-            </div>
-            
-             <div class="cv-section">
-                <h2><i data-lucide="languages" style="margin-right:10px;"></i> Languages</h2>
-                <div class="skills-grid">
-                    ${cv.languages ? cv.languages.map(lang => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="globe" style="width: 14px; color: var(--color-primary);"></i> ${lang}</div>`).join('') : ''}
+                    ${cv.certificates ? cv.certificates.map(cert => `<a href="${cert.link || '#'}" target="_blank" class="cert-link" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="award" style="width: 14px;"></i> ${cert.name}</a>`).join('') : ''}
                 </div>
             </div>
         `;
@@ -1215,11 +1193,48 @@ function renderDownloadList(query) {
 async function loadContact() {
     const data = await fetchJSON('contact.json');
     if (!data) return;
+
+    let locContainer = document.getElementById('contactLocationContainer');
     const socialContainer = document.getElementById('socialMediaContainer');
+    
+    if (!locContainer && socialContainer && data.location) {
+        locContainer = document.createElement('div');
+        locContainer.id = 'contactLocationContainer';
+        locContainer.style.marginBottom = '24px';
+        locContainer.style.padding = '12px 16px';
+        locContainer.style.background = 'var(--color-bg-2)';
+        locContainer.style.border = '1px solid var(--color-border)';
+        locContainer.style.borderRadius = 'var(--radius-base)';
+        
+        locContainer.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <i data-lucide="map-pin" style="color: var(--color-primary); width: 20px; height: 20px;"></i>
+                <span style="font-weight: 500; font-size: 1rem;">${data.location}</span>
+            </div>
+            ${data.sendFileLink ? `
+            <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px dashed var(--color-border);">
+                <i data-lucide="upload-cloud" style="color: var(--color-primary); width: 20px; height: 20px;"></i>
+                <a href="${data.sendFileLink}" target="_blank" style="color: var(--color-text); text-decoration: none; font-weight: 500;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text)'">Send me files...</a>
+            </div>` : ''}
+        `;
+        
+        // Căutăm titlul <h3> ("Social Media") care se află fix deasupra containerului
+        const socialHeading = socialContainer.previousElementSibling;
+        
+        // Inserăm locația fix deasupra titlului <h3>
+        if (socialHeading && socialHeading.tagName === 'H3') {
+            socialContainer.parentNode.insertBefore(locContainer, socialHeading);
+        } else {
+            socialContainer.parentNode.insertBefore(locContainer, socialContainer);
+        }
+    }
+
     if (socialContainer && data.socialMedia) socialContainer.innerHTML = data.socialMedia.map(s => generateSocialLink(s)).join('');
+    
     const gamingContainer = document.getElementById('gamingProfilesContainer');
     if (gamingContainer && data.gamingProfiles) gamingContainer.innerHTML = data.gamingProfiles.map(g => generateGamingLink(g)).join('');
-    lucide.createIcons();
+    
+    if(window.lucide) window.lucide.createIcons();
 }
 
 function getIconHtml(iconName) {

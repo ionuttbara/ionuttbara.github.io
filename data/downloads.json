@@ -59,12 +59,13 @@
             "defaultVersion": "24H2",
             "defaultSource": "Koofr",
             "options": {
-                "versions": ["24H2", "25H2"],
+                "versions": ["24H2", "25H2", "26H1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
             "linkIds": {
                 "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
-                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" },
+                "26H1": { "Koofr": "downloads.win11_26h1_koofr", "Digi Cloud": "downloads.win11_26h1_digi" }
             }
         },
         {
@@ -229,12 +230,13 @@
             "defaultVersion": "24H2",
             "defaultSource": "Koofr",
             "options": {
-                "versions": ["24H2", "25H2"],
+                "versions": ["24H2", "25H2", "26H1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
             "linkIds": {
                 "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
-                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" },
+                "26H1": { "Koofr": "downloads.win11_26h1_koofr", "Digi Cloud": "downloads.win11_26h1_digi" }
             }
         },
         {
@@ -245,14 +247,13 @@
             "defaultVersion": "22H2",
             "defaultSource": "Koofr",
             "options": {
-                "versions": ["22H2", "20H1", "1809", "1703"],
+                "versions": ["22H2", "20H1", "1709"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
             "linkIds": {
                 "22H2": { "Koofr": "downloads.win10_22h2_koofr", "Digi Cloud": "downloads.win10_22h2_digi" },
                 "20H1": { "Koofr": "downloads.win10_20h1_koofr", "Digi Cloud": "downloads.win10_20h1_digi" },
-                "1809": { "Koofr": "downloads.win10_1809_koofr", "Digi Cloud": "downloads.win10_1809_digi" },
-                "1703": { "Koofr": "downloads.win10_1703_koofr", "Digi Cloud": "downloads.win10_1703_digi" }
+                "1709": { "Koofr": "downloads.win10_1709_koofr", "Digi Cloud": "downloads.win10_1709_digi" }
             }
         },
         {
@@ -263,13 +264,12 @@
             "defaultVersion": "Canary",
             "defaultSource": "Koofr",
             "options": {
-                "versions": ["Canary", "Dev"],
+                "versions": ["Canary"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
             "linkIds": {
-                "Canary": { "Koofr": "downloads.win_insider_canary_koofr", "Digi Cloud": "downloads.win_insider_canary_digi" },
-                "Dev": { "Koofr": "downloads.win_insider_dev_koofr", "Digi Cloud": "downloads.win_insider_dev_digi" }
-            }
+                "Canary": { "Koofr": "downloads.win_insider_canary_koofr", "Digi Cloud": "downloads.win_insider_canary_digi"}
+                }
         },
         {
             "id": "win7-iso",
@@ -399,12 +399,13 @@
             "defaultVersion": "24H2",
             "defaultSource": "Koofr",
             "options": {
-                "versions": ["24H2", "25H2"],
+                "versions": ["24H2", "25H2", "26H1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
             "linkIds": {
                 "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
-                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" },
+                "26H1": { "Koofr": "downloads.win11_26h1_koofr", "Digi Cloud": "downloads.win11_26h1_digi" }
             }
         },
         {

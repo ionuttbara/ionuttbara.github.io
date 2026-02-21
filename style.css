@@ -1202,7 +1202,7 @@ body {
 .projects-grid {
   display: grid;
   gap: var(--space-24);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .project-card {
@@ -1558,7 +1558,7 @@ body {
 .downloads-grid {
   display: grid;
   gap: var(--space-24);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .download-card {
@@ -2119,7 +2119,7 @@ button:focus-visible,
 .tools-grid {
     display: grid;
     gap: var(--space-24);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 /* Tools Page Specific Styles */
@@ -2676,3 +2676,23 @@ body.light-theme {
 
 /* Stil pentru Butonul de Setari */
 #settingsBtn:hover { color: var(--color-primary) !important; }
+
+.cert-link {
+    background-color: var(--color-bg-2);
+    color: var(--color-text);
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-base);
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.cert-link:hover {
+    color: var(--color-primary);
+    background-color: var(--color-bg-1);
+}
+
+.cert-link i {
+    color: inherit;
+}

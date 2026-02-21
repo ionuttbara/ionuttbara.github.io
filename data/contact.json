@@ -1,13 +1,16 @@
 {
     "email": "ionutbaraooo@gmail.com",
+    "location": "Târgu Mureș, Mureș, România",
+    "sendFileLink": "https://s.go.ro/f74uzv4h",
     "socialMedia": [
         { "name": "GitHub", "url": "https://github.com/ionuttbara", "icon": "github", "username": "ionuttbara" },
-        { "name": "Snapchat", "url": "https://snapchat.com/add/ionut_bara", "icon": "snapchat", "username": "ionut_bara" },
-        { "name": "Spotify", "url": "#", "icon": "spotify", "username": "ionuttbara" }
+        { "name": "Spotify", "url": "https://open.spotify.com/user/31vkokb22tzusl6vexwmew7nrsfa", "icon": "spotify", "username": "ionuttbara" },
+        { "name": "Reddit", "url": "https://www.reddit.com/user/ionuttbara/", "icon": "reddit", "username": "ionuttbara" },
+        { "name": "X (Twitter)", "url": "https://x.com/TestIonut8869", "icon": "twitter", "username": "TestIonut8869" }
     ],
     "gamingProfiles": [
         { "name": "Xbox", "username": "JohnTheGamer595", "icon": "xbox" },
-        { "name": "Steam", "username": "johnroberthinio", "icon": "steam" },
+        { "name": "Steam", "url": "https://steamcommunity.com/id/ionutbara/", "username": "johnroberthinio", "icon": "steam" },
         { "name": "Ubisoft Connect", "username": "ionuttbara", "icon": "ubisoft" },
         { "name": "Epic Games", "username": "ionut_bara", "icon": "epic-games" },
         { "name": "EA", "username": "ionutbara", "icon": "ea" },

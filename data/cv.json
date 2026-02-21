@@ -2,16 +2,14 @@
     "en-US": {
         "personalInfo": {
             "name": "Ionut Bara",
-            "aboutMe": "I am a passionate IT professional and AI student, dedicated to optimizing systems, developing software, and advocating for digital rights and transparency.",
+            "aboutMe": "I am a passionate IT professional and AI student, dedicated to optimizing systems, developing software, and advocating for digital rights.",
             "drivingLicense": "None",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
                 "ionutb@electricon.ro"
             ],
-            "phone": "+40754674608",
             "locations": [
-                "Bern, Switzerland",
                 "Târgu Mureș, Romania",
                 "Dămuc, Neamț, Romania"
             ]
@@ -20,26 +18,20 @@
             {
                 "degree": "Master's in Artificial Intelligence",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
-                "period": "2025 - Present",
-                "status": "Current"
+                "period": "2025 - Present"
             },
             {
                 "degree": "Bachelor's in Computer Science",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
                 "period": "2021 - 2024",
                 "grade": "7.8",
-                "projectGrade": "9",
-                "projectTitle": "Analysis of OS Security Elements - Secure Boot implementation on Raspberry Pi 3/4 with TPM and U-Boot",
-                "status": "Completed"
+                "docLink": "files/cv.pdf"
             },
             {
-                "degree": "High School Diploma (Mathematics-Informatics)",
+                "degree": "High School Diploma",
                 "institution": "Carol I High School",
-                "address": "Str. Republicii, Bicaz, Neamț, Romania",
                 "period": "2017 - 2021",
-                "status": "Completed"
+                "docLink": "files/cv.pdf"
             }
         ],
         "experience": [
@@ -51,13 +43,6 @@
                 "description": "Managing devices and online store (Gomag, PrestaShop). Utilizing Rust, Python, AI tools for image/video processing, and social media management."
             },
             {
-                "position": "Research Contributor",
-                "company": "University of Bern",
-                "address": "Bern, Switzerland",
-                "period": "September 2024 - February 2025",
-                "description": "Contribution to university research projects."
-            },
-            {
                 "position": "Mobile Game Tester",
                 "company": "Quadom",
                 "address": "Târgu Mureș, Romania",
@@ -65,23 +50,26 @@
                 "description": "Testing mobile video games on Android and iOS. Utilizing Unity and Jira for bug tracking."
             }
         ],
-        "skills": ["Python", "Rust", "JavaScript", "HTML/CSS", "SQL", "Git", "Linux", "Windows Administration", "Networking", "AI Tools", "Gomag", "PrestaShop", "Unity", "Jira"],
-        "certificates": ["MVP Insider", "Cybersecurity Course", "Programming (Sololearn)"],
+        "skills": ["Python", "Rust", "JavaScript", "SQL", "Git", "Linux", "Windows Admin", "Networking", "AI Tools"],
+        "hobbies": ["Reading", "Listening to audio"],
+        "certificates": [
+            { "name": "MVP Insider", "link": "#" },
+            { "name": "Cybersecurity Course", "link": "#" },
+            { "name": "Programming (Sololearn)", "link": "#" }
+        ],
         "languages": ["Romanian (Native)", "English (B2)", "French (A2)"]
     },
     "ro-RO": {
         "personalInfo": {
             "name": "Ionut Bara",
-            "aboutMe": "Sunt un profesionist IT pasionat și student la master în Inteligență Artificială, dedicat optimizării sistemelor, dezvoltării de software și promovării transparenței și drepturilor digitale.",
+            "aboutMe": "Sunt un profesionist IT pasionat și student la master în Inteligență Artificială, dedicat optimizării sistemelor.",
             "drivingLicense": "Fără",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
                 "ionutb@electricon.ro"
             ],
-            "phone": "+40754674608",
             "locations": [
-                "Bern, Elveția",
                 "Târgu Mureș, România",
                 "Dămuc, Neamț, România"
             ]
@@ -90,42 +78,29 @@
             {
                 "degree": "Master în Inteligență Artificială",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
-                "period": "2025 - Prezent",
-                "status": "În curs"
+                "period": "2025 - Prezent"
             },
             {
-                "degree": "Licențiat în Informatică",
+                "degree": "Licență în Informatică",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
                 "period": "2021 - 2024",
                 "grade": "7.8",
-                "projectGrade": "9",
-                "projectTitle": "Analiza elementelor de securitate a sistemelor de operare - Realizare Secure Boot pe Raspberry Pi 3/4 cu TPM și U-Boot",
-                "status": "Finalizat"
+                "docLink": "files/cv.pdf"
             },
             {
-                "degree": "Diplomă de Bacalaureat (Matematică-Informatică)",
-                "institution": "Liceul Carol 1",
-                "address": "Str. Republicii, Bicaz, Neamț, România",
+                "degree": "Diplomă de Bacalaureat",
+                "institution": "Liceul Carol I",
                 "period": "2017 - 2021",
-                "status": "Finalizat"
+                "docLink": "files/cv.pdf"
             }
         ],
         "experience": [
             {
-                "position": "Dep. IT & Magazin (Tehnician rețele și dispozitive)",
+                "position": "Dep. IT & Magazin (Tehnician rețele)",
                 "company": "Electricon Magazin",
                 "address": "Str. Mureșeni 11, Târgu Mureș",
                 "period": "Octombrie 2024 - Prezent",
-                "description": "Administrare dispozitive și magazin online (Gomag, PrestaShop). Utilizare Rust, Python, AI, procesare imagine/video și social media."
-            },
-            {
-                "position": "Contribuitor Cercetare",
-                "company": "Universitatea din Berna",
-                "address": "Bern, Elveția",
-                "period": "Septembrie 2024 - Februarie 2025",
-                "description": "Contribuire la proiecte de cercetare universitare."
+                "description": "Administrare dispozitive și magazin online. Utilizare Rust, Python, AI."
             },
             {
                 "position": "Tester Jocuri Video Mobile",
@@ -135,23 +110,26 @@
                 "description": "Testare jocuri video pe Android și iOS. Utilizare Unity și Jira."
             }
         ],
-        "skills": ["Python", "Rust", "JavaScript", "HTML/CSS", "SQL", "Git", "Linux", "Administrare Windows", "Rețelistică", "Instrumente AI", "Gomag", "PrestaShop", "Unity", "Jira"],
-        "certificates": ["MVP Insider", "Curs Securitate Cibernetică", "Programare (Sololearn)"],
+        "skills": ["Python", "Rust", "JavaScript", "SQL", "Git", "Linux", "Administrare Windows", "Rețelistică", "Instrumente AI"],
+        "hobbies": ["Citit", "Meloman (Ascultare audio)"],
+        "certificates": [
+            { "name": "MVP Insider", "link": "#" },
+            { "name": "Curs Securitate Cibernetică", "link": "#" },
+            { "name": "Programare (Sololearn)", "link": "#" }
+        ],
         "languages": ["Română (Nativ)", "Engleză (B2)", "Franceză (A2)"]
     },
     "gall": {
         "personalInfo": {
             "name": "Ionut Bara",
-            "aboutMe": "Ja sam strastveni IT profesionalac i student umjetne inteligencije, posvećen optimizaciji sustava i razvoju softvera.",
+            "aboutMe": "Ja sam strastveni IT profesionalac i student umjetne inteligencije.",
             "drivingLicense": "Nema",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
                 "ionutb@electricon.ro"
             ],
-            "phone": "+40754674608",
             "locations": [
-                "Bernu, Švicarska",
                 "Târgu Mureș, Rumunjska",
                 "Dămuc, Neamț, Rumunjska"
             ]
@@ -160,53 +138,45 @@
             {
                 "degree": "Master iz Umjetne Inteligencije",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
-                "period": "2025 - Danas",
-                "status": "Trenutno"
+                "period": "2025 - Danas"
             },
             {
-                "degree": "Prvostupnik Informatike",
+                "degree": "Prvostupnik Računarstva",
                 "institution": "UMFST George Emil Palade",
-                "address": "Str. Nicolae Iorga 1, Târgu Mureș",
                 "period": "2021 - 2024",
                 "grade": "7.8",
-                "projectGrade": "9",
-                "projectTitle": "Analiza sigurnosnih elemenata OS-a - Secure Boot na Raspberry Pi 3/4 sa TPM i U-Boot",
-                "status": "Završeno"
+                "docLink": "files/cv.pdf"
             },
             {
-                "degree": "Srednja škola (Matematika-Informatika)",
-                "institution": "Liceul Carol 1",
-                "address": "Str. Republicii, Bicaz, Neamț, Rumunjska",
+                "degree": "Srednjoškolska Diploma",
+                "institution": "Gimnazija Carol I",
                 "period": "2017 - 2021",
-                "status": "Završeno"
+                "docLink": "files/cv.pdf"
             }
         ],
         "experience": [
             {
-                "position": "IT Odjel & Voditelj Trgovine (Tehničar)",
+                "position": "IT Odjel & Voditelj Trgovine",
                 "company": "Electricon Shop",
                 "address": "Str. Mureșeni 11, Târgu Mureș",
                 "period": "Listopad 2024 - Danas",
-                "description": "Upravljanje uređajima i online trgovinom (Gomag, PrestaShop). Korištenje Rust, Python, AI alata, obrada slike/videa i društvene mreže."
-            },
-            {
-                "position": "Suradnik u Istraživanju",
-                "company": "Sveučilište u Bernu",
-                "address": "Bernu, Švicarska",
-                "period": "Rujan 2024 - Veljača 2025",
-                "description": "Doprinos sveučilišnim istraživačkim projektima."
+                "description": "Upravljanje uređajima i online trgovinom."
             },
             {
                 "position": "Tester Mobilnih Video Igara",
                 "company": "Quadom",
                 "address": "Târgu Mureș, Rumunjska",
                 "period": "Travanj 2022 - Lipanj 2022",
-                "description": "Testiranje video igara na Android i Apple platformama. Korištenje Unity i Jira alata."
+                "description": "Testiranje video igara na Android i Apple platformama."
             }
         ],
-        "skills": ["Python", "Rust", "JavaScript", "HTML/CSS", "SQL", "Git", "Linux", "Windows Administracija", "Umrežavanje", "AI Alati", "Gomag", "PrestaShop", "Unity", "Jira"],
-        "certificates": ["MVP Insider", "Tečaj Kibernetičke Sigurnosti", "Programiranje (Sololearn)"],
+        "skills": ["Python", "Rust", "JavaScript", "SQL", "Git", "Linux", "Windows Admin", "Networking", "AI Alati"],
+        "hobbies": ["Čitanje", "Slušanje zvuka/glazbe"],
+        "certificates": [
+            { "name": "MVP Insider", "link": "#" },
+            { "name": "Tečaj Kibernetičke Sigurnosti", "link": "#" },
+            { "name": "Programiranje (Sololearn)", "link": "#" }
+        ],
         "languages": ["Rumunjski (Materinji)", "Engleski (B2)", "Francuski (A2)"]
     }
 }
