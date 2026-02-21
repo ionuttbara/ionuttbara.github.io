@@ -7,8 +7,8 @@
             "type": "github",
             "version": "v2.1",
             "size": "25MB",
-            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
-            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+            "sourceLinkId": "projects.melody_windows",
+            "downloadLinkId": "downloads.melody_windows_dl"
         },
         {
             "id": "defender-remover",
@@ -17,8 +17,8 @@
             "type": "github",
             "version": "v1.5",
             "size": "15MB",
-            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
-            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+            "sourceLinkId": "projects.defender_remover",
+            "downloadLinkId": "downloads.defender_remover_dl"
         },
         {
             "id": "edge-remover",
@@ -27,8 +27,8 @@
             "type": "github",
             "version": "v1.0",
             "size": "5MB",
-            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
-            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+            "sourceLinkId": "projects.edge_remover",
+            "downloadLinkId": "downloads.edge_remover_dl"
         },
         {
             "id": "onedrive-uninstaller",
@@ -37,8 +37,8 @@
             "type": "github",
             "version": "v1.2",
             "size": "2MB",
-            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
-            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+            "sourceLinkId": "projects.onedrive_uninstaller",
+            "downloadLinkId": "downloads.onedrive_uninstaller_dl"
         },
         {
             "id": "runtime-pack",
@@ -47,8 +47,9 @@
             "type": "github-info",
             "version": "Latest",
             "size": "90MB",
-            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
-            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+            "sourceLinkId": "downloads.redist_pack_src",
+            "downloadLinkId": "downloads.redist_pack_dl",
+            "infoText": "This package is for Windows 10 and newer and includes VC++ Runtimes, .NET Framework 4, and DirectX 9 old runtime."
         },
         {
             "id": "win11-iso",
@@ -61,9 +62,9 @@
                 "versions": ["24H2", "25H2"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
-                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            "linkIds": {
+                "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
             }
         },
         {
@@ -77,11 +78,11 @@
                 "versions": ["22H2", "20H1", "1809", "1703"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
-                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
-                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
-                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            "linkIds": {
+                "22H2": { "Koofr": "downloads.win10_22h2_koofr", "Digi Cloud": "downloads.win10_22h2_digi" },
+                "20H1": { "Koofr": "downloads.win10_20h1_koofr", "Digi Cloud": "downloads.win10_20h1_digi" },
+                "1809": { "Koofr": "downloads.win10_1809_koofr", "Digi Cloud": "downloads.win10_1809_digi" },
+                "1703": { "Koofr": "downloads.win10_1703_koofr", "Digi Cloud": "downloads.win10_1703_digi" }
             }
         },
         {
@@ -95,9 +96,9 @@
                 "versions": ["Canary", "Dev"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
-                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            "linkIds": {
+                "Canary": { "Koofr": "downloads.win_insider_canary_koofr", "Digi Cloud": "downloads.win_insider_canary_digi" },
+                "Dev": { "Koofr": "downloads.win_insider_dev_koofr", "Digi Cloud": "downloads.win_insider_dev_digi" }
             }
         },
         {
@@ -111,8 +112,8 @@
                 "versions": ["SP1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            "linkIds": {
+                "SP1": { "Koofr": "downloads.win7_sp1_koofr", "Digi Cloud": "downloads.win7_sp1_digi" }
             }
         },
         {
@@ -126,8 +127,8 @@
                 "versions": ["SP3"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            "linkIds": {
+                "SP3": { "Koofr": "downloads.winxp_sp3_koofr", "Digi Cloud": "downloads.winxp_sp3_digi" }
             }
         },
         {
@@ -135,36 +136,37 @@
             "name": "Linux Images",
             "description": "Collection of various Linux distributions.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/linux_folder"
+            "linkId": "downloads.linux_folder"
         },
         {
             "id": "winpe-images",
             "name": "WinPE Images",
             "description": "Bootable Windows PE environments for troubleshooting.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/winpe_folder"
+            "linkId": "downloads.winpe_folder"
         },
         {
             "id": "pc-maintenance",
             "name": "PC Maintenance Package",
             "description": "Essential tools for computer repair and maintenance.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/maintenance_folder"
+            "linkId": "downloads.maintenance_folder"
         },
         {
             "id": "scripts-collection",
             "name": "Scripts Collection",
             "description": "Useful batch and powershell scripts for automation.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/scripts_folder"
+            "linkId": "downloads.scripts_folder"
         },
         {
             "id": "sedinte-damuc",
             "name": "Video Sedinte Consiliu Damuc",
             "description": "Recordings of the Damuc Local Council meetings.",
             "type": "video",
-            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
-            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+            "watchLinkId": "downloads.damuc_meetings",
+            "sourceLinkId": "downloads.damuc_source",
+            "infoHtml": "<ul style=\"list-style: none; padding: 0; line-height: 1.8;\"><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://transparenta.eu/entities/2614422\" target=\"_blank\">Execuții bugetare (transparenta.eu)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://extranet.anaf.mfinante.gov.ro/anaf/extranet/EXECUTIEBUGETARA/Rapoarte_Forexe/!ut/p/a1/jVHbcoIwEP0WH3ysWUAR-oZVcaz1UrECL50YAqaDgQmXjv36BrDtjK3aTDKzZ3PO7skG-chFPscli3DOEo7jCvv6q21MQDHXMAV9YYC1hMFEnz-qYIAkeJIAF5YFZ3rTqfQrbTVSXxSweyf9FcK_-l8i2Oot_Rb5VylVhZpw5YlT5EdxsqvH5Vl8pxkR8gUNqaCiUwiZ3ud5mt23oQ2HkHHMc9qJkrIjkjb8pdknWY7cMyry5FP7P0YX-nIojS43imZaALaGtiWj72hdGebiQeTIgypmwboQGZZ6CQLKR-mCpA1iwZCSuIlJwb7z-TGlg0IWyCgWZN9QLY48FVS9QdMioJIwdyqY4ogiT2luHJY-4zSp-o_dwd1IHhNqJyQJxiwjclCeqivdrqqe_FGSD4roy9Os4PhUrbbb5DNKpF62ORikb8iPuzGN9LDZuPDWi8tZ-OTQ3cfvHR6tVusTSvvEkQ!!/\" target=\"_blank\">Execuții bugetare (ANAF)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/alte-documente/procesele-verbale-ale-sedintelor-autoritatii-deliberative/\" target=\"_blank\">Procese verbale ședințe</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/dispozitiile-autoritatii-executive/\" target=\"_blank\">Dispoziții primar</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://sicap.ai/autoritate/2614422\" target=\"_blank\">Achiziții Publice (SICAP)</a></li></ul>"
         }
     ],
     "ro-RO": [
@@ -175,8 +177,8 @@
             "type": "github",
             "version": "v2.1",
             "size": "25MB",
-            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
-            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+            "sourceLinkId": "projects.melody_windows",
+            "downloadLinkId": "downloads.melody_windows_dl"
         },
         {
             "id": "defender-remover",
@@ -185,8 +187,8 @@
             "type": "github",
             "version": "v1.5",
             "size": "15MB",
-            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
-            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+            "sourceLinkId": "projects.defender_remover",
+            "downloadLinkId": "downloads.defender_remover_dl"
         },
         {
             "id": "edge-remover",
@@ -195,8 +197,8 @@
             "type": "github",
             "version": "v1.0",
             "size": "5MB",
-            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
-            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+            "sourceLinkId": "projects.edge_remover",
+            "downloadLinkId": "downloads.edge_remover_dl"
         },
         {
             "id": "onedrive-uninstaller",
@@ -205,8 +207,8 @@
             "type": "github",
             "version": "v1.2",
             "size": "2MB",
-            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
-            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+            "sourceLinkId": "projects.onedrive_uninstaller",
+            "downloadLinkId": "downloads.onedrive_uninstaller_dl"
         },
         {
             "id": "runtime-pack",
@@ -215,8 +217,9 @@
             "type": "github-info",
             "version": "Ultima",
             "size": "90MB",
-            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
-            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+            "sourceLinkId": "downloads.redist_pack_src",
+            "downloadLinkId": "downloads.redist_pack_dl",
+            "infoText": "Acest pachet este pentru Windows 10 și versiunile mai noi și include VC++ Runtimes, .NET Framework 4 și DirectX 9 old runtime."
         },
         {
             "id": "win11-iso",
@@ -229,9 +232,9 @@
                 "versions": ["24H2", "25H2"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
-                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            "linkIds": {
+                "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
             }
         },
         {
@@ -245,11 +248,11 @@
                 "versions": ["22H2", "20H1", "1809", "1703"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
-                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
-                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
-                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            "linkIds": {
+                "22H2": { "Koofr": "downloads.win10_22h2_koofr", "Digi Cloud": "downloads.win10_22h2_digi" },
+                "20H1": { "Koofr": "downloads.win10_20h1_koofr", "Digi Cloud": "downloads.win10_20h1_digi" },
+                "1809": { "Koofr": "downloads.win10_1809_koofr", "Digi Cloud": "downloads.win10_1809_digi" },
+                "1703": { "Koofr": "downloads.win10_1703_koofr", "Digi Cloud": "downloads.win10_1703_digi" }
             }
         },
         {
@@ -263,9 +266,9 @@
                 "versions": ["Canary", "Dev"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
-                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            "linkIds": {
+                "Canary": { "Koofr": "downloads.win_insider_canary_koofr", "Digi Cloud": "downloads.win_insider_canary_digi" },
+                "Dev": { "Koofr": "downloads.win_insider_dev_koofr", "Digi Cloud": "downloads.win_insider_dev_digi" }
             }
         },
         {
@@ -279,8 +282,8 @@
                 "versions": ["SP1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            "linkIds": {
+                "SP1": { "Koofr": "downloads.win7_sp1_koofr", "downloads.win7_sp1_digi": "Digi Cloud" }
             }
         },
         {
@@ -294,8 +297,8 @@
                 "versions": ["SP3"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            "linkIds": {
+                "SP3": { "Koofr": "downloads.winxp_sp3_koofr", "Digi Cloud": "downloads.winxp_sp3_digi" }
             }
         },
         {
@@ -303,36 +306,37 @@
             "name": "Imagini Linux",
             "description": "Colecție de diverse distribuții Linux.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/linux_folder"
+            "linkId": "downloads.linux_folder"
         },
         {
             "id": "winpe-images",
             "name": "Imagini WinPE",
             "description": "Medii Windows PE bootabile.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/winpe_folder"
+            "linkId": "downloads.winpe_folder"
         },
         {
             "id": "pc-maintenance",
             "name": "Pachet Întreținere PC",
             "description": "Unelte esențiale pentru reparații PC.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/maintenance_folder"
+            "linkId": "downloads.maintenance_folder"
         },
         {
             "id": "scripts-collection",
             "name": "Colecție Scripturi",
             "description": "Scripturi batch și powershell utile.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/scripts_folder"
+            "linkId": "downloads.scripts_folder"
         },
         {
             "id": "sedinte-damuc",
             "name": "Video Ședințe Consiliu Dămuc",
             "description": "Înregistrări ale ședințelor Consiliului Local Dămuc.",
             "type": "video",
-            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
-            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+            "watchLinkId": "downloads.damuc_meetings",
+            "sourceLinkId": "downloads.damuc_source",
+            "infoHtml": "<ul style=\"list-style: none; padding: 0; line-height: 1.8;\"><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://transparenta.eu/entities/2614422\" target=\"_blank\">Execuții bugetare (transparenta.eu)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://extranet.anaf.mfinante.gov.ro/anaf/extranet/EXECUTIEBUGETARA/info_utile/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOLdLTwMDC2DDbwMLEMsDBwDAo0DXY3CDA3cTYEKIoEKDHAARwNC-sP1o9CUmPmDlBg4eZj5eRsZuBtBFeCxoiA3wiDTUVERABJry3Y!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/\" target=\"_blank\">Execuții bugetare (ANAF)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/alte-documente/procesele-verbale-ale-sedintelor-autoritatii-deliberative/\" target=\"_blank\">Procese verbale ședințe</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/dispozitiile-autoritatii-executive/\" target=\"_blank\">Dispoziții primar</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://sicap.ai/autoritate/2614422\" target=\"_blank\">Achiziții Publice (SICAP)</a></li></ul>"
         }
     ],
     "gall": [
@@ -343,8 +347,8 @@
             "type": "github",
             "version": "v2.1",
             "size": "25MB",
-            "sourceUrl": "https://github.com/ionuttbara/melody_windows",
-            "downloadUrl": "https://github.com/ionuttbara/melody_windows/releases/latest"
+            "sourceLinkId": "projects.melody_windows",
+            "downloadLinkId": "downloads.melody_windows_dl"
         },
         {
             "id": "defender-remover",
@@ -353,8 +357,8 @@
             "type": "github",
             "version": "v1.5",
             "size": "15MB",
-            "sourceUrl": "https://github.com/ionuttbara/windows-defender-remover",
-            "downloadUrl": "https://github.com/ionuttbara/windows-defender-remover/releases/latest"
+            "sourceLinkId": "projects.defender_remover",
+            "downloadLinkId": "downloads.defender_remover_dl"
         },
         {
             "id": "edge-remover",
@@ -363,8 +367,8 @@
             "type": "github",
             "version": "v1.0",
             "size": "5MB",
-            "sourceUrl": "https://github.com/ionuttbara/edge-remover",
-            "downloadUrl": "https://github.com/ionuttbara/edge-remover/releases/latest"
+            "sourceLinkId": "projects.edge_remover",
+            "downloadLinkId": "downloads.edge_remover_dl"
         },
         {
             "id": "onedrive-uninstaller",
@@ -373,8 +377,8 @@
             "type": "github",
             "version": "v1.2",
             "size": "2MB",
-            "sourceUrl": "https://github.com/ionuttbara/one-drive-uninstaller",
-            "downloadUrl": "https://github.com/ionuttbara/one-drive-uninstaller/releases/latest"
+            "sourceLinkId": "projects.onedrive_uninstaller",
+            "downloadLinkId": "downloads.onedrive_uninstaller_dl"
         },
         {
             "id": "runtime-pack",
@@ -383,8 +387,9 @@
             "type": "github-info",
             "version": "Zadnji",
             "size": "90MB",
-            "sourceUrl": "https://github.com/ionuttbara/redist-pack",
-            "downloadUrl": "https://github.com/ionuttbara/redist-pack/releases/latest"
+            "sourceLinkId": "downloads.redist_pack_src",
+            "downloadLinkId": "downloads.redist_pack_dl",
+            "infoText": "Ovaj paket je za Windows 10 i novije verzije i uključuje VC++ Runtimes, .NET Framework 4 i DirectX 9 old runtime."
         },
         {
             "id": "win11-iso",
@@ -397,9 +402,9 @@
                 "versions": ["24H2", "25H2"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "24H2": { "Koofr": "https://koofr.net/dummy/win11_24h2", "Digi Cloud": "https://digi.cloud/dummy/win11_24h2" },
-                "25H2": { "Koofr": "https://koofr.net/dummy/win11_25h2", "Digi Cloud": "https://digi.cloud/dummy/win11_25h2" }
+            "linkIds": {
+                "24H2": { "Koofr": "downloads.win11_24h2_koofr", "Digi Cloud": "downloads.win11_24h2_digi" },
+                "25H2": { "Koofr": "downloads.win11_25h2_koofr", "Digi Cloud": "downloads.win11_25h2_digi" }
             }
         },
         {
@@ -413,11 +418,11 @@
                 "versions": ["22H2", "20H1", "1809", "1703"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "22H2": { "Koofr": "https://koofr.net/dummy/win10_22h2", "Digi Cloud": "https://digi.cloud/dummy/win10_22h2" },
-                "20H1": { "Koofr": "https://koofr.net/dummy/win10_20h1", "Digi Cloud": "https://digi.cloud/dummy/win10_20h1" },
-                "1809": { "Koofr": "https://koofr.net/dummy/win10_1809", "Digi Cloud": "https://digi.cloud/dummy/win10_1809" },
-                "1703": { "Koofr": "https://koofr.net/dummy/win10_1703", "Digi Cloud": "https://digi.cloud/dummy/win10_1703" }
+            "linkIds": {
+                "22H2": { "Koofr": "downloads.win10_22h2_koofr", "Digi Cloud": "downloads.win10_22h2_digi" },
+                "20H1": { "Koofr": "downloads.win10_20h1_koofr", "Digi Cloud": "downloads.win10_20h1_digi" },
+                "1809": { "Koofr": "downloads.win10_1809_koofr", "Digi Cloud": "downloads.win10_1809_digi" },
+                "1703": { "Koofr": "downloads.win10_1703_koofr", "Digi Cloud": "downloads.win10_1703_digi" }
             }
         },
         {
@@ -431,9 +436,9 @@
                 "versions": ["Canary", "Dev"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "Canary": { "Koofr": "https://koofr.net/dummy/win_insider_canary", "Digi Cloud": "https://digi.cloud/dummy/win_insider_canary" },
-                "Dev": { "Koofr": "https://koofr.net/dummy/win_insider_dev", "Digi Cloud": "https://digi.cloud/dummy/win_insider_dev" }
+            "linkIds": {
+                "Canary": { "Koofr": "downloads.win_insider_canary_koofr", "Digi Cloud": "downloads.win_insider_canary_digi" },
+                "Dev": { "Koofr": "downloads.win_insider_dev_koofr", "Digi Cloud": "downloads.win_insider_dev_digi" }
             }
         },
         {
@@ -447,8 +452,8 @@
                 "versions": ["SP1"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP1": { "Koofr": "https://koofr.net/dummy/win7_sp1", "Digi Cloud": "https://digi.cloud/dummy/win7_sp1" }
+            "linkIds": {
+                "SP1": { "Koofr": "downloads.win7_sp1_koofr", "Digi Cloud": "downloads.win7_sp1_digi" }
             }
         },
         {
@@ -462,8 +467,8 @@
                 "versions": ["SP3"],
                 "sources": ["Koofr", "Digi Cloud"]
             },
-            "links": {
-                "SP3": { "Koofr": "https://koofr.net/dummy/winxp_sp3", "Digi Cloud": "https://digi.cloud/dummy/winxp_sp3" }
+            "linkIds": {
+                "SP3": { "Koofr": "downloads.winxp_sp3_koofr", "Digi Cloud": "downloads.winxp_sp3_digi" }
             }
         },
         {
@@ -471,36 +476,37 @@
             "name": "Linux Slike",
             "description": "Kolekcija Linux distribucija.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/linux_folder"
+            "linkId": "downloads.linux_folder"
         },
         {
             "id": "winpe-images",
             "name": "WinPE Slike",
             "description": "Bootabilna Windows PE okruženja.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/winpe_folder"
+            "linkId": "downloads.winpe_folder"
         },
         {
             "id": "pc-maintenance",
             "name": "PC Maintenance Paket",
             "description": "Alati za popravku računara.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/maintenance_folder"
+            "linkId": "downloads.maintenance_folder"
         },
         {
             "id": "scripts-collection",
             "name": "Kolekcija Skripti",
             "description": "Korisne batch i powershell skripte.",
             "type": "folder",
-            "url": "https://koofr.net/dummy/scripts_folder"
+            "linkId": "downloads.scripts_folder"
         },
         {
             "id": "sedinte-damuc",
             "name": "Video Sastanci Vijeća Damuc",
             "description": "Snimci sastanaka Lokalnog vijeća Damuc.",
             "type": "video",
-            "watchUrl": "https://koofr.net/dummy/damuc_meetings",
-            "sourceUrl": "https://comunadamuc.ro/sedinta-cl-damuc-video/"
+            "watchLinkId": "downloads.damuc_meetings",
+            "sourceLinkId": "downloads.damuc_source",
+            "infoHtml": "<ul style=\"list-style: none; padding: 0; line-height: 1.8;\"><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://transparenta.eu/entities/2614422\" target=\"_blank\">Execuții bugetare (transparenta.eu)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://extranet.anaf.mfinante.gov.ro/anaf/extranet/EXECUTIEBUGETARA/info_utile/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOLdLTwMDC2DDbwMLEMsDBwDAo0DXY3CDA3cTYEKIoEKDHAARwNC-sP1o9CUmPmDlBg4eZj5eRsZuBtBFeCxoiA3wiDTUVERABJry3Y!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/\" target=\"_blank\">Execuții bugetare (ANAF)</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/alte-documente/procesele-verbale-ale-sedintelor-autoritatii-deliberative/\" target=\"_blank\">Procese verbale ședințe</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://comunadamuc.ro/monitorul-oficial-local/dispozitiile-autoritatii-executive/\" target=\"_blank\">Dispoziții primar</a></li><li><i data-lucide=\"external-link\" style=\"width: 14px; margin-right: 8px; color: var(--color-primary);\"></i><a href=\"https://sicap.ai/autoritate/2614422\" target=\"_blank\">Achiziții Publice (SICAP)</a></li></ul>"
         }
     ]
 }

@@ -2,6 +2,8 @@
     "en-US": {
         "personalInfo": {
             "name": "Ionut Bara",
+            "aboutMe": "I am a passionate IT professional and AI student, dedicated to optimizing systems, developing software, and advocating for digital rights and transparency.",
+            "drivingLicense": "None",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
@@ -70,6 +72,8 @@
     "ro-RO": {
         "personalInfo": {
             "name": "Ionut Bara",
+            "aboutMe": "Sunt un profesionist IT pasionat și student la master în Inteligență Artificială, dedicat optimizării sistemelor, dezvoltării de software și promovării transparenței și drepturilor digitale.",
+            "drivingLicense": "Fără",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
@@ -138,6 +142,8 @@
     "gall": {
         "personalInfo": {
             "name": "Ionut Bara",
+            "aboutMe": "Ja sam strastveni IT profesionalac i student umjetne inteligencije, posvećen optimizaciji sustava i razvoju softvera.",
+            "drivingLicense": "Nema",
             "emails": [
                 "ionutbaraooo@gmail.com",
                 "bara.ionut.25@stud.umfst.ro",
@@ -145,9 +151,9 @@
             ],
             "phone": "+40754674608",
             "locations": [
-                "1-,Bernu, Švicarska",
-                "Târgu Mureș, 98101-MSE",
-                "Dămuc, Neamț, 98101-NT"
+                "Bernu, Švicarska",
+                "Târgu Mureș, Rumunjska",
+                "Dămuc, Neamț, Rumunjska"
             ]
         },
         "education": [
@@ -171,7 +177,7 @@
             {
                 "degree": "Srednja škola (Matematika-Informatika)",
                 "institution": "Liceul Carol 1",
-                "address": "Str. Republicii, Bicaz, Neamț, Rumunjska, 98101-NT zona",
+                "address": "Str. Republicii, Bicaz, Neamț, Rumunjska",
                 "period": "2017 - 2021",
                 "status": "Završeno"
             }
@@ -201,6 +207,6 @@
         ],
         "skills": ["Python", "Rust", "JavaScript", "HTML/CSS", "SQL", "Git", "Linux", "Windows Administracija", "Umrežavanje", "AI Alati", "Gomag", "PrestaShop", "Unity", "Jira"],
         "certificates": ["MVP Insider", "Tečaj Kibernetičke Sigurnosti", "Programiranje (Sololearn)"],
-        "languages": ["Rumunjski (Materinji)", "Engleski (B2)", "Francuski (A2)","Galeriski (IBAD konkubine i IBLD)"]
+        "languages": ["Rumunjski (Materinji)", "Engleski (B2)", "Francuski (A2)"]
     }
 }

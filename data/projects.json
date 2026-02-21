@@ -3,7 +3,7 @@
         {
             "name": "Defender Remover",
             "description": "A tool used to remove Windows Defender in Windows 8.x, 10, and 11.",
-            "github": "https://github.com/ionuttbara/windows-defender-remover",
+            "linkId": "projects.defender_remover",
             "technologies": ["Batch", "PowerShell", "Windows"],
             "category": "System Utilities",
             "status": "Active"
@@ -11,7 +11,7 @@
         {
             "name": "Melody Script Windows",
             "description": "Comprehensive optimization script for Windows to improve performance and privacy.",
-            "github": "https://github.com/ionuttbara/melody_windows",
+            "linkId": "projects.melody_windows",
             "technologies": ["PowerShell", "Optimization"],
             "category": "System Utilities",
             "status": "Active"
@@ -19,7 +19,7 @@
         {
             "name": "Edge Remover",
             "description": "A lightweight utility to completely remove Microsoft Edge from Windows systems.",
-            "github": "https://github.com/ionuttbara/edge-remover",
+            "linkId": "projects.edge_remover",
             "technologies": ["Batch", "Windows"],
             "category": "System Utilities",
             "status": "Active"
@@ -27,7 +27,7 @@
         {
             "name": "OneDrive Uninstaller",
             "description": "Script to completely uninstall Microsoft OneDrive and clean up leftover files.",
-            "github": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "linkId": "projects.onedrive_uninstaller",
             "technologies": ["Batch", "Windows"],
             "category": "System Utilities",
             "status": "Maintenance"
@@ -35,7 +35,7 @@
         {
             "name": "Electricon Shop",
             "description": "Full-stack development and IT management for Electricon (My current employer).",
-            "github": "https://www.electricon.ro",
+            "linkId": "projects.electricon_shop",
             "technologies": ["Web Design", "Management", "E-commerce"],
             "category": "Sites/Projects",
             "status": "Production"
@@ -43,7 +43,7 @@
         {
             "name": "Melody Android",
             "description": "Optimization and debloating tools for Android devices.",
-            "github": "https://github.com/ionuttbara/melody_android",
+            "linkId": "projects.melody_android",
             "technologies": ["Shell", "Android", "ADB"],
             "category": "System Utilities",
             "status": "Active"
@@ -51,7 +51,7 @@
         {
             "name": "Tauri Browser",
             "description": "A secure and lightweight web browser built using the Tauri framework.",
-            "github": "https://github.com/ionuttbara/tauri-browser",
+            "linkId": "projects.tauri_browser",
             "technologies": ["Rust", "Tauri", "JavaScript"],
             "category": "Web",
             "status": "Prototype"
@@ -59,7 +59,7 @@
         {
             "name": "Electricon Automatics",
             "description": "Automation scripts and tools developed for Electricon internal processes.",
-            "github": "https://github.com/ionuttbara/electricon_automatics",
+            "linkId": "projects.electricon_automatics",
             "technologies": ["Python", "Automation"],
             "category": "Sites/Projects",
             "status": "Private"
@@ -67,7 +67,7 @@
         {
             "name": "Project Krotos",
             "description": "Advanced Activity Manager and system monitoring tool.",
-            "github": "https://github.com/ionuttbara/ProjectKrotos",
+            "linkId": "projects.project_krotos",
             "technologies": ["Experimental", "System"],
             "category": "System Utilities",
             "status": "Archived"
@@ -75,7 +75,7 @@
         {
             "name": "Project Anatolia",
             "description": "Comprehensive network analysis and utility suite.",
-            "github": "https://github.com/ionuttbara/ProjectAnatolia",
+            "linkId": "projects.project_anatolia",
             "technologies": ["Development", "Utilities"],
             "category": "System Utilities",
             "status": "Archived"
@@ -83,7 +83,7 @@
         {
             "name": "RPi TPM Project",
             "description": "Bachelor's Thesis: Secure Boot implementation for Raspberry Pi 3/4 using Trusted Platform Module (TPM).",
-            "github": "https://github.com/ionuttbara/rpi-tpm-prj",
+            "linkId": "projects.rpi_tpm_prj",
             "technologies": ["IoT", "Raspberry Pi", "Security", "TPM"],
             "category": "System Utilities",
             "status": "Completed"
@@ -91,7 +91,7 @@
         {
             "name": "Windows 11 Icon Style",
             "description": "A collection of icons and visual styles matching the Windows 11 aesthetic.",
-            "github": "https://github.com/ionuttbara/windows11-iconstyle",
+            "linkId": "projects.windows11_iconstyle",
             "technologies": ["Design", "Icons", "UI/UX"],
             "category": "Design",
             "status": "Active"
@@ -99,7 +99,7 @@
         {
             "name": "Realtek HDA Legacy",
             "description": "Preservation and configuration of legacy Realtek High Definition Audio drivers.",
-            "github": "https://github.com/ionuttbara/RealtekHDALegacy",
+            "linkId": "projects.realtek_hda_legacy",
             "technologies": ["Drivers", "Audio", "Legacy"],
             "category": "System Utilities",
             "status": "Maintenance"
@@ -117,7 +117,7 @@
         {
             "name": "Defender Remover",
             "description": "Un instrument folosit pentru a elimina Windows Defender în Windows 8.x, 10 și 11.",
-            "github": "https://github.com/ionuttbara/windows-defender-remover",
+            "linkId": "projects.defender_remover",
             "technologies": ["Batch", "PowerShell", "Windows"],
             "category": "System Utilities",
             "status": "Activ"
@@ -125,7 +125,7 @@
         {
             "name": "Melody Script Windows",
             "description": "Script complet de optimizare pentru Windows pentru îmbunătățirea performanței.",
-            "github": "https://github.com/ionuttbara/melody_windows",
+            "linkId": "projects.melody_windows",
             "technologies": ["PowerShell", "Optimizare"],
             "category": "System Utilities",
             "status": "Activ"
@@ -133,7 +133,7 @@
         {
             "name": "Edge Remover",
             "description": "Utilitar ușor pentru eliminarea completă a Microsoft Edge.",
-            "github": "https://github.com/ionuttbara/edge-remover",
+            "linkId": "projects.edge_remover",
             "technologies": ["Batch", "Windows"],
             "category": "System Utilities",
             "status": "Activ"
@@ -141,7 +141,7 @@
         {
             "name": "OneDrive Uninstaller",
             "description": "Script pentru dezinstalarea completă Microsoft OneDrive.",
-            "github": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "linkId": "projects.onedrive_uninstaller",
             "technologies": ["Batch", "Windows"],
             "category": "System Utilities",
             "status": "Mentenanță"
@@ -149,14 +149,14 @@
         {
             "name": "Magazin Electricon",
             "description": "Dezvoltare full-stack și management IT pentru Electricon (Angajator curent).",
-            "github": "https://www.electricon.ro",
+            "linkId": "projects.electricon_shop",
             "technologies": ["Web Design", "Management", "E-commerce"],
             "status": "Producție"
         },
         {
             "name": "Melody Android",
             "description": "Instrumente de optimizare și debloating pentru dispozitive Android.",
-            "github": "https://github.com/ionuttbara/melody_android",
+            "linkId": "projects.melody_android",
             "technologies": ["Shell", "Android", "ADB"],
             "category": "System Utilities",
             "status": "Activ"
@@ -164,7 +164,7 @@
         {
             "name": "Tauri Browser",
             "description": "Un browser web sigur și rapid construit folosind framework-ul Tauri.",
-            "github": "https://github.com/ionuttbara/tauri-browser",
+            "linkId": "projects.tauri_browser",
             "technologies": ["Rust", "Tauri", "JavaScript"],
             "category": "System Utilities",
             "status": "Prototip"
@@ -172,7 +172,7 @@
         {
             "name": "Automatizări Electricon",
             "description": "Scripturi de automatizare dezvoltate pentru procesele interne Electricon.",
-            "github": "https://github.com/ionuttbara/electricon_automatics",
+            "linkId": "projects.electricon_automatics",
             "technologies": ["Python", "Automatizare"],
             "category": "System Utilities",
             "status": "Privat"
@@ -180,7 +180,7 @@
         {
             "name": "Proiect Krotos",
             "description": "Manager de Activități avansat și instrument de monitorizare sistem.",
-            "github": "https://github.com/ionuttbara/ProjectKrotos",
+            "linkId": "projects.project_krotos",
             "technologies": ["Experimental", "Sistem"],
             "category": "System Utilities",
             "status": "Arhivat"
@@ -188,7 +188,7 @@
         {
             "name": "Proiect Anatolia",
             "description": "Pachet complet de instrumente și analiză de rețea.",
-            "github": "https://github.com/ionuttbara/ProjectAnatolia",
+            "linkId": "projects.project_anatolia",
             "technologies": ["Dezvoltare", "Utilitare"],
             "category": "System Utilities",
             "status": "Arhivat"
@@ -196,7 +196,7 @@
         {
             "name": "Proiect RPi TPM",
             "description": "Lucrare de Licență: Implementare Secure Boot pentru Raspberry Pi 3/4 folosind TPM.",
-            "github": "https://github.com/ionuttbara/rpi-tpm-prj",
+            "linkId": "projects.rpi_tpm_prj",
             "technologies": ["IoT", "Raspberry Pi", "Securitate", "TPM"],
             "category": "System Utilities",
             "status": "Finalizat"
@@ -204,7 +204,7 @@
         {
             "name": "Stil Icoane Windows 11",
             "description": "O colecție de icoane și stiluri vizuale potrivite cu estetica Windows 11.",
-            "github": "https://github.com/ionuttbara/windows11-iconstyle",
+            "linkId": "projects.windows11_iconstyle",
             "technologies": ["Design", "Icoane", "UI/UX"],
             "category": "System Utilities",
             "status": "Activ"
@@ -212,7 +212,7 @@
         {
             "name": "Realtek HDA Legacy",
             "description": "Păstrarea și configurarea driverelor audio Realtek High Definition vechi.",
-            "github": "https://github.com/ionuttbara/RealtekHDALegacy",
+            "linkId": "projects.realtek_hda_legacy",
             "technologies": ["Drivere", "Audio", "Legacy"],
             "category": "System Utilities",
             "status": "Mentenanță"
@@ -230,91 +230,91 @@
         {
             "name": "Defender Remover",
             "description": "Alat za uklanjanje Windows Defender-a u Windows 8.x, 10 i 11.",
-            "github": "https://github.com/ionuttbara/windows-defender-remover",
+            "linkId": "projects.defender_remover",
             "technologies": ["Batch", "PowerShell", "Windows"],
             "status": "Aktivan"
         },
         {
             "name": "Melody Script Windows",
             "description": "Sveobuhvatna skripta za optimizaciju Windows-a za bolje performanse.",
-            "github": "https://github.com/ionuttbara/melody_windows",
+            "linkId": "projects.melody_windows",
             "technologies": ["PowerShell", "Optimizacija"],
             "status": "Aktivan"
         },
         {
             "name": "Edge Remover",
             "description": "Lagan alat za potpuno uklanjanje Microsoft Edge-a.",
-            "github": "https://github.com/ionuttbara/edge-remover",
+            "linkId": "projects.edge_remover",
             "technologies": ["Batch", "Windows"],
             "status": "Aktivan"
         },
         {
             "name": "OneDrive Uninstaller",
             "description": "Skripta za potpunu deinstalaciju Microsoft OneDrive-a.",
-            "github": "https://github.com/ionuttbara/one-drive-uninstaller",
+            "linkId": "projects.onedrive_uninstaller",
             "technologies": ["Batch", "Windows"],
             "status": "Održavanje"
         },
         {
             "name": "Electricon Shop",
             "description": "Full-stack razvoj i IT menadžment za Electricon (Trenutni poslodavac).",
-            "github": "https://www.electricon.ro",
+            "linkId": "projects.electricon_shop",
             "technologies": ["Web Dizajn", "Menadžment", "E-commerce"],
             "status": "Produkcija"
         },
         {
             "name": "Melody Android",
             "description": "Alati za optimizaciju i uklanjanje bloatware-a za Android uređaje.",
-            "github": "https://github.com/ionuttbara/melody_android",
+            "linkId": "projects.melody_android",
             "technologies": ["Shell", "Android", "ADB"],
             "status": "Aktivan"
         },
         {
             "name": "Tauri Browser",
             "description": "Siguran i brz web preglednik izgrađen na Tauri framework-u.",
-            "github": "https://github.com/ionuttbara/tauri-browser",
+            "linkId": "projects.tauri_browser",
             "technologies": ["Rust", "Tauri", "JavaScript"],
             "status": "Prototip"
         },
         {
             "name": "Electricon Automatics",
             "description": "Skripte za automatizaciju razvijene za interne procese Electricon-a.",
-            "github": "https://github.com/ionuttbara/electricon_automatics",
+            "linkId": "projects.electricon_automatics",
             "technologies": ["Python", "Automatizacija"],
             "status": "Privatno"
         },
         {
             "name": "Projekat Krotos",
             "description": "Napredni upravitelj aktivnosti i alat za nadzor sistema.",
-            "github": "https://github.com/ionuttbara/ProjectKrotos",
+            "linkId": "projects.project_krotos",
             "technologies": ["Eksperimentalno", "Sistem"],
             "status": "Arhivirano"
         },
         {
             "name": "Projekat Anatolia",
             "description": "Sveobuhvatni paket mrežnih alata i analize.",
-            "github": "https://github.com/ionuttbara/ProjectAnatolia",
+            "linkId": "projects.project_anatolia",
             "technologies": ["Razvoj", "Alati"],
             "status": "Arhivirano"
         },
         {
             "name": "RPi TPM Projekat",
             "description": "Diplomski rad: Implementacija Secure Boot-a za Raspberry Pi 3/4 koristeći TPM.",
-            "github": "https://github.com/ionuttbara/rpi-tpm-prj",
+            "linkId": "projects.rpi_tpm_prj",
             "technologies": ["IoT", "Raspberry Pi", "Sigurnost"],
             "status": "Završeno"
         },
         {
             "name": "Windows 11 Icon Style",
             "description": "Kolekcija ikona i vizualnih stilova koji odgovaraju Windows 11 estetici.",
-            "github": "https://github.com/ionuttbara/windows11-iconstyle",
+            "linkId": "projects.windows11_iconstyle",
             "technologies": ["Dizajn", "Ikone", "UI/UX"],
             "status": "Aktivan"
         },
         {
             "name": "Realtek HDA Legacy",
             "description": "Očuvanje i konfiguracija starih Realtek High Definition Audio drajvera.",
-            "github": "https://github.com/ionuttbara/RealtekHDALegacy",
+            "linkId": "projects.realtek_hda_legacy",
             "technologies": ["Drajveri", "Audio", "Legacy"],
             "status": "Održavanje"
         },

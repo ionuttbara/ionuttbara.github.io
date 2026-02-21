@@ -1,11 +1,26 @@
 {
     "en-US": [
         {
+            "id": "digital-rights",
             "title": "Digital Rights in Romania",
             "excerpt": "Analysis of digital privacy and rights issues in Romanian politics...",
             "file": "content/usdacm/digital-rights.html"
         }
     ],
-    "ro-RO": [],
-    "gall": []
+    "ro-RO": [
+        {
+            "id": "digital-rights",
+            "title": "Drepturile Digitale în România",
+            "excerpt": "O analiză a confidențialității digitale și a drepturilor în politica românească...",
+            "file": "content/usdacm/digital-rights.html"
+        }
+    ],
+    "gall": [
+        {
+            "id": "digital-rights",
+            "title": "Digitalna prava u Rumuniji",
+            "excerpt": "Analiza problema digitalne privatnosti i prava u rumunskoj politici...",
+            "file": "content/usdacm/digital-rights.html"
+        }
+    ]
 }

@@ -886,7 +886,7 @@ body {
 }
 
 .hamburger-icon {
-  color: var(--color-text);
+  color: var(--color-secondary);
 }
 
 /* Mobile menu */
@@ -2322,3 +2322,357 @@ button:focus-visible,
     .carousel-btn { display: none; } /* On mobile, just swipe */
     .carousel-track { padding-right: 20px; } /* Space for scrolling */
 }
+
+/* Modificator pentru fereastra modala a blogului (mai lata) */
+.modal-content.modal-lg {
+    max-width: 1000px;
+}
+
+/* Stiluri pentru sectiunea de cod */
+.code-block-wrapper {
+    margin: var(--space-20) 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-8) var(--space-16);
+    background-color: var(--color-bg-1);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.code-block-header span {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.code-block-body {
+    background-color: #1e1e1e; /* Tematică dark pentru cod mereu */
+    padding: var(--space-16);
+    overflow-x: auto;
+}
+
+.code-block-body pre, 
+.code-block-body code {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: #d4d4d4; /* Text standard tip VS Code */
+    font-family: var(--font-family-mono);
+    font-size: 0.9rem;
+}
+
+/* Buton Copiere Cod */
+.btn-copy {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-copy:hover {
+    background-color: var(--color-secondary);
+}
+
+.btn-copy:active {
+    transform: scale(0.95);
+}
+
+/* Evidentiere Sintaxa de Baza */
+.syntax-keyword { color: #569cd6; font-weight: bold; }
+.syntax-string { color: #ce9178; }
+.syntax-comment { color: #6a9955; font-style: italic; }
+.syntax-function { color: #dcdcaa; }
+.syntax-variable { color: #9cdcfe; }
+.syntax-operator { color: #c586c0; }
+/* Dimensiuni personalizate pentru fereastra modala */
+
+/* Pentru Blog si USDACM (Articole lungi) */
+.modal-article {
+    max-width: 1000px !important;
+}
+
+/* Pentru Tools si Aplicatii (Test monitor, controller, etc.) */
+.modal-tool {
+    max-width: 750px !important;
+}
+
+/* Pentru butoanele de "View Info" (Informatii scurte) */
+.modal-info {
+    max-width: 500px !important;
+}
+
+
+.custom-video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 15px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-video-wrapper:hover .custom-video-controls,
+.custom-video-wrapper.paused .custom-video-controls {
+    opacity: 1;
+}
+
+.video-progress-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.1s ease;
+}
+
+.video-progress-container:hover {
+    height: 8px;
+}
+
+.video-progress-filled {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 5px;
+    width: 0%;
+    pointer-events: none;
+}
+
+.video-controls-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.video-controls-left, .video-controls-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.video-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.video-btn:hover {
+    color: var(--color-primary);
+}
+
+.video-time {
+    font-size: 0.85rem;
+    font-family: var(--font-family-mono);
+    user-select: none;
+    color: #ddd;
+}
+
+.video-volume-slider {
+    width: 70px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+/* --- Media Embeds (YouTube) --- */
+.youtube-embed-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    margin: var(--space-20) 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.youtube-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- Custom Local Video Player --- */
+.custom-video-wrapper {
+    position: relative;
+    width: 100%;
+    margin: var(--space-20) 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-video-wrapper video {
+    width: 100%;
+    max-height: 70vh; /* Nu permite video-ului să ocupe tot ecranul cand e in mod normal */
+    object-fit: contain; /* Esential: Nu taie marginile si pastreaza raportul original */
+    display: block;
+    cursor: pointer;
+}
+
+/* Fix Fullscreen: Pastreaza scale-ul, fundal negru, fara crop */
+.custom-video-wrapper:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+}
+.custom-video-wrapper:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+}
+.custom-video-wrapper:fullscreen video,
+.custom-video-wrapper:-webkit-full-screen video {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    object-fit: contain; /* Forteaza evitarea crop-ului */
+}
+
+/* Video Controls */
+.custom-video-controls {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 15px 20px 10px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0; transition: opacity 0.3s ease;
+    z-index: 10;
+}
+.custom-video-wrapper:hover .custom-video-controls,
+.custom-video-wrapper.paused .custom-video-controls { opacity: 1; }
+
+.video-progress-container {
+    width: 100%; height: 6px; background: rgba(255, 255, 255, 0.3); border-radius: 5px; cursor: pointer; position: relative; transition: height 0.1s ease;
+}
+.video-progress-container:hover { height: 8px; }
+.video-progress-filled {
+    height: 100%; background: var(--color-primary); border-radius: 5px; width: 0%; pointer-events: none;
+}
+
+.video-controls-main { display: flex; justify-content: space-between; align-items: center; color: #fff; }
+.video-controls-left, .video-controls-right { display: flex; align-items: center; gap: 15px; }
+
+.video-btn {
+    background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: color 0.2s;
+}
+.video-btn:hover { color: var(--color-primary); }
+.video-time { font-size: 0.85rem; font-family: var(--font-family-mono); user-select: none; color: #ddd; }
+.video-volume-slider { width: 70px; cursor: pointer; accent-color: var(--color-primary); }
+
+/* Buton Download Video as Anchor */
+a.video-btn { text-decoration: none; }
+
+/* --- Custom Local Audio Player --- */
+.custom-audio-wrapper {
+    background: var(--color-bg-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: var(--space-20) 0;
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap; /* Pentru ecrane foarte mici */
+}
+
+.audio-btn {
+    background: none; border: none; color: var(--color-text); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: color 0.2s;
+}
+.audio-btn:hover { color: var(--color-primary); }
+
+/* Permite focalizarea din tastatura fara un chenar urat */
+.custom-video-wrapper:focus,
+.custom-audio-wrapper:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* Facem bara audio mai usor de apasat adaugand o "zona" de click mai mare invizibila */
+.audio-progress-container {
+    flex-grow: 1; height: 6px; background: var(--color-border); border-radius: 5px; cursor: pointer; position: relative; min-width: 100px;
+}
+.audio-progress-container::before {
+    content: ''; position: absolute; top: -10px; bottom: -10px; left: 0; right: 0;
+}
+.audio-progress-filled {
+    height: 100%; background: var(--color-primary); border-radius: 5px; width: 0%; pointer-events: none;
+}
+
+.audio-time { font-size: 0.85rem; font-family: var(--font-family-mono); color: var(--color-text-secondary); min-width: 85px; text-align: center; }
+.audio-volume-slider { width: 60px; cursor: pointer; accent-color: var(--color-primary); }
+
+/* --- Navigare cu Iconite --- */
+.nav-link, .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.nav-link i { width: 16px; height: 16px; }
+.mobile-nav-link i { width: 18px; height: 18px; }
+
+/* --- Suprascrierea manuala a temelor (din Setari) --- */
+body.dark-theme {
+    --color-bg: #0f0f11;
+    --color-bg-1: #18181b;
+    --color-bg-2: #27272a;
+    --color-border: #3f3f46;
+    --color-text: #f4f4f5;
+    --color-text-secondary: #a1a1aa;
+}
+
+body.light-theme {
+    --color-bg: #f4f4f5;
+    --color-bg-1: #ffffff;
+    --color-bg-2: #e4e4e7;
+    --color-border: #d4d4d8;
+    --color-text: #18181b;
+    --color-text-secondary: #52525b;
+}
+
+/* Stil pentru Butonul de Setari */
+#settingsBtn:hover { color: var(--color-primary) !important; }

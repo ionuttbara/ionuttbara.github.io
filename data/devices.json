@@ -8,7 +8,7 @@
                 "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
                 "accessories": {
                     "Mures Setup": [
-                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "linkId": "devices.lg_icc_profile"}},
                         {"name": "Logitech Keyboard", "icon": "keyboard"},
                         {"name": "Logitech Mouse", "icon": "mouse"},
                         {"name": "Logitech Webcam", "icon": "webcam"},
@@ -21,7 +21,7 @@
                         {"name": "Canon Scanner", "icon": "scanner"}
                     ],
                     "Office Setup (Electricon)": [
-                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Color Profile", "linkId": "devices.lg_icc_profile"}},
                         {"name": "G613 Keyboard", "icon": "keyboard"},
                         {"name": "Baseus Docking Station", "icon": "dock"},
                         {"name": "G604 Mouse", "icon": "mouse"}
@@ -39,9 +39,9 @@
             },
             {
                 "type": "Tablet",
-                "model": "Samsung Galaxy Tab S9 Ultra 512GB",
+                "model": "Samsung Galaxy Tab S9+ 256GB",
                 "icon": "tablet",
-                "specs": { "Display": "14.6\" Dynamic AMOLED 2X", "Storage": "512GB", "RAM": "12GB", "Processor": "Snapdragon 8 Gen 2", "USB": "Type C 3.2 with OTG and Video Support", "OS": "Android 16" },
+                "specs": { "Display": "12.5\" Dynamic AMOLED 2X", "Storage": "256GB", "RAM": "12GB", "Processor": "Snapdragon 8 Gen 2", "USB": "Type C 3.2 with OTG and Video Support", "OS": "Android 16" },
                 "accessories": { 
                     "Tablet Accessories": [{"name": "SD Card", "icon": "sd-card"}] 
                 }
@@ -51,7 +51,7 @@
                 "model": "Nikon Z50ii",
                 "icon": "camera",
                 "hasConfiguration": true,
-                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "configLinkId": "devices.nikon_z50ii_config",
                 "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
                 "lenses": [
                     "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
@@ -73,7 +73,7 @@
             },
             {
                 "type": "Router",
-                "model": "TP-Link WiFi AX53",
+                "model": "TP-Link WiFi BE230",
                 "icon": "router",
                 "specs": { "Standard": "WiFi 6 (802.11ax)", "Speed": "AX3000", "Brand": "TP-Link", "Model": "AX53" },
                 "configuration": {
@@ -104,7 +104,7 @@
                 "icon": "gamepad-2", 
                 "description": "Modded gaming console for retro gaming",
                 "downloads": [
-                    { "label": "OPL2 Library Manager", "url": "https://koofr.net/dummy/opl2_manager" }
+                    { "label": "OPL2 Library Manager", "linkId": "devices.opl2_manager" }
                 ]
             },
             { 
@@ -112,27 +112,15 @@
                 "icon": "cpu", 
                 "description": "Pentium 4 with Windows XP for retro computing",
                 "downloads": [
-                    { "label": "Driver Package", "url": "https://koofr.net/dummy/fujitsu_drivers" },
-                    { "label": "Software", "url": "https://koofr.net/dummy/fujitsu_software" }
+                    { "label": "Driver Package", "linkId": "devices.fujitsu_drivers" },
+                    { "label": "Software", "linkId": "devices.fujitsu_software" }
                 ]
             }
         ],
         "cameraProfiles": {
-            "U1": {
-                "name": "U1 Profile",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U2": {
-                "name": "U2 Profile",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U3": {
-                "name": "U3 Profile",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            }
+            "U1": { "name": "U1 Profile", "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U2": { "name": "U2 Profile", "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U3": { "name": "U3 Profile", "pictureSettings": { "iso": "800", "sensitivity": "Manual (not auto)", "mode": "Not M-mode", "color": "Neutral", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "ON" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } }
         }
     },
     "ro-RO": {
@@ -144,7 +132,7 @@
                 "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
                 "accessories": {
                     "Configurația Mures": [
-                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "linkId": "devices.lg_icc_profile"}},
                         {"name": "Tastatură Logitech", "icon": "keyboard"},
                         {"name": "Mouse Logitech", "icon": "mouse"},
                         {"name": "Webcam Logitech", "icon": "webcam"},
@@ -157,7 +145,7 @@
                         {"name": "Scanner Canon", "icon": "scanner"}
                     ],
                     "Configurația Birou (Electricon)": [
-                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "Monitor LG", "icon": "monitor", "download": {"label": "Profil Culoare", "linkId": "devices.lg_icc_profile"}},
                         {"name": "Tastatură G613", "icon": "keyboard"},
                         {"name": "Stație de andocare Baseus", "icon": "dock"},
                         {"name": "Mouse G604", "icon": "mouse"}
@@ -185,7 +173,7 @@
                 "model": "Nikon Z50ii",
                 "icon": "camera",
                 "hasConfiguration": true,
-                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "configLinkId": "devices.nikon_z50ii_config",
                 "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
                 "lenses": [
                     "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
@@ -238,7 +226,7 @@
                 "icon": "gamepad-2", 
                 "description": "Consolă de jocuri modificată pentru gaming retro",
                 "downloads": [
-                    { "label": "Manager OPL2", "url": "https://koofr.net/dummy/opl2_manager" }
+                    { "label": "Manager OPL2", "linkId": "devices.opl2_manager" }
                 ]
             },
             { 
@@ -246,27 +234,15 @@
                 "icon": "cpu", 
                 "description": "Pentium 4 cu Windows XP pentru retro",
                 "downloads": [
-                    { "label": "Pachet Drivere", "url": "https://koofr.net/dummy/fujitsu_drivers" },
-                    { "label": "Software", "url": "https://koofr.net/dummy/fujitsu_software" }
+                    { "label": "Pachet Drivere", "linkId": "devices.fujitsu_drivers" },
+                    { "label": "Software", "linkId": "devices.fujitsu_software" }
                 ]
             }
         ],
         "cameraProfiles": {
-            "U1": {
-                "name": "Profil U1",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U2": {
-                "name": "Profil U2",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U3": {
-                "name": "Profil U3",
-                "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            }
+            "U1": { "name": "Profil U1", "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U2": { "name": "Profil U2", "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U3": { "name": "Profil U3", "pictureSettings": { "iso": "800", "sensitivity": "Manual (nu auto)", "mode": "Nu mod M", "color": "Neutru", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "PORNIT" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } }
         }
     },
     "gall": {
@@ -278,7 +254,7 @@
                 "specs": { "CPU": "AMD Ryzen 7745", "GPU": "NVIDIA RTX 4060 Laptop 8GB", "RAM": "64GB DDR5", "Storage": "2x4TB SSD NVMe", "OS": "Windows 11 Pro" },
                 "accessories": {
                     "Mures Setup": [
-                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "linkId": "devices.lg_icc_profile"}},
                         {"name": "Logitech Tastatura", "icon": "keyboard"},
                         {"name": "Logitech Miš", "icon": "mouse"},
                         {"name": "Logitech Veb kamera", "icon": "webcam"},
@@ -291,7 +267,7 @@
                         {"name": "Canon Skener", "icon": "scanner"}
                     ],
                     "Office Setup (Electricon)": [
-                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "url": "https://koofr.net/dummy/lg_icc_profile"}},
+                        {"name": "LG Monitor", "icon": "monitor", "download": {"label": "Profil boja", "linkId": "devices.lg_icc_profile"}},
                         {"name": "G613 Tastatura", "icon": "keyboard"},
                         {"name": "Baseus Docking Station", "icon": "dock"},
                         {"name": "G604 Miš", "icon": "mouse"}
@@ -319,7 +295,7 @@
                 "model": "Nikon Z50ii",
                 "icon": "camera",
                 "hasConfiguration": true,
-                "configUrl": "https://koofr.net/dummy/nikon_z50ii_config.bin",
+                "configLinkId": "devices.nikon_z50ii_config",
                 "specs": { "Sensor": "20.9MP APS-C CMOS", "Video": "10-bit 4K UHD", "Images": "10-bit HEIC", "Mount": "Nikon Z" },
                 "lenses": [
                     "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
@@ -372,7 +348,7 @@
                 "icon": "gamepad-2", 
                 "description": "Modificirana gaming konzola za retro gaming",
                 "downloads": [
-                    { "label": "OPL2 Biblioteka", "url": "https://koofr.net/dummy/opl2_manager" }
+                    { "label": "OPL2 Biblioteka", "linkId": "devices.opl2_manager" }
                 ]
             },
             { 
@@ -380,27 +356,15 @@
                 "icon": "cpu", 
                 "description": "Pentium 4 sa Windows XP za retro",
                 "downloads": [
-                    { "label": "Paket Drajvera", "url": "https://koofr.net/dummy/fujitsu_drivers" },
-                    { "label": "Softver", "url": "https://koofr.net/dummy/fujitsu_software" }
+                    { "label": "Paket Drajvera", "linkId": "devices.fujitsu_drivers" },
+                    { "label": "Softver", "linkId": "devices.fujitsu_software" }
                 ]
             }
         ],
         "cameraProfiles": {
-            "U1": {
-                "name": "U1 Profil",
-                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U2": {
-                "name": "U2 Profil",
-                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            },
-            "U3": {
-                "name": "U3 Profil",
-                "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" },
-                "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" }
-            }
+            "U1": { "name": "U1 Profil", "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U2": { "name": "U2 Profil", "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } },
+            "U3": { "name": "U3 Profil", "pictureSettings": { "iso": "800", "sensitivity": "Ručno (ne auto)", "mode": "Ne M-mode", "color": "Neutralan", "whiteBalance": "Auto", "format": "RAW+HEIC", "colorSpace": "HLG", "longExposure": "UKLJUČENO" }, "videoSettings": { "iso": "10,000", "format": "HEVC 10-bit", "resolution": "4K@60fps" } }
         }
     }
 }
