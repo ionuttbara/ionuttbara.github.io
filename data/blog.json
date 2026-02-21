@@ -1,16 +1,26 @@
 {
     "en-US": [
         {
+            "id": "optimization",
             "title": "Windows Optimization Best Practices",
-            "excerpt": "Learn the most effective techniques for optimizing Windows performance...",
+            "excerpt": "Learn the most effective techniques for optimizing Windows performance with automation scripts...",
             "file": "content/blog/optimization.html"
-        },
-        {
-            "title": "AI in System Administration",
-            "excerpt": "How artificial intelligence is revolutionizing IT management...",
-            "file": "content/blog/ai-sysadmin.html"
         }
     ],
-    "ro-RO": [],
-    "gall": []
+    "ro-RO": [
+        {
+            "id": "optimization",
+            "title": "Cele mai bune practici pentru optimizare Windows",
+            "excerpt": "Află cele mai eficiente tehnici pentru optimizarea performanței Windows cu ajutorul scripturilor automate...",
+            "file": "content/blog/optimization.html"
+        }
+    ],
+    "gall": [
+        {
+            "id": "optimization",
+            "title": "Najbolje prakse za optimizaciju Windowsa",
+            "excerpt": "Naučite najefikasnije tehnike za optimizaciju Windows performansi sa automatizovanim skriptama...",
+            "file": "content/blog/optimization.html"
+        }
+    ]
 }

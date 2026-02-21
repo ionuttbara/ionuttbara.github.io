@@ -1,21 +1,26 @@
 {
     "en-US": {
-        "summary": "I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I'm also an active advocate against corruption in my hometown of Damuc, Neamt.",
+        "summary": "I'm a passionate IT professional working at Electricon, managing IT operations and products. Currently pursuing my Master's in Artificial Intelligence at UMFST Tg Mures. I firmly believe in open-source software, digital privacy, and using technology to drive local transparency and anti-corruption initiatives in my hometown of Damuc, Neamt.",
         "faq": [
-            { "question": "What is your primary area of expertise?", "answer": "I specialize in IT management, Windows system administration, and artificial intelligence development." },
-            { "question": "Do you work remotely?", "answer": "Yes, I offer both remote and on-site services depending on the project requirements." }
+            { "question": "What is your primary area of expertise?", "answer": "I specialize in IT management, Windows system administration, automation scripts, and artificial intelligence development." },
+            { "question": "Do you work remotely?", "answer": "Yes, I offer both remote and on-site services depending on the project requirements. My main setups are in Târgu Mureș and Dămuc." },
+            { "question": "What is USDACM?", "answer": "USDACM represents my political commentary and activism project focused on local administration transparency in Dămuc." }
         ]
     },
     "ro-RO": {
-        "summary": "Sunt un profesionist IT pasionat care lucrează la Electricon...",
+        "summary": "Sunt un profesionist IT pasionat care lucrează la Electricon, gestionând operațiuni IT. În prezent urmez un Master în Inteligență Artificială la UMFST Tg Mureș. Cred cu tărie în software-ul open-source, confidențialitatea digitală și utilizarea tehnologiei pentru a promova transparența locală și inițiativele anticorupție în comuna mea natală, Dămuc, Neamț.",
         "faq": [
-            { "question": "Care este domeniul dvs. principal?", "answer": "Sunt specializat în managementul IT..." }
+            { "question": "Care este domeniul principal de expertiză?", "answer": "Sunt specializat în management IT, administrare sisteme Windows, automatizări și dezvoltare AI." },
+            { "question": "Lucrezi de la distanță?", "answer": "Da, ofer servicii atât remote cât și la fața locului (Târgu Mureș / Dămuc), în funcție de proiect." },
+            { "question": "Ce este USDACM?", "answer": "USDACM reprezintă proiectul meu de comentariu politic și activism axat pe transparența administrației locale din Dămuc." }
         ]
     },
     "gall": {
-        "summary": "Strastan sam IT profesionalac koji radi u Electricon-u...",
+        "summary": "Strastan sam IT profesionalac koji radi u Electricon-u. Trenutno na Master studiju iz Umjetne Inteligencije na UMFST Tg Mures. Čvrsto vjerujem u open-source, digitalnu privatnost i korištenje tehnologije za transparentnost i borbu protiv korupcije u mom rodnom gradu Damuc, Neamt.",
         "faq": [
-            { "question": "Koja je vaša primarna oblast ekspertize?", "answer": "Specijalizovan sam za IT menadžment..." }
+            { "question": "Koja je vaša primarna oblast ekspertize?", "answer": "Specijalizovan sam za IT menadžment, administraciju Windows sistema i razvoj umjetne inteligencije." },
+            { "question": "Radite li na daljinu?", "answer": "Da, nudim usluge na daljinu i na terenu (Târgu Mureș / Dămuc) ovisno o zahtjevima projekta." },
+            { "question": "Što je USDACM?", "answer": "USDACM predstavlja moj projekt političkog komentara i aktivizma usmjeren na transparentnost u Damucu." }
         ]
     }
 }

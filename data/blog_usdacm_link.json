@@ -1,0 +1,10 @@
+{
+    "optimization": {
+        "file": "content/blog/optimization.html",
+        "title": "Windows Optimization Best Practices"
+    },
+    "digital-rights": {
+        "file": "content/usdacm/digital-rights.html",
+        "title": "Digital Rights in Romania"
+    }
+}

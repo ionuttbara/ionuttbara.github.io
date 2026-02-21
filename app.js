@@ -1,38 +1,53 @@
 // --- Global State ---
 let currentLanguage = localStorage.getItem('currentLanguage') || 'en-US';
-let currentPage = localStorage.getItem('currentPage') || 'home';
-let cachedData = {}; // Cache for JSON data
-let allDownloadsData = []; // Store data for searching
-let downloadLinkMap = {}; // Dynamic link map
-let globalDeviceData = []; // Store device data for modal access
-let iconCollection = {}; // Store fetched icons
-let servicesDataCache = []; // Store services data for calculators
+let currentPage = 'home';
+let cachedData = {}; 
+let allDownloadsData = []; 
+let allToolsData = []; 
+let downloadLinkMap = {}; 
+let globalDeviceData = []; 
+let iconCollection = {}; 
+let servicesDataCache = []; 
+let linksData = {}; 
 
 // --- Initialization ---
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('App Initializing...');
     
-    // Set initial state
     document.documentElement.setAttribute('lang', currentLanguage.split('-')[0]);
     document.documentElement.setAttribute('data-lang', currentLanguage);
     const langSelector = document.getElementById('languageSelector');
     if(langSelector) langSelector.value = currentLanguage;
 
     calculateAge();
-    setInterval(calculateAge, 60000); // Check every minute
+    setInterval(calculateAge, 60000);
     
     setupEventListeners();
     
-    // Load essential data first
+    await loadLinks(); 
     await loadIcons();
     await loadTranslations();
     
-    // Load content for the active page
-    await loadPageContent(currentPage);
+    let hashPage = window.location.hash.substring(1);
+    const validPages = ['home', 'about', 'blog', 'projects', 'cv', 'services', 'usdacm', 'devices', 'downloads', 'tools', 'contact'];
     
-    // Show the page
+    if (hashPage && validPages.includes(hashPage)) {
+        currentPage = hashPage;
+    } else {
+        currentPage = localStorage.getItem('currentPage') || 'home';
+    }
+
+    await loadPageContent(currentPage);
     showPage(currentPage);
+});
+
+window.addEventListener('hashchange', async () => {
+    let hashPage = window.location.hash.substring(1);
+    if (hashPage && hashPage !== currentPage) {
+        await loadPageContent(hashPage);
+        showPage(hashPage);
+    }
 });
 
 // --- Core Data Fetching ---
@@ -40,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function fetchJSON(filename) {
     if (cachedData[filename]) return cachedData[filename];
     try {
-        const response = await fetch(`data/${filename}`);
+        const response = await fetch(`data/${filename}?v=${new Date().getTime()}`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         cachedData[filename] = data;
@@ -51,19 +66,43 @@ async function fetchJSON(filename) {
     }
 }
 
+async function loadLinks() {
+    const data = await fetchJSON('links.json');
+    if (data) linksData = data;
+}
+
+function resolveLink(linkId) {
+    if (!linkId) return '#';
+    if (linkId.startsWith('http') || linkId.startsWith('tools/')) return linkId;
+    const parts = linkId.split('.');
+    if (parts.length === 2 && linksData[parts[0]] && linksData[parts[0]][parts[1]]) {
+        return linksData[parts[0]][parts[1]];
+    }
+    return '#'; 
+}
+
 async function loadIcons() {
     const icons = await fetchJSON('icon-collection.json');
-    if (icons) {
-        iconCollection = icons;
-    }
+    if (icons) iconCollection = icons;
 }
 
 async function loadTranslations() {
-    // Basic UI translations that don't require a full JSON file
     const uiData = {
-        'en-US': { siteName: "Ionut Bara", nav: { home: "Home", about: "About", blog: "Blog", projects: "Projects", cv: "CV", services: "Services", usdacm: "USDACM", devices: "Devices", downloads: "Downloads", tools: "Tools", contact: "Contact" } },
-        'ro-RO': { siteName: "Ionut Bara", nav: { home: "Acasă", about: "Despre", blog: "Blog", projects: "Proiecte", cv: "CV", services: "Servicii", usdacm: "USDACM", devices: "Dispozitive", downloads: "Descărcări", tools: "Unelte", contact: "Contact" } },
-        'gall': { siteName: "Ionut Bara", nav: { home: "Početna", about: "O meni", blog: "Blog", projects: "Projekti", cv: "CV", services: "Usluge", usdacm: "USDACM", devices: "Uređaji", downloads: "Preuzimanja", tools: "Alati", contact: "Kontakt" } }
+        'en-US': { 
+            siteName: "Ionut Bara", 
+            nav: { home: "Home", about: "About", blog: "Blog", projects: "Projects", cv: "CV", services: "Services", usdacm: "USDACM", devices: "Devices", downloads: "Downloads", tools: "Tools", contact: "Contact" },
+            cv: { downloadPdf: "Download CV" }
+        },
+        'ro-RO': { 
+            siteName: "Ionut Bara", 
+            nav: { home: "Acasă", about: "Despre", blog: "Blog", projects: "Proiecte", cv: "CV", services: "Servicii", usdacm: "USDACM", devices: "Dispozitive", downloads: "Descărcări", tools: "Unelte", contact: "Contact" },
+            cv: { downloadPdf: "Descarcă CV" }
+        },
+        'gall': { 
+            siteName: "Ionut Bara", 
+            nav: { home: "Početna", about: "O meni", blog: "Blog", projects: "Projekti", cv: "CV", services: "Usluge", usdacm: "USDACM", devices: "Uređaji", downloads: "Preuzimanja", tools: "Alati", contact: "Kontakt" },
+            cv: { downloadPdf: "Preuzmi CV" }
+        }
     };
     updateUIText(uiData[currentLanguage]);
 }
@@ -71,9 +110,19 @@ async function loadTranslations() {
 function updateUIText(data) {
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        // Simple dot notation walker
         const val = key.split('.').reduce((obj, i) => obj ? obj[i] : null, data);
-        if (val) el.textContent = val;
+        if (val) {
+            if (el.tagName === 'SPAN' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'BUTTON' || el.tagName === 'A') {
+                if (el.querySelector('i')) {
+                    const iconHTML = el.querySelector('i').outerHTML;
+                    el.innerHTML = iconHTML + " " + val;
+                } else {
+                    el.textContent = val;
+                }
+            } else {
+                el.textContent = val;
+            }
+        }
     });
 }
 
@@ -81,6 +130,7 @@ function updateUIText(data) {
 
 async function loadPageContent(page) {
     switch (page) {
+        case 'home': await loadHome(); break;
         case 'about': await loadAbout(); break;
         case 'projects': await loadProjects(); break;
         case 'cv': await loadCV(); break;
@@ -94,7 +144,24 @@ async function loadPageContent(page) {
     }
 }
 
-// --- Section Loaders (Standard) ---
+// --- Section Loaders ---
+
+async function loadHome() {
+    const data = await fetchJSON('home.json');
+    if (!data) return;
+    const content = data[currentLanguage] || data['en-US'];
+    
+    const container = document.getElementById('homePresentation');
+    if (container && content.presentation) {
+        container.innerHTML = content.presentation.map(item => `
+            <div class="presentation-item ${item.cssClass || ''}">
+                <h3><i data-lucide="${item.icon}" style="margin-right: 8px;"></i>${item.title}</h3>
+                <p>${item.description}</p>
+            </div>
+        `).join('');
+        if(window.lucide) window.lucide.createIcons();
+    }
+}
 
 async function loadAbout() {
     const data = await fetchJSON('about.json');
@@ -115,15 +182,12 @@ async function loadAbout() {
     }
 }
 
-// --- Helper Function pentru Carusel ---
 function renderCarouselSection(containerId, items, itemRenderer) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
-    container.innerHTML = ''; // Curăță containerul
-    container.className = ''; // Reset grid class if exists
+    container.innerHTML = ''; 
+    container.className = ''; 
 
-    // 1. Grupare elemente după categorie
     const groups = items.reduce((acc, item) => {
         const cat = item.category || 'General';
         if (!acc[cat]) acc[cat] = [];
@@ -131,10 +195,8 @@ function renderCarouselSection(containerId, items, itemRenderer) {
         return acc;
     }, {});
 
-    // 2. Generare HTML pentru fiecare categorie
     Object.keys(groups).forEach((category, index) => {
         const sectionId = `${containerId}-carousel-${index}`;
-        
         const section = document.createElement('div');
         section.className = 'category-section';
         
@@ -148,100 +210,105 @@ function renderCarouselSection(containerId, items, itemRenderer) {
                 <button class="carousel-btn next" onclick="scrollCarousel('${sectionId}', 320)"><i data-lucide="chevron-right"></i></button>
             </div>
         `;
-        
         container.appendChild(section);
     });
-
     if(window.lucide) window.lucide.createIcons();
 }
 
-// Funcție globală pentru scroll (trebuie să fie pe window)
 window.scrollCarousel = function(id, offset) {
     const track = document.getElementById(id);
-    if (track) {
-        track.scrollBy({ left: offset, behavior: 'smooth' });
-    }
+    if (track) track.scrollBy({ left: offset, behavior: 'smooth' });
 };
 
-// --- Load Projects (Actualizat) ---
 async function loadProjects() {
     const data = await fetchJSON('projects.json');
     if (!data) return;
     const projects = data[currentLanguage] || data['en-US'];
+    const container = document.getElementById('projectsContainer');
 
-    renderCarouselSection('projectsContainer', projects, (p) => {
-        // Logica de status (identică cu cea veche)
-        let statusColor = 'var(--color-text-secondary)';
-        let statusBg = 'var(--color-bg-2)';
-        const status = p.status || 'Active';
+    if (container) {
+        // Setăm clasa pentru a folosi grid-ul definit în CSS (similar cu downloads)
+        container.className = 'downloads-grid'; 
         
-        if (['Active', 'Activ', 'Aktivan'].includes(status)) {
-            statusColor = 'var(--color-success)'; statusBg = 'rgba(var(--color-success-rgb), 0.1)';
-        } else if (['Production', 'Producție', 'Produkcija', 'Completed', 'Finalizat'].includes(status)) {
-             statusColor = '#3b82f6'; statusBg = 'rgba(59, 130, 246, 0.1)';
-        } else if (['Private', 'Privat'].includes(status)) {
-             statusColor = 'var(--color-warning)'; statusBg = 'rgba(var(--color-warning-rgb), 0.1)';
-        }
+        container.innerHTML = projects.map(p => {
+            let statusColor = 'var(--color-text-secondary)';
+            let statusBg = 'var(--color-bg-2)';
+            const status = p.status || 'Active';
+            
+            if (['Active', 'Activ', 'Aktivan'].includes(status)) {
+                statusColor = 'var(--color-success)'; statusBg = 'rgba(var(--color-success-rgb), 0.1)';
+            } else if (['Production', 'Producție', 'Produkcija', 'Completed', 'Finalizat'].includes(status)) {
+                 statusColor = '#3b82f6'; statusBg = 'rgba(59, 130, 246, 0.1)';
+            }
 
-        const statusBadge = `<span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; color: ${statusColor}; background: ${statusBg}; margin-bottom: 10px;">${status}</span>`;
+            const statusBadge = `<span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; color: ${statusColor}; background: ${statusBg}; margin-bottom: 10px;">${status}</span>`;
 
-        let actionBtn = '';
-        if (p.github) {
-            actionBtn = `<a href="${p.github}" target="_blank" class="btn btn--outline btn--sm"><i class="btn-icon" data-lucide="external-link"></i> View</a>`;
-        }
+            let actionBtn = '';
+            const projLink = p.linkId || p.github || p.url; 
+            if (projLink) {
+                const url = resolveLink(projLink);
+                actionBtn = `<a href="${url}" target="_blank" class="btn btn--outline btn--full-width btn--sm"><i class="btn-icon" data-lucide="external-link"></i> View Project</a>`;
+            }
 
-        // Returnăm HTML-ul cardului
-        return `
-        <div class="project-card">
-            <div style="display:flex; justify-content:space-between; align-items:start;">
-                <h3 class="project-title" style="font-size: 1.1rem;">${p.name}</h3>
-                ${statusBadge}
-            </div>
-            <p class="project-description" style="font-size: 0.9rem;">${p.description}</p>
-            <div class="project-tech">
-                ${p.technologies.slice(0, 3).map(t => `<span class="tech-tag">${t}</span>`).join('')}
-                ${p.technologies.length > 3 ? `<span class="tech-tag">+${p.technologies.length - 3}</span>` : ''}
-            </div>
-            <div class="project-actions">
-                ${actionBtn}
-            </div>
-        </div>`;
-    });
+            return `
+            <div class="download-card">
+                <div style="display:flex; justify-content:space-between; align-items:start;">
+                    <h3 class="download-title" style="font-size: 1.1rem;">${p.name}</h3>
+                    ${statusBadge}
+                </div>
+                <p class="download-description" style="font-size: 0.9rem;">${p.description}</p>
+                <div class="project-tech" style="margin-bottom: 15px;">
+                    ${p.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                </div>
+                <div style="margin-top: auto;">
+                    ${actionBtn}
+                </div>
+            </div>`;
+        }).join('');
+        
+        if(window.lucide) window.lucide.createIcons();
+    }
 }
 
-// --- Load Tools (Actualizat) ---
 async function loadTools() {
     const data = await fetchJSON('tools.json');
     if (!data) return;
-    
     allToolsData = data[currentLanguage] || data['en-US'];
+    const container = document.getElementById('toolsContainer');
     
-    // Eliminăm search-ul vechi dacă există, sau îl adaptăm (opțional)
-    // Pentru carusel, search-ul e mai complicat, așa că momentan îl ignorăm pentru simplitate 
-    // sau îl lăsăm doar să filtreze global.
-    
-    renderCarouselSection('toolsContainer', allToolsData, (t) => {
-        const btnAction = t.type === 'internal' 
-            ? `onclick="fetchAndShowContent('${t.name}', '${t.url}')"`
-            : `href="${t.url}" target="_blank"`;
-        
-        const btnClass = t.type === 'internal' ? 'btn--secondary' : 'btn--primary';
-        const btnText = t.type === 'download' ? 'Download' : 'Open';
-        const icon = t.icon || 'box';
+    if (container) {
+        container.className = 'downloads-grid';
 
-        return `
-        <div class="download-card">
-            <div class="download-header">
-                <i class="download-icon" data-lucide="${icon}"></i>
-                <h3 class="download-title" style="font-size: 1.1rem;">${t.name}</h3>
-            </div>
-            <p class="download-description" style="font-size: 0.9rem;">${t.description}</p>
-            <a ${btnAction} class="btn ${btnClass} btn--full-width btn--sm">
-                ${t.type === 'external' ? '<i class="btn-icon" data-lucide="external-link"></i>' : ''}
-                ${btnText}
-            </a>
-        </div>`;
-    });
+        container.innerHTML = allToolsData.map(t => {
+            const rawLink = t.linkId || t.url || t.link; 
+            const toolUrl = resolveLink(rawLink);
+
+            const btnAction = t.type === 'internal' 
+                ? `onclick="fetchAndShowContent('${t.name}', '${toolUrl}', 'modal-tool')"`
+                : `href="${toolUrl}" target="_blank"`;
+            
+            const btnClass = t.type === 'internal' ? 'btn--secondary' : 'btn--primary';
+            const btnText = t.type === 'download' ? 'Download' : 'Open Tool';
+            const icon = t.icon || 'box';
+
+            return `
+            <div class="download-card">
+                <div class="download-header">
+                    <i class="download-icon" data-lucide="${icon}"></i>
+                    <h3 class="download-title" style="font-size: 1.1rem;">${t.name}</h3>
+                </div>
+                <p class="download-description" style="font-size: 0.9rem;">${t.description}</p>
+                <div style="margin-top: auto;">
+                    <a ${btnAction} class="btn ${btnClass} btn--full-width btn--sm" style="cursor: pointer;">
+                        ${t.type === 'external' ? '<i class="btn-icon" data-lucide="external-link"></i>' : ''}
+                        ${btnText}
+                    </a>
+                </div>
+            </div>`;
+        }).join('');
+
+        if(window.lucide) window.lucide.createIcons();
+    }
 }
 
 async function loadCV() {
@@ -265,16 +332,28 @@ async function loadCV() {
              </div>`
         ).join('');
 
+        const licenseLabel = currentLanguage === 'ro-RO' ? 'Permis Conducere' : (currentLanguage === 'gall' ? 'Vozačka Dozvola' : 'Driving License');
+
         container.innerHTML = `
             <div class="cv-section">
                 <h2><i data-lucide="user" style="margin-right:10px;"></i> Personal Information</h2>
                 <div class="cv-item" style="border:none;">
                     <h3 style="font-size:1.8rem; margin-bottom:15px;">${cv.personalInfo.name}</h3>
                     
+                    ${cv.personalInfo.aboutMe ? `<p style="margin-bottom: 20px; font-size: 1rem; color: var(--color-text-secondary); line-height: 1.6;">${cv.personalInfo.aboutMe}</p>` : ''}
+                    
                     <div style="display:grid; gap:20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
                         <div>
                             <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">Locations</h4>
                             ${locationsHtml}
+                            
+                            <div style="margin-top: 15px;">
+                                <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">${licenseLabel}</h4>
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <i data-lucide="car" style="width:16px; color:var(--color-primary)"></i> 
+                                    <span>${cv.personalInfo.drivingLicense || 'None'}</span>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h4 style="font-size:0.9rem; color:var(--color-text-secondary); margin-bottom:8px; text-transform:uppercase;">Contact</h4>
@@ -294,7 +373,7 @@ async function loadCV() {
                 ${cv.education.map(edu => `
                     <div class="cv-item">
                         <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;">
-                            <h3 style="color:var(--color-primary);">${edu.degree}</h3>
+                            <h3 style="color:var(--color-primary); display:flex; align-items:center; gap:8px;"><i data-lucide="book-open" style="width: 18px;"></i> ${edu.degree}</h3>
                             <span class="cv-period" style="background:var(--color-bg-2); padding:2px 8px; border-radius:12px;">${edu.period}</span>
                         </div>
                         <p class="cv-institution" style="font-weight:bold; margin-top:5px;">${edu.institution}</p>
@@ -310,7 +389,6 @@ async function loadCV() {
                 <h2><i data-lucide="briefcase" style="margin-right:10px;"></i> Experience</h2>
                 ${cv.experience.map(exp => {
                     let duration = "";
-                    // Check if this is the current Electricon job to calculate duration
                     if ((exp.company.includes("Electricon") || exp.company.includes("Elektricon")) && exp.period.includes("Present") || exp.period.includes("Prezent") || exp.period.includes("Danas")) {
                         duration = `(${calculateJobDuration("2024-10-01")})`;
                     }
@@ -318,7 +396,7 @@ async function loadCV() {
                     return `
                     <div class="cv-item">
                         <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;">
-                            <h3 style="color:var(--color-primary);">${exp.position}</h3>
+                            <h3 style="color:var(--color-primary); display:flex; align-items:center; gap:8px;"><i data-lucide="building" style="width: 18px;"></i> ${exp.position}</h3>
                             <span class="cv-period" style="background:var(--color-bg-2); padding:2px 8px; border-radius:12px;">${exp.period} ${duration}</span>
                         </div>
                         <p class="cv-institution" style="font-weight:bold; margin-top:5px;">${exp.company}</p>
@@ -331,21 +409,21 @@ async function loadCV() {
             <div class="cv-section">
                 <h2><i data-lucide="code" style="margin-right:10px;"></i> Skills</h2>
                 <div class="skills-grid">
-                    ${cv.skills.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    ${cv.skills.map(skill => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="check-circle-2" style="width: 14px; color: var(--color-primary);"></i> ${skill}</div>`).join('')}
                 </div>
             </div>
             
             <div class="cv-section">
                 <h2><i data-lucide="award" style="margin-right:10px;"></i> Certificates</h2>
                 <div class="skills-grid">
-                    ${cv.certificates ? cv.certificates.map(cert => `<div class="skill-item">${cert}</div>`).join('') : ''}
+                    ${cv.certificates ? cv.certificates.map(cert => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="award" style="width: 14px; color: var(--color-primary);"></i> ${cert}</div>`).join('') : ''}
                 </div>
             </div>
             
              <div class="cv-section">
                 <h2><i data-lucide="languages" style="margin-right:10px;"></i> Languages</h2>
                 <div class="skills-grid">
-                    ${cv.languages ? cv.languages.map(lang => `<div class="skill-item">${lang}</div>`).join('') : ''}
+                    ${cv.languages ? cv.languages.map(lang => `<div class="skill-item" style="display:flex; align-items:center; justify-content:center; gap:6px;"><i data-lucide="globe" style="width: 14px; color: var(--color-primary);"></i> ${lang}</div>`).join('') : ''}
                 </div>
             </div>
         `;
@@ -353,27 +431,22 @@ async function loadCV() {
     }
 }
 
-
 function calculateJobDuration(startDateString) {
     const start = new Date(startDateString); 
     const now = new Date();
     let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-    
     if (months < 1) return currentLanguage === 'ro-RO' ? 'Mai puțin de o lună' : 'Less than a month';
-    
     const years = Math.floor(months / 12);
     const remainingMonths = months % 12;
-    
     let result = "";
-    if (years > 0) {
-        result += `${years} ${years === 1 ? (currentLanguage === 'ro-RO' ? 'an' : 'year') : (currentLanguage === 'ro-RO' ? 'ani' : 'years')}`;
-    }
+    if (years > 0) result += `${years} ${years === 1 ? (currentLanguage === 'ro-RO' ? 'an' : 'year') : (currentLanguage === 'ro-RO' ? 'ani' : 'years')}`;
     if (remainingMonths > 0) {
         if (result) result += " ";
         result += `${remainingMonths} ${remainingMonths === 1 ? (currentLanguage === 'ro-RO' ? 'lună' : 'month') : (currentLanguage === 'ro-RO' ? 'luni' : 'months')}`;
     }
     return result;
 }
+
 async function loadBlog() {
     const data = await fetchJSON('blog.json');
     if (!data) return;
@@ -381,8 +454,9 @@ async function loadBlog() {
     const container = document.getElementById('blogContainer');
 
     if (container) {
+        // AICI folosim clasa "modal-article"
         container.innerHTML = posts.map(post => `
-            <div class="blog-post-preview" onclick="fetchAndShowContent('${post.title}', '${post.file}')">
+            <div class="blog-post-preview" onclick="fetchAndShowContent('${post.title}', '${post.file}', 'modal-article')">
                 <h3 class="blog-post-title">${post.title}</h3>
                 <p class="blog-post-excerpt">${post.excerpt}</p>
                 <span class="blog-read-more">Read More</span>
@@ -398,44 +472,278 @@ async function loadUSDACM() {
     const container = document.getElementById('usdacmContainer');
 
     if (container) {
-        container.innerHTML = posts.map(post => `
-            <div class="blog-post-preview" onclick="fetchAndShowContent('${post.title}', '${post.file}')">
+        const damucLinksHtml = `
+            <div class="project-card" style="margin-bottom: 32px;">
+                <h3 class="project-title" style="margin-bottom: 16px;"><i data-lucide="landmark"></i> Informații Publice - Comuna Dămuc</h3>
+                <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                    <li><i data-lucide="external-link" style="width: 14px; margin-right: 8px; color: var(--color-primary);"></i><a href="https://transparenta.eu/entities/2614422" target="_blank" style="color: var(--color-text);">Execuții bugetare (transparenta.eu)</a></li>
+                    <li><i data-lucide="external-link" style="width: 14px; margin-right: 8px; color: var(--color-primary);"></i><a href="https://extranet.anaf.mfinante.gov.ro/anaf/extranet/EXECUTIEBUGETARA/Rapoarte_Forexe/" target="_blank" style="color: var(--color-text);">Execuții bugetare (ANAF)</a></li>
+                    <li><i data-lucide="external-link" style="width: 14px; margin-right: 8px; color: var(--color-primary);"></i><a href="https://comunadamuc.ro/monitorul-oficial-local/alte-documente/procesele-verbale-ale-sedintelor-autoritatii-deliberative/" target="_blank" style="color: var(--color-text);">Procese verbale ședințe</a></li>
+                    <li><i data-lucide="external-link" style="width: 14px; margin-right: 8px; color: var(--color-primary);"></i><a href="https://comunadamuc.ro/monitorul-oficial-local/dispozitiile-autoritatii-executive/" target="_blank" style="color: var(--color-text);">Dispoziții primar</a></li>
+                    <li><i data-lucide="external-link" style="width: 14px; margin-right: 8px; color: var(--color-primary);"></i><a href="https://sicap.ai/autoritate/2614422" target="_blank" style="color: var(--color-text);">Achiziții Publice (SICAP)</a></li>
+                </ul>
+            </div>
+        `;
+
+        // AICI folosim clasa "modal-article"
+        const postsHtml = posts.map(post => `
+            <div class="blog-post-preview" onclick="fetchAndShowContent('${post.title}', '${post.file}', 'modal-article')">
                 <h3 class="blog-post-title">${post.title}</h3>
                 <p class="blog-post-excerpt">${post.excerpt}</p>
                 <span class="blog-read-more">Read More</span>
             </div>
         `).join('');
+
+        container.innerHTML = damucLinksHtml + postsHtml;
+        if(window.lucide) window.lucide.createIcons();
     }
 }
 
-// --- Special Content Loader (Text + Scripts) ---
+// ---- LOGICA PENTRU MODAL SI STILURI SEPARATE ----
 
-async function fetchAndShowContent(title, filePath) {
+function showContentModal(title, htmlContent, modalClass = '') {
+    const modal = document.getElementById('contentModal');
+    const modalContentWrapper = modal.querySelector('.modal-content');
+    
+    // Curatam clasele vechi
+    modalContentWrapper.classList.remove('modal-article', 'modal-tool', 'modal-info');
+    
+    // Adaugam clasa dorita pentru stil (daca exista)
+    if (modalClass) {
+        modalContentWrapper.classList.add(modalClass);
+    }
+
+    document.getElementById('contentModalTitle').textContent = title;
+    document.getElementById('contentModalBody').innerHTML = htmlContent;
+    modal.classList.remove('hidden');
+}
+
+window.fetchAndShowContent = async function(title, filePath, modalClass = '') {
     try {
         const response = await fetch(filePath);
-        if (!response.ok) throw new Error('Content not found');
+        if (!response.ok) throw new Error('Content not found on server');
         const htmlContent = await response.text();
         
-        const modal = document.getElementById('contentModal');
-        document.getElementById('contentModalTitle').textContent = title;
-        const body = document.getElementById('contentModalBody');
-        body.innerHTML = htmlContent;
+        window.showContentModal(title, htmlContent, modalClass);
         
-        // Execute scripts embedded in fetched HTML (Essential for Tools)
+        const body = document.getElementById('contentModalBody');
         const scripts = body.getElementsByTagName("script");
         for (let i = 0; i < scripts.length; i++) {
-            eval(scripts[i].innerText);
+            try { eval(scripts[i].innerText); } 
+            catch(err) { console.error("Script execution error:", err); }
         }
 
-        modal.classList.remove('hidden');
         if(window.lucide) window.lucide.createIcons();
-    } catch (e) {
-        console.error(e);
-        showContentModal('Error', '<p>Could not load content.</p>');
-    }
-}
 
-// --- Services Logic (Calculators) ---
+        // Imediat ce s-a incarcat HTML-ul, initializam playerele Media Custom
+        window.initCustomVideoPlayers();
+        window.initCustomAudioPlayers();
+
+    } catch (e) {
+        console.error("Modal fetch error:", e);
+        window.showContentModal('Error', '<p>Could not load content.</p>', '');
+    }
+};
+window.initCustomVideoPlayers = function() {
+    const wrappers = document.querySelectorAll('.custom-video-wrapper');
+    wrappers.forEach(wrapper => {
+        const video = wrapper.querySelector('video');
+        const playBtn = wrapper.querySelector('.video-play-btn');
+        const rewindBtn = wrapper.querySelector('.video-rewind-btn');
+        const forwardBtn = wrapper.querySelector('.video-forward-btn');
+        const volumeBtn = wrapper.querySelector('.video-volume-btn');
+        const volumeSlider = wrapper.querySelector('.video-volume-slider');
+        const timeDisplay = wrapper.querySelector('.video-time');
+        const progressContainer = wrapper.querySelector('.video-progress-container');
+        const progressFilled = wrapper.querySelector('.video-progress-filled');
+        const fullscreenBtn = wrapper.querySelector('.video-fullscreen-btn');
+        const pipBtn = wrapper.querySelector('.video-pip-btn');
+
+        if(!video) return;
+
+        const formatTime = (time) => {
+            if (isNaN(time)) return "0:00";
+            const min = Math.floor(time / 60);
+            const sec = Math.floor(time % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        };
+
+        const togglePlay = () => {
+            if(video.paused) { 
+                video.play(); 
+                wrapper.classList.remove('paused'); 
+                playBtn.innerHTML = '<i data-lucide="pause"></i>'; 
+            } else { 
+                video.pause(); 
+                wrapper.classList.add('paused'); 
+                playBtn.innerHTML = '<i data-lucide="play"></i>'; 
+            }
+            if(window.lucide) window.lucide.createIcons();
+        };
+
+        playBtn.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
+
+        // Dublu click pe video pentru Fullscreen
+        video.addEventListener('dblclick', () => {
+            if (!document.fullscreenElement) {
+                if(wrapper.requestFullscreen) wrapper.requestFullscreen();
+                else if(wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+            } else {
+                if(document.exitFullscreen) document.exitFullscreen();
+            }
+        });
+
+        // Suport Tastatura (Săgeți pentru Seek, Spațiu pentru Play/Pause)
+        wrapper.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') { video.currentTime = Math.min(video.duration, video.currentTime + 10); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { video.currentTime = Math.max(0, video.currentTime - 10); e.preventDefault(); }
+            if (e.key === ' ') { togglePlay(); e.preventDefault(); }
+        });
+
+        rewindBtn.addEventListener('click', () => { video.currentTime = Math.max(0, video.currentTime - 10); });
+        forwardBtn.addEventListener('click', () => { video.currentTime = Math.min(video.duration, video.currentTime + 10); });
+
+        video.addEventListener('timeupdate', () => {
+            const percent = (video.currentTime / video.duration) * 100;
+            progressFilled.style.width = `${percent}%`;
+            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        });
+
+        video.addEventListener('loadedmetadata', () => {
+            timeDisplay.textContent = `0:00 / ${formatTime(video.duration)}`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        });
+
+        volumeBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            volumeBtn.innerHTML = video.muted ? '<i data-lucide="volume-x"></i>' : '<i data-lucide="volume-2"></i>';
+            volumeSlider.value = video.muted ? 0 : video.volume;
+            if(window.lucide) window.lucide.createIcons();
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            video.volume = e.target.value;
+            video.muted = video.volume === 0;
+            volumeBtn.innerHTML = video.muted ? '<i data-lucide="volume-x"></i>' : '<i data-lucide="volume-2"></i>';
+            if(window.lucide) window.lucide.createIcons();
+        });
+
+        if (pipBtn) {
+            pipBtn.addEventListener('click', async () => {
+                try {
+                    if (document.pictureInPictureElement) {
+                        await document.exitPictureInPicture();
+                    } else if (video.requestPictureInPicture) {
+                        await video.requestPictureInPicture();
+                    }
+                } catch (err) {
+                    console.error("PiP not supported or failed", err);
+                }
+            });
+        }
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if(wrapper.requestFullscreen) wrapper.requestFullscreen();
+                else if(wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+            } else {
+                if(document.exitFullscreen) document.exitFullscreen();
+            }
+        });
+    });
+};
+
+window.initCustomAudioPlayers = function() {
+    const wrappers = document.querySelectorAll('.custom-audio-wrapper');
+    wrappers.forEach(wrapper => {
+        const audio = wrapper.querySelector('audio');
+        const playBtn = wrapper.querySelector('.audio-play-btn');
+        const progressContainer = wrapper.querySelector('.audio-progress-container');
+        const progressFilled = wrapper.querySelector('.audio-progress-filled');
+        const timeDisplay = wrapper.querySelector('.audio-time');
+        const volumeBtn = wrapper.querySelector('.audio-volume-btn');
+        const volumeSlider = wrapper.querySelector('.audio-volume-slider');
+        const speedBtn = wrapper.querySelector('.audio-speed-btn');
+
+        if(!audio) return;
+
+        const formatTime = (time) => {
+            if (isNaN(time)) return "0:00";
+            const min = Math.floor(time / 60);
+            const sec = Math.floor(time % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        };
+
+        const togglePlay = () => {
+            if(audio.paused) { 
+                audio.play(); 
+                playBtn.innerHTML = '<i data-lucide="pause"></i>'; 
+            } else { 
+                audio.pause(); 
+                playBtn.innerHTML = '<i data-lucide="play"></i>'; 
+            }
+            if(window.lucide) window.lucide.createIcons();
+        };
+
+        playBtn.addEventListener('click', togglePlay);
+
+        // Suport tastatură (Săgeți pt derulare 10s și Spațiu pt pauză)
+        wrapper.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 10); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - 10); e.preventDefault(); }
+            if (e.key === ' ') { togglePlay(); e.preventDefault(); }
+        });
+
+        // Suport viteză de redare
+        if (speedBtn) {
+            const speeds = [1, 1.25, 1.5, 2];
+            let currentSpeedIdx = 0;
+            speedBtn.addEventListener('click', () => {
+                currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
+                audio.playbackRate = speeds[currentSpeedIdx];
+                speedBtn.textContent = speeds[currentSpeedIdx] + 'x';
+            });
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressFilled.style.width = `${percent}%`;
+            timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = pos * audio.duration;
+        });
+
+        volumeBtn.addEventListener('click', () => {
+            audio.muted = !audio.muted;
+            volumeBtn.innerHTML = audio.muted ? '<i data-lucide="volume-x"></i>' : '<i data-lucide="volume-2"></i>';
+            volumeSlider.value = audio.muted ? 0 : audio.volume;
+            if(window.lucide) window.lucide.createIcons();
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+            audio.muted = audio.volume === 0;
+            volumeBtn.innerHTML = audio.muted ? '<i data-lucide="volume-x"></i>' : '<i data-lucide="volume-2"></i>';
+            if(window.lucide) window.lucide.createIcons();
+        });
+    });
+};
+
+// --------------------------------------------------
 
 async function loadServices() {
     const data = await fetchJSON('services.json');
@@ -637,13 +945,9 @@ function generateReceiptHtml(currency) {
     </div>`;
 }
 
-// --- Calculator Event Handlers ---
-
 window.toggleWindowsOptions = function(val) {
     const winGroup = document.getElementById('winVerGroup');
-    if(winGroup) {
-        winGroup.style.display = val === 'win' ? 'block' : 'none';
-    }
+    if(winGroup) winGroup.style.display = val === 'win' ? 'block' : 'none';
     calculateOSPrice();
 }
 
@@ -657,31 +961,26 @@ window.updateNetLimits = function() {
 }
 
 function setupCalculatorListeners() {
-    // OS Calculator
     const osIds = ['windowsVersion', 'officeVersion', 'adobeVersion', 'autocadVersion', 'customPrograms'];
     osIds.forEach(id => {
         const el = document.getElementById(id);
         if(el) el.addEventListener('change', calculateOSPrice);
     });
 
-    // Networking
     const netEl = document.getElementById('equipmentPrice');
     if(netEl) netEl.addEventListener('input', calculateNetworkingPrice);
 
-    // Phone Repair
     const repairEl = document.getElementById('partPrice');
     const repairType = document.getElementById('repairType');
     if(repairEl) repairEl.addEventListener('input', calculateRepairPrice);
     if(repairType) repairType.addEventListener('change', calculateRepairPrice);
 
-    // Components
     const compIds = ['ramDDR', 'ramGB', 'diskType', 'diskSize'];
     compIds.forEach(id => {
         const el = document.getElementById(id);
         if(el) el.addEventListener('input', calculateComponentPrice);
     });
     
-    // Initialize toggles
     const osFamily = document.querySelector('input[name="osFamily"]:checked');
     if (osFamily) toggleWindowsOptions(osFamily.value);
 }
@@ -700,7 +999,6 @@ function calculateOSPrice() {
     
     let total = baseLabor + winCost + officeCost + adobeCost + autocadCost + (customCount * customPrice);
     
-    // Update Receipt
     const receiptDiv = document.getElementById('receiptItems');
     if (receiptDiv) {
         let html = `<div style="display:flex;justify-content:space-between;"><span>Base Labor</span><span>${baseLabor}${currency}</span></div>`;
@@ -756,17 +1054,13 @@ function calculateComponentPrice() {
     const gb = parseFloat(document.getElementById('ramGB')?.value || 0);
     const currency = currentLanguage === 'ro-RO' ? 'lei' : '€';
     
-    // RAM Formula: (GB * (DDR * 50)) / 10 * 1.35
     let rawRamTotalLei = (gb * (ddr * 50));
-    rawRamTotalLei = rawRamTotalLei / 10; // Apply reduction
+    rawRamTotalLei = rawRamTotalLei / 10;
     let ramPriceInLei = rawRamTotalLei * 1.35;
 
     let finalRamPrice;
-    if (currentLanguage === 'ro-RO') {
-        finalRamPrice = ramPriceInLei;
-    } else {
-        finalRamPrice = ramPriceInLei / 5.2; // Euro conversion
-    }
+    if (currentLanguage === 'ro-RO') finalRamPrice = ramPriceInLei;
+    else finalRamPrice = ramPriceInLei / 5.2;
 
     const diskSelect = document.getElementById('diskType');
     const pricePerUnit = parseFloat(diskSelect.value);
@@ -775,21 +1069,14 @@ function calculateComponentPrice() {
     
     let diskPrice = 0;
     if (diskInput > 0) {
-        if (unitType === 'GB') {
-            // SSD: Input is GB, price is per TB (~1000GB)
-            diskPrice = (diskInput / 1000) * pricePerUnit;
-        } else {
-            // HDD: Input is TB, price is per TB
-            diskPrice = diskInput * pricePerUnit;
-        }
+        if (unitType === 'GB') diskPrice = (diskInput / 1000) * pricePerUnit;
+        else diskPrice = diskInput * pricePerUnit;
     }
     
     document.getElementById('ramPrice').textContent = `${finalRamPrice.toFixed(2)}${currency}`;
     document.getElementById('diskPrice').textContent = `${diskPrice.toFixed(2)}${currency}`;
     document.getElementById('compTotal').textContent = `${(finalRamPrice + diskPrice).toFixed(2)}${currency}`;
 }
-
-// --- Devices Logic ---
 
 async function loadDevices() {
     const data = await fetchJSON('devices.json');
@@ -810,7 +1097,7 @@ async function loadDevices() {
                 </div>
                 <div class="device-actions">
                      ${d.accessories ? `<button class="btn btn--secondary btn--sm" onclick="showAccessories('${d.model}')">Accessories</button>` : ''}
-                     ${d.hasConfiguration ? `<button class="btn btn--primary btn--sm" onclick="showCameraConfiguration('${d.configUrl || ''}')">Configuration</button>` : ''}
+                     ${d.hasConfiguration ? `<button class="btn btn--primary btn--sm" onclick="showCameraConfiguration('${resolveLink(d.configLinkId || d.configUrl)}')">Configuration</button>` : ''}
                 </div>
             </div>
         `).join('');
@@ -823,14 +1110,12 @@ async function loadDevices() {
                 <i class="collection-icon" data-lucide="${item.icon}"></i>
                 <div class="collection-name">${item.name}</div>
                 <p>${item.description}</p>
-                ${item.downloads ? `<div style="display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap;">${item.downloads.map(dl => `<a href="${dl.url}" target="_blank" class="btn btn--outline btn--sm" style="font-size: 11px; padding: 4px 8px;"><i class="btn-icon" data-lucide="download" style="width: 12px; height: 12px;"></i> ${dl.label}</a>`).join('')}</div>` : ''}
+                ${item.downloads ? `<div style="display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap;">${item.downloads.map(dl => `<a href="${resolveLink(dl.linkId || dl.url)}" target="_blank" class="btn btn--outline btn--sm" style="font-size: 11px; padding: 4px 8px;"><i class="btn-icon" data-lucide="download" style="width: 12px; height: 12px;"></i> ${dl.label}</a>`).join('')}</div>` : ''}
             </div>
         `).join('');
     }
     lucide.createIcons();
 }
-
-// --- Downloads Logic ---
 
 async function loadDownloads() {
     const data = await fetchJSON('downloads.json');
@@ -859,6 +1144,17 @@ async function loadDownloads() {
     }
 }
 
+// LOGICĂ ADAUGATĂ PENTRU BUTOANELE VIEW INFO
+window.openDownloadInfo = function(id) {
+    const item = allDownloadsData.find(d => d.id === id);
+    if (item) {
+        const content = item.infoHtml || `<p>${item.infoText}</p>`;
+        // Folosim clasa 'modal-info'
+        showContentModal(item.name, content, 'modal-info');
+        if(window.lucide) window.lucide.createIcons();
+    }
+};
+
 function renderDownloadList(query) {
     const container = document.getElementById('downloadsContainer');
     const lowerQuery = query.toLowerCase();
@@ -871,65 +1167,50 @@ function renderDownloadList(query) {
     }
 
     container.innerHTML = filteredData.map(d => {
+        const srcLink = resolveLink(d.sourceLinkId || d.sourceUrl);
+        const dlLink = resolveLink(d.downloadLinkId || d.downloadUrl);
+        const watchLink = resolveLink(d.watchLinkId || d.watchUrl);
+        const singleLink = resolveLink(d.linkId || d.url);
+
         if (d.type === 'selector') {
-            downloadLinkMap[d.id] = d.links;
-            return `<div class="download-card" id="card-${d.id}"><div class="download-header"><i class="download-icon" data-lucide="disc"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-selectors" style="margin-bottom: 16px;"><div style="margin-bottom: 8px;"><label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Version:</label><div class="btn-group" id="version-group-${d.id}" style="display: flex; gap: 4px; flex-wrap: wrap;">${d.options.versions.map(ver => `<button class="btn btn--sm ${ver === d.defaultVersion ? 'btn--primary' : 'btn--outline'}" onclick="updateDownloadSelection('${d.id}', 'version', '${ver}', this)">${ver}</button>`).join('')}</div></div><div><label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Source:</label><div class="btn-group" id="source-group-${d.id}" style="display: flex; gap: 4px; flex-wrap: wrap;">${d.options.sources.map(src => `<button class="btn btn--sm ${src === d.defaultSource ? 'btn--primary' : 'btn--outline'}" onclick="updateDownloadSelection('${d.id}', 'source', '${src}', this)">${src}</button>`).join('')}</div></div></div><a href="${d.links[d.defaultVersion][d.defaultSource]}" id="download-btn-${d.id}" target="_blank" class="btn btn--primary btn--full-width" data-version="${d.defaultVersion}" data-source="${d.defaultSource}"><i class="btn-icon" data-lucide="download"></i> Download</a></div>`;
+            d.resolvedLinks = {};
+            const sourceMap = d.linkIds || d.links || {}; 
+            for (const ver in sourceMap) {
+                d.resolvedLinks[ver] = {};
+                for (const src in sourceMap[ver]) {
+                    d.resolvedLinks[ver][src] = resolveLink(sourceMap[ver][src]);
+                }
+            }
+            downloadLinkMap[d.id] = d.resolvedLinks;
+            const defaultLink = (d.resolvedLinks[d.defaultVersion] && d.resolvedLinks[d.defaultVersion][d.defaultSource]) ? d.resolvedLinks[d.defaultVersion][d.defaultSource] : '#';
+            
+            return `<div class="download-card" id="card-${d.id}"><div class="download-header"><i class="download-icon" data-lucide="disc"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-selectors" style="margin-bottom: 16px;"><div style="margin-bottom: 8px;"><label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Version:</label><div class="btn-group" id="version-group-${d.id}" style="display: flex; gap: 4px; flex-wrap: wrap;">${d.options.versions.map(ver => `<button class="btn btn--sm ${ver === d.defaultVersion ? 'btn--primary' : 'btn--outline'}" onclick="updateDownloadSelection('${d.id}', 'version', '${ver}', this)">${ver}</button>`).join('')}</div></div><div><label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 4px;">Source:</label><div class="btn-group" id="source-group-${d.id}" style="display: flex; gap: 4px; flex-wrap: wrap;">${d.options.sources.map(src => `<button class="btn btn--sm ${src === d.defaultSource ? 'btn--primary' : 'btn--outline'}" onclick="updateDownloadSelection('${d.id}', 'source', '${src}', this)">${src}</button>`).join('')}</div></div></div><a href="${defaultLink}" id="download-btn-${d.id}" target="_blank" class="btn btn--primary btn--full-width" data-version="${d.defaultVersion}" data-source="${d.defaultSource}"><i class="btn-icon" data-lucide="download"></i> Download</a></div>`;
+        
         } else if (d.type === 'video') {
-            return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="video"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;"><a href="${d.watchUrl}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="play-circle"></i> Watch</a><a href="${d.sourceUrl}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="globe"></i> Damuc Source</a></div></div>`;
+            let infoBtn = '';
+            if (d.infoText || d.infoHtml) {
+                // AICI e adăugat butonul care apelează openDownloadInfo
+                infoBtn = `<button class="btn btn--outline" style="flex: 1;" onclick="openDownloadInfo('${d.id}')"><i class="btn-icon" data-lucide="info"></i> View info</button>`;
+            }
+            return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="video"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;"><a href="${watchLink}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="play-circle"></i> Watch</a><a href="${srcLink}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="globe"></i> Source</a>${infoBtn}</div></div>`;
+        
         } else if (d.type === 'folder') {
-             return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="folder"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><a href="${d.url}" target="_blank" class="btn btn--primary btn--full-width"><i class="btn-icon" data-lucide="external-link"></i> Show list</a></div>`;
+             return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="folder"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><a href="${singleLink}" target="_blank" class="btn btn--primary btn--full-width"><i class="btn-icon" data-lucide="external-link"></i> Show list</a></div>`;
+        
         } else if (d.type === 'github-info') {
-             return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="package"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-meta"><span>Version: ${d.version}</span><span>Size: ${d.size}</span></div><div style="display: flex; gap: 8px; flex-wrap: wrap;"><a href="${d.sourceUrl}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="info"></i> View informations</a><a href="${d.downloadUrl}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="download"></i> Download</a></div></div>`;
+             let infoBtn = `<a href="${srcLink}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="github"></i> Source</a>`;
+             if (d.infoText || d.infoHtml) {
+                 // AICI e adăugat butonul care apelează openDownloadInfo
+                 infoBtn = `<button class="btn btn--outline" style="flex: 1;" onclick="openDownloadInfo('${d.id}')"><i class="btn-icon" data-lucide="info"></i> View info</button>`;
+             }
+             return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="package"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-meta"><span>Version: ${d.version}</span><span>Size: ${d.size}</span></div><div style="display: flex; gap: 8px; flex-wrap: wrap;">${infoBtn}<a href="${dlLink}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="download"></i> Download</a></div></div>`;
+        
         } else {
-            return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="download"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-meta"><span>Version: ${d.version}</span><span>Size: ${d.size}</span></div><div style="display: flex; gap: 8px; flex-wrap: wrap;"><a href="${d.sourceUrl}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="code"></i> Source</a><a href="${d.downloadUrl}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="download"></i> Download</a></div></div>`;
+            return `<div class="download-card"><div class="download-header"><i class="download-icon" data-lucide="download"></i><h3 class="download-title">${d.name}</h3></div><p class="download-description">${d.description}</p><div class="download-meta"><span>Version: ${d.version}</span><span>Size: ${d.size}</span></div><div style="display: flex; gap: 8px; flex-wrap: wrap;"><a href="${srcLink}" target="_blank" class="btn btn--outline" style="flex: 1;"><i class="btn-icon" data-lucide="code"></i> Source</a><a href="${dlLink}" target="_blank" class="btn btn--primary" style="flex: 1;"><i class="btn-icon" data-lucide="download"></i> Download</a></div></div>`;
         }
     }).join('');
     lucide.createIcons();
 }
-
-// --- Tools Logic ---
-
-
-function renderToolsList(query) {
-    const container = document.getElementById('toolsContainer');
-    const lowerQuery = query.toLowerCase();
-    
-    const filteredData = allToolsData.filter(t => 
-        t.name.toLowerCase().includes(lowerQuery) || 
-        t.description.toLowerCase().includes(lowerQuery)
-    );
-
-    if (filteredData.length === 0) {
-        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--color-text-secondary);">No tools found matching "${query}"</div>`;
-        return;
-    }
-
-    container.innerHTML = filteredData.map(t => {
-        const btnAction = t.type === 'internal' 
-            ? `onclick="fetchAndShowContent('${t.name}', '${t.url}')"`
-            : `href="${t.url}" target="_blank"`;
-        
-        const btnClass = t.type === 'internal' ? 'btn--secondary' : 'btn--primary';
-        const btnText = t.type === 'download' ? 'Download' : 'Open Tool';
-        const icon = t.icon || 'box';
-
-        return `
-        <div class="download-card">
-            <div class="download-header">
-                <i class="download-icon" data-lucide="${icon}"></i>
-                <h3 class="download-title">${t.name}</h3>
-            </div>
-            <p class="download-description">${t.description}</p>
-            <a ${btnAction} class="btn ${btnClass} btn--full-width">
-                ${t.type === 'external' ? '<i class="btn-icon" data-lucide="external-link"></i>' : ''}
-                ${btnText}
-            </a>
-        </div>`;
-    }).join('');
-    
-    if(window.lucide) window.lucide.createIcons();
-}
-// --- Contact Logic ---
 
 async function loadContact() {
     const data = await fetchJSON('contact.json');
@@ -940,8 +1221,6 @@ async function loadContact() {
     if (gamingContainer && data.gamingProfiles) gamingContainer.innerHTML = data.gamingProfiles.map(g => generateGamingLink(g)).join('');
     lucide.createIcons();
 }
-
-// --- Helper Functions ---
 
 function getIconHtml(iconName) {
     if (iconCollection[iconName]) {
@@ -957,10 +1236,11 @@ function generateSocialLink(item) {
 
 function generateGamingLink(item) {
     let iconHtml = getIconHtml(item.icon);
+    if(item.url) {
+        return `<a href="${item.url}" target="_blank" class="contact-item" style="text-decoration:none; transition: transform 0.2s;">${iconHtml}<span>${item.name}: ${item.username} <i data-lucide="external-link" style="width: 12px; margin-left: 4px; color: var(--color-primary);"></i></span></a>`;
+    }
     return `<div class="contact-item">${iconHtml}<span>${item.name}: ${item.username}</span></div>`;
 }
-
-// --- Modal & Interaction Handlers ---
 
 window.showAccessories = function(deviceModel) {
     const device = globalDeviceData.find(d => d.model === deviceModel);
@@ -978,7 +1258,10 @@ window.showAccessories = function(deviceModel) {
                             const iconSvg = iconCollection[item.icon] 
                                 ? `<svg viewBox="0 0 24 24" width="24" height="24" style="color: var(--color-text);">${iconCollection[item.icon]}</svg>`
                                 : `<i data-lucide="${item.icon}"></i>`;
-                            return `<div class="accessory-item" style="background: var(--color-bg-2); padding: 8px; border-radius: 6px; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; position: relative;">${iconSvg}<span>${item.name}</span>${item.download ? `<a href="${item.download.url}" target="_blank" class="btn btn--primary btn--sm" style="font-size: 10px; padding: 2px 6px; margin-top: 4px; width: 100%; text-align: center;"><i class="btn-icon" data-lucide="download" style="width: 10px; height: 10px;"></i> ${item.download.label}</a>` : ''}</div>`;
+                            
+                            const downloadUrl = item.download ? resolveLink(item.download.linkId || item.download.url) : '#';
+
+                            return `<div class="accessory-item" style="background: var(--color-bg-2); padding: 8px; border-radius: 6px; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; position: relative;">${iconSvg}<span>${item.name}</span>${item.download ? `<a href="${downloadUrl}" target="_blank" class="btn btn--primary btn--sm" style="font-size: 10px; padding: 2px 6px; margin-top: 4px; width: 100%; text-align: center;"><i class="btn-icon" data-lucide="download" style="width: 10px; height: 10px;"></i> ${item.download.label}</a>` : ''}</div>`;
                         }).join('')}
                     </div>
                 </div>
@@ -1000,7 +1283,7 @@ window.showCameraConfiguration = function(configUrl) {
             <div class="camera-config-header">
                 <h3>Nikon Z50ii Camera Configuration Profiles</h3>
                 <div class="camera-download-section">
-                    <a href="${configUrl || '#'}" target="_blank" class="btn btn--primary" ${!configUrl ? 'disabled' : ''}>
+                    <a href="${configUrl || '#'}" target="_blank" class="btn btn--primary" ${!configUrl || configUrl === '#' ? 'disabled' : ''}>
                         <i class="btn-icon" data-lucide="download"></i>
                         Download .bin Configuration File
                     </a>
@@ -1041,6 +1324,32 @@ window.updateDownloadSelection = function(id, type, value, btnElement) {
     }
 };
 
+window.copyCode = function(btnElement, codeId) {
+    const codeEl = document.getElementById(codeId);
+    if(codeEl) {
+        // Obținem textul pur (fără tag-urile de sintaxă)
+        const textToCopy = codeEl.textContent || codeEl.innerText;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalHtml = btnElement.innerHTML;
+            btnElement.innerHTML = `<i data-lucide="check" style="width: 14px; margin-right: 4px; color: var(--color-success);"></i> Copied!`;
+            
+            // Re-renderizam noile iconițe inserate
+            if(window.lucide) window.lucide.createIcons();
+            
+            // Resetăm butonul după 2 secunde
+            setTimeout(() => {
+                btnElement.innerHTML = originalHtml;
+                if(window.lucide) window.lucide.createIcons();
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy code: ', err);
+            btnElement.innerHTML = `<i data-lucide="x" style="width: 14px; margin-right: 4px; color: var(--color-error);"></i> Error`;
+            if(window.lucide) window.lucide.createIcons();
+        });
+    }
+};
+
 function setupEventListeners() {
     const ls = document.getElementById('languageSelector');
     if (ls) {
@@ -1073,6 +1382,8 @@ function setupEventListeners() {
 function showPage(pageId) {
     currentPage = pageId;
     localStorage.setItem('currentPage', pageId);
+    window.location.hash = pageId; 
+    
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.getElementById(pageId);
     if(target) { target.classList.add('active'); loadPageContent(pageId); }
@@ -1096,12 +1407,151 @@ function calculateAge() {
     if(el) el.textContent = age;
 }
 
-function showContentModal(title, htmlContent) {
-    const modal = document.getElementById('contentModal');
-    document.getElementById('contentModalTitle').textContent = title;
-    document.getElementById('contentModalBody').innerHTML = htmlContent;
-    modal.classList.remove('hidden');
+// --- PARSER PENTRU COMPONENTE BLOG ---
+function parseBlogComponents(container) {
+    if (!container) return;
+
+    // 1. Transformare Video Local
+    container.querySelectorAll('.blog-video').forEach(el => {
+        const src = el.getAttribute('data-src');
+        const poster = el.getAttribute('data-poster') || '';
+        el.outerHTML = `
+            <div class="custom-video-wrapper paused" tabindex="0">
+                <video src="${src}" poster="${poster}" preload="metadata"></video>
+                <div class="custom-video-controls">
+                    <div class="video-progress-container"><div class="video-progress-filled"></div></div>
+                    <div class="video-controls-main">
+                        <div class="video-controls-left">
+                            <button class="video-btn video-play-btn" title="Play/Pause"><i data-lucide="play"></i></button>
+                            <button class="video-btn video-rewind-btn" title="Rewind 10s"><i data-lucide="rotate-ccw"></i></button>
+                            <button class="video-btn video-forward-btn" title="Forward 10s"><i data-lucide="rotate-cw"></i></button>
+                            <button class="video-btn video-volume-btn" title="Mute/Unmute"><i data-lucide="volume-2"></i></button>
+                            <input type="range" class="video-volume-slider" min="0" max="1" step="0.1" value="1">
+                            <span class="video-time">0:00 / 0:00</span>
+                        </div>
+                        <div class="video-controls-right">
+                            <a href="${src}" download class="video-btn video-download-btn" title="Download Video"><i data-lucide="download"></i></a>
+                            <button class="video-btn video-pip-btn" title="Picture in Picture"><i data-lucide="picture-in-picture"></i></button>
+                            <button class="video-btn video-fullscreen-btn" title="Fullscreen"><i data-lucide="maximize"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    // 2. Transformare Audio Local
+    container.querySelectorAll('.blog-audio').forEach(el => {
+        const src = el.getAttribute('data-src');
+        el.outerHTML = `
+            <div class="custom-audio-wrapper" tabindex="0">
+                <audio src="${src}" preload="metadata"></audio>
+                <button class="audio-btn audio-play-btn" title="Play/Pause"><i data-lucide="play"></i></button>
+                <div class="audio-progress-container"><div class="audio-progress-filled"></div></div>
+                <span class="audio-time">0:00 / 0:00</span>
+                <button class="audio-btn audio-speed-btn" title="Playback Speed" style="font-size: 0.9rem; font-weight: bold; width: 40px;">1x</button>
+                <button class="audio-btn audio-volume-btn" title="Mute/Unmute"><i data-lucide="volume-2"></i></button>
+                <input type="range" class="audio-volume-slider" min="0" max="1" step="0.1" value="1">
+                <a href="${src}" download class="audio-btn" title="Download Audio"><i data-lucide="download"></i></a>
+            </div>
+        `;
+    });
+
+    // 3. Transformare YouTube Embed
+    container.querySelectorAll('.blog-youtube').forEach(el => {
+        const videoId = el.getAttribute('data-id');
+        el.outerHTML = `
+            <div class="youtube-embed-container">
+                <iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        `;
+    });
+
+    // 4. Transformare Bloc de Cod
+    container.querySelectorAll('.blog-code').forEach((el, index) => {
+        const lang = el.getAttribute('data-lang') || 'code';
+        const codeContent = el.innerHTML; 
+        const codeId = 'auto-code-' + index;
+        
+        el.outerHTML = `
+            <div class="code-block-wrapper">
+                <div class="code-block-header">
+                    <span><i data-lucide="file-code-2" style="width: 16px; margin-right: 6px;"></i> ${lang}</span>
+                    <button class="btn-copy" onclick="window.copyCode(this, '${codeId}')">
+                        <i data-lucide="copy" style="width: 14px; margin-right: 4px;"></i> Copy Code
+                    </button>
+                </div>
+                <div class="code-block-body">
+                    <pre><code id="${codeId}">${codeContent}</code></pre>
+                </div>
+            </div>
+        `;
+    });
+
+    // 5. Transformare Fisiere Download
+    container.querySelectorAll('.blog-download').forEach(el => {
+        const file = el.getAttribute('data-file');
+        const title = el.getAttribute('data-title');
+        const info = el.getAttribute('data-info');
+        const icon = el.getAttribute('data-icon') || 'file';
+        
+        el.outerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; padding: 15px 20px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-2);">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="background: var(--color-border); color: white; padding: 10px; border-radius: var(--radius-base); display: flex;">
+                        <i data-lucide="${icon}" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0; font-size: 1.05rem;">${title}</h4>
+                        <span style="font-size: 0.85rem; color: var(--color-text-secondary); font-weight: 500;">${info}</span>
+                    </div>
+                </div>
+                <a href="${file}" download class="btn btn--outline btn--sm">
+                    <i data-lucide="download" style="width: 16px; margin-right: 6px;"></i> Download
+                </a>
+            </div>
+        `;
+    });
 }
 
-const exportBtn = document.getElementById('exportPdfBtn');
-if(exportBtn) exportBtn.addEventListener('click', () => window.print());
+// --- ACTUALIZARE FUNCTIE FETCH ---
+window.fetchAndShowContent = async function(title, filePath, modalClass = '') {
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error('Content not found on server');
+        const htmlContent = await response.text();
+        
+        const modal = document.getElementById('contentModal');
+        const modalContentWrapper = modal.querySelector('.modal-content');
+        
+        modalContentWrapper.classList.remove('modal-article', 'modal-tool', 'modal-info');
+        if (modalClass) modalContentWrapper.classList.add(modalClass);
+
+        document.getElementById('contentModalTitle').textContent = title;
+        
+        const body = document.getElementById('contentModalBody');
+        body.innerHTML = htmlContent;
+        
+        // --- 1. APLICĂ PARSERUL PENTRU BLOG ---
+        parseBlogComponents(body);
+
+        // --- 2. Rulăm Scripturile dacă există ---
+        const scripts = body.getElementsByTagName("script");
+        for (let i = 0; i < scripts.length; i++) {
+            try { eval(scripts[i].innerText); } 
+            catch(err) { console.error("Script execution failed:", err); }
+        }
+
+        modal.classList.remove('hidden');
+
+        // --- 3. INIȚIALIZĂM FUNCȚIILE PLAYERELELOR (Care tocmai au fost generate) ---
+        if(window.lucide) window.lucide.createIcons();
+        window.initCustomVideoPlayers();
+        window.initCustomAudioPlayers();
+
+    } catch (e) {
+        console.error("Modal fetch error:", e);
+        showContentModal('Error', '<p>Could not load content.</p>', '');
+    }
+};
+

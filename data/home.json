@@ -1,0 +1,23 @@
+{
+    "en-US": {
+        "presentation": [
+            { "title": "IT & System Administration", "description": "Managing complex hardware and software ecosystems at Electricon. Specializing in Windows deployment, networking, and security.", "icon": "server" },
+            { "title": "AI & Software Engineering", "description": "Master's student in Artificial Intelligence. Developing automation scripts, Rust applications, and machine learning models.", "icon": "bot" },
+            { "title": "Digital Rights Activism", "description": "Advocating for transparency and anti-corruption in local government through technology and open data.", "icon": "shield-alert", "cssClass": "activism" }
+        ]
+    },
+    "ro-RO": {
+        "presentation": [
+            { "title": "Administrare IT & Sisteme", "description": "Gestionez ecosisteme complexe hardware și software la Electricon. Specializat în implementare Windows, rețelistică și securitate.", "icon": "server" },
+            { "title": "Inginerie Software & AI", "description": "Student la Master în Inteligență Artificială. Dezvolt scripturi de automatizare, aplicații Rust și modele de învățare automată.", "icon": "bot" },
+            { "title": "Activism (Drepturi Digitale)", "description": "Promovez transparența și lupta anticorupție în administrația locală prin tehnologie și date deschise.", "icon": "shield-alert", "cssClass": "activism" }
+        ]
+    },
+    "gall": {
+        "presentation": [
+            { "title": "IT i Administracija Sustava", "description": "Upravljanje složenim hardverskim i softverskim ekosustavima u Electricon-u. Specijaliziran za Windows, mreže i sigurnost.", "icon": "server" },
+            { "title": "AI i Softversko Inženjerstvo", "description": "Student na Master studiju iz Umjetne Inteligencije. Razvoj automatizacijskih skripti, Rust aplikacija i modela strojnog učenja.", "icon": "bot" },
+            { "title": "Aktivizam za Digitalna Prava", "description": "Zagovaranje transparentnosti i borba protiv korupcije u lokalnoj upravi putem tehnologije i otvorenih podataka.", "icon": "shield-alert", "cssClass": "activism" }
+        ]
+    }
+}
