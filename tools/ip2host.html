@@ -1,0 +1,48 @@
+<div class="tool-container">
+    <div class="input-group">
+        <label>IP Address</label>
+        <input type="text" id="hostIp" placeholder="e.g., 8.8.8.8" />
+    </div>
+    <button class="primary-btn" onclick="resolveHost()"><i data-lucide="globe"></i> Reverse DNS Lookup</button>
+
+    <div class="results hidden" id="hostResults">
+        <div class="hash-row" style="margin-top:0">
+            <label>Hostname / PTR Record</label>
+            <div class="hash-value-box">
+                <code id="outHost" style="white-space: pre-wrap; padding: 12px; line-height: 1.5;">Waiting...</code>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Aceleași stiluri CSS ca la Blacklist Checker */
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; }
+    .primary-btn { display: flex; align-items: center; gap: 8px; background: var(--color-primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; justify-content: center; }
+    .results.hidden { display: none; }
+    .results { margin-top: 20px; }
+    .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .hash-value-box { display: flex; background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 4px; min-height: 60px; align-items: stretch; }
+    .hash-value-box code { font-family: var(--font-family-mono); font-size: 0.85rem; width: 100%; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    window.resolveHost = async function() {
+        const ip = document.getElementById('hostIp').value.trim();
+        if(!ip) return;
+        
+        document.getElementById('hostResults').classList.remove('hidden');
+        document.getElementById('outHost').textContent = "Resolving...";
+
+        try {
+            const response = await fetch(`https://api.hackertarget.com/reversedns/?q=${encodeURIComponent(ip)}`);
+            const data = await response.text();
+            document.getElementById('outHost').textContent = data;
+        } catch (e) { document.getElementById('outHost').textContent = "Error resolving Hostname."; }
+    };
+</script>

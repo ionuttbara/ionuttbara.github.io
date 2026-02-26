@@ -1392,6 +1392,44 @@ function setupEventListeners() {
     document.querySelectorAll('.modal-close, .modal-backdrop').forEach(el => {
         el.addEventListener('click', () => { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); });
     });
+
+    // --- Contact Form Submission Logic (mailto:) ---
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Previne reîncărcarea paginii
+
+            // Pune AICI adresa ta reală de email
+            const destinationEmail = "ionutbaraooo@gmail.com"; 
+
+            // Preluăm valorile introduse de utilizator
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            // Construim Subiectul și Corpul mesajului (codate URL pentru a suporta spații și diacritice)
+            const subject = encodeURIComponent(`New Contact Message from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            
+            // Creăm link-ul mailto:
+            const mailtoLink = `mailto:${destinationEmail}?subject=${subject}&body=${body}`;
+
+            // Deschidem clientul de mail
+            window.location.href = mailtoLink;
+
+            // Afișăm un mic mesaj de confirmare și golim formularul
+            const resultEl = document.getElementById('formResult');
+            resultEl.textContent = "Opening your email client...";
+            resultEl.style.color = "var(--color-primary)";
+            resultEl.style.display = "block";
+            
+            contactForm.reset();
+            
+            setTimeout(() => {
+                resultEl.style.display = "none";
+            }, 3000);
+        });
+    }
 }
 
 function showPage(pageId) {

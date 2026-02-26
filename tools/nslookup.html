@@ -1,0 +1,76 @@
+<div class="tool-container">
+    <div class="input-group">
+        <label>Domain Name</label>
+        <input type="text" id="nsDomain" placeholder="e.g., example.com" />
+    </div>
+    
+    <div class="input-group">
+        <label>DNS Server</label>
+        <select id="dnsProvider">
+            <option value="google">Google (8.8.8.8)</option>
+            <option value="cloudflare">Cloudflare (1.1.1.1)</option>
+            <option value="opendns">OpenDNS</option>
+            <option value="yandex">Yandex DNS</option>
+        </select>
+    </div>
+
+    <button class="primary-btn" onclick="performLookup()"><i data-lucide="search-code"></i> Perform NS Lookup</button>
+
+    <div class="results hidden" id="nsResults">
+        <div class="hash-row" style="margin-top:0">
+            <label>Name Server (NS) Records</label>
+            <div class="hash-value-box" style="flex-direction: column; align-items: stretch;">
+                <code id="outNS" style="white-space: pre-wrap; padding: 12px;">Waiting...</code>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Aceleași stiluri vizuale ca anterior. Recomand să le pui în style.css dacă se repetă */
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; }
+    .primary-btn { display: flex; align-items: center; gap: 8px; background: var(--color-primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; width: 100%; justify-content: center; }
+    .primary-btn:hover { opacity: 0.9; }
+    .results.hidden { display: none; }
+    .results { margin-top: 20px; }
+    .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .hash-value-box { display: flex; background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 4px; }
+    .hash-value-box code { font-family: var(--font-family-mono); font-size: 0.85rem; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    window.performLookup = async function() {
+        const domain = document.getElementById('nsDomain').value.trim();
+        const provider = document.getElementById('dnsProvider').value;
+        if(!domain) return;
+
+        document.getElementById('nsResults').classList.remove('hidden');
+        document.getElementById('outNS').textContent = "Querying DNS...";
+
+        let apiUrl = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=2`;
+        if (provider === 'cloudflare') {
+            apiUrl = `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=NS`;
+        }
+
+        try {
+            const response = await fetch(apiUrl, {
+                headers: provider === 'cloudflare' ? { 'Accept': 'application/dns-json' } : {}
+            });
+            const data = await response.json();
+            
+            if(data.Answer && data.Answer.length > 0) {
+                const records = data.Answer.map(ans => ans.data).join('\n');
+                document.getElementById('outNS').textContent = records;
+            } else {
+                document.getElementById('outNS').textContent = "No NS records found for this domain.";
+            }
+        } catch (e) {
+            document.getElementById('outNS').textContent = "Error performing lookup. Try another provider.";
+        }
+    };
+</script>

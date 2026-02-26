@@ -238,20 +238,27 @@
                     <div class="contact-form-section">
                         <h2>Send Email</h2>
                         <form class="contact-form" id="contactForm">
-                            <div class="form-group">
-                                <label class="form-label" data-key="contact.form.to">To</label>
-                                <input type="email" class="form-control" name="to" value="ionutbaraooo@gmail.com" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" data-key="contact.form.subject">Subject</label>
-                                <input type="text" class="form-control" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" data-key="contact.form.message">Message</label>
-                                <textarea class="form-control" name="message" rows="6" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn--primary btn--full-width" data-key="contact.form.send">Send Email</button>
-                        </form>
+    <div class="form-group">
+        <label class="form-label" data-key="contact.form.name">Name</label>
+        <input type="text" id="contactName" class="form-control" placeholder="Your Name" required>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label" data-key="contact.form.email">Email</label>
+        <input type="email" id="contactEmail" class="form-control" placeholder="your@email.com" required>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label" data-key="contact.form.message">Message</label>
+        <textarea id="contactMessage" class="form-control" rows="5" placeholder="How can I help you?" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn--primary btn--full-width" id="submitBtn">
+        <i data-lucide="send" style="margin-right: 8px;"></i> Send Message
+    </button>
+    
+    <p id="formResult" style="display: none; margin-top: 15px; text-align: center; font-weight: bold;"></p>
+</form>
                     </div>
 
                     <div class="contact-info-section">

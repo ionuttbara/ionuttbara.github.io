@@ -1,0 +1,87 @@
+<div class="tool-container">
+    <div class="input-group">
+        <label>IPv6 Address or Domain</label>
+        <input type="text" id="pingHost" placeholder="e.g., [2001:4860:4860::8888] or example.com" />
+    </div>
+
+    <button class="primary-btn" onclick="startPing()"><i data-lucide="radio"></i> Send HTTP Ping (IPv6)</button>
+
+    <div class="results hidden" id="pingResults">
+        <div class="hash-row" style="margin-top:0">
+            <label>Ping Output (Browser Mode)</label>
+            <div class="hash-value-box">
+                <code id="outPing" style="white-space: pre-wrap; padding: 12px; line-height: 1.5;">Waiting...</code>
+            </div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 10px;">* Note: Browsers cannot perform raw ICMP ping. This simulates ping via HTTP requests. It will timeout if the target does not run a web server.</p>
+    </div>
+</div>
+
+<style>
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; }
+    .primary-btn { display: flex; align-items: center; gap: 8px; background: var(--color-primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; justify-content: center; }
+    .results.hidden { display: none; }
+    .results { margin-top: 20px; }
+    .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .hash-value-box { display: flex; background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 4px; min-height: 120px; align-items: stretch; }
+    .hash-value-box code { font-family: var(--font-family-mono); font-size: 0.85rem; width: 100%; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    window.startPing = async function() {
+        let host = document.getElementById('pingHost').value.trim();
+        if(!host) return;
+        
+        // Remove http:// or https:// if user typed it
+        host = host.replace(/^https?:\/\//, '');
+
+        // Wrap raw IPv6 addresses in brackets for valid URL parsing
+        if (host.includes(':') && !host.includes('[')) {
+            host = '[' + host + ']';
+        }
+
+        const out = document.getElementById('outPing');
+        document.getElementById('pingResults').classList.remove('hidden');
+        out.textContent = `Pinging ${host} via HTTP...\n\n`;
+
+        let successCount = 0;
+        let totalTime = 0;
+
+        for(let i = 1; i <= 4; i++) {
+            const start = performance.now();
+            try {
+                // Abort request after 3 seconds
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3000);
+                
+                // Fetch in no-cors to avoid CORS errors
+                await fetch(`http://${host}/?_t=${Date.now()}`, { 
+                    mode: 'no-cors', 
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                const time = Math.round(performance.now() - start);
+                out.textContent += `Reply from ${host}: time=${time}ms\n`;
+                successCount++;
+                totalTime += time;
+            } catch (e) {
+                out.textContent += `Request timed out or connection refused.\n`;
+            }
+            // Delay 1s between pings
+            await new Promise(r => setTimeout(r, 1000));
+        }
+
+        out.textContent += `\nPing statistics for ${host}:\n`;
+        out.textContent += `    Packets: Sent = 4, Received = ${successCount}, Lost = ${4 - successCount} (${Math.round((4-successCount)/4*100)}% loss)\n`;
+        if (successCount > 0) {
+            out.textContent += `Approximate round trip times in milli-seconds:\n    Average = ${Math.round(totalTime/successCount)}ms\n`;
+        }
+    };
+</script>

@@ -1,0 +1,141 @@
+<div class="tool-container notepad-container">
+    <div class="notepad-toolbar">
+        <div class="toolbar-group">
+            <select id="npFont" onchange="npFormat('fontName', this.value)" class="form-control" style="width: auto; padding: 4px 8px; font-size: 0.85rem; height: 30px;">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Verdana">Verdana</option>
+            </select>
+        </div>
+        <div class="toolbar-group">
+            <button class="btn btn--outline btn--sm" onclick="npFormat('bold')" title="Bold"><i data-lucide="bold" style="width: 14px;"></i></button>
+            <button class="btn btn--outline btn--sm" onclick="npFormat('italic')" title="Italic"><i data-lucide="italic" style="width: 14px;"></i></button>
+            <button class="btn btn--outline btn--sm" onclick="npFormat('underline')" title="Underline"><i data-lucide="underline" style="width: 14px;"></i></button>
+            <button class="btn btn--outline btn--sm" onclick="npFormat('strikeThrough')" title="Strikethrough"><i data-lucide="strikethrough" style="width: 14px;"></i></button>
+        </div>
+        <div class="toolbar-group">
+            <button class="btn btn--outline btn--sm" onclick="npFormat('insertUnorderedList')" title="Bullet List"><i data-lucide="list" style="width: 14px;"></i></button>
+            <button class="btn btn--outline btn--sm" onclick="npFormat('insertOrderedList')" title="Numbered List"><i data-lucide="list-ordered" style="width: 14px;"></i></button>
+        </div>
+        
+        <div style="flex-grow: 1;"></div>
+
+        <div class="toolbar-group">
+            <label class="btn btn--primary btn--sm" style="cursor: pointer;" title="Open File">
+                <i data-lucide="folder-open" style="width: 14px; margin-right: 5px;"></i> Open
+                <input type="file" id="npFileInput" accept=".txt,.md,.html" style="display: none;" onchange="npOpenFile(event)">
+            </label>
+        </div>
+    </div>
+
+    <div class="notepad-editor" id="npEditor" contenteditable="true" oninput="npUpdateStats()" spellcheck="false"></div>
+
+    <div class="notepad-footer">
+        <div class="stats">
+            <span id="npWords">Words: 0</span> | 
+            <span id="npChars">Characters: 0</span>
+        </div>
+        
+        <div class="export-options">
+            <select id="npLineEndings" class="form-control" style="width: auto; padding: 2px 6px; font-size: 0.75rem; height: 26px;">
+                <option value="windows">Windows (CRLF)</option>
+                <option value="linux">Linux/Mac (LF)</option>
+            </select>
+            <button class="btn btn--outline btn--sm" onclick="npExport('txt')"><i data-lucide="download" style="width: 12px; margin-right:4px;"></i> Export TXT</button>
+            <button class="btn btn--outline btn--sm" onclick="npExport('md')"><i data-lucide="file-code" style="width: 12px; margin-right:4px;"></i> Export MD</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .notepad-container { background: var(--color-bg-1); border-radius: var(--radius-lg); border: 1px solid var(--color-border); display: flex; flex-direction: column; height: 650px; overflow: hidden; padding: 0; }
+    .notepad-toolbar { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px 15px; background: var(--color-bg-2); border-bottom: 1px solid var(--color-border); align-items: center; }
+    .toolbar-group { display: flex; gap: 4px; }
+    .toolbar-group button { padding: 4px 8px; }
+    .notepad-editor { flex-grow: 1; padding: 20px; background: var(--color-surface); color: var(--color-text); font-family: 'Arial', sans-serif; font-size: 1rem; line-height: 1.6; overflow-y: auto; outline: none; }
+    .notepad-editor:focus { box-shadow: inset 0 0 0 2px rgba(var(--color-primary-rgb), 0.2); }
+    .notepad-footer { display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: var(--color-bg-2); border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-text-secondary); }
+    .export-options { display: flex; align-items: center; gap: 8px; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    window.npFormat = function(command, value = null) {
+        document.execCommand(command, false, value);
+        document.getElementById('npEditor').focus();
+        window.npUpdateStats();
+    };
+
+    window.npUpdateStats = function() {
+        const text = document.getElementById('npEditor').innerText || "";
+        const charCount = text.length;
+        const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+        
+        document.getElementById('npChars').textContent = `Characters: ${charCount}`;
+        document.getElementById('npWords').textContent = `Words: ${wordCount}`;
+    };
+
+    window.npOpenFile = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            let content = e.target.result;
+            // Daca e text simplu, pastram liniile noi folosind <br> (dar inlocuim tag-urile periculoase pt html injection)
+            if (file.name.endsWith('.txt') || file.name.endsWith('.md')) {
+                content = content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+            }
+            document.getElementById('npEditor').innerHTML = content;
+            window.npUpdateStats();
+        };
+        reader.readAsText(file);
+    };
+
+    // Simplu HTML to Markdown converter (Basic)
+    function convertToMarkdown(html) {
+        let md = html;
+        md = md.replace(/<b>(.*?)<\/b>|<strong>(.*?)<\/strong>/gi, "**$1$2**");
+        md = md.replace(/<i>(.*?)<\/i>|<em>(.*?)<\/em>/gi, "*$1$2*");
+        md = md.replace(/<u>(.*?)<\/u>/gi, "_$1_");
+        md = md.replace(/<strike>(.*?)<\/strike>|<del>(.*?)<\/del>/gi, "~~$1$2~~");
+        md = md.replace(/<ul>(.*?)<\/ul>/gi, "$1");
+        md = md.replace(/<li>(.*?)<\/li>/gi, "- $1\n");
+        md = md.replace(/<br\s*[\/]?>/gi, "\n");
+        md = md.replace(/<div>(.*?)<\/div>/gi, "\n$1");
+        md = md.replace(/<p>(.*?)<\/p>/gi, "$1\n\n");
+        return md.replace(/<[^>]*>?/gm, ''); // Strip remaining tags
+    }
+
+    window.npExport = function(format) {
+        const editor = document.getElementById('npEditor');
+        const lineEnding = document.getElementById('npLineEndings').value;
+        let content = "";
+
+        if (format === 'md') {
+            content = convertToMarkdown(editor.innerHTML);
+        } else {
+            content = editor.innerText;
+        }
+
+        // Handle Line Endings (Windows CRLF \r\n vs Linux LF \n)
+        if (lineEnding === 'windows') {
+            content = content.replace(/(?<!\r)\n/g, '\r\n');
+        } else {
+            content = content.replace(/\r\n/g, '\n');
+        }
+
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `document.${format}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    };
+
+    // Init
+    window.npUpdateStats();
+</script>

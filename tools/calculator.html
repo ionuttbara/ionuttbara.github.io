@@ -1,0 +1,485 @@
+<div class="tool-container calc-tool">
+    
+    <div class="custom-select-wrapper">
+        <div class="custom-select-trigger" onclick="document.getElementById('calcDropdown').classList.toggle('open')">
+            <span id="triggerIcon"><i data-lucide="calculator"></i></span>
+            <span id="triggerText">Standard & Math Calculator</span>
+            <i data-lucide="chevron-down" style="margin-left: auto;"></i>
+        </div>
+        <div class="custom-select-options" id="calcDropdown">
+            <div class="custom-option" onclick="selectMode('math', 'calculator', 'Standard & Math Calculator')"><i data-lucide="calculator"></i> Standard & Math Calculator</div>
+            <div class="custom-option" onclick="selectMode('programmer', 'binary', 'Programmer (HEX/DEC/BIN/OCT)')"><i data-lucide="binary"></i> Programmer Calculator</div>
+            <div class="custom-option" onclick="selectMode('pricing', 'dollar-sign', 'Pricing Calculator (Margin & VAT)')"><i data-lucide="dollar-sign"></i> Pricing (Margin & VAT)</div>
+            <div class="custom-option" onclick="selectMode('date', 'calendar', 'Date Calculation')"><i data-lucide="calendar"></i> Date Calculation</div>
+            
+            <div class="optgroup-label">Unit Converters</div>
+            <div class="custom-option" onclick="selectMode('length', 'ruler', 'Length Converter')"><i data-lucide="ruler"></i> Length</div>
+            <div class="custom-option" onclick="selectMode('weight', 'weight', 'Weight / Mass Converter')"><i data-lucide="weight"></i> Weight / Mass</div>
+            <div class="custom-option" onclick="selectMode('temperature', 'thermometer', 'Temperature Converter')"><i data-lucide="thermometer"></i> Temperature</div>
+            <div class="custom-option" onclick="selectMode('volume', 'beaker', 'Volume Converter')"><i data-lucide="beaker"></i> Volume</div>
+            <div class="custom-option" onclick="selectMode('area', 'square', 'Area Converter')"><i data-lucide="square"></i> Area</div>
+            <div class="custom-option" onclick="selectMode('speed', 'gauge', 'Speed Converter')"><i data-lucide="gauge"></i> Speed</div>
+            <div class="custom-option" onclick="selectMode('data', 'hard-drive', 'Data & Storage Converter')"><i data-lucide="hard-drive"></i> Data</div>
+            <div class="custom-option" onclick="selectMode('energy', 'zap', 'Energy Converter')"><i data-lucide="zap"></i> Energy</div>
+            <div class="custom-option" onclick="selectMode('pressure', 'wind', 'Pressure Converter')"><i data-lucide="wind"></i> Pressure</div>
+            <div class="custom-option" onclick="selectMode('angle', 'pie-chart', 'Angle Converter')"><i data-lucide="pie-chart"></i> Angle</div>
+        </div>
+    </div>
+
+    <input type="hidden" id="currentConvMode" value="length" />
+
+    <div class="calc-body">
+        
+        <div id="mode-math" class="calc-section active">
+            <div class="input-group">
+                <label>Expression (Supports +, -, *, /, ^, %, (), sin, cos, sqrt)</label>
+                <input type="text" id="mathInput" placeholder="e.g., (2 + 3) * sqrt(16) + 2^3" oninput="evaluateMath()" />
+            </div>
+            <div class="hash-row" style="margin-top:15px;">
+                <label>Result</label>
+                <div class="hash-value-box" style="display:flex; justify-content:space-between; align-items:center;">
+                    <code id="mathResult" style="flex:1;">0</code>
+                    <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('mathResult', this, true)" title="Copy Result"><i data-lucide="copy"></i></button>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 10px;">* Live evaluation. Ex: <code>sin(90)</code>, <code>sqrt(144)</code>, <code>2^8</code>, <code>pi * 2</code></p>
+        </div>
+
+        <div id="mode-programmer" class="calc-section">
+            <div class="bitwise-ops" style="display: flex; gap: 8px; margin-bottom: 15px;">
+                <button class="btn btn--outline btn--sm" onclick="applyBitwise('LSH')"><i data-lucide="arrow-left-to-line" style="width:14px; margin-right: 4px;"></i> Lsh (<<)</button>
+                <button class="btn btn--outline btn--sm" onclick="applyBitwise('RSH')"><i data-lucide="arrow-right-to-line" style="width:14px; margin-right: 4px;"></i> Rsh (>>)</button>
+                <button class="btn btn--outline btn--sm" onclick="applyBitwise('NOT')"><i data-lucide="flip-horizontal-2" style="width:14px; margin-right: 4px;"></i> NOT (~)</button>
+            </div>
+            
+            <div class="bit-board" id="bitBoard">
+                </div>
+
+            <div class="input-group">
+                <label>HEX</label>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="progHex" oninput="this.value = this.value.replace(/[^0-9a-fA-F]/g, ''); progConvert('hex')" />
+                    <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('progHex', this)"><i data-lucide="copy"></i></button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>DEC</label>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="progDec" oninput="this.value = this.value.replace(/[^0-9]/g, ''); progConvert('dec')" />
+                    <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('progDec', this)"><i data-lucide="copy"></i></button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>OCT</label>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="progOct" oninput="this.value = this.value.replace(/[^0-7]/g, ''); progConvert('oct')" />
+                    <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('progOct', this)"><i data-lucide="copy"></i></button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>BIN (64-bit unsigned)</label>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="progBin" oninput="this.value = this.value.replace(/[^0-1]/g, ''); progConvert('bin')" />
+                    <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('progBin', this)"><i data-lucide="copy"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mode-pricing" class="calc-section">
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Purchase Price (Base)</label>
+                    <input type="number" id="pricePurchase" placeholder="0.00" oninput="calculatePricing()" />
+                </div>
+                <div class="input-group">
+                    <label>Profit Margin (%)</label>
+                    <input type="number" id="priceMargin" value="20" oninput="calculatePricing()" />
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Currency Exchange Rate</label>
+                    <select id="priceExchange" class="form-control" onchange="toggleCustomExchange(); calculatePricing();" style="color-scheme: dark;">
+                        <option value="1">None (Local Currency)</option>
+                        <option value="5.2">EUR to Local (x 5.2)</option>
+                        <option value="4.3">USD to Local (x 4.3)</option>
+                        <option value="custom">Custom Multiplier...</option>
+                    </select>
+                </div>
+                <div class="input-group hidden" id="customExchangeGroup">
+                    <label>Custom Multiplier</label>
+                    <input type="number" id="priceCustomExchange" value="1.0" oninput="calculatePricing()" />
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>VAT Rate</label>
+                    <select class="form-control" id="priceVat" onchange="toggleCustomVat(); calculatePricing();" style="color-scheme: dark;">
+                        <option value="21">21%</option>
+                        <option value="11">11%</option>
+                        <option value="custom">Custom VAT</option>
+                    </select>
+                </div>
+                <div class="input-group hidden" id="customVatGroup">
+                    <label>Custom VAT (%)</label>
+                    <input type="number" id="priceCustomVat" value="19" oninput="calculatePricing()" />
+                </div>
+            </div>
+
+            <div class="pricing-results">
+                <div class="res-item" style="color: var(--color-text-secondary);"><span>Converted Purchase Price:</span> <strong id="outConvertedPrice">0.00</strong></div>
+                <div class="res-item"><span>Net Selling Price (with Margin):</span> <strong id="outNetPrice">0.00</strong></div>
+                <div class="res-item"><span>VAT Amount:</span> <strong id="outVatAmount">0.00</strong></div>
+                <div class="res-item highlight"><span>Final Gross Price (Total):</span> <strong id="outGrossPrice">0.00</strong></div>
+                <div class="res-item text-success" style="margin-top: 10px;"><span>Total Profit (Clean Margin):</span> <strong id="outProfit">0.00</strong></div>
+            </div>
+        </div>
+
+        <div id="mode-date" class="calc-section">
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Start Date</label>
+                    <input type="date" id="dateStart" onchange="calculateDate()" />
+                </div>
+                <div class="input-group">
+                    <label>End Date</label>
+                    <input type="date" id="dateEnd" onchange="calculateDate()" />
+                </div>
+            </div>
+            <div class="hash-row" style="margin-top: 20px;">
+                <label>Difference</label>
+                <div class="hash-value-box"><code id="dateResult">Select two dates</code></div>
+            </div>
+        </div>
+
+        <div id="mode-converter" class="calc-section">
+            <div class="grid-2" style="margin-bottom: 15px;">
+                <div class="input-group">
+                    <label>From</label>
+                    <select class="form-control" id="convFrom" onchange="runConversion()"></select>
+                </div>
+                <div class="input-group">
+                    <label>To</label>
+                    <select class="form-control" id="convTo" onchange="runConversion()"></select>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="input-group">
+                    <input type="number" id="convInput" value="1" oninput="runConversion()" />
+                </div>
+                <div class="input-group">
+                    <div style="display:flex; gap:5px;">
+                        <input type="text" id="convOutput" readonly style="background: var(--color-bg-1);" />
+                        <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('convOutput', this)"><i data-lucide="copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Fortam utilizarea spatiului extins asigurat de style.css */
+    .calc-tool { background: var(--color-bg-1); padding: 25px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); width: 100%; box-sizing: border-box; }
+    
+    /* Custom Icon Dropdown CSS */
+    .custom-select-wrapper { position: relative; width: 100%; margin-bottom: 25px; user-select: none; }
+    .custom-select-trigger { display: flex; align-items: center; gap: 10px; background: var(--color-bg-2); border: 1px solid var(--color-border); padding: 12px 15px; border-radius: 4px; cursor: pointer; color: var(--color-primary); font-weight: bold; font-size: 1rem; transition: 0.2s; }
+    .custom-select-trigger:hover { background: var(--color-bg-1); }
+    .custom-select-options { position: absolute; top: calc(100% + 4px); left: 0; right: 0; background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 4px; z-index: 100; max-height: 400px; overflow-y: auto; display: none; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }
+    .custom-select-options.open { display: block; animation: fadeIn 0.15s ease; }
+    .custom-option { display: flex; align-items: center; gap: 12px; padding: 12px 15px; cursor: pointer; transition: background 0.2s; font-size: 0.95rem; color: var(--color-text); }
+    .custom-option:hover { background: var(--color-bg-1); color: var(--color-primary); }
+    .optgroup-label { padding: 10px 15px; font-size: 0.8rem; color: var(--color-text-secondary); font-weight: bold; background: var(--color-bg-1); text-transform: uppercase; letter-spacing: 0.5px; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .optgroup-label:first-child { border-top: none; }
+
+    /* Forms */
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.85rem; }
+    .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; font-family: var(--font-family-mono); box-sizing: border-box; }
+    
+    /* Copy Buttons */
+    .copy-btn-box { width: 42px; flex-shrink: 0; border: none; border: 1px solid var(--color-border); border-radius: 4px; display: flex; align-items: center; justify-content: center; background: var(--color-bg-2); cursor: pointer; transition: 0.2s; color: var(--color-text); padding: 0; }
+    .copy-btn-box:hover { background: var(--color-bg-1); color: var(--color-primary); }
+
+    /* Programmer 64-bit UI */
+    .bit-board { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; padding: 15px; background: var(--color-bg-2); border-radius: 8px; border: 1px solid var(--color-border); margin-bottom: 20px; }
+    .bit-block { display: flex; gap: 4px; justify-content: center; }
+    .bit { cursor: pointer; color: var(--color-text); font-family: var(--font-family-mono); font-size: 1rem; user-select: none; transition: 0.1s; font-weight: bold; }
+    .bit.zero { color: var(--color-text-secondary); opacity: 0.4; font-weight: normal; }
+    .bit:hover { color: var(--color-primary); transform: scale(1.1); }
+    @media (max-width: 650px) { .bit-board { grid-template-columns: repeat(4, 1fr); } }
+
+    /* Sections */
+    .calc-section { display: none; animation: fadeIn 0.3s ease; }
+    .calc-section.active { display: block; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+    
+    /* Helpers */
+    .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .hash-value-box { display: flex; background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 4px; }
+    .hash-value-box code { padding: 12px; font-family: var(--font-family-mono); font-size: 1rem; width: 100%; color: var(--color-text); overflow-x: auto; white-space: nowrap; }
+    .pricing-results { background: var(--color-bg-2); padding: 15px; border-radius: 8px; border: 1px solid var(--color-border); margin-top: 15px; }
+    .res-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+    .res-item.highlight { font-size: 1.1rem; border-top: 1px solid var(--color-border); padding-top: 8px; margin-top: 8px; color: var(--color-primary); }
+    .text-success { color: var(--color-success); }
+    .hidden { display: none !important; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    // === GLOBAL UTILS ===
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.custom-select-wrapper')) {
+            const dropdown = document.getElementById('calcDropdown');
+            if(dropdown) dropdown.classList.remove('open');
+        }
+    });
+
+    window.copyValue = function(id, btn, isTextContent = false) {
+        const val = isTextContent ? document.getElementById(id).textContent : document.getElementById(id).value;
+        navigator.clipboard.writeText(val).then(() => {
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="check" style="color:var(--color-success); width:16px;"></i>`;
+            if(window.lucide) window.lucide.createIcons();
+            setTimeout(() => { btn.innerHTML = orig; if(window.lucide) window.lucide.createIcons(); }, 1500);
+        });
+    };
+
+    window.selectMode = function(val, icon, text) {
+        document.getElementById('calcDropdown').classList.remove('open');
+        document.getElementById('triggerIcon').innerHTML = `<i data-lucide="${icon}"></i>`;
+        document.getElementById('triggerText').textContent = text;
+        if(window.lucide) window.lucide.createIcons();
+        
+        document.querySelectorAll('.calc-section').forEach(el => el.classList.remove('active'));
+        
+        const convModes = ['length', 'weight', 'temperature', 'volume', 'area', 'speed', 'data', 'energy', 'pressure', 'angle'];
+        
+        if (convModes.includes(val)) {
+            // Setăm explicit starea ascunsă a convertorului pentru a o folosi în calcul
+            document.getElementById('currentConvMode').value = val;
+            document.getElementById('mode-converter').classList.add('active');
+            populateConverter(val);
+        } else {
+            document.getElementById('mode-' + val).classList.add('active');
+            if(val === 'programmer' && window.currentBigInt === undefined) {
+                window.currentBigInt = 0n;
+                renderBits();
+            }
+        }
+    };
+
+
+    // === 1. MATH CALCULATOR (Real-Time) ===
+    window.evaluateMath = function() {
+        let expr = document.getElementById('mathInput').value;
+        if(!expr.trim()) { document.getElementById('mathResult').textContent = '0'; return; }
+        
+        expr = expr.replace(/sin/gi, 'Math.sin')
+                   .replace(/cos/gi, 'Math.cos')
+                   .replace(/tan/gi, 'Math.tan')
+                   .replace(/sqrt/gi, 'Math.sqrt')
+                   .replace(/log/gi, 'Math.log')
+                   .replace(/pi/gi, 'Math.PI')
+                   .replace(/e/gi, 'Math.E')
+                   .replace(/\^/g, '**');
+        try {
+            let result = new Function('return ' + expr)();
+            if(typeof result !== 'undefined' && !isNaN(result)) {
+                document.getElementById('mathResult').textContent = Number.isInteger(result) ? result : parseFloat(result).toFixed(6);
+            }
+        } catch (e) {
+            // Ignoră silențios erorile de tastare (ex "2 +")
+        }
+    };
+
+
+    // === 2. PROGRAMMER CALCULATOR (64-Bit BigInt) ===
+    window.renderBits = function() {
+        const board = document.getElementById('bitBoard');
+        board.innerHTML = '';
+        let u64 = window.currentBigInt ? BigInt.asUintN(64, window.currentBigInt) : 0n;
+        let binStr = u64.toString(2).padStart(64, '0');
+        
+        for (let i = 0; i < 16; i++) {
+            let block = document.createElement('div');
+            block.className = 'bit-block';
+            for (let j = 0; j < 4; j++) {
+                let bitIndex = i * 4 + j;
+                let bitVal = binStr[bitIndex];
+                let bitSpan = document.createElement('span');
+                bitSpan.className = 'bit ' + (bitVal === '0' ? 'zero' : 'one');
+                bitSpan.textContent = bitVal;
+                bitSpan.onclick = function() { toggleBit(63 - bitIndex); };
+                block.appendChild(bitSpan);
+            }
+            board.appendChild(block);
+        }
+    };
+
+    window.toggleBit = function(index) {
+        let u64 = window.currentBigInt ? BigInt.asUintN(64, window.currentBigInt) : 0n;
+        let mask = 1n << BigInt(index);
+        window.currentBigInt = BigInt.asUintN(64, u64 ^ mask);
+        updateProgUI('all');
+    };
+
+    window.applyBitwise = function(op) {
+        if (window.currentBigInt === undefined) window.currentBigInt = 0n;
+        let val = BigInt.asUintN(64, window.currentBigInt); 
+        
+        if (op === 'NOT') val = ~val;
+        if (op === 'LSH') val = val << 1n;
+        if (op === 'RSH') val = val >> 1n;
+        
+        window.currentBigInt = BigInt.asUintN(64, val);
+        updateProgUI('all');
+    };
+
+    window.updateProgUI = function(skipSource) {
+        let val = window.currentBigInt ? BigInt.asUintN(64, window.currentBigInt) : 0n;
+        if (skipSource !== 'hex') document.getElementById('progHex').value = val.toString(16).toUpperCase();
+        if (skipSource !== 'dec') document.getElementById('progDec').value = val.toString(10);
+        if (skipSource !== 'oct') document.getElementById('progOct').value = val.toString(8);
+        if (skipSource !== 'bin') document.getElementById('progBin').value = val.toString(2);
+        renderBits();
+    };
+
+    window.progConvert = function(source) {
+        let val = document.getElementById('prog' + source.charAt(0).toUpperCase() + source.slice(1)).value;
+        if (!val) { 
+            window.currentBigInt = 0n;
+            ['hex','dec','oct','bin'].forEach(s => {
+                if(s !== source) document.getElementById('prog' + s.charAt(0).toUpperCase() + s.slice(1)).value = '';
+            });
+            renderBits();
+            return; 
+        }
+        
+        let dec;
+        try {
+            if (source === 'hex') dec = BigInt('0x' + val);
+            else if (source === 'dec') dec = BigInt(val);
+            else if (source === 'oct') dec = BigInt('0o' + val);
+            else if (source === 'bin') dec = BigInt('0b' + val);
+        } catch(e) { return; }
+
+        window.currentBigInt = dec;
+        updateProgUI(source);
+    }
+
+
+    // === 3. PRICING CALCULATOR ===
+    // === 3. PRICING CALCULATOR ===
+    window.toggleCustomVat = function() {
+        document.getElementById('customVatGroup').classList.toggle('hidden', document.getElementById('priceVat').value !== 'custom');
+    }
+    window.toggleCustomExchange = function() {
+        document.getElementById('customExchangeGroup').classList.toggle('hidden', document.getElementById('priceExchange').value !== 'custom');
+    }
+
+    window.calculatePricing = function() {
+        const rawPurchase = parseFloat(document.getElementById('pricePurchase').value) || 0;
+        const margin = parseFloat(document.getElementById('priceMargin').value) || 0;
+        
+        let exchange = document.getElementById('priceExchange').value;
+        if(exchange === 'custom') exchange = parseFloat(document.getElementById('priceCustomExchange').value) || 1;
+        else exchange = parseFloat(exchange);
+
+        let vatRate = document.getElementById('priceVat').value;
+        if (vatRate === 'custom') vatRate = parseFloat(document.getElementById('priceCustomVat').value) || 0;
+        else vatRate = parseFloat(vatRate);
+
+        const actualPurchase = rawPurchase * exchange;
+        const netPrice = actualPurchase + (actualPurchase * margin / 100);
+        const vatAmount = netPrice * (vatRate / 100);
+        const grossPrice = netPrice + vatAmount;
+        const profit = netPrice - actualPurchase;
+
+        document.getElementById('outConvertedPrice').textContent = actualPurchase.toFixed(2);
+        document.getElementById('outNetPrice').textContent = netPrice.toFixed(2);
+        document.getElementById('outVatAmount').textContent = vatAmount.toFixed(2);
+        document.getElementById('outGrossPrice').textContent = grossPrice.toFixed(2);
+        document.getElementById('outProfit').textContent = profit.toFixed(2);
+    };
+
+
+    // === 4. DATE CALCULATOR ===
+    window.calculateDate = function() {
+        const d1 = new Date(document.getElementById('dateStart').value);
+        const d2 = new Date(document.getElementById('dateEnd').value);
+        if (!isNaN(d1) && !isNaN(d2)) {
+            const diffTime = Math.abs(d2 - d1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('dateResult').textContent = `${diffDays} days`;
+        }
+    };
+
+
+    // === 5. UNIVERSAL UNIT CONVERTER ===
+    const units = {
+        length: { base: 'meter', factors: { meter: 1, kilometer: 1000, centimeter: 0.01, millimeter: 0.001, mile: 1609.34, yard: 0.9144, foot: 0.3048, inch: 0.0254 } },
+        weight: { base: 'gram', factors: { gram: 1, kilogram: 1000, milligram: 0.001, metric_ton: 1000000, pound: 453.592, ounce: 28.3495 } },
+        volume: { base: 'liter', factors: { liter: 1, milliliter: 0.001, cubic_meter: 1000, us_gallon: 3.78541, us_quart: 0.946353, us_pint: 0.473176, us_fluid_ounce: 0.0295735 } },
+        area: { base: 'sq_meter', factors: { sq_meter: 1, sq_kilometer: 1000000, sq_centimeter: 0.0001, hectare: 10000, acre: 4046.86, sq_mile: 2589988, sq_yard: 0.836127, sq_foot: 0.092903 } },
+        speed: { base: 'mps', factors: { 'm/s': 1, 'km/h': 0.277778, 'mph': 0.44704, 'knot': 0.514444 } },
+        data: { base: 'byte', factors: { byte: 1, bit: 0.125, kilobyte: 1024, megabyte: 1048576, gigabyte: 1073741824, terabyte: 1099511627776 } },
+        energy: { base: 'joule', factors: { joule: 1, kilojoule: 1000, gram_calorie: 4.184, kilocalorie: 4184, watt_hour: 3600, kilowatt_hour: 3600000 } },
+        pressure: { base: 'pascal', factors: { pascal: 1, bar: 100000, psi: 6894.76, atm: 101325, torr: 133.322 } },
+        angle: { base: 'degree', factors: { degree: 1, radian: 57.2958, gradian: 0.9 } },
+        temperature: { special: true, keys: ['Celsius', 'Fahrenheit', 'Kelvin'] }
+    };
+
+    window.populateConverter = function(mode) {
+        const selF = document.getElementById('convFrom');
+        const selT = document.getElementById('convTo');
+        selF.innerHTML = ''; selT.innerHTML = '';
+        
+        let keys = units[mode].special ? units[mode].keys : Object.keys(units[mode].factors);
+        
+        keys.forEach(k => {
+            const name = k.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            selF.add(new Option(name, k));
+            selT.add(new Option(name, k));
+        });
+        if(keys.length > 1) selT.selectedIndex = 1;
+        runConversion();
+    };
+
+    window.runConversion = function() {
+        const mode = document.getElementById('currentConvMode').value; // Utilizează starea corectă
+        const val = parseFloat(document.getElementById('convInput').value);
+        const from = document.getElementById('convFrom').value;
+        const to = document.getElementById('convTo').value;
+        const out = document.getElementById('convOutput');
+
+        if(isNaN(val)) { out.value = ''; return; }
+
+        if(mode === 'temperature') {
+            let celsius;
+            if (from === 'Celsius') celsius = val;
+            else if (from === 'Fahrenheit') celsius = (val - 32) * 5/9;
+            else if (from === 'Kelvin') celsius = val - 273.15;
+
+            let result;
+            if (to === 'Celsius') result = celsius;
+            else if (to === 'Fahrenheit') result = (celsius * 9/5) + 32;
+            else if (to === 'Kelvin') result = celsius + 273.15;
+            
+            out.value = parseFloat(result.toFixed(6));
+        } else if (units[mode]) {
+            const baseVal = val * units[mode].factors[from];
+            const result = baseVal / units[mode].factors[to];
+            out.value = parseFloat(result.toFixed(6));
+        }
+    };
+
+    // Initialize with current date
+    document.getElementById('dateStart').valueAsDate = new Date();
+    document.getElementById('dateEnd').valueAsDate = new Date(Date.now() + 86400000);
+</script>

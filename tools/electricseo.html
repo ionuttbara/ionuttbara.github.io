@@ -1,0 +1,267 @@
+<div class="tool-container electric-seo-container">
+    <div class="seo-header" style="margin-bottom: 25px;">
+        <h3 style="color: var(--color-primary); display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="zap"></i> Electrick SEO & Meta Generator
+        </h3>
+        <p style="font-size: 0.9rem; color: var(--color-text-secondary);">Generează automat titluri, descrieri și cuvinte cheie unice (fără spații) pe baza numelui produsului și a categoriei.</p>
+    </div>
+
+    <div class="input-group" style="margin-bottom: 20px;">
+        <label>Nume Produs / Cod / Marcă</label>
+        <input type="text" id="productName" placeholder="Ex: Doza aparat incastrata rigips Gewiss 001..." oninput="generateAllSEO()" />
+    </div>
+
+    <div class="grid-2">
+        <div class="input-group">
+            <label>Categorie Principală</label>
+            <select id="seoCategory" class="custom-opaque-select" onchange="populateSubcategories()">
+                <option value="">Alege categoria...</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Subcategorie (Tip produs)</label>
+            <select id="seoSubcategory" class="custom-opaque-select" onchange="generateAllSEO()">
+                <option value="">Alege subcategoria...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="settings-panel">
+        <label style="display: flex; align-items: center; gap: 10px; font-weight: bold; color: var(--color-text); cursor: pointer; margin-bottom: 10px;">
+            <input type="checkbox" id="limitWordsToggle" onchange="generateAllSEO()" style="width: 18px; height: 18px; accent-color: var(--color-primary);">
+            Limita max. Keywords
+        </label>
+        <div class="input-group" style="margin-bottom: 0; max-width: 150px;">
+            <input type="number" id="seoWordLimit" value="20" min="1" max="100" oninput="generateAllSEO()">
+        </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid var(--color-border); margin: 25px 0;">
+
+    <div class="input-group">
+        <label style="display: flex; justify-content: space-between;">
+            Meta Title Generat
+            <span id="metaTitleCount" style="font-weight: normal; font-size: 0.8rem;">0 / 60</span>
+        </label>
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="metaTitle" oninput="updateMetaCounters()" />
+            <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyValue('metaTitle', this)" title="Copiază Titlul"><i data-lucide="copy"></i></button>
+        </div>
+        <div class="seo-bar-container"><div id="titleBar" class="seo-bar"></div></div>
+        <small id="titleMsg" class="seo-msg">Optim: 50-60 caractere (~580 pixeli max).</small>
+    </div>
+
+    <div class="input-group" style="margin-top: 20px;">
+        <label style="display: flex; justify-content: space-between;">
+            Meta Description Generat
+            <span id="metaDescCount" style="font-weight: normal; font-size: 0.8rem;">0 / 160</span>
+        </label>
+        <div style="display: flex; gap: 5px; align-items: flex-start;">
+            <textarea id="metaDesc" rows="3" oninput="updateMetaCounters()"></textarea>
+            <button class="btn btn--outline btn--sm copy-btn-box" style="height: 40px;" onclick="copyValue('metaDesc', this)" title="Copiază Descrierea"><i data-lucide="copy"></i></button>
+        </div>
+        <div class="seo-bar-container"><div id="descBar" class="seo-bar"></div></div>
+        <small id="descMsg" class="seo-msg">Optim: 120-160 caractere.</small>
+    </div>
+
+    <div class="results-section" style="margin-top: 25px;">
+        <label style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; font-weight: bold; color: var(--color-primary);">
+            Keywords SEO (Unice, Separate prin virgulă, Fără spații)
+            <span id="keywordCountBadge" class="badge">0 cuvinte</span>
+        </label>
+        
+        <div style="display: flex; gap: 5px; align-items: flex-start;">
+            <textarea id="seoOutput" rows="4" readonly style="background: var(--color-bg-1); cursor: text; line-height: 1.6; font-size: 0.95rem; width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-text);"></textarea>
+            
+            <button class="btn btn--primary copy-btn-box" style="height: 40px;" onclick="copyValue('seoOutput', this)">
+                <i data-lucide="copy"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .electric-seo-container { background: var(--color-bg-1); padding: 25px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+    
+    /* Input & Select Styling */
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input, .input-group textarea { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; font-family: var(--font-family-base); resize: vertical; }
+    
+    /* Opaque Dropdowns based on Theme */
+    .custom-opaque-select {
+        width: 100%; padding: 10px; 
+        border: 1px solid var(--color-border); 
+        background-color: var(--color-bg-2); 
+        color: var(--color-text); 
+        border-radius: 4px; 
+        font-family: var(--font-family-base);
+        color-scheme: dark; /* Force native dark UI */
+    }
+    .custom-opaque-select option {
+        background-color: var(--color-bg-2);
+        color: var(--color-text);
+    }
+
+    .settings-panel { background: var(--color-bg-2); padding: 15px; border-radius: var(--radius-base); border: 1px solid var(--color-border); display: flex; gap: 20px; align-items: center; }
+    
+    /* Bars for Meta */
+    .seo-bar-container { width: 100%; height: 4px; background: var(--color-bg-1); border-radius: 2px; margin-top: 6px; overflow: hidden; border: 1px solid var(--color-border); }
+    .seo-bar { height: 100%; width: 0%; transition: width 0.3s, background-color 0.3s; }
+    .seo-msg { display: block; margin-top: 6px; font-size: 0.75rem; color: var(--color-text-secondary); }
+    
+    .badge { font-size: 0.8rem; background: var(--color-bg-2); padding: 4px 8px; border-radius: 12px; color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+    
+    .copy-btn-box { flex-shrink: 0; width: 42px; border: 1px solid var(--color-border); border-radius: 4px; display: flex; align-items: center; justify-content: center; background: var(--color-bg-2); cursor: pointer; transition: 0.2s; color: var(--color-text); padding: 0; }
+    .copy-btn-box:hover { background: var(--color-primary); color: white; }
+
+    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } .settings-panel { flex-direction: column; align-items: flex-start; gap: 10px;} }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    let dictionaryData = {};
+
+    // 1. Load Data
+    async function loadDictionary() {
+        try {
+            const response = await fetch(`data/elektric-dictionary.json?v=${new Date().getTime()}`);
+            dictionaryData = await response.json();
+            
+            const catSelect = document.getElementById('seoCategory');
+            catSelect.innerHTML = '<option value="">-- Selectează Categoria --</option>';
+            
+            Object.keys(dictionaryData).forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                catSelect.appendChild(opt);
+            });
+        } catch (error) {
+            console.error("Eroare la incarcarea dictionarului:", error);
+            document.getElementById('seoOutput').value = "Eroare DB.";
+        }
+    }
+
+    // 2. Populate Subs
+    window.populateSubcategories = function() {
+        const cat = document.getElementById('seoCategory').value;
+        const subSelect = document.getElementById('seoSubcategory');
+        subSelect.innerHTML = '<option value="">-- Selectează Subcategoria --</option>';
+        
+        if (cat && dictionaryData[cat]) {
+            Object.keys(dictionaryData[cat]).forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub;
+                opt.textContent = sub;
+                subSelect.appendChild(opt);
+            });
+        }
+        generateAllSEO();
+    }
+
+    // 3. Extragere cuvinte si formare output
+    function extractUniqueWords(productName, category, subcategory) {
+        let wordsSet = new Set();
+
+        // Functie helper pt spargerea si curatarea textului in cuvinte unice
+        const addWordsToSet = (text) => {
+            if(!text) return;
+            // Sparge dupa spatiu, virgula, cratima, plus, slash, elimina caractere speciale
+            const rawWords = text.toLowerCase().replace(/[^\w\săâîșț]/gi, ' ').split(/[\s]+/);
+            rawWords.forEach(w => {
+                if(w.length > 1) wordsSet.add(w.trim());
+            });
+        };
+
+        // Adaugam din Nume Produs
+        addWordsToSet(productName);
+
+        // Adaugam din Dictionar (daca sunt selectate)
+        if (category && subcategory && dictionaryData[category] && dictionaryData[category][subcategory]) {
+            dictionaryData[category][subcategory].forEach(phrase => {
+                addWordsToSet(phrase);
+            });
+        }
+
+        return Array.from(wordsSet);
+    }
+
+    // 4. Generare Generala (Meta + Keywords)
+    window.generateAllSEO = function() {
+        const productName = document.getElementById('productName').value.trim();
+        const cat = document.getElementById('seoCategory').value;
+        const sub = document.getElementById('seoSubcategory').value;
+        
+        // --- A. KEYWORDS ---
+        let keywordsArray = extractUniqueWords(productName, cat, sub);
+        
+        const isLimited = document.getElementById('limitWordsToggle').checked;
+        if (isLimited) {
+            const limitVal = parseInt(document.getElementById('seoWordLimit').value) || 20;
+            keywordsArray = keywordsArray.slice(0, limitVal);
+        }
+
+        // Output Keywords (fara spatii, doar virgula)
+        document.getElementById('seoOutput').value = keywordsArray.join(',');
+        document.getElementById('keywordCountBadge').textContent = `${keywordsArray.length} keywords`;
+
+        // --- B. META TITLE & DESC ---
+        // Generam doar daca imputul manual nu a fost suprascris de utilizator masiv
+        let autoTitle = productName;
+        if(sub && !autoTitle.toLowerCase().includes(sub.toLowerCase())) {
+            autoTitle += ` - ${sub}`;
+        }
+        if(!autoTitle) autoTitle = sub || cat || "Produs Electric";
+        
+        // Trunchiem la ~60 de dragul simplitatii initiale
+        if(autoTitle.length > 60) autoTitle = autoTitle.substring(0, 57) + "...";
+        document.getElementById('metaTitle').value = autoTitle;
+
+        let autoDesc = `Comandă online ${productName || sub || 'produse electrice'} la un preț excelent. Descoperă gama completă de ${sub || cat || 'echipamente'} și accesorii pentru instalații sigure. Livrare rapidă!`;
+        document.getElementById('metaDesc').value = autoDesc;
+
+        updateMetaCounters();
+    }
+
+    // 5. Update UI Counters pt Meta
+    window.updateMetaCounters = function() {
+        // TITLE
+        const tLen = document.getElementById('metaTitle').value.length;
+        document.getElementById('metaTitleCount').textContent = `${tLen} / 60`;
+        const tBar = document.getElementById('titleBar');
+        const tMsg = document.getElementById('titleMsg');
+        tBar.style.width = Math.min((tLen / 60) * 100, 100) + '%';
+        
+        if(tLen === 0) { tBar.style.backgroundColor = 'transparent'; tMsg.textContent = "Completează titlul."; }
+        else if(tLen < 30) { tBar.style.backgroundColor = 'var(--color-warning)'; tMsg.textContent = "Prea scurt."; }
+        else if(tLen <= 60) { tBar.style.backgroundColor = 'var(--color-success)'; tMsg.textContent = "Lungime perfectă (max 600px)."; }
+        else { tBar.style.backgroundColor = 'var(--color-error)'; tMsg.textContent = "Prea lung! Google îl va tăia."; }
+
+        // DESC
+        const dLen = document.getElementById('metaDesc').value.length;
+        document.getElementById('metaDescCount').textContent = `${dLen} / 160`;
+        const dBar = document.getElementById('descBar');
+        const dMsg = document.getElementById('descMsg');
+        dBar.style.width = Math.min((dLen / 160) * 100, 100) + '%';
+        
+        if(dLen === 0) { dBar.style.backgroundColor = 'transparent'; dMsg.textContent = "Completează descrierea."; }
+        else if(dLen < 120) { dBar.style.backgroundColor = 'var(--color-warning)'; dMsg.textContent = "Prea scurt. Adaugă detalii (min 120)."; }
+        else if(dLen <= 160) { dBar.style.backgroundColor = 'var(--color-success)'; dMsg.textContent = "Lungime perfectă!"; }
+        else { dBar.style.backgroundColor = 'var(--color-error)'; dMsg.textContent = "Prea lung! Peste 160 caractere."; }
+    }
+
+    // 6. Copy universal helper
+    window.copyValue = function(id, btn) {
+        const val = document.getElementById(id).value;
+        navigator.clipboard.writeText(val).then(() => {
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="check" style="color:var(--color-success);"></i>`;
+            if(window.lucide) window.lucide.createIcons();
+            setTimeout(() => { btn.innerHTML = orig; if(window.lucide) window.lucide.createIcons(); }, 1500);
+        });
+    }
+
+    loadDictionary();
+</script>

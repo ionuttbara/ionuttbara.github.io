@@ -1,0 +1,39 @@
+<div class="tool-container">
+    <div class="input-group">
+        <label>Enter IPv4 Address</label>
+        <input type="text" id="v4Input" placeholder="192.168.1.1" oninput="convertV4toV6()" />
+    </div>
+    
+    <div class="results" id="v6Results">
+        <div class="hash-row">
+            <label>IPv4-Mapped IPv6 Address</label>
+            <input type="text" id="outV6Mapped" readonly class="form-control" style="width:100%; padding:10px; background:var(--color-bg-2); border:1px solid var(--color-border); color:var(--color-text);" />
+        </div>
+        <div class="hash-row" style="margin-top: 10px;">
+            <label>6to4 Prefix Hex Format</label>
+            <input type="text" id="outV6Hex" readonly class="form-control" style="width:100%; padding:10px; background:var(--color-bg-2); border:1px solid var(--color-border); color:var(--color-text);" />
+        </div>
+    </div>
+</div>
+
+<style>
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group { margin-bottom: 20px; }
+    .input-group label, .hash-row label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; font-family: var(--font-family-mono); }
+</style>
+
+<script>
+    window.convertV4toV6 = function() {
+        const ip = document.getElementById('v4Input').value.trim();
+        const parts = ip.split('.').map(Number);
+        if(parts.length === 4 && parts.every(p => p >= 0 && p <= 255 && !isNaN(p))) {
+            document.getElementById('outV6Mapped').value = `::ffff:${ip}`;
+            const hexParts = parts.map(p => p.toString(16).padStart(2, '0'));
+            document.getElementById('outV6Hex').value = `2002:${hexParts[0]}${hexParts[1]}:${hexParts[2]}${hexParts[3]}::`;
+        } else {
+            document.getElementById('outV6Mapped').value = "Invalid IPv4";
+            document.getElementById('outV6Hex').value = "Invalid IPv4";
+        }
+    };
+</script>

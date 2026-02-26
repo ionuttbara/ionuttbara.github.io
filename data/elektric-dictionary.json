@@ -1,0 +1,133 @@
+{
+  "Tablouri": {
+    "Tablouri de siguranțe electrice": ["tablou", "sigurante", "electrice", "cutie", "cofret", "panou", "distributie", "apartament", "incastrat", "aparent", "tencuiala", "bca", "rigips", "pt", "st", "module", "plastic", "metalic"],
+    "Tablouri multimedia & AV": ["tablou", "multimedia", "av", "curenti", "slabi", "internet", "rack", "router", "media", "tv", "voce", "date", "switch", "patch", "panel"],
+    "Tablouri combo (hibrid)": ["tablou", "combo", "hibrid", "electric", "multimedia", "mixt", "mixta", "curenti", "tari", "slabi", "2in1"],
+    "Tablouri electrice exterior izolat": ["tablou", "exterior", "cofret", "etans", "ip65", "ip44", "ip55", "policarbonat", "abs", "apa", "praf", "rezistent", "izolat", "uv"],
+    "Dulapuri electrice și de tip Rack": ["dulap", "electric", "cabinet", "metalic", "rack", "retea", "19inch", "automatizari", "rackabil", "podea", "perete", "server"],
+    "Panouri comandă BMPM & șantier": ["panou", "santier", "comanda", "organizare", "bmpm", "bmpt", "bloc", "masura", "protectie", "firida", "contor", "prize", "monofazat", "trifazat"],
+    "Tablouri siguranțe fotovoltaice": ["tablou", "fotovoltaic", "sigurante", "dc", "ac", "panouri", "solare", "stringuri", "invertor", "solar"],
+    "Șină DIN și suporți tablouri": ["sina", "din", "suport", "prindere", "metalica", "omega", "perforata", "inaltator", "profil"],
+    "Bare nul și împământare": ["bara", "nul", "impamantare", "clema", "suport", "distributie", "izolata", "neizolata", "alama", "surub"],
+    "Obturatoare și capace tablouri": ["obturator", "capac", "masca", "modul", "fals", "plastic", "orb", "acoperire", "gol"],
+    "Încuietori și uși tablouri": ["incuietoare", "cheie", "usa", "yala", "butuc", "metalica", "transparenta", "fumurie", "plastic", "balama", "inchizatoare"],
+    "Etichete și marcaje tablouri": ["eticheta", "marcaj", "autocolant", "simbol", "siguranta", "pictograma", "avertizare", "tablou", "faze"]
+  },
+  "Siguranțe": {
+    "Sigurante automate/electrice": ["siguranta", "automata", "electrica", "disjunctor", "mcb", "monopolara", "1p", "bipolara", "2p", "tripolara", "3p", "tetrapolara", "4p", "10a", "16a", "20a", "25a", "32a", "curbab", "curbac"],
+    "Sigurante fuzibile & soclu": ["siguranta", "fuzibila", "patron", "electric", "soclu", "ceramica", "mpr", "fuzibil", "cilindrica", "nh", "baza"],
+    "RCBO – Siguranță diferențială": ["rcbo", "siguranta", "diferentiala", "disjunctor", "protectie", "scurtcircuit", "compact", "30ma", "10ma", "300ma", "suprasarcina"],
+    "AFDD – detectoare arc electric": ["afdd", "detector", "arc", "electric", "protectie", "incendiu", "releu", "scanteie", "preventie"],
+    "RCCB – întrerupătoare diferențiale": ["rccb", "intrerupator", "diferential", "siguranta", "salvavita", "releu", "tipa", "tipac", "tipb", "tetrapolar", "bipolar"],
+    "Separatori & comutatori": ["separator", "sarcina", "comutator", "electric", "heblu", "fuzibile", "inversor", "sursa", "steatriunghi", "pachet", "rotativ"],
+    "Busbar și accesorii": ["busbar", "pieptene", "electric", "bara", "cupru", "interconectare", "faze", "capac", "pini", "furca", "izolator"],
+    "Contacte auxiliare": ["contact", "auxiliar", "declansator", "tensiune", "bobina", "declansare", "semnalizare", "defect", "minim", "maxim"]
+  },
+  "Relee & Contactori": {
+    "Relee": ["releu", "relee", "intermediar", "putere", "soclu", "electromagnetic", "miniatura", "industrial", "comanda"],
+    "Contactori": ["contactor", "modular", "electric", "trifazic", "monofazic", "bobina", "230v", "24v", "forta", "auxiliar"],
+    "Lampa semnalizare": ["lampa", "semnalizare", "tablou", "bec", "panou", "indicator", "luminos", "prezenta", "tensiune", "martor", "led", "rosu", "verde", "galben"],
+    "Contoare": ["contor", "electric", "pasant", "monofazat", "trifazat", "smart", "meter", "sinadin", "energie", "masura", "digital", "analogic", "wifi"],
+    "Surse alimentare": ["sursa", "alimentare", "12v", "24v", "transformator", "tablou", "curent", "continuu", "sinadin", "led", "comutatie", "driver"],
+    "Relee bistabile": ["releu", "bistabil", "pascupas", "teleruptor", "impuls", "memorie", "iluminat", "capscara"],
+    "Sonerii": ["sonerie", "tablou", "sinadin", "buzzer", "electric", "dingdong", "alarma", "avertizor", "acustic"],
+    "Relee de timp": ["releu", "timp", "temporizator", "electric", "intarziere", "timer", "multifunctional", "ceas", "programator", "astronomic", "zilnic", "saptamanal"],
+    "Relee monitorizare curent": ["releu", "monitorizare", "curent", "protectie", "supracurent", "prioritate", "sarcina", "amperaj"],
+    "Relee monitorizare tensiune": ["releu", "monitorizare", "tensiune", "protectie", "supratensiune", "lipsa", "faza", "asimetrie", "subtensiune", "voltaj", "succesiune"],
+    "Senzori, Dimmer și Smarthome": ["senzor", "tablou", "dimmer", "sinadin", "smart", "modul", "smarthome", "variator", "tensiune", "wifi", "zigbee", "crepuscular", "miscare", "prezenta"]
+  },
+  "Descarcatoare": {
+    "Descarcatoare SPD": ["descarcator", "spd", "protectie", "supratensiune", "atmosferica", "trasnet", "t1", "t2", "t1t2", "cartus", "varistor", "curent", "alternativ"],
+    "Descarcatoare PV": ["descarcator", "pv", "solar", "fotovoltaic", "supratensiune", "dc", "curent", "continuu", "1000v", "1500v", "t2"]
+  },
+  "Fotovoltaice": {
+    "Baterii fotovoltaice si accesorii": ["baterii", "fotovoltaice", "acumulatori", "solari", "litiuion", "gel", "lifepo4", "rack", "cabluri", "stocare", "energie", "bms", "pylontech"],
+    "Descarcatoare PV": ["descarcator", "pv", "protectie", "supratensiune", "panouri", "solare", "curent", "continuu", "spddc", "t2"],
+    "Invertoare fotovoltaice": ["invertor", "solar", "ongrid", "offgrid", "hibrid", "trifazat", "monofazat", "mppt", "huawei", "fronius", "growatt", "victron"],
+    "Panouri fotovoltaice": ["panouri", "fotovoltaice", "solar", "modul", "monocristalin", "policristalin", "halfcut", "tier1", "bifacial", "400w", "500w"],
+    "Siguranțe & Socluri fotovoltaice": ["siguranta", "fotovoltaica", "soclu", "fuzibil", "dc", "patron", "solar", "gpv", "1000v", "1500v", "10x38"],
+    "Kituri & sisteme complete fotovoltaice": ["kit", "fotovoltaic", "sistem", "complet", "panouri", "solare", "ongrid", "offgrid", "casa", "verde", "trifazat", "monofazat"],
+    "Încărcătoare solare": ["incarcator", "solar", "controller", "incarcare", "regulator", "mppt", "pwm", "baterie"],
+    "Cabluri fotovoltaice": ["cablu", "solar", "fotovoltaic", "rezistent", "uv", "mc4", "4mmp", "6mmp", "rosu", "negru", "h1z2z2k"],
+    "Scule electrice pentru uz fotovoltaic": ["cleste", "sertizare", "mc4", "scule", "fotovoltaic", "dezizolator", "solar", "trusa", "mufe", "cheie"],
+    "Stații de încărcare EV & solar": ["statie", "incarcare", "ev", "masini", "electrice", "solar", "wallbox", "type2", "22kw", "11kw", "7kw"],
+    "Convertor DC-DC": ["convertor", "dcdc", "tensiune", "coborator", "ridicator", "stepdown", "stepup", "solar"],
+    "Accesorii pentru sisteme fotovoltaice": ["conectori", "mc4", "mufe", "clema", "prindere", "panouri", "structura", "montaj", "sina", "aluminiu", "carlig", "acoperis", "tabla", "tigla", "surub"],
+    "Busbar distributie DC": ["busbar", "distributie", "dc", "bara", "cupru", "curent", "continuu", "baterii", "solar"],
+    "Dispozitive de comunicare, monitorizare": ["dongle", "wifi", "smart", "logger", "meter", "modul", "comunicare", "monitorizare", "solar", "rs485", "lan"],
+    "Separator Mecanic Fotovoltaic": ["separator", "mecanic", "fotovoltaic", "heblu", "dc", "curent", "continuu", "izolator", "solar", "1000v"]
+  },
+  "Doze Electrice": {
+    "Doze electrice": ["doza", "aparat", "intrerupator", "priza", "incastrata", "gipscarton", "rigips", "beton", "caramida", "zidarie", "rotunda", "patrata", "modulara"],
+    "Cutii de jonctiune": ["cutie", "jonctiune", "doza", "legaturi", "derivatie", "distributie", "etansa", "exterioara", "impermeabila", "ip65", "ip55", "aplicata"],
+    "Doze pentru termosistem": ["doza", "termosistem", "izolatie", "suport", "montaj", "polistiren", "fatada", "vata", "minerala", "telescopica"],
+    "Capace doze": ["capac", "doza", "derivatie", "rotund", "patrat", "ornamental", "arc", "gheare", "mascare"],
+    "Inele compensare și distanțiere": ["inel", "compensare", "distantier", "inaltator", "extensie", "tencuiala", "adancime", "reglabil"],
+    "Elemente îmbinare și fixare doze": ["element", "imbinare", "tunel", "conector", "surub", "prindere", "clema", "carlig"]
+  },
+  "Cabluri & Conductori": {
+    "Cabluri energie": ["cablu", "electric", "cupru", "armat", "cyaby", "cyaaby", "n2xh", "nymj", "eyyj", "instalatii", "3x1.5", "3x2.5", "5x4", "cyy", "cyyf"],
+    "Conductori electrici": ["conductor", "electric", "fir", "myf", "fy", "h07vk", "h07vu", "litat", "masiv", "unifilar", "cupru", "flexibil", "rigid", "impamantare"],
+    "Cabluri date și TV": ["cablu", "utp", "ftp", "internet", "retea", "cat5e", "cat6", "coaxial", "tv", "antena", "rg6", "date"],
+    "Tub termocontractabil și varnis": ["tub", "termocontractabil", "varnis", "izolatie", "contractie", "caldura", "termic", "manson", "protectie"],
+    "Bandă izolatoare": ["banda", "izolatoare", "adeziva", "pvc", "textila", "izolatie", "panza", "neagra", "colorata", "ignifuga"],
+    "Cleme, coliere și prinderi cablu": ["clema", "prindere", "cablu", "colier", "brida", "cui", "agrafa", "suport", "adeziv", "dibluri", "fase"],
+    "Marcatoare cablu": ["marcatoare", "inel", "eticheta", "identificare", "cablu", "fir", "cifre", "litere", "set", "sistem"],
+    "Manșoane și gel izolant": ["manson", "rasina", "gel", "izolant", "etansare", "jonctiune", "turnat", "ip68", "bicomponent", "subteran"]
+  },
+  "Cleme & Blocuri distribuție": {
+    "Cleme derivatie pe șină DIN": ["clema", "derivatie", "sinadin", "bloc", "masura", "jonctiune", "ptk", "rsa"],
+    "Cleme Wago": ["clema", "wago", "conector", "mufa", "rapida", "levier", "wago221", "wago2273", "doza", "transparenta", "2poli", "3poli", "5poli"],
+    "Bară nul QuickConnect": ["bara", "nul", "quickconnect", "impamantare", "tablou", "distributie", "rapida", "fara", "surub"],
+    "Cleme șir": ["clema", "sir", "trecere", "sinadin", "tablou", "conexiune", "etajata", "impamantare"],
+    "Blocuri distributie": ["bloc", "distributie", "distribuitor", "electric", "multipolar", "repartitor", "tablou", "bara", "faze", "tetrapolar", "bipolar"],
+    "Accesorii cleme (Punti, Capace)": ["capac", "clema", "punte", "strap", "opritor", "sinadin", "marcator", "eticheta"]
+  },
+  "COPEX & Canal Cablu": {
+    "Copex": ["copex", "tub", "flexibil", "ignifug", "metalic", "fir", "tragere", "corugat", "riflat", "halogenfree", "pvc", "izolant"],
+    "Accesorii Copex": ["mufa", "copex", "clema", "prindere", "presetupa", "racord", "imbinare", "fixare", "tub"],
+    "Canal cablu": ["canal", "cablu", "jgheab", "pat", "adeziv", "podea", "perforat", "tub", "pvc", "rigid", "metalic", "aparent", "sarma"],
+    "Accesorii canal cablu": ["coltar", "interior", "exterior", "mufa", "imbinare", "element", "capat", "teu", "derivatie", "capac", "jgheab"]
+  },
+  "Sisteme Împământare": {
+    "Țăruși de împământare": ["tarus", "impamantare", "electrod", "teava", "cruce", "profilt", "zincat", "cupru", "1.5m", "2m", "priza", "pamant"],
+    "Kit și stâlpi paratrăsnet": ["paratrasnet", "stalp", "kit", "catarg", "lovitura", "directa", "protectie", "trasnet", "pda", "amorsare", "acoperis"],
+    "Accesorii impamantare": ["platbanda", "zincata", "conductor", "rotund", "piesa", "separatie", "cutie", "clema", "cruce", "imbinare", "suport", "sarma"]
+  },
+  "Echipamente Industriale": {
+    "Întrerupătoare automate tip USOL": ["intrerupator", "automat", "usol", "mccb", "industrial", "trifazat", "compact", "putere", "reglabil", "100a", "160a", "250a"],
+    "Corpuri de iluminat industriale": ["corp", "iluminat", "industrial", "lampa", "hala", "led", "highbay", "ip65", "proiector", "triproof", "etans"],
+    "Accesorii industriale": ["fisa", "industriala", "priza", "stecher", "380v", "trifazic", "16a", "32a", "ip67", "ip44", "cee", "camasa"],
+    "Relee, PLC și automatizări": ["releu", "plc", "automatizare", "controller", "programabil", "industrial", "hmi", "convertizor", "frecventa", "softstarter", "senzor", "industrial"]
+  },
+  "Prize și întrerupatoare": {
+    "Prize": ["priza", "simpla", "dubla", "schuko", "impamantare", "aplicata", "modulara", "tv", "internet", "usb", "smart", "capac", "ip44", "sticla"],
+    "Rama": ["rama", "priza", "decorativa", "intrerupator", "dubla", "tripla", "cvadrupla", "sticla", "plastic", "metal", "modul"],
+    "Prize și fișe industriale": ["priza", "fisa", "industriala", "stecher", "trifazic", "monofazic", "cee", "16a", "32a", "380v", "ip67", "ip44", "aparenta", "incastrata"],
+    "Accesorii prize și întrerupătoare": ["modul", "suport", "gheare", "suruburi", "mecanism", "tasta", "clapeta", "obturator", "fals"],
+    "Întrerupătoare": ["intrerupator", "simplu", "dublu", "capscara", "cruce", "capcruce", "tactil", "touch", "smart", "buton", "sonerie", "jaluzele", "revenire", "led"]
+  },
+  "Scule și Unelte": {
+    "Burghie și carote": ["burghiu", "carota", "beton", "sds", "sdsplus", "zidarie", "metal", "lemn", "freza", "doze", "65mm", "68mm"],
+    "Instrumente măsurare electrică": ["multimetru", "digital", "cleste", "ampermetric", "creion", "tensiune", "tester", "voltmetru", "megohmetru", "osciloscop", "masurare"],
+    "Cutii și truse de depozitare": ["cutie", "scule", "trusa", "depozitare", "organizator", "geanta", "rucsac", "electrician", "troler", "sort"],
+    "Unelte de mână (Șurubelnițe, Clești)": ["surubelnita", "izolata", "cleste", "patent", "sfic", "spitz", "1000v", "vde", "ciocan", "cheie", "imbus"],
+    "Instrumente de măsură distanță": ["ruleta", "metru", "telemetru", "laser", "nivela", "boloboc", "subler", "masurare", "distanta"],
+    "Cuțite și dezizolator cablu": ["cutit", "electrician", "dezizolator", "cablu", "jokari", "dezizolare", "cleste", "sertizare", "stripper", "cutter"],
+    "Set de scule": ["set", "scule", "trusa", "surubelnite", "izolate", "electrician", "clesti", "vde", "completa", "profesional"],
+    "Mănuși de lucru": ["manusi", "protectie", "lucru", "izolante", "electrician", "dielectrice", "antistatice", "nitril", "piele"]
+  },
+  "Accesorii Electrice (Diverse)": {
+    "Fasete (șoricei)": ["fasete", "soricei", "coliere", "plastic", "prindere", "strangere", "nylon", "rezistente", "uv", "negre", "albe"],
+    "Ferule (pini)": ["ferule", "pini", "tubulari", "sertizare", "izolate", "neizolate", "simpli", "dubli", "cupru", "cositorit"],
+    "Cuie și scule de bătut cuie": ["cuie", "beton", "scula", "batut", "pistol", "gaz", "acumulator", "capse", "fixare", "rapida", "santier"],
+    "Papuci & mufe": ["papuci", "cablu", "mufe", "izolate", "neizolate", "inelari", "furca", "pini", "tubulari", "sertizare", "cupru", "cositoriti"],
+    "Presetupe": ["presetupa", "cablu", "pg11", "pg13", "m20", "m25", "etansare", "ip68", "nylon", "metalica", "piulita", "garnitura"],
+    "Baterii și consumabile panze": ["banda", "adeziva", "duct", "tape", "burghie", "panze", "flex", "baterii", "aa", "aaa", "creion", "marker"],
+    "Spray-uri, spume și lubrifianți": ["spray", "contacte", "wd40", "spuma", "poliuretanica", "lubrifiant", "vaselina", "silicon", "curatare", "degripant"],
+    "UPS-uri": ["ups", "sursa", "neintreruptibila", "baterie", "rezerva", "centrala", "cazane", "sinus", "pur", "invertor", "kema", "apc"],
+    "Stabilizatoare de tensiune": ["stabilizator", "tensiune", "avr", "servomotor", "releu", "protectie", "fluctuatii", "monofazat", "trifazat"],
+    "Incarcatoare Retea (AC)": ["incarcator", "retea", "ac", "usb", "usbc", "priza", "telefon", "fast", "charge", "adaptor", "220v", "5v"],
+    "Produse electrice pentru camper/rulote": ["camper", "rulota", "priza", "cee", "12v", "panou", "sigurante", "auto", "invertor", "12v220v", "baterie", "gel", "camping", "adaptor"]
+  }
+}

@@ -103,6 +103,125 @@
             "type": "internal",
             "category": "Hardware & System",
             "icon": "zap"
+        },
+        {
+            "name": "Port Checker",
+            "description": "Check open ports for classic, gaming, apps, or P2P.",
+            "linkId": "tools.portchecker",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "network"
+        },
+        {
+            "name": "Check Website OS",
+            "description": "Discover the operating system of a web server.",
+            "linkId": "tools.websiteos",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "server"
+        },
+        {
+            "name": "NS Lookup",
+            "description": "Query DNS system for Name Server records.",
+            "linkId": "tools.nslookup",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "globe"
+        },
+        {
+            "name": "Ping IPv4",
+            "description": "Ping an IPv4 address to check connectivity.",
+            "linkId": "tools.ping4",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "activity"
+        },
+        {
+            "name": "Ping IPv6",
+            "description": "Ping an IPv6 address to check connectivity.",
+            "linkId": "tools.ping6",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "activity"
+        },{
+            "name": "IP Blacklist Checker",
+            "description": "Check if an IP is listed on major anti-spam blacklists.",
+            "linkId": "tools.ipblacklist",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "shield-alert"
+        },
+        {
+            "name": "IP to Decimal",
+            "description": "Convert an IPv4 address to its decimal format and vice versa.",
+            "linkId": "tools.ip2dec",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "calculator"
+        },
+        {
+            "name": "IPv4 to IPv6",
+            "description": "Map or convert an IPv4 address into an IPv6 format.",
+            "linkId": "tools.ipv4to6",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "arrow-right-left"
+        },
+        {
+            "name": "Resolve IP to Host",
+            "description": "Perform a Reverse DNS lookup to find the hostname of an IP.",
+            "linkId": "tools.ip2host",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "globe"
+        },
+        {
+            "name": "Lorem Ipsum Gen",
+            "description": "Generate dummy text for your projects and mockups.",
+            "linkId": "tools.lorem",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "type"
+        },
+        {
+            "name": "Color Converter",
+            "description": "Advanced RGB, HEX, CMYK, HSV, Pantone & Minecraft conversion.",
+            "linkId": "tools.colorconv",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "palette"
+        },
+        {
+            "name": "Multi Calculator",
+            "description": "All-in-one calculator: Math, Programmer, Dates, Pricing & Unit Converter.",
+            "linkId": "tools.calculator",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "calculator"
+        },
+        {
+            "name": "Rich Text Notepad",
+            "description": "Advanced text editor with formatting, file import/export, and Word/Char count.",
+            "linkId": "tools.notepad",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "file-edit"
+        },
+        {
+            "name": "SEO Text Analyzer",
+            "description": "Basic SEO tool to analyze text length, title, and meta description limits.",
+            "linkId": "tools.seo",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "bar-chart"
+        },
+        {
+            "name": "Electrick SEO",
+            "description": "Generator de cuvinte cheie, sinonime și pluraluri pentru domeniul electric / șantier.",
+            "linkId": "tools.electricseo",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "zap"
         }
     ],
     "ro-RO": [
@@ -196,6 +315,120 @@
             "linkId": "tools.speedytest",
             "type": "internal",
             "icon": "zap"
+        },
+        {
+            "name": "Verificare Porturi",
+            "description": "Verifică porturile clasice, gaming, aplicații sau P2P.",
+            "linkId": "tools.portchecker",
+            "type": "internal",
+            "icon": "network"
+        },
+        {
+            "name": "Verificare OS Website",
+            "description": "Descoperă sistemul de operare al unui server web.",
+            "linkId": "tools.websiteos",
+            "type": "internal",
+            "icon": "server"
+        },
+        {
+            "name": "NS Lookup",
+            "description": "Interoghează înregistrările NS (Name Server).",
+            "linkId": "tools.nslookup",
+            "type": "internal",
+            "icon": "globe"
+        },
+        {
+            "name": "Ping IPv4",
+            "description": "Testează conectivitatea unui IP v4.",
+            "linkId": "tools.ping4",
+            "type": "internal",
+            "icon": "activity"
+        },
+        {
+            "name": "Ping IPv6",
+            "description": "Testează conectivitatea unui IP v6.",
+            "linkId": "tools.ping6",
+            "type": "internal",
+            "icon": "activity"
+        },{
+            "name": "IP Blacklist Checker",
+            "description": "Check if an IP is listed on major anti-spam blacklists.",
+            "linkId": "tools.ipblacklist",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "shield-alert"
+        },
+        {
+            "name": "IP to Decimal",
+            "description": "Convert an IPv4 address to its decimal format and vice versa.",
+            "linkId": "tools.ip2dec",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "calculator"
+        },
+        {
+            "name": "IPv4 to IPv6",
+            "description": "Map or convert an IPv4 address into an IPv6 format.",
+            "linkId": "tools.ipv4to6",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "arrow-right-left"
+        },
+        {
+            "name": "Resolve IP to Host",
+            "description": "Perform a Reverse DNS lookup to find the hostname of an IP.",
+            "linkId": "tools.ip2host",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "globe"
+        },
+        {
+            "name": "Lorem Ipsum Gen",
+            "description": "Generate dummy text for your projects and mockups.",
+            "linkId": "tools.lorem",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "type"
+        },
+        {
+            "name": "Color Converter",
+            "description": "Advanced RGB, HEX, CMYK, HSV, Pantone & Minecraft conversion.",
+            "linkId": "tools.colorconv",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "palette"
+        },
+        {
+            "name": "Multi Calculator",
+            "description": "All-in-one calculator: Math, Programmer, Dates, Pricing & Unit Converter.",
+            "linkId": "tools.calculator",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "calculator"
+        },
+        {
+            "name": "Rich Text Notepad",
+            "description": "Advanced text editor with formatting, file import/export, and Word/Char count.",
+            "linkId": "tools.notepad",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "file-edit"
+        },
+        {
+            "name": "SEO Text Analyzer",
+            "description": "Basic SEO tool to analyze text length, title, and meta description limits.",
+            "linkId": "tools.seo",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "bar-chart"
+        },
+        {
+            "name": "Electrick SEO",
+            "description": "Generator de cuvinte cheie, sinonime și pluraluri pentru domeniul electric / șantier.",
+            "linkId": "tools.electricseo",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "zap"
         }
     ],
     "gall": [
@@ -288,6 +521,120 @@
             "description": "Testirajte brzinu internetske veze.",
             "linkId": "tools.speedytest",
             "type": "internal",
+            "icon": "zap"
+        },
+        {
+            "name": "Verificare Porturi",
+            "description": "Verifică porturile clasice, gaming, aplicații sau P2P.",
+            "linkId": "tools.portchecker",
+            "type": "internal",
+            "icon": "network"
+        },
+        {
+            "name": "Verificare OS Website",
+            "description": "Descoperă sistemul de operare al unui server web.",
+            "linkId": "tools.websiteos",
+            "type": "internal",
+            "icon": "server"
+        },
+        {
+            "name": "NS Lookup",
+            "description": "Interoghează înregistrările NS (Name Server).",
+            "linkId": "tools.nslookup",
+            "type": "internal",
+            "icon": "globe"
+        },
+        {
+            "name": "Ping IPv4",
+            "description": "Testează conectivitatea unui IP v4.",
+            "linkId": "tools.ping4",
+            "type": "internal",
+            "icon": "activity"
+        },
+        {
+            "name": "Ping IPv6",
+            "description": "Testează conectivitatea unui IP v6.",
+            "linkId": "tools.ping6",
+            "type": "internal",
+            "icon": "activity"
+        },{
+            "name": "IP Blacklist Checker",
+            "description": "Check if an IP is listed on major anti-spam blacklists.",
+            "linkId": "tools.ipblacklist",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "shield-alert"
+        },
+        {
+            "name": "IP to Decimal",
+            "description": "Convert an IPv4 address to its decimal format and vice versa.",
+            "linkId": "tools.ip2dec",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "calculator"
+        },
+        {
+            "name": "IPv4 to IPv6",
+            "description": "Map or convert an IPv4 address into an IPv6 format.",
+            "linkId": "tools.ipv4to6",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "arrow-right-left"
+        },
+        {
+            "name": "Resolve IP to Host",
+            "description": "Perform a Reverse DNS lookup to find the hostname of an IP.",
+            "linkId": "tools.ip2host",
+            "type": "internal",
+            "category": "Networking",
+            "icon": "globe"
+        },
+        {
+            "name": "Lorem Ipsum Gen",
+            "description": "Generate dummy text for your projects and mockups.",
+            "linkId": "tools.lorem",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "type"
+        },
+        {
+            "name": "Color Converter",
+            "description": "Advanced RGB, HEX, CMYK, HSV, Pantone & Minecraft conversion.",
+            "linkId": "tools.colorconv",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "palette"
+        },
+        {
+            "name": "Multi Calculator",
+            "description": "All-in-one calculator: Math, Programmer, Dates, Pricing & Unit Converter.",
+            "linkId": "tools.calculator",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "calculator"
+        },
+        {
+            "name": "Rich Text Notepad",
+            "description": "Advanced text editor with formatting, file import/export, and Word/Char count.",
+            "linkId": "tools.notepad",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "file-edit"
+        },
+        {
+            "name": "SEO Text Analyzer",
+            "description": "Basic SEO tool to analyze text length, title, and meta description limits.",
+            "linkId": "tools.seo",
+            "type": "internal",
+            "category": "Developer Tools",
+            "icon": "bar-chart"
+        },
+        {
+            "name": "Electrick SEO",
+            "description": "Generator de cuvinte cheie, sinonime și pluraluri pentru domeniul electric / șantier.",
+            "linkId": "tools.electricseo",
+            "type": "internal",
+            "category": "Developer Tools",
             "icon": "zap"
         }
     ]

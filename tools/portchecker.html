@@ -1,0 +1,138 @@
+<div class="tool-container">
+    <div class="input-group">
+        <label style="display: flex; justify-content: space-between; align-items: center;">
+            IP Address / Domain
+            <button class="btn btn--outline btn--sm" style="padding: 2px 8px; font-size: 0.8rem;" onclick="getMyIP()"><i data-lucide="crosshair" style="width:12px;"></i> Get My IP</button>
+        </label>
+        <input type="text" id="targetHost" placeholder="e.g., 192.168.1.1 or example.com" />
+    </div>
+
+    <div class="categories-grid">
+        <label class="checkbox-label"><input type="checkbox" id="catClassic" checked> Classic Ports</label>
+        <label class="checkbox-label"><input type="checkbox" id="catGaming"> Gaming Ports</label>
+        <label class="checkbox-label"><input type="checkbox" id="catApps"> Apps Ports</label>
+        <label class="checkbox-label"><input type="checkbox" id="catP2P"> P2P Ports</label>
+    </div>
+
+    <div class="input-group">
+        <label>Custom Ports (comma separated)</label>
+        <input type="text" id="customPorts" placeholder="e.g., 8080, 443" />
+    </div>
+
+    <button class="primary-btn" onclick="startPortScan()"><i data-lucide="scan-line"></i> Local Port Scan</button>
+
+    <div class="results hidden" id="scanResults" style="margin-bottom: 15px;">
+        <h4>Live Scan Results:</h4>
+        <div id="portsList" class="ports-list"></div>
+    </div>
+
+    <div class="disclaimer-note">
+        * <b>Local Browser Scan:</b> Uses Fetch-timing heuristics entirely on your device. No external scanning APIs are used. Due to strict browser security sandbox (CORS), accuracy is estimated and raw TCP status cannot be perfectly guaranteed.
+    </div>
+</div>
+
+<style>
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; }
+    .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 15px; background: var(--color-bg-2); padding: 15px; border-radius: 4px; border: 1px solid var(--color-border); }
+    .checkbox-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem; }
+    .primary-btn { display: flex; align-items: center; gap: 8px; background: var(--color-primary); color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; justify-content: center; width: 100%; }
+    .primary-btn:hover { opacity: 0.9; }
+    .results { padding: 15px; background: var(--color-bg-2); border-radius: 4px; border: 1px solid var(--color-border); }
+    .results.hidden { display: none; }
+    .ports-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .port-item { padding: 5px 10px; border-radius: 4px; font-family: var(--font-family-mono); font-size: 0.85rem; border: 1px solid var(--color-border); transition: all 0.3s; }
+    .port-item.open { background: rgba(40, 167, 69, 0.1); border-color: #28a745; color: #28a745; }
+    .port-item.closed { background: rgba(220, 53, 69, 0.1); border-color: #dc3545; color: #dc3545; }
+    .port-item.testing { background: var(--color-bg-1); color: var(--color-text-secondary); }
+    
+    .disclaimer-note { font-size: 0.75rem; color: var(--color-text-secondary); text-align: left; border-top: 1px solid var(--color-border); padding-top: 15px; line-height: 1.5; margin-top: 20px; text-align: center; }
+</style>
+
+<script>
+    if(window.lucide) window.lucide.createIcons();
+
+    const portCategories = {
+        classic: [21,22,23,25,53,80,110,115,135,139,143,194,443,445,1433,3306,3389,5632,5900],
+        gaming: [666,2302,3453,3724,4000,5154,6112,6113,6114,6115,6116,6117,6118,6119,7777,10093,10094,12203,14567,25565,26000,27015,27910,28000,30720,30721,50000],
+        apps: [515,631,3282,3389,4443,5050,5190,1503,1863,5631,5632,5900,6667,6891],
+        p2p: [119,375,425,412,1214,1412,2412,4661,4662,4665,5500,6346,6881,6882,6883,6884,6885,6886,6887,6888,6889]
+    };
+
+    // Păstrăm acest API doar pentru a afla IP-ul curent (browserul nu își știe IP-ul public)
+    window.getMyIP = async function() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            document.getElementById('targetHost').value = data.ip;
+        } catch(e) { alert("Could not fetch public IP."); }
+    };
+
+    // Funcția Euristică de testare LOCALĂ a porturilor
+    window.checkSinglePort = async function(host, port) {
+        const start = performance.now();
+        const controller = new AbortController();
+        // Timeout de 1.5 secunde pentru a evita blocajele
+        const timeoutId = setTimeout(() => controller.abort(), 1500); 
+
+        try {
+            await fetch(`http://${host}:${port}`, { mode: 'no-cors', cache: 'no-store', signal: controller.signal });
+            clearTimeout(timeoutId);
+            return true; // Dacă răspunde fără eroare de rețea, e deschis
+        } catch (err) {
+            clearTimeout(timeoutId);
+            const time = performance.now() - start;
+            
+            // Dacă dă timeout, considerăm că e blocat de firewall (Filtered/Closed)
+            if (err.name === 'AbortError') return false; 
+            
+            // Dacă refuză instant (< 50ms), portul e închis clar. 
+            // Dacă stă mai mult pe gânduri înainte de a da eroare (ex: e un server FTP care nu știe HTTP), e probabil deschis!
+            if (time < 50) return false; 
+            return true;
+        }
+    };
+
+    window.startPortScan = async function() {
+        let host = document.getElementById('targetHost').value.trim();
+        if(!host) return alert("Please enter an IP or Domain");
+
+        // Curățăm host-ul
+        host = host.replace(/^https?:\/\//, '');
+
+        let portsToScan = new Set();
+        if(document.getElementById('catClassic').checked) portCategories.classic.forEach(p => portsToScan.add(p));
+        if(document.getElementById('catGaming').checked) portCategories.gaming.forEach(p => portsToScan.add(p));
+        if(document.getElementById('catApps').checked) portCategories.apps.forEach(p => portsToScan.add(p));
+        if(document.getElementById('catP2P').checked) portCategories.p2p.forEach(p => portsToScan.add(p));
+
+        const custom = document.getElementById('customPorts').value;
+        if(custom) custom.split(',').map(p => parseInt(p.trim())).filter(p => !isNaN(p)).forEach(p => portsToScan.add(p));
+
+        if(portsToScan.size === 0) return alert("Please select at least one port category.");
+
+        const resultsArea = document.getElementById('scanResults');
+        const portsList = document.getElementById('portsList');
+        resultsArea.classList.remove('hidden');
+        portsList.innerHTML = '';
+
+        const portsArray = Array.from(portsToScan).sort((a,b)=>a-b);
+        
+        for (let port of portsArray) {
+            let el = document.createElement('div');
+            el.className = 'port-item testing';
+            el.id = `port-${port}`;
+            el.innerHTML = `<i data-lucide="loader" class="spin"></i> ${port}`;
+            portsList.appendChild(el);
+            if(window.lucide) window.lucide.createIcons();
+            
+            // Scanăm portul folosind propriul browser, fără servere
+            const isOpen = await window.checkSinglePort(host, port);
+            
+            el.className = `port-item ${isOpen ? 'open' : 'closed'}`;
+            el.innerHTML = `${port} <span style="font-size:0.7rem">(${isOpen ? 'OPEN' : 'CLOSED'})</span>`;
+        }
+    };
+</script>

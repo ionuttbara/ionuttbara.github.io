@@ -1,0 +1,40 @@
+<div class="tool-container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="input-group">
+            <label>IPv4 Address</label>
+            <input type="text" id="ipInput" placeholder="192.168.1.1" oninput="convertToDec()" />
+        </div>
+        <div class="input-group">
+            <label>Decimal IP</label>
+            <input type="text" id="decInput" placeholder="3232235777" oninput="convertToIp()" />
+        </div>
+    </div>
+</div>
+
+<style>
+    .tool-container { background: var(--color-bg-1); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
+    .input-group input { width: 100%; padding: 10px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 4px; font-family: var(--font-family-mono); }
+</style>
+
+<script>
+    window.convertToDec = function() {
+        const ip = document.getElementById('ipInput').value.trim();
+        const parts = ip.split('.').map(Number);
+        if(parts.length === 4 && parts.every(p => p >= 0 && p <= 255 && !isNaN(p))) {
+            const dec = (parts[0] * 16777216) + (parts[1] * 65536) + (parts[2] * 256) + parts[3];
+            document.getElementById('decInput').value = dec;
+        } else { document.getElementById('decInput').value = "Invalid IP"; }
+    };
+
+    window.convertToIp = function() {
+        let dec = parseInt(document.getElementById('decInput').value.trim());
+        if(!isNaN(dec) && dec >= 0 && dec <= 4294967295) {
+            const p1 = (dec >>> 24) & 255;
+            const p2 = (dec >>> 16) & 255;
+            const p3 = (dec >>> 8) & 255;
+            const p4 = dec & 255;
+            document.getElementById('ipInput').value = `${p1}.${p2}.${p3}.${p4}`;
+        } else { document.getElementById('ipInput').value = "Invalid Decimal"; }
+    };
+</script>
