@@ -1,8 +1,48 @@
-<div style="width: 100%; height: 52vh; min-height: 450px; background: var(--color-bg-2); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); position: relative;">
-    <iframe 
-        src="https://thedoggybrad.github.io/ADKILLED-SPEEDTEST.NET/" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-        allow="fullscreen; geolocation"
-        title="Speedtest Custom">
-    </iframe>
+<div class="tool-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: var(--color-bg-1);">
+    
+    <div style="width: 100%; padding: 20px; text-align: center; border-bottom: 1px solid var(--color-border); position: relative;">
+        <h3 style="color: var(--color-primary); margin-bottom: 8px;">
+            <i data-lucide="zap" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;"></i>
+            Network Speed Test
+        </h3>
+        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">
+            Test your Ping, Download, and Upload speeds.
+        </p>
+        
+        <div style="margin-top: 12px;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary); box-shadow: var(--shadow-sm);">
+                <i data-lucide="server" style="width: 12px; height: 12px; color: var(--color-primary);"></i> 
+                Powered by OpenSpeedTest
+            </span>
+        </div>
+    </div>
+
+    <div style="width: 100%; height: 600px; max-height: 70vh; position: relative;">
+        <div id="speedtest-loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; color: var(--color-primary);">
+            <i data-lucide="loader" class="spin" style="width: 32px; height: 32px; margin-bottom: 10px;"></i>
+            <span style="font-weight: 500;">Connecting to servers...</span>
+        </div>
+
+        <iframe 
+            src="https://openspeedtest.com/Get-widget.php" 
+            width="100%" 
+            height="100%" 
+            border="0" 
+            scrolling="no" 
+            frameborder="0" 
+            onload="document.getElementById('speedtest-loader').style.display='none';"
+            style="position: relative; z-index: 2; border-radius: 0 0 var(--radius-lg) var(--radius-lg);">
+        </iframe>
+    </div>
 </div>
+
+<script>
+    // Re-initialize icons for the newly injected HTML inside the modal
+    if(window.lucide) window.lucide.createIcons();
+</script>
+
+<style>
+    /* Spin animation for the loading icon */
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .spin { animation: spin 1s linear infinite; }
+</style>

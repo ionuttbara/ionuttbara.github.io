@@ -1390,7 +1390,27 @@ function setupEventListeners() {
     }
 
     document.querySelectorAll('.modal-close, .modal-backdrop').forEach(el => {
-        el.addEventListener('click', () => { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); });
+        el.addEventListener('click', () => { 
+            document.querySelectorAll('.modal').forEach(m => {
+                m.classList.add('hidden');
+                
+                // Kill Ruffle Flash Player and media if the main content modal is closed
+                if (m.id === 'contentModal') {
+                    const body = document.getElementById('contentModalBody');
+                    if (body) {
+                        // Explicitly remove Ruffle to kill background audio processes
+                        const rufflePlayer = body.querySelector('ruffle-player');
+                        if (rufflePlayer) {
+                            try { rufflePlayer.pause(); } catch(e) {}
+                            rufflePlayer.remove(); 
+                        }
+                        
+                        // Clear the modal content so nothing runs invisibly in the background
+                        setTimeout(() => { body.innerHTML = ''; }, 100);
+                    }
+                }
+            }); 
+        });
     });
 
     // --- Contact Form Submission Logic (mailto:) ---

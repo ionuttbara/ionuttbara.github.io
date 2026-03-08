@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Groundhog D-Day",
+        "description": "Strap on a jetpack and blast your way through enemy defenses in this action-packed shooter.",
+        "file": "Groundhog D-day.swf"
+    },
+    {
+        "name": "Jacksmith",
+        "description": "Man the forge and craft weapons for your animal warriors in this strategy crafting game.",
+        "file": "jacksmith.swf"
+    },
+    {
+        "name": "Mimelet",
+        "description": "Steal powers to overcome obstacles in this cute and clever puzzle platformer.",
+        "file": "Mimelet.swf"
+    },
+    {
+        "name": "Rubble Trouble Tokyo",
+        "description": "Demolish buildings in Tokyo using various explosive tools without destroying the protected ones.",
+        "file": "Rubble_Trouble_Tokyo.swf"
+    },
+    {
+        "name": "Avalanche",
+        "description": "Jump and climb up the falling blocks to survive the endless avalanche.",
+        "file": "Avalanche.swf"
+    },
+    {
+        "name": "Black Knight",
+        "description": "Collect taxes and smash peasants to please the king in this classic arcade game.",
+        "file": "blackknight.swf"
+    },
+    {
+        "name": "Cactus McCoy",
+        "description": "Punch, shoot, and whip your way through enemies as a cursed walking cactus.",
+        "file": "cactusmccoy.swf"
+    },
+    {
+        "name": "Cactus McCoy 2",
+        "description": "The epic sequel! Journey through the wild west to find the ruins of Calavera.",
+        "file": "cactusmccoy2.swf"
+    },
+    {
+        "name": "Cursed Treasure",
+        "description": "Protect your precious gems from the heroes in this legendary tower defense game.",
+        "file": "Cursed Treasure - Dont Touch My Gems tower defense game.swf"
+    },
+    {
+        "name": "Deep Freeze (Hacked)",
+        "description": "Freeze your enemies and push them away in this wintery arcade classic (Invincibility mode).",
+        "file": "Deep Freeze (Invincibility Hack).swf"
+    },
+    {
+        "name": "FireBoy & WaterGirl 1: Forest Temple",
+        "description": "Work together to explore the Forest Temple, solve puzzles, and collect diamonds.",
+        "file": "FireBoy_and_Watergirl_1-In_The_Forest_Temple.swf"
+    },
+    {
+        "name": "FireBoy & WaterGirl 2: Light Temple",
+        "description": "Use mirrors and light beams to navigate through the complex Light Temple.",
+        "file": "FireBoy_and_Watergirl_2-The_Light_Temple.swf"
+    },
+    {
+        "name": "FireBoy & WaterGirl 3: Ice Temple",
+        "description": "Venture into the freezing Ice Temple where mechanics are slippery and frozen.",
+        "file": "FireBoy_and_Watergirl_3-In_The_Forest_Temple.swf"
+    },
+    {
+        "name": "FireBoy & WaterGirl 4: Crystal Temple",
+        "description": "Master the art of teleportation using crystal portals across the Crystal Temple.",
+        "file": "FireBoy_and_Watergirl_4-The_Crystal_Temple.swf"
+    },
+    {
+        "name": "Gravity Guy",
+        "description": "Flip gravity to run on ceilings and floors to escape your relentless pursuer.",
+        "file": "Gravity-Guy.swf"
+    }
+]

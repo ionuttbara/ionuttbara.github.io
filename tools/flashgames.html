@@ -1,0 +1,114 @@
+<div id="flash-hub">
+    <div id="flash-games-view">
+        <div id="flash-games-list" class="downloads-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            </div>
+        
+        <div style="margin-top: 30px; padding: 15px; background: var(--color-bg-2); border-radius: var(--radius-base); text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+            <i data-lucide="info" style="width: 20px; height: 20px; color: var(--color-primary); margin-bottom: 8px;"></i><br>
+            <strong>Notice:</strong> These flash games are uploaded strictly for archival purposes and personal examples.<br>
+            If you are the copyright holder and wish for a game to be removed, please contact: 
+            <a href="mailto:ionutbaraooo@gmail.com" style="color: var(--color-primary); font-weight: bold; text-decoration: none;">ionutbaraooo@gmail.com</a>.
+        </div>
+    </div>
+
+    <div id="flash-player-container" style="display:none; width: 100%; flex-direction: column; align-items: center;">
+        
+        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--color-border);">
+            <button class="btn btn--outline btn--sm" onclick="closeFlashGame()">
+                <i data-lucide="arrow-left" style="width: 16px; margin-right: 6px;"></i> Back
+            </button>
+            <h3 id="current-game-title" style="margin: 0; color: var(--color-primary); font-size: 1.2rem; text-align: center; flex: 1;"></h3>
+            <div style="width: 80px;"></div> </div>
+        
+        <div id="ruffle-embed-area" style="width: 100%; height: 60vh; min-height: 400px; max-height: 600px; display: flex; justify-content: center; align-items: center; background: #000; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+            </div>
+        
+        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--color-text-secondary);">
+            Right-click the game for fullscreen and emulation options.
+        </p>
+    </div>
+</div>
+
+<script>
+(async function() {
+    // 1. Inject Ruffle script dynamically if it doesn't exist
+    if (!window.RufflePlayer) {
+        const script = document.createElement('script');
+        script.src = "https://unpkg.com/@ruffle-rs/ruffle";
+        document.head.appendChild(script);
+    }
+
+    // 2. Fetch the games list from your JSON file
+    try {
+        const res = await fetch(`content/flash/games.json?v=${new Date().getTime()}`);
+        if (!res.ok) throw new Error("games.json not found");
+        const games = await res.json();
+        
+        const list = document.getElementById('flash-games-list');
+        list.innerHTML = games.map(g => `
+            <div class="tool-card" onclick="playFlashGame('${g.file}', '${g.name.replace(/'/g, "\\'")}')" style="cursor:pointer; text-align:center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+                <i data-lucide="gamepad-2" style="width:40px; height:40px; margin-bottom:12px; color:var(--color-primary);"></i>
+                <h3 class="tool-title" style="font-size: 1.1rem; margin-bottom: 8px;">${g.name}</h3>
+                <p class="tool-description" style="font-size: 0.85rem; margin-bottom: 0;">${g.description || 'Play classic flash game'}</p>
+            </div>
+        `).join('');
+        
+        if(window.lucide) window.lucide.createIcons();
+    } catch (e) {
+        console.error(e);
+        document.getElementById('flash-games-list').innerHTML = '<p style="text-align: center; color: var(--color-error); grid-column: 1/-1;">Could not load games list. Please ensure <b>content/flash/games.json</b> exists.</p>';
+    }
+})();
+
+// Function to start a game
+window.playFlashGame = function(swfFile, gameName) {
+    // Hide the list and notice
+    document.getElementById('flash-games-view').style.display = 'none';
+    
+    // Show the player
+    const playerContainer = document.getElementById('flash-player-container');
+    playerContainer.style.display = 'flex';
+    document.getElementById('current-game-title').textContent = gameName;
+    
+    const embedArea = document.getElementById('ruffle-embed-area');
+    embedArea.innerHTML = '<div style="color: white; display: flex; flex-direction: column; align-items: center; gap: 10px;"><i data-lucide="loader" class="spin"></i> Loading Emulator...</div>';
+    if(window.lucide) window.lucide.createIcons();
+    
+    // Wait for Ruffle to be ready
+    const checkRuffle = setInterval(() => {
+        if (window.RufflePlayer) {
+            clearInterval(checkRuffle);
+            embedArea.innerHTML = ''; // Clear loading text
+            
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            
+            // CSS fixes to keep the player contained inside the modal
+            player.style.width = '100%';
+            player.style.height = '100%';
+            
+            embedArea.appendChild(player);
+            
+            // Load the SWF file
+            player.load('content/flash/' + swfFile);
+        }
+    }, 100);
+};
+
+// Function to go back to the game list
+window.closeFlashGame = function() {
+    document.getElementById('flash-player-container').style.display = 'none';
+    
+    // Properly target and destroy the Ruffle player node to kill audio
+    const embedArea = document.getElementById('ruffle-embed-area');
+    const rufflePlayer = embedArea.querySelector('ruffle-player');
+    
+    if (rufflePlayer) {
+        try { rufflePlayer.pause(); } catch(e) {}
+        rufflePlayer.remove(); // Triggers Ruffle's garbage collection & audio stop
+    }
+    
+    embedArea.innerHTML = ''; // Clear anything else
+    document.getElementById('flash-games-view').style.display = 'block';
+};
+</script>

@@ -222,7 +222,15 @@
             "type": "internal",
             "category": "Developer Tools",
             "icon": "zap"
-        }
+        },
+        {
+    "name": "Flash Games Arcade",
+    "description": "Play classic .swf flash games right in the browser using Ruffle.",
+    "url": "tools/flashgames.html",
+    "type": "internal",
+    "category": "Multimedia",
+    "icon": "joystick"
+}
     ],
     "ro-RO": [
         {
@@ -429,7 +437,15 @@
             "type": "internal",
             "category": "Developer Tools",
             "icon": "zap"
-        }
+        },
+        {
+    "name": "Flash Games Arcade",
+    "description": "Play classic .swf flash games right in the browser using Ruffle.",
+    "url": "tools/flashgames.html",
+    "type": "internal",
+    "category": "Multimedia",
+    "icon": "joystick"
+}
     ],
     "gall": [
         {
@@ -636,6 +652,14 @@
             "type": "internal",
             "category": "Developer Tools",
             "icon": "zap"
-        }
+        },
+        {
+    "name": "Flash Games Arcade",
+    "description": "Play classic .swf flash games right in the browser using Ruffle.",
+    "url": "tools/flashgames.html",
+    "type": "internal",
+    "category": "Multimedia",
+    "icon": "joystick"
+}
     ]
 }
