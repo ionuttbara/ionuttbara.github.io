@@ -2,25 +2,43 @@
     "en-US": [
         {
             "id": "optimization",
-            "title": "Windows Optimization Best Practices",
+            "title": "Blog for testing: Windows Optimization Best Practices",
             "excerpt": "Learn the most effective techniques for optimizing Windows performance with automation scripts...",
             "file": "content/blog/optimization.html"
+        },
+        {
+            "id": "uup-converter",
+            "title": "Creating an ISO with UUP Converter",
+            "excerpt": "Learn what the UUP platform is, how files are assembled, and how to fully automate Windows ISO creation using the optimal configuration.",
+            "file": "content/blog/uup-conv-blog/index.html"
         }
     ],
     "ro-RO": [
         {
             "id": "optimization",
-            "title": "Cele mai bune practici pentru optimizare Windows",
+            "title": "Blog pentru testare:Cele mai bune practici pentru optimizare Windows",
             "excerpt": "Află cele mai eficiente tehnici pentru optimizarea performanței Windows cu ajutorul scripturilor automate...",
             "file": "content/blog/optimization.html"
+        },
+        {
+            "id": "uup-converter",
+            "title": "Crearea unui ISO cu UUP Converter",
+            "excerpt": "Află ce este platforma UUP, cum se asamblează fișierele și cum să îți automatizezi complet crearea unui ISO de Windows folosind configurația optimă.",
+            "file": "content/blog/uup-conv-blog/index.html"
         }
     ],
     "gall": [
         {
             "id": "optimization",
-            "title": "Najbolje prakse za optimizaciju Windowsa",
+            "title": "Blog test: Najbolje prakse za optimizaciju Windowsa",
             "excerpt": "Naučite najefikasnije tehnike za optimizaciju Windows performansi sa automatizovanim skriptama...",
             "file": "content/blog/optimization.html"
+        },
+        {
+            "id": "uup-converter",
+            "title": "Kreiranje ISO-a sa UUP Converter-om",
+            "excerpt": "Saznajte šta je UUP platforma, kako se fajlovi sklapaju i kako da potpuno automatizujete kreiranje Windows ISO-a koristeći optimalnu konfiguraciju.",
+            "file": "content/blog/uup-conv-blog/index.html"
         }
     ]
 }

@@ -19,21 +19,21 @@
             </div>
         </div>
         <div class="input-group">
-            <label>RGB (e.g., 52, 152, 219)</label>
+            <label>RGB (ex: 52, 152, 219)</label>
             <div style="display: flex; gap: 5px;">
                 <input type="text" id="rgbIn" value="52, 152, 219" oninput="handleColorChange('rgb')" />
                 <button class="btn btn--outline btn--sm copy-btn" onclick="copyValue('rgbIn', this)" title="Copy RGB"><i data-lucide="copy"></i></button>
             </div>
         </div>
         <div class="input-group">
-            <label>CMYK (%, e.g., 76, 31, 0, 14)</label>
+            <label>CMYK (%, ex: 76, 31, 0, 14)</label>
             <div style="display: flex; gap: 5px;">
                 <input type="text" id="cmykIn" value="76, 31, 0, 14" oninput="handleColorChange('cmyk')" />
                 <button class="btn btn--outline btn--sm copy-btn" onclick="copyValue('cmykIn', this)" title="Copy CMYK"><i data-lucide="copy"></i></button>
             </div>
         </div>
         <div class="input-group">
-            <label>HSV (e.g., 204, 76, 86)</label>
+            <label>HSV (ex: 204, 76, 86)</label>
             <div style="display: flex; gap: 5px;">
                 <input type="text" id="hsvIn" value="204, 76, 86" oninput="handleColorChange('hsv')" />
                 <button class="btn btn--outline btn--sm copy-btn" onclick="copyValue('hsvIn', this)" title="Copy HSV"><i data-lucide="copy"></i></button>
@@ -43,28 +43,58 @@
 
     <div class="special-colors">
         <div class="hash-row">
-            <label id="mcLabelText"><i data-lucide="pickaxe" style="width:16px;"></i> Closest Minecraft Code</label>
+            <label id="mcLabelText"><i data-lucide="pickaxe" style="width:16px;"></i> Cea mai apropiată culoare Minecraft</label>
             <div class="hash-value-box">
                 <code id="mcOut">&b (Aqua)</code>
-                <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyTextContent('mcOut', this)" title="Copy Minecraft Code"><i data-lucide="copy"></i></button>
+                <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyTextContent('mcOut', this)" title="Copiaza cod Minecraft"><i data-lucide="copy"></i></button>
             </div>
         </div>
         <div class="hash-row">
             <label style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                <span id="pantoneLabelText" style="display: flex; align-items: center; gap: 6px;"><i data-lucide="palette" style="width:16px;"></i> Closest Pantone</span>
+                <span id="pantoneLabelText" style="display: flex; align-items: center; gap: 6px;"><i data-lucide="palette" style="width:16px;"></i> Cea mai apropiată culoare Pantone</span>
                 <a href="files/pantonechart.pdf" target="_blank" class="btn btn--outline btn--sm" style="padding: 2px 8px; font-size: 0.8rem; text-decoration: none;">
-                    <i data-lucide="file-text" style="width: 12px; margin-right: 4px;"></i> View Full Chart
+                    <i data-lucide="file-text" style="width: 12px; margin-right: 4px;"></i> Chart PDF
                 </a>
             </label>
             <div class="hash-value-box">
-                <code id="pantoneOut">Loading database...</code>
-                <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyTextContent('pantoneOut', this)" title="Copy Pantone"><i data-lucide="copy"></i></button>
+                <code id="pantoneOut">Se încarcă baza de date...</code>
+                <button class="btn btn--outline btn--sm copy-btn-box" onclick="copyTextContent('pantoneOut', this)" title="Copiaza Pantone"><i data-lucide="copy"></i></button>
             </div>
         </div>
     </div>
 
+    <div class="palettes-container">
+        
+        <div class="palette-section">
+            <button class="palette-toggle" onclick="toggleSection('mcSection', this)">
+                <span style="display: flex; align-items: center; gap: 8px;"><i data-lucide="pickaxe"></i> Paletă Culori Minecraft</span>
+                <i data-lucide="chevron-down" class="toggle-icon"></i>
+            </button>
+            <div id="mcSection" class="palette-content" style="display: none;">
+                <div class="anim-container">
+                    <img src="content/anim/oaie.gif" alt="Minecraft Sheep" title="Jeb_ Sheep">
+                </div>
+                <div class="color-grid-cards" id="mcGrid"></div>
+            </div>
+        </div>
+
+        <div class="palette-section">
+            <button class="palette-toggle" onclick="toggleSection('pantoneSection', this)">
+                <span style="display: flex; align-items: center; gap: 8px;"><i data-lucide="palette"></i> Librărie Cartonașe Pantone</span>
+                <i data-lucide="chevron-down" class="toggle-icon"></i>
+            </button>
+            <div id="pantoneSection" class="palette-content" style="display: none;">
+                <div class="search-bar">
+                    <input type="text" id="pantoneSearch" placeholder="Căutați culori (ex: red, orange, snow, sky)..." oninput="filterPantone()">
+                </div>
+                <div class="color-grid-cards" id="pantoneGrid"></div>
+            </div>
+        </div>
+
+    </div>
+
     <div class="trademark-note">
-        * This tool is provided for free, educational, and personal use. It has no affiliation with, nor is it endorsed by, Pantone LLC or Mojang AB. "Pantone" and "Minecraft" are registered trademarks of their respective owners.
+        * Acest instrument este oferit gratuit pentru uz educațional și personal. Nu are nicio afiliere și nu este susținut de Pantone LLC sau Mojang AB. "Pantone" și "Minecraft" sunt mărci înregistrate ale respectivilor proprietari.
     </div>
 </div>
 
@@ -95,8 +125,30 @@
     .hash-row label { display: flex; align-items: center; gap: 6px; font-weight: bold; margin-bottom: 5px; color: var(--color-primary); font-size: 0.9rem; }
     .hash-value-box { display: flex; background: var(--color-bg-1); border: 1px solid var(--color-border); border-radius: 4px; }
     .hash-value-box code { padding: 10px; font-family: var(--font-family-mono); font-size: 0.9rem; width: 100%; }
+
+    /* Stiluri Acordeon / Librării */
+    .palettes-container { margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--color-border); }
     
-    .trademark-note { font-size: 0.75rem; color: var(--color-text-secondary); text-align: center; border-top: 1px solid var(--color-border); padding-top: 15px; line-height: 1.4; }
+    .palette-section { margin-bottom: 15px; }
+    .palette-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; background: var(--color-bg-2); border: 1px solid var(--color-border); padding: 15px; border-radius: 8px; cursor: pointer; font-size: 1.05rem; color: var(--color-primary); font-weight: bold; font-family: inherit; transition: background 0.2s; }
+    .palette-toggle:hover { background: var(--color-bg-1); }
+    .palette-content { padding: 20px 0; border-top: none; }
+
+    .anim-container { display: flex; justify-content: center; margin-bottom: 20px; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAOklEQVQYV2NkYGAwYkAD////Z0TREEEjsAJsihgZkFUii2JUxKgIWSWaQnQ16G6kqUFXQ00NshqSDQDFjwsS9L3xHwAAAABJRU5ErkJggg=='); border-radius: 8px; border: 1px solid var(--color-border); padding: 10px; }
+    .anim-container img { max-height: 80px; image-rendering: pixelated; }
+
+    .search-bar { margin-bottom: 20px; }
+    .search-bar input { width: 100%; padding: 12px; border: 1px solid var(--color-border); background: var(--color-bg-2); color: var(--color-text); border-radius: 8px; font-family: var(--font-family-base); font-size: 0.95rem; }
+    
+    .color-grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .color-card { background: var(--color-bg-2); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .color-card:hover { transform: translateY(-4px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); border-color: var(--color-primary); }
+    .color-card-swatch { height: 70px; width: 100%; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .color-card-info { padding: 10px 6px; text-align: center; }
+    .color-card-title { font-weight: bold; margin-bottom: 4px; color: var(--color-text); font-size: 0.8rem; text-transform: capitalize; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .color-card-sub { color: var(--color-text-secondary); font-family: var(--font-family-mono); font-size: 0.7rem; }
+    
+    .trademark-note { font-size: 0.75rem; color: var(--color-text-secondary); text-align: center; border-top: 1px solid var(--color-border); padding-top: 15px; line-height: 1.4; margin-top: 20px; }
 </style>
 
 <script>
@@ -123,6 +175,21 @@
         });
     };
 
+    // Toggle Acordeon Funcție
+    window.toggleSection = function(sectionId, btn) {
+        const content = document.getElementById(sectionId);
+        const icon = btn.querySelector('.toggle-icon');
+        
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            icon.setAttribute('data-lucide', 'chevron-up');
+        } else {
+            content.style.display = 'none';
+            icon.setAttribute('data-lucide', 'chevron-down');
+        }
+        if(window.lucide) window.lucide.createIcons();
+    };
+
     // Internals
     window.currentH = 204;
     window.currentS = 76;
@@ -140,10 +207,9 @@
         { c: '&e', n: 'Yellow', r: 255, g: 255, b: 85 }, { c: '&f', n: 'White', r: 255, g: 255, b: 255 }
     ];
 
-    window.pantoneDB = [
-        { p: 'PMS 2925 C', r: 0, g: 156, b: 222 }
-    ];
+    window.pantoneDB = [];
 
+    // Încărcare JSON Pantone
     fetch('data/pantone-numbers.json')
         .then(res => res.json())
         .then(data => {
@@ -152,14 +218,87 @@
                 let bigint = parseInt(hex, 16);
                 return { 
                     p: `PMS ${code} (${info.name})`, 
+                    code: `PMS ${code}`,
+                    name: info.name.replace(/-/g, ' '),
+                    hex: `#${hex.toUpperCase()}`,
                     r: (bigint >> 16) & 255, 
                     g: (bigint >> 8) & 255, 
                     b: bigint & 255 
                 };
             });
             updatePantoneDisplay(window.lastRGB.r, window.lastRGB.g, window.lastRGB.b);
+            
+            // Randăm absolut TOATE culorile din baza de date
+            renderPantoneGrid(window.pantoneDB);
         })
-        .catch(err => console.error('Error loading Pantone JSON:', err));
+        .catch(err => console.error('Eroare la încărcarea Pantone JSON:', err));
+
+    // Randare Cartonașe Minecraft
+    function renderMCGrid() {
+        const grid = document.getElementById('mcGrid');
+        grid.innerHTML = '';
+        mcColors.forEach(mc => {
+            let hex = "#" + ((1 << 24) + (mc.r << 16) + (mc.g << 8) + mc.b).toString(16).slice(1).toUpperCase();
+            let card = document.createElement('div');
+            card.className = 'color-card';
+            card.title = `Click pentru a trimite ${mc.n} în convertor`;
+            card.onclick = () => { document.getElementById('hexIn').value = hex; handleColorChange('hex'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+            card.innerHTML = `
+                <div class="color-card-swatch" style="background-color: ${hex};"></div>
+                <div class="color-card-info">
+                    <div class="color-card-title">${mc.n}</div>
+                    <div class="color-card-sub">${mc.c}</div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // Randare Cartonașe Pantone
+    function renderPantoneGrid(items) {
+        const grid = document.getElementById('pantoneGrid');
+        grid.innerHTML = '';
+        
+        if (items.length === 0) {
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--color-text-secondary);">Nu s-au găsit culori Pantone pentru această căutare.</div>`;
+            return;
+        }
+
+        // Creăm cartonașele pentru array-ul cerut
+        items.forEach(p => {
+            let card = document.createElement('div');
+            card.className = 'color-card';
+            card.title = `Click pentru a trimite ${p.name} în convertor`;
+            card.onclick = () => { document.getElementById('hexIn').value = p.hex; handleColorChange('hex'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+            card.innerHTML = `
+                <div class="color-card-swatch" style="background-color: ${p.hex};"></div>
+                <div class="color-card-info">
+                    <div class="color-card-title">${p.name}</div>
+                    <div class="color-card-sub">${p.code}</div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // Filtrare Căutare Pantone
+    window.filterPantone = function() {
+        let query = document.getElementById('pantoneSearch').value.toLowerCase().trim();
+        if (!query) {
+            renderPantoneGrid(window.pantoneDB);
+            return;
+        }
+        
+        // Filtram după numele culorii, cod sau hex
+        let filtered = window.pantoneDB.filter(p => 
+            p.name.toLowerCase().includes(query) || 
+            p.code.toLowerCase().includes(query) ||
+            p.hex.toLowerCase().includes(query)
+        );
+        
+        renderPantoneGrid(filtered);
+    }
+
 
     window.hsvToRgb = function(h, s, v) {
         h /= 360; s /= 100; v /= 100;
@@ -274,7 +413,7 @@
         let distP = Math.pow(closestPantone.r - r, 2) + Math.pow(closestPantone.g - g, 2) + Math.pow(closestPantone.b - b, 2);
         let isExact = (distP === 0);
 
-        document.getElementById('pantoneLabelText').innerHTML = `<i data-lucide="palette" style="width:16px;"></i> ${isExact ? 'Exact Pantone Match' : 'Closest Pantone Match'}`;
+        document.getElementById('pantoneLabelText').innerHTML = `<i data-lucide="palette" style="width:16px;"></i> ${isExact ? 'Exact Pantone Match' : 'Cea mai apropiată culoare Pantone'}`;
         document.getElementById('pantoneOut').textContent = closestPantone.p;
         if(window.lucide) window.lucide.createIcons();
     }
@@ -328,7 +467,7 @@
         let distMC = Math.pow(closestMC.r - r, 2) + Math.pow(closestMC.g - g, 2) + Math.pow(closestMC.b - b, 2);
         let isExactMC = (distMC === 0);
 
-        document.getElementById('mcLabelText').innerHTML = `<i data-lucide="pickaxe" style="width:16px;"></i> ${isExactMC ? 'Exact Minecraft Code' : 'Closest Minecraft Code'}`;
+        document.getElementById('mcLabelText').innerHTML = `<i data-lucide="pickaxe" style="width:16px;"></i> ${isExactMC ? 'Exact Minecraft Code' : 'Cea mai apropiată culoare Minecraft'}`;
         document.getElementById('mcOut').textContent = `${closestMC.c} (${closestMC.n})`;
 
         updatePantoneDisplay(r, g, b);
@@ -336,4 +475,5 @@
 
     // Init
     window.updatePickerVisuals();
+    renderMCGrid();
 </script>

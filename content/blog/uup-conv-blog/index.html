@@ -1,0 +1,88 @@
+<div style="font-family: var(--font-family-base); color: var(--color-text); line-height: 1.7;">
+    <h2 style="color: var(--color-primary); margin-bottom: 5px;">reating an ISO with UUP Converter</h2>
+    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 24px;">
+        <i data-lucide="calendar" style="width: 14px; margin-right: 5px;"></i> Published: 8th of March 2026
+    </p>
+
+    <img src="content/blog/uup-conv-blog/uupconv.png" alt="UUP Converter interface preview" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 24px; border: 1px solid var(--color-border);">
+    
+    <p>Learn what the UUP platform is, how files are assembled, and how I fully automate Windows ISO creation using my optimal configuration. <strong>These settings and modifications apply to Windows 10 and Windows 11 images.</strong></p>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px;"><i data-lucide="info" style="width: 20px; color: var(--color-primary); vertical-align: middle;"></i> What is UUP?</h3>
+    <p><strong>UUP (Unified Update Platform)</strong> is a technology introduced by Microsoft to make Windows updates much more efficient. Instead of distributing massive, complete ISO files for every minor update, UUP allows downloading only the strictly necessary packages (including Insider testing builds).</p>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px;"><i data-lucide="cpu" style="width: 20px; color: var(--color-primary); vertical-align: middle;"></i> How are UUP files processed?</h3>
+    <p>Once the packages are downloaded, you will end up with a folder full of <code>.cab</code> and <code>.esd</code> archives. This is where <strong>UUP Converter</strong> comes into play. The converter is a complex script that automates powerful command-line tools (like DISM and wimlib). It unarchives the components, merges them, integrates cumulative updates, and rebuilds everything into a <strong>bootable ISO</strong> ready to be written to a USB drive.</p>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px;"><i data-lucide="settings" style="width: 20px; color: var(--color-primary); vertical-align: middle;"></i> My Configuration (ConvertConfig.ini)</h3>
+    <p>To avoid manually confirming every step, the script relies on the configuration file. Here is what the settings I use mean:</p>
+    <ul style="margin-left: 20px; margin-bottom: 24px;">
+        <li><strong>AutoStart = 1 & AutoExit = 1</strong>: Full automation. The script starts and closes itself automatically upon completion.</li>
+        <li><strong>AddUpdates = 1</strong>: Instantly integrates the latest updates (Security patches) directly into the ISO image, saving precious time on the first system boot.</li>
+        <li><strong>Cleanup = 1 & ResetBase = 2</strong>: Deletes temporary files and old update backups (ResetBase), resulting in a much cleaner and smaller image.</li>
+        <li><strong>NetFx3 = 1</strong>: Injects support for .NET Framework 3.5, required for running older games and applications. <em>Note: Including .NET 3.5 via this method is no longer valid for Windows 11 build 28000 and newer.</em></li>
+        <li><strong>wim2esd = 1</strong>: Converts the installer file to ESD format (highly compressed), ideal for FAT32 installation partitions which have a strict 4GB per-file limit.</li>
+        <li><strong>SkipEdge = 1</strong>: Skips forcing the installation of the Microsoft Edge browser during the assembly process.</li>
+        <li><strong>AddDrivers = 1 & Drv_Source = \Drivers</strong>: This is a lifesaver for modern PCs. It automatically fetches and integrates any extracted driver (like .inf/.sys files) that you place in the <code>\Drivers</code> folder next to the script. This is essential if you have a modern Intel processor with VMD/RST technology enabled; without injecting these storage drivers into the ISO, the Windows installer simply will not see your SSD.</li>
+        <li><strong>StubAppsFull = 1 & CustomList = 1 ([Store_Apps] section)</strong>: This is my main method for achieving a completely <strong>bloat-free</strong> Windows. By enabling <code>CustomList</code>, the script ignores useless pre-installed apps (like TikTok, games, ads) and installs <em>only</em> the applications I specify in a separate file named <code>CustomAppsList.txt</code>.</li>
+    </ul>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px;"><i data-lucide="terminal" style="width: 20px; color: var(--color-primary); vertical-align: middle;"></i> ConvertConfig.ini Code</h3>
+    <pre class="blog-code" data-lang="ini"><span class="syntax-comment">[convert-UUP]</span>
+AutoStart    =1
+AddUpdates   =1
+Cleanup      =1
+ResetBase    =2
+NetFx3       =1
+StartVirtual =0
+wim2esd      =1
+wim2swm      =0
+SkipISO      =0
+SkipWinRE    =0
+LCUwinre     =0
+LCUmsuExpand =1
+UpdtBootFiles=1
+ForceDism    =1
+RefESD       =0
+SkipLCUmsu   =0
+SkipEdge     =1
+AutoExit     =1
+DisableUpdatingUpgrade=1
+AddDrivers   =1
+Drv_Source   =\Drivers
+
+<span class="syntax-comment">[Store_Apps]</span>
+StubAppsFull =1
+CustomList   =1</pre>
+
+    <h3 style="margin-top: 30px; margin-bottom: 12px;"><i data-lucide="file-text" style="width: 20px; color: var(--color-primary); vertical-align: middle;"></i> CustomAppsList.txt File (Bloat-Free System)</h3>
+    <p>To keep the system as fast and clean as possible, I use a strict list of core applications. Everything not found on this list is completely removed from the installation. Here is why I kept these specific packages:</p>
+    
+    <ul style="margin-left: 20px; margin-bottom: 24px;">
+        <li><strong>Core System & Security:</strong> I kept <code>WindowsStore</code>, <code>StorePurchaseApp</code>, and <code>DesktopAppInstaller</code> so I can still securely download and manage software. <code>SecHealthUI</code> is retained to ensure the Windows Defender interface remains accessible.</li>
+        <li><strong>Essential Utilities:</strong> <code>WindowsCalculator</code>, <code>Paint</code>, <code>ScreenSketch</code> (Snipping Tool), <code>WindowsCamera</code>, and <code>WindowsSoundRecorder</code> are lightweight, indispensable tools for daily tasks that don't slow down the system.</li>
+        <li><strong>Media & Codecs:</strong> <code>Windows.Photos</code> and <code>ZuneMusic</code> (Media Player) are kept for basic media viewing. The rest of the list (<code>HEIF</code>, <code>HEVC</code>, <code>VP9</code>, <code>Webp</code>, <code>DolbyAudio</code>, <code>AV1</code>, etc.) consists of crucial video and audio codecs. Including these ensures that all images and video formats play natively out-of-the-box without needing to immediately download third-party software like VLC.</li>
+    </ul>
+
+    <pre class="blog-code" data-lang="txt">Microsoft.WindowsStore_8wekyb3d8bbwe
+Microsoft.StorePurchaseApp_8wekyb3d8bbwe
+Microsoft.SecHealthUI_8wekyb3d8bbwe
+Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
+Microsoft.Windows.Photos_8wekyb3d8bbwe
+Microsoft.WindowsCamera_8wekyb3d8bbwe
+Microsoft.Paint_8wekyb3d8bbwe
+Microsoft.WindowsCalculator_8wekyb3d8bbwe
+Microsoft.ScreenSketch_8wekyb3d8bbwe
+Microsoft.ZuneMusic_8wekyb3d8bbwe
+Microsoft.WebMediaExtensions_8wekyb3d8bbwe
+Microsoft.RawImageExtension_8wekyb3d8bbwe
+Microsoft.HEIFImageExtension_8wekyb3d8bbwe
+Microsoft.HEVCVideoExtension_8wekyb3d8bbwe
+Microsoft.VP9VideoExtensions_8wekyb3d8bbwe
+Microsoft.WebpImageExtension_8wekyb3d8bbwe
+Microsoft.DolbyAudioExtensions_8wekyb3d8bbwe
+Microsoft.AVCEncoderVideoExtension_8wekyb3d8bbwe
+Microsoft.MPEG2VideoExtension_8wekyb3d8bbwe
+Microsoft.AV1VideoExtension_8wekyb3d8bbwe
+Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe</pre>
+</div>
