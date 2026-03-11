@@ -5,9 +5,7 @@
         
         <div style="margin-top: 30px; padding: 15px; background: var(--color-bg-2); border-radius: var(--radius-base); text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); border: 1px solid var(--color-border);">
             <i data-lucide="info" style="width: 20px; height: 20px; color: var(--color-primary); margin-bottom: 8px;"></i><br>
-            <strong>Notice:</strong> These flash games are uploaded strictly for archival purposes and the list shown as personal preferences.<br>
-            If you are the copyright holder and wish for a game to be removed, please contact: 
-            <a href="mailto:ionutbaraooo@gmail.com" style="color: var(--color-primary); font-weight: bold; text-decoration: none;">ionutbaraooo@gmail.com</a>.
+            <strong>Notice:</strong> These flash games are uploaded strictly for archival purposes.
         </div>
     </div>
 
@@ -18,97 +16,124 @@
                 <i data-lucide="arrow-left" style="width: 16px; margin-right: 6px;"></i> Back
             </button>
             <h3 id="current-game-title" style="margin: 0; color: var(--color-primary); font-size: 1.2rem; text-align: center; flex: 1;"></h3>
-            <div style="width: 80px;"></div> </div>
+            <div style="width: 80px;"></div> 
+        </div>
         
         <div id="ruffle-embed-area" style="width: 100%; height: 60vh; min-height: 400px; max-height: 600px; display: flex; justify-content: center; align-items: center; background: #000; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
-            </div>
+        </div>
         
-        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--color-text-secondary);">
-            Right-click the game for fullscreen and emulation options.
-        </p>
+        <div id="flash-controls-area" style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center; width: 100%; background: var(--color-bg-2); padding: 12px 15px; border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-weight: 500; font-size: 0.9rem; color: var(--color-text-secondary);">Controls:</span>
+                <div id="game-controls-display" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    </div>
+            </div>
+            
+            <button class="btn btn--primary btn--sm" onclick="fullscreenFlashGame()">
+                <i data-lucide="maximize" style="width: 16px; margin-right: 6px;"></i> Full Screen
+            </button>
+        </div>
     </div>
 </div>
 
 <script>
 (async function() {
-    // 1. Inject Ruffle script dynamically if it doesn't exist
     if (!window.RufflePlayer) {
         const script = document.createElement('script');
         script.src = "https://unpkg.com/@ruffle-rs/ruffle";
         document.head.appendChild(script);
     }
 
-    // 2. Fetch the games list from your JSON file
     try {
         const res = await fetch(`content/flash/games.json?v=${new Date().getTime()}`);
         if (!res.ok) throw new Error("games.json not found");
         const games = await res.json();
         
         const list = document.getElementById('flash-games-list');
-        list.innerHTML = games.map(g => `
-            <div class="tool-card" onclick="playFlashGame('${g.file}', '${g.name.replace(/'/g, "\\'")}')" style="cursor:pointer; text-align:center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+        list.innerHTML = games.map(g => {
+            // Extragem controalele (sau punem default)
+            const ctrls = g.controls ? g.controls.join(',') : 'mouse';
+            return `
+            <div class="tool-card" onclick="playFlashGame('${g.file}', '${g.name.replace(/'/g, "\\'")}', '${ctrls}')" style="cursor:pointer; text-align:center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
                 <i data-lucide="gamepad-2" style="width:40px; height:40px; margin-bottom:12px; color:var(--color-primary);"></i>
                 <h3 class="tool-title" style="font-size: 1.1rem; margin-bottom: 8px;">${g.name}</h3>
                 <p class="tool-description" style="font-size: 0.85rem; margin-bottom: 0;">${g.description || 'Play classic flash game'}</p>
             </div>
-        `).join('');
+            `;
+        }).join('');
         
         if(window.lucide) window.lucide.createIcons();
     } catch (e) {
-        console.error(e);
-        document.getElementById('flash-games-list').innerHTML = '<p style="text-align: center; color: var(--color-error); grid-column: 1/-1;">Could not load games list. Please ensure <b>content/flash/games.json</b> exists.</p>';
+        document.getElementById('flash-games-list').innerHTML = '<p style="text-align: center; color: var(--color-error); grid-column: 1/-1;">Eroare la încărcare.</p>';
     }
 })();
 
-// Function to start a game
-window.playFlashGame = function(swfFile, gameName) {
-    // Hide the list and notice
+window.playFlashGame = function(swfFile, gameName, controlsStr) {
     document.getElementById('flash-games-view').style.display = 'none';
-    
-    // Show the player
     const playerContainer = document.getElementById('flash-player-container');
     playerContainer.style.display = 'flex';
     document.getElementById('current-game-title').textContent = gameName;
     
+    // NOU: Generare vizuală a controalelor
+    const controlsArr = controlsStr.split(',');
+    const controlsHtml = controlsArr.map(c => {
+        const map = {
+            'mouse': '<i data-lucide="mouse" style="width:14px;"></i> Mouse',
+            'arrows': '<i data-lucide="move" style="width:14px;"></i> Săgeți',
+            'space': '<i data-lucide="space" style="width:14px; margin-top:2px;"></i> Space',
+            'click': '<i data-lucide="mouse-pointer-click" style="width:14px;"></i> Click',
+            'wasd': '<b style="font-family:monospace; font-size:12px;">WASD</b>'
+        };
+        return `<span style="display:flex; align-items:center; gap:5px; background:var(--color-bg-1); padding:4px 8px; border-radius:4px; border:1px solid var(--color-border); font-size:0.8rem;">${map[c.trim()] || c}</span>`;
+    }).join('');
+    document.getElementById('game-controls-display').innerHTML = controlsHtml || '<span style="font-size: 0.8rem;">Standard</span>';
+
     const embedArea = document.getElementById('ruffle-embed-area');
     embedArea.innerHTML = '<div style="color: white; display: flex; flex-direction: column; align-items: center; gap: 10px;"><i data-lucide="loader" class="spin"></i> Loading Emulator...</div>';
     if(window.lucide) window.lucide.createIcons();
     
-    // Wait for Ruffle to be ready
     const checkRuffle = setInterval(() => {
         if (window.RufflePlayer) {
             clearInterval(checkRuffle);
-            embedArea.innerHTML = ''; // Clear loading text
-            
+            embedArea.innerHTML = ''; 
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
-            
-            // CSS fixes to keep the player contained inside the modal
             player.style.width = '100%';
             player.style.height = '100%';
-            
             embedArea.appendChild(player);
-            
-            // Load the SWF file
             player.load('content/flash/' + swfFile);
         }
     }, 100);
 };
 
-// Function to go back to the game list
+// NOU: Funcția pentru Fullscreen
+window.fullscreenFlashGame = function() {
+    const embedArea = document.getElementById('ruffle-embed-area');
+    if (!document.fullscreenElement) {
+        if (embedArea.requestFullscreen) {
+            embedArea.requestFullscreen();
+        } else if (embedArea.webkitRequestFullscreen) { /* Safari */
+            embedArea.webkitRequestFullscreen();
+        } else if (embedArea.msRequestFullscreen) { /* IE11 */
+            embedArea.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+};
+
 window.closeFlashGame = function() {
     document.getElementById('flash-player-container').style.display = 'none';
-    
-    // Properly target and destroy the Ruffle player node to kill audio
     const embedArea = document.getElementById('ruffle-embed-area');
     const rufflePlayer = embedArea.querySelector('ruffle-player');
     
     if (rufflePlayer) {
         try { rufflePlayer.pause(); } catch(e) {}
-        rufflePlayer.remove(); // Triggers Ruffle's garbage collection & audio stop
+        rufflePlayer.remove(); 
     }
-    
-    embedArea.innerHTML = ''; // Clear anything else
+    embedArea.innerHTML = ''; 
     document.getElementById('flash-games-view').style.display = 'block';
 };
 </script>

@@ -1,6 +1,12 @@
 {
     "en-US": [
         {
+            "id": "doamna-administratoare",
+            "title": "Mrs. Administrator: From electoral failure in Cotnari to leading Dămuc",
+            "excerpt": "Learn the story of the failed candidacy in Cotnari and how Maria Vartolomei became public administrator in Dămuc through party connections.",
+            "file": "content/usdacm/cucoanaart/index.html"
+        },
+        {
             "id": "digital-rights",
             "title": "Digital Rights in Romania",
             "excerpt": "Analysis of digital privacy and rights issues in Romanian politics...",
@@ -9,6 +15,12 @@
     ],
     "ro-RO": [
         {
+            "id": "doamna-administratoare",
+            "title": "Doamna Administratoare: Ascensiunea „Cucoanei” de la eșecul din Cotnari la conducerea din Dămuc",
+            "excerpt": "Află povestea candidaturii eșuate din Cotnari și cum Maria Vartolomei a ajuns administrator public în Dămuc pe filieră de partid.",
+            "file": "content/usdacm/cucoanaart/index.html"
+        },
+        {
             "id": "digital-rights",
             "title": "Drepturile Digitale în România",
             "excerpt": "O analiză a confidențialității digitale și a drepturilor în politica românească...",
@@ -16,6 +28,12 @@
         }
     ],
     "gall": [
+        {
+            "id": "doamna-administratoare",
+            "title": "Gospođa Administratorka: Od izbornog neuspeha u Cotnariju do vođstva u Dămucu",
+            "excerpt": "Saznajte priču o neuspeloj kandidaturi u Cotnariju i kako je Maria Vartolomei postala javni administrator u Dămucu preko stranačkih veza.",
+            "file": "content/usdacm/cucoanaart/index.html"
+        },
         {
             "id": "digital-rights",
             "title": "Digitalna prava u Rumuniji",

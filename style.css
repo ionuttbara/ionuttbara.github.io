@@ -2701,3 +2701,27 @@ body.light-theme {
 .cert-link i {
     color: inherit;
 }
+
+/* Previne scroll-ul pe pagina principală când un modal este deschis */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Previne selectarea textului în ferestrele modale (articole și unelte) */
+.modal-content.no-select {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+/Edge */
+    user-select: none;         /* Standard */
+}
+
+/* Permite totuși selectarea textului în blocurile de cod (pentru copy-paste) și în eventualele input-uri */
+.code-block-body, 
+.code-block-body *,
+.modal-content input, 
+.modal-content textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}

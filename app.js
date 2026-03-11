@@ -491,9 +491,15 @@ function showContentModal(title, htmlContent, modalClass = '') {
         modalContentWrapper.classList.add(modalClass);
     }
 
+    // ADAUGAT: Prevenim selectarea textului by default pe articole și unelte
+    modalContentWrapper.classList.add('no-select');
+
     document.getElementById('contentModalTitle').textContent = title;
     document.getElementById('contentModalBody').innerHTML = htmlContent;
     modal.classList.remove('hidden');
+
+    // ADAUGAT: Oprim scroll-ul pe body
+    document.body.classList.add('modal-open');
 }
 
 window.fetchAndShowContent = async function(title, filePath, modalClass = '') {
@@ -1393,6 +1399,9 @@ function setupEventListeners() {
         el.addEventListener('click', () => { 
             document.querySelectorAll('.modal').forEach(m => {
                 m.classList.add('hidden');
+                
+                // ADAUGAT: Reactivăm scroll-ul pe body când se închide modalul
+                document.body.classList.remove('modal-open');
                 
                 // Kill Ruffle Flash Player and media if the main content modal is closed
                 if (m.id === 'contentModal') {
