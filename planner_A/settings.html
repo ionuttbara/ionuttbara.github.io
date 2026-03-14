@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setări Planner</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style_planner.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-color-scheme="dark">
+
+<header class="header">
+    <div class="container nav">
+        <a href="index.html" class="nav-brand">
+            <i data-lucide="arrow-left" class="nav-logo"></i>
+            <span class="nav-brand-text">Înapoi la Board</span>
+        </a>
+        <h3 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);">Setări Aplicație</h3>
+    </div>
+</header>
+
+<main class="container" style="padding: var(--space-32) 0;">
+    <div class="planner-layout" style="grid-template-columns: 1fr;">
+        
+        <div class="card mb-24">
+            <div class="card__header flex items-center justify-between">
+                <h3 class="m-0 flex items-center gap-8"><i data-lucide="database" style="color:var(--color-primary);"></i> Import / Export Date</h3>
+            </div>
+            <div class="card__body flex gap-16">
+                <button class="btn btn--outline" onclick="exportData()"><i data-lucide="download" style="margin-right:8px;width:16px;"></i> Exportă Echipe & Board-uri (JSON)</button>
+                <div style="flex:1; display:flex; gap:8px;">
+                    <input type="file" id="importFile" class="form-control" accept=".json" style="padding: 4px;">
+                    <button class="btn btn--primary" onclick="importData()"><i data-lucide="upload" style="margin-right:8px;width:16px;"></i> Importă</button>
+                </div>
+            </div>
+            <p style="padding: 0 16px 16px; font-size: 12px; color: var(--color-text-secondary); margin:0;">* Dacă imporți utilizatori care nu au parolă, li se va aloca automat parola "1234". Parolele existente nu se exportă.</p>
+        </div>
+
+        <div class="card">
+            <div class="card__header flex items-center justify-between">
+                <h3 class="m-0 flex items-center gap-8"><i data-lucide="users" style="color:var(--color-primary);"></i> Gestiune Utilizatori & Echipe</h3>
+            </div>
+            <div class="card__body">
+                <div class="board-header-row" style="grid-template-columns: 2fr 1fr 2fr 1fr;">
+                    <div>Email Utilizator</div>
+                    <div>Rol</div>
+                    <div>Acces Proiecte (Boards)</div>
+                    <div>Acțiuni</div>
+                </div>
+                <div id="settingsUsersList"></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="app_settings.js"></script>
+</body>
+</html>

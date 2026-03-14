@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner Board Manager</title>
+    
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style_planner.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-color-scheme="dark">
+
+<div id="authOverlay" class="auth-overlay">
+    <div class="auth-card" style="position: relative;">
+        <button onclick="resetDatabase()" title="Resetare completă (Debug)" style="position: absolute; top: 15px; right: 15px; background: transparent; border: 1px solid var(--color-error); color: var(--color-error); border-radius: 5px; padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 11px;">
+            <i data-lucide="alert-triangle" style="width: 12px; height: 12px;"></i> Reset DB
+        </button>
+
+        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 30px;">
+            <i data-lucide="layout-dashboard" style="color: var(--color-primary); width: 32px; height: 32px;"></i>
+            <h2 style="margin: 0; font-size: 1.6rem;">
+                Planner Board <span style="color: var(--color-text-secondary); font-weight: 300; font-size: 1.2rem;">| <span id="authHeaderState">Autentificare</span></span>
+            </h2>
+        </div>
+
+        <div id="viewLogin" class="oobe-step active">
+            <p style="text-align: center;">Conectează-te pentru a accesa board-ul.</p>
+            <div class="form-group text-left">
+                <label class="form-label">Email</label>
+                <div class="input-icon-wrapper">
+                    <i data-lucide="mail" class="icon-left"></i>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="nume@email.com">
+                </div>
+                <label class="form-label">Parolă</label>
+                <div class="input-icon-wrapper has-right-icon">
+                    <i data-lucide="lock" class="icon-left"></i>
+                    <input type="password" id="loginPass" class="form-control" placeholder="••••••••" onkeypress="if(event.key === 'Enter') handleLogin()">
+                    <button class="icon-right-btn" onclick="togglePassword('loginPass', this)" type="button"><i data-lucide="eye"></i></button>
+                </div>
+                <button class="btn btn--primary btn--full-width mt-8" onclick="handleLogin()" style="height: 44px;">
+                    <i data-lucide="log-in" style="width: 18px; height: 18px; margin-right: 8px;"></i> Log In
+                </button>
+            </div>
+        </div>
+
+        <div id="viewOobeAdmin" class="oobe-step">
+            <p>Bază de date goală detectată. Să configurăm contul principal de <b>Administrator</b>.</p>
+            <div class="form-group text-left">
+                <label class="form-label">Email Admin</label>
+                <div class="input-icon-wrapper">
+                    <i data-lucide="shield-check" class="icon-left"></i>
+                    <input type="email" id="oobeAdminEmail" class="form-control" placeholder="admin@domeniu.ro">
+                </div>
+                <label class="form-label">Parolă Admin</label>
+                <div class="input-icon-wrapper has-right-icon">
+                    <i data-lucide="lock" class="icon-left"></i>
+                    <input type="password" id="oobeAdminPass" class="form-control" placeholder="Parolă puternică">
+                    <button class="icon-right-btn" onclick="togglePassword('oobeAdminPass', this)" type="button"><i data-lucide="eye"></i></button>
+                </div>
+                <button class="btn btn--primary btn--full-width mt-8" onclick="oobeSaveAdmin()" style="height: 44px;">
+                    Continuă <i data-lucide="arrow-right" style="margin-left: 8px; width:18px;"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="viewOobeUsers" class="oobe-step">
+            <p>Pasul 2: Adaugă colegi în echipă (Opțional). Vor avea permisiuni standard.</p>
+            <div class="form-group text-left">
+                <div class="flex gap-8">
+                    <div class="input-icon-wrapper" style="flex:2;">
+                        <i data-lucide="user" class="icon-left"></i>
+                        <input type="email" id="oobeUserEmail" class="form-control" placeholder="Email coleg...">
+                    </div>
+                    <div class="input-icon-wrapper has-right-icon" style="flex:1;">
+                        <i data-lucide="key" class="icon-left"></i>
+                        <input type="password" id="oobeUserPass" class="form-control" placeholder="Parolă">
+                        <button class="icon-right-btn" onclick="togglePassword('oobeUserPass', this)" type="button"><i data-lucide="eye"></i></button>
+                    </div>
+                </div>
+                <button class="btn btn--outline btn--full-width" onclick="oobeAddTempUser()" style="height: 44px;">
+                    <i data-lucide="user-plus" style="width:16px; margin-right:5px;"></i> Adaugă în listă
+                </button>
+                <ul id="oobeTempUsersList" style="list-style:none; padding:0; margin-top:16px; margin-bottom:24px; font-size:13px; color:var(--color-primary);"></ul>
+                <div class="flex gap-8">
+                    <button class="btn btn--secondary" style="flex:1; height: 44px;" onclick="oobeNextStep('viewOobeBoard')">Sari</button>
+                    <button class="btn btn--primary" style="flex:2; height: 44px;" onclick="oobeNextStep('viewOobeBoard')">Următorul <i data-lucide="arrow-right" style="margin-left: 8px; width:16px;"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="viewOobeBoard" class="oobe-step">
+            <p>Pasul 3: Creează primul Board (Echipă/Proiect major).</p>
+            <div class="form-group text-left">
+                <label class="form-label">Nume Board</label>
+                <div class="input-icon-wrapper">
+                    <i data-lucide="trello" class="icon-left"></i>
+                    <input type="text" id="oobeBoardName" class="form-control" placeholder="Ex: Echipa IT, Dezvoltare Web...">
+                </div>
+                <div class="flex gap-8 mt-8">
+                    <button class="btn btn--secondary" style="flex:1; height: 44px;" onclick="oobeFinish(false)">Sari</button>
+                    <button class="btn btn--primary" style="flex:2; height: 44px;" onclick="oobeFinish(true)">Finalizare <i data-lucide="check" style="margin-left: 8px; width:16px;"></i></button>
+                </div>
+            </div>
+        </div>
+        <p id="authError" style="color: var(--color-error); margin-top: 15px; font-size: 13px; display: none; text-align: center;"></p>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container nav">
+        <a href="#" class="nav-brand">
+            <i data-lucide="layout-dashboard" class="nav-logo"></i>
+            <span class="nav-brand-text">Planner Manager</span>
+        </a>
+        <div class="nav-actions flex items-center gap-16">
+            <div class="flex items-center gap-8" style="background: var(--color-bg-2); padding: 5px 12px; border-radius: 20px;">
+                <i data-lucide="user" style="width: 16px; height: 16px; color: var(--color-primary);"></i>
+                <span id="currentUserDisplay" style="font-size: 13px; font-weight: 600;"></span>
+            </div>
+            <a href="settings.html" id="btnSettings" class="btn btn--outline btn--sm" style="display:none;"><i data-lucide="settings" style="width:16px; margin-right:5px;"></i> Setări</a>
+            <button class="btn btn--outline btn--sm" onclick="logoutUser()">Logout</button>
+        </div>
+    </div>
+</header>
+
+<main id="appMain" class="container" style="padding: var(--space-32) 0; display: none; min-height: calc(100vh - 80px);">
+    <div class="planner-layout">
+        
+        <div class="flex flex-col gap-16">
+            <div class="card" id="boardListCard">
+                <div class="card__header flex items-center justify-between gap-8">
+                    <div class="flex items-center gap-8">
+                        <i data-lucide="kanban-square" style="color: var(--color-primary);"></i>
+                        <h3 class="m-0">Proiectele Mele</h3>
+                    </div>
+                </div>
+                <div class="card__body" style="padding: 0;">
+                    <ul id="boardNavList" class="board-nav-list"></ul>
+                </div>
+            </div>
+
+            <div class="card" id="adminGroupControls" style="display: none;">
+                <div class="card__body" style="padding: 16px;">
+                    <div class="flex gap-8">
+                        <input type="text" id="newBoardName" class="form-control" placeholder="Proiect Nou..." style="height: 38px;">
+                        <button class="btn btn--primary" onclick="addBoard()"><i data-lucide="plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__header flex items-center gap-8">
+                    <i data-lucide="users" style="color: var(--color-primary);"></i>
+                    <h3 class="m-0">Echipă Proiect</h3>
+                </div>
+                <div class="card__body">
+                    <div class="form-group mb-16" id="adminUserControls" style="display: none;">
+                        <input type="email" id="newUserEmail" class="form-control mb-8" placeholder="Email...">
+                        <div class="flex gap-8 mb-8">
+                            <input type="password" id="newUserPass" class="form-control" placeholder="Parolă">
+                            <select id="newUserRole" class="form-control">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button class="btn btn--primary btn--full-width" onclick="addUser()">Adaugă User în Proiect</button>
+                    </div>
+                    <div id="usersList" class="flex flex-col"></div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div id="plannerDisplay" class="flex flex-col">
+                </div>
+        </div>
+    </div>
+</main>
+
+<div id="taskModal" class="auth-overlay hidden" style="z-index: 2000;">
+    <div class="auth-card" style="max-width: 600px; text-align: left; display: flex; flex-direction: column; max-height: 90vh;">
+        <div class="flex items-center justify-between mb-16" style="border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <h3 id="modalTaskTitle" style="margin: 0; color: var(--color-primary);">Detalii Task</h3>
+            <button onclick="closeTaskModal()" style="background:none; border:none; cursor:pointer; color:var(--color-text-secondary);"><i data-lucide="x"></i></button>
+        </div>
+        <div id="modalCommentsList" style="flex: 1; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; padding-right: 10px;"></div>
+        <div style="border-top: 1px solid var(--color-border); padding-top: 16px;">
+            <div class="flex gap-8 mb-8">
+                <select id="modalCommentType" class="form-control" style="width: 140px;">
+                    <option value="comment">💬 Comentariu</option>
+                    <option value="repro">🐛 Reproducere Bug</option>
+                    <option value="file">📎 Fișier / Link</option>
+                </select>
+                <input type="text" id="modalCommentInput" class="form-control" placeholder="Scrie un mesaj sau pune un link..." style="flex: 1;" onkeypress="if(event.key === 'Enter') addComment()">
+                <button class="btn btn--primary" onclick="addComment()"><i data-lucide="send"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app_planner.js"></script>
+</body>
+</html>

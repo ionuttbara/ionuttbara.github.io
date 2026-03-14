@@ -1,0 +1,180 @@
+/* Layout Principal Planner */
+.planner-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-24);
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .planner-layout { grid-template-columns: 1fr; }
+}
+
+/* User List */
+.user-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--space-8) var(--space-12); background: var(--color-bg-1);
+    border-radius: var(--radius-sm); margin-bottom: var(--space-8);
+}
+
+.role-badge {
+    font-size: 10px; padding: 2px 6px; border-radius: 10px;
+    text-transform: uppercase; font-weight: bold;
+}
+.role-admin { background: var(--color-error); color: white; }
+.role-user { background: var(--color-primary); color: white; }
+
+/* --- Navigare Board-uri (Sidebar Meniu) --- */
+.board-nav-list { list-style: none; padding: 0; margin: 0; }
+.board-nav-item {
+    padding: var(--space-12) var(--space-16);
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.2s, border-left 0.2s;
+    border-left: 4px solid transparent;
+}
+.board-nav-item:hover { background: var(--color-bg-1); }
+.board-nav-item.active {
+    background: var(--color-bg-2);
+    border-left: 4px solid var(--color-primary);
+    font-weight: 600;
+}
+.board-nav-item:last-child { border-bottom: none; }
+
+
+/* --- Ierarhie: Board > Subgrup > Task --- */
+.board-container { margin-bottom: var(--space-32); }
+.board-main-header {
+    font-size: var(--font-size-2xl); color: var(--color-text); margin-bottom: var(--space-16);
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 10px; border-bottom: 2px solid var(--color-primary);
+}
+.board-group {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); margin-bottom: var(--space-16);
+    overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.subgroup-header {
+    padding: 12px 20px; background: var(--color-bg-2); display: flex;
+    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--color-border);
+}
+.board-header-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 0.8fr 1fr 1fr 0.5fr; gap: 10px;
+    padding: var(--space-12) var(--space-16); background: var(--color-surface);
+    border-bottom: 2px solid var(--color-border); font-weight: 600; font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+.board-task-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 0.8fr 1fr 1fr 0.5fr; gap: 10px;
+    padding: var(--space-8) var(--space-16); border-bottom: 1px solid var(--color-border);
+    align-items: center; transition: background 0.2s;
+}
+.board-task-row:hover { background: var(--color-bg-1); }
+.board-task-row:last-child { border-bottom: none; }
+.board-input {
+    width: 100%; padding: var(--space-4) var(--space-8); border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm); background: var(--color-background); color: var(--color-text);
+    font-size: var(--font-size-sm); outline: none;
+}
+.board-input:focus { border-color: var(--color-primary); }
+
+.priority-critical { background-color: #dc3545; color: white; }
+.priority-ridicat { background-color: #fd7e14; color: white; }
+.priority-mediu { background-color: #0d6efd; color: white; }
+.priority-it { background-color: #6f42c1; color: white; }
+.add-task-row {
+    padding: var(--space-12) var(--space-16); background: var(--color-bg-1);
+    display: flex; gap: var(--space-12); border-top: 1px solid var(--color-border);
+}
+
+/* --- Overlay Autentificare & OOBE --- */
+.auth-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-background);
+    z-index: 1000; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease;
+}
+.auth-overlay.hidden { opacity: 0; pointer-events: none; visibility: hidden; }
+
+.auth-card {
+    width: 100%; max-width: 480px; padding: 40px; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); text-align: center;
+}
+
+/* Noua abordare cu clase pt Iconițe Stânga/Dreapta (Evită conflictul cu parola) */
+.input-icon-wrapper { position: relative; display: block; width: 100%; margin-bottom: 20px; }
+
+/* Iconița din stânga (ex: mail, lock, user) */
+.input-icon-wrapper .icon-left {
+    position: absolute !important; left: 14px !important; top: 50% !important;
+    transform: translateY(-50%) !important; color: var(--color-text-secondary);
+    width: 18px; height: 18px; pointer-events: none; z-index: 2;
+}
+
+/* Butonul pentru parola din dreapta (ochiul) */
+.input-icon-wrapper .icon-right-btn {
+    position: absolute !important; right: 10px !important; top: 50% !important;
+    transform: translateY(-50%) !important; background: transparent; border: none;
+    color: var(--color-text-secondary); cursor: pointer; z-index: 3;
+    display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 4px;
+}
+.input-icon-wrapper .icon-right-btn:hover { background: var(--color-bg-2); color: var(--color-primary); }
+.input-icon-wrapper .icon-right-btn svg { width: 18px; height: 18px; }
+
+.input-icon-wrapper .form-control {
+    padding-left: 42px !important; /* Spațiu pt stânga */
+    position: relative; z-index: 1; height: 44px; /* Mai mult aer pe înălțime */
+}
+.input-icon-wrapper.has-right-icon .form-control {
+    padding-right: 42px !important; /* Spațiu pt butonul ochi în dreapta */
+}
+
+.oobe-step { display: none; animation: fadeIn 0.3s ease-in; }
+.oobe-step.active { display: block; text-align: left; }
+.oobe-step p { color: var(--color-text-secondary); margin-bottom: var(--space-24); font-size: var(--font-size-md); line-height: 1.5; }
+
+/* --- TOOLBAR (Filtre, Căutare, Sortare sus pe board) --- */
+.board-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    align-items: center;
+    background: var(--color-surface);
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.board-toolbar .btn, 
+.board-toolbar .form-control {
+    height: 38px;
+    margin: 0;
+}
+
+.board-toolbar .btn i {
+    color: currentColor; /* Păstrează iconițele albe dacă butonul are text alb (ex. btn--primary) */
+}
+
+/* --- MONDAY.COM STYLE STATUS SELECT --- */
+.monday-status {
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 8px;
+    /* Aspect compact fără săgeata clasică de dropdown */
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+}
+
+.monday-status:focus { outline: 2px solid var(--color-text); }
+.monday-status option { background: var(--color-surface); color: var(--color-text); text-shadow: none; font-weight: normal; }
+
+/* Adăugăm bara colorată in stânga la Subgrupuri (Grupuri de task-uri) */
+.subgroup-header {
+    border-left: 6px solid var(--color-primary);
+}
